@@ -1,0 +1,125 @@
+:root {
+  --fundo: #f6f7f9;
+  --superficie: #ffffff;
+  --texto: #1d2733;
+  --suave: #55616e;
+  --borda: #dde2e8;
+  --azul: #0b5cad;
+  --azul-escuro: #084a8c;
+  --azul-claro: #e8f1fb;
+  --destaque: #fff4cc;
+  --destaque-borda: #e0b23a;
+  --codigo: #eef1f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #12161b;
+    --superficie: #1b2129;
+    --texto: #e6eaef;
+    --suave: #a7b1bd;
+    --borda: #2f3843;
+    --azul: #6aa8ef;
+    --azul-escuro: #8dbdf3;
+    --azul-claro: #172a40;
+    --destaque: #3a3115;
+    --destaque-borda: #b98e22;
+    --codigo: #262e38;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.largura { max-width: 60rem; margin: 0 auto; padding: 0 1rem; }
+
+a { color: var(--azul); }
+a:hover { color: var(--azul-escuro); }
+a:focus-visible, .botao:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+
+code {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--codigo);
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+}
+
+/* Topo */
+.topo { background: var(--superficie); border-bottom: 1px solid var(--borda); padding: 3rem 0 2.5rem; }
+.selo { margin: 0 0 0.5rem; color: var(--suave); font-size: 0.95rem; }
+h1 { margin: 0 0 1rem; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; }
+.chamada { margin: 0 0 1.75rem; font-size: 1.15rem; max-width: 46rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.botao {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--azul);
+  border-radius: 8px;
+  color: var(--azul);
+  text-decoration: none;
+  font-weight: 600;
+  background: var(--superficie);
+}
+.botao:hover { background: var(--azul-claro); }
+.botao.principal { background: var(--azul); color: #fff; }
+.botao.principal:hover { background: var(--azul-escuro); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .botao.principal, .botao.principal:hover { color: #0d1a2a; }
+}
+
+/* Seções */
+main section { padding: 2.25rem 0 0.5rem; }
+h2 { font-size: 1.5rem; margin: 0 0 0.75rem; }
+h3 { font-size: 1.05rem; margin: 0 0 0.35rem; }
+.nota { color: var(--suave); font-size: 0.95rem; }
+
+/* Tabela antes e depois */
+.tabela-rolagem { overflow-x: auto; border: 1px solid var(--borda); border-radius: 10px; background: var(--superficie); }
+table { width: 100%; border-collapse: collapse; }
+caption { text-align: left; padding: 0.75rem 1rem 0; color: var(--suave); font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.6rem 1rem; border-bottom: 1px solid var(--borda); vertical-align: top; }
+thead th { font-size: 0.95rem; color: var(--suave); font-weight: 600; }
+tbody tr:last-child td { border-bottom: 0; }
+.rotulo { display: block; font-size: 0.85rem; color: var(--suave); }
+
+.aviso {
+  margin-top: 1rem;
+  padding: 0.25rem 1rem;
+  background: var(--destaque);
+  border-left: 4px solid var(--destaque-borda);
+  border-radius: 6px;
+}
+
+/* Cartões */
+.cartoes { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.cartoes li { background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px; padding: 1rem 1.1rem; }
+.cartoes p { margin: 0; }
+
+/* Agravos */
+.agravos { list-style: none; padding: 0; margin: 0 0 0.5rem; border: 1px solid var(--borda); border-radius: 10px; background: var(--superficie); }
+.agravos li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; border-bottom: 1px solid var(--borda); }
+.agravos li:last-child { border-bottom: 0; }
+.agravos span { color: var(--suave); white-space: nowrap; }
+
+/* Passos */
+.passos { padding-left: 1.4rem; }
+.passos li { margin-bottom: 0.5rem; }
+
+.citacao { background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px; padding: 0.9rem 1rem; }
+
+/* Rodapé */
+.rodape { margin-top: 3rem; padding: 1.5rem 0; border-top: 1px solid var(--borda); background: var(--superficie); color: var(--suave); font-size: 0.95rem; }
+.rodape p { margin: 0.25rem 0; }
+
+@media (max-width: 30rem) {
+  .topo { padding: 2rem 0 1.75rem; }
+  .botao { display: block; text-align: center; width: 100%; }
+  th, td { padding: 0.55rem 0.7rem; }
+}

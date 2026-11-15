@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Decodificador do SINAN</title>
+<meta name="description" content="Ferramenta gratuita que traduz os microdados públicos do SINAN para linguagem legível, no próprio navegador, sem programação e sem enviar os dados.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="largura">
+    <p class="selo">Software livre · Versão 1.0.1</p>
+    <h1>Decodificador de notificações do SINAN</h1>
+    <p class="chamada">Transforma os microdados públicos do SINAN, cheios de códigos e siglas, numa planilha que qualquer pessoa consegue ler. Tudo acontece no seu navegador: sem programação, sem instalação e sem enviar os dados para lugar nenhum.</p>
+    <div class="botoes">
+      <a class="botao principal" href="demo/">Testar agora, no navegador</a>
+      <a class="botao" href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.0.1/decodificador-sinan-1.0.1.zip">Baixar para usar sem internet</a>
+    </div>
+  </div>
+</header>
+
+<main class="largura">
+
+<section aria-labelledby="t-antes">
+  <h2 id="t-antes">Antes e depois</h2>
+  <p>Uma notificação fictícia de dengue, como vem no arquivo do DATASUS e como sai da ferramenta. A tradução de cada código segue o dicionário de dados oficial.</p>
+  <div class="tabela-rolagem">
+    <table>
+      <caption>Notificação fictícia nº 1 do arquivo de exemplo</caption>
+      <thead>
+        <tr><th scope="col">Coluna no arquivo</th><th scope="col">Valor no arquivo</th><th scope="col">Na planilha decodificada</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>DT_NOTIFIC</code></td><td><code>20250802</code></td><td><span class="rotulo">Data da notificação</span> 02/08/2025</td></tr>
+        <tr><td><code>ID_MUNICIP</code></td><td><code>330285</code></td><td><span class="rotulo">Município de notificação</span> Mesquita (Rio de Janeiro)</td></tr>
+        <tr><td><code>NU_IDADE_N</code></td><td><code>4085</code></td><td><span class="rotulo">Idade</span> 85 anos</td></tr>
+        <tr><td><code>CS_SEXO</code></td><td><code>I</code></td><td><span class="rotulo">Sexo</span> Ignorado</td></tr>
+        <tr><td><code>CS_RACA</code></td><td><code>2</code></td><td><span class="rotulo">Raça/Cor</span> Preta</td></tr>
+        <tr><td><code>CS_ESCOL_N</code></td><td><code>6</code></td><td><span class="rotulo">Escolaridade</span> Ensino médio completo</td></tr>
+        <tr><td><code>FEBRE</code></td><td><code>2</code></td><td><span class="rotulo">Sinais clínicos (Febre)</span> Não</td></tr>
+        <tr><td><code>CLASSI_FIN</code></td><td><code>1</code></td><td><span class="rotulo">Classificação final</span> Confirmado</td></tr>
+        <tr><td><code>EVOLUCAO</code></td><td><code>3</code></td><td><span class="rotulo">Evolução do caso</span> Óbito por outras causas</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="aviso">
+    <p><strong>E quando o código não está no dicionário?</strong> Na notificação fictícia nº 4, o campo <code>CS_SEXO</code> vem com <code>X</code>, que não existe no dicionário. A ferramenta não inventa uma tradução: mantém o <code>X</code>, destaca em amarelo e lista o caso na aba "Inconsistências".</p>
+  </div>
+</section>
+
+<section aria-labelledby="t-faz">
+  <h2 id="t-faz">O que a ferramenta faz</h2>
+  <ul class="cartoes">
+    <li><h3>Traduz códigos e colunas</h3><p>Troca códigos como <code>1</code>, <code>2</code> e <code>9</code> pelo texto do dicionário oficial, e nomes como <code>CS_RACA</code> por "Raça/Cor". Converte datas e a idade codificada.</p></li>
+    <li><h3>Lê os arquivos do DATASUS</h3><p>Abre os formatos DBC, DBF e CSV, inclusive o arquivo nacional de dengue, com mais de 1,6 milhão de notificações.</p></li>
+    <li><h3>Não inventa nada</h3><p>Código sem correspondência no dicionário oficial fica como veio, destacado e listado para conferência.</p></li>
+    <li><h3>Entrega planilha pronta</h3><p>Excel com quatro abas (Dados, Inconsistências, Dicionário usado e Resumo) ou CSV. Há também um formato pronto para R, Stata e Python.</p></li>
+  </ul>
+</section>
+
+<section aria-labelledby="t-agravos">
+  <h2 id="t-agravos">Agravos cobertos</h2>
+  <p>Cada agravo tem um dicionário próprio, transcrito dos dicionários de dados e das fichas de investigação do SINAN e conferido linha por linha.</p>
+  <ul class="agravos">
+    <li><strong>Dengue</strong><span>121 colunas</span></li>
+    <li><strong>Chikungunya</strong><span>121 colunas</span></li>
+    <li><strong>Zika</strong><span>37 colunas</span></li>
+    <li><strong>Leishmaniose tegumentar americana</strong><span>73 colunas</span></li>
+    <li><strong>Leishmaniose visceral</strong><span>87 colunas</span></li>
+  </ul>
+  <p class="nota">Outros agravos estão em preparação e entram nas próximas versões.</p>
+</section>
+
+<section aria-labelledby="t-testar">
+  <h2 id="t-testar">Teste em um minuto</h2>
+  <ol class="passos">
+    <li>Baixe um arquivo de exemplo. Os dados são <strong>fictícios</strong>, criados só para demonstração: <a href="exemplos/exemplo_dengue_FICTICIO.dbc" download>DBC</a>, <a href="exemplos/exemplo_dengue_FICTICIO.dbf" download>DBF</a> ou <a href="exemplos/exemplo_dengue_FICTICIO.csv" download>CSV</a>.</li>
+    <li>Abra a <a href="demo/">demonstração</a>, escolha o agravo <strong>Dengue</strong> e selecione o arquivo baixado.</li>
+    <li>Clique em <strong>Processar e baixar a planilha</strong> e abra o resultado no Excel.</li>
+  </ol>
+  <p class="nota">Funciona no Chrome e no Edge atualizados, no computador.</p>
+</section>
+
+<section aria-labelledby="t-privacidade">
+  <h2 id="t-privacidade">Seus dados ficam com você</h2>
+  <p>O arquivo é lido e traduzido dentro do seu navegador. A página tem uma regra de segurança que bloqueia qualquer conexão de rede durante o uso, e um teste automático confirma que nenhuma conexão sai do computador. Não há cadastro, cookies nem contagem de visitas.</p>
+  <p>A demonstração online é carregada do GitHub, mas os arquivos que você escolhe não são enviados. Para trabalhar com dados que identificam pessoas, prefira a <a href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.0.1/decodificador-sinan-1.0.1.zip">versão para baixar</a>, que funciona sem internet. Lembre que a planilha gerada tem os mesmos dados pessoais do arquivo original.</p>
+</section>
+
+<section aria-labelledby="t-validacao">
+  <h2 id="t-validacao">Validação</h2>
+  <p>A ferramenta foi comparada com o pacote microdatasus, para R, nos arquivos nacionais de 2025 dos cinco agravos, e uma amostra de 500 células traduzidas foi conferida à mão nos documentos oficiais, sem nenhum erro de tradução encontrado. Os métodos, os resultados e os scripts estão no <a href="https://github.com/rubens23junior-lab/decodificador-sinan/tree/main/docs/validacao">repositório</a>.</p>
+</section>
+
+<section aria-labelledby="t-citar">
+  <h2 id="t-citar">Como citar</h2>
+  <p class="citacao">SILVA JUNIOR, R. A. <strong>Decodificador de notificações do SINAN</strong>. Versão 1.0.1. [S. l.]: Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.24245072">10.5281/zenodo.24245072</a>.</p>
+  <p class="nota">Programa de computador registrado no INPI, processo BR512026010321-5.</p>
+</section>
+
+<section aria-labelledby="t-contato">
+  <h2 id="t-contato">Contato</h2>
+  <p>Encontrou um erro, tem uma dúvida ou quer sugerir um agravo? Abra uma conversa no GitHub. É preciso ter uma conta gratuita no GitHub.</p>
+  <p><a class="botao" href="https://github.com/rubens23junior-lab/decodificador-sinan/issues/new">Escrever para o autor</a></p>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="largura">
+    <p>© 2026 Rubens Araujo da Silva Junior. Software livre sob a <a href="https://github.com/rubens23junior-lab/decodificador-sinan/blob/main/LICENSE">licença GNU GPL versão 3 ou posterior</a>, sem nenhuma garantia.</p>
+    <p><a href="https://github.com/rubens23junior-lab/decodificador-sinan">Código-fonte no GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
