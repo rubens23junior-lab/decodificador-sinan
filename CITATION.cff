@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "Se você usar esta ferramenta, cite-a como abaixo. / If you use this software, please cite it as below."
+type: software
+title: "Decodificador de notificações do SINAN"
+version: "1.0.1"
+date-released: "2026-11-15"
+authors:
+  - given-names: "Rubens Araujo"
+    name-particle: "da"
+    family-names: "Silva Junior"
+license: GPL-3.0-or-later
+abstract: >-
+  Ferramenta gratuita que decodifica os microdados públicos do Sistema de
+  Informação de Agravos de Notificação (SINAN), distribuídos pelo DATASUS nos
+  formatos DBC, DBF e CSV, traduzindo códigos e nomes de colunas conforme os
+  dicionários de dados oficiais. Todo o processamento acontece no navegador,
+  sem programação e sem envio dos dados para servidores externos. Códigos sem
+  correspondência no dicionário oficial são mantidos, destacados e listados.
+keywords:
+  - SINAN
+  - DATASUS
+  - microdados
+  - vigilância epidemiológica
+  - sistemas de informação em saúde
+  - dicionário de dados
+identifiers:
+  - type: other
+    value: "BR512026010321-5"
+    description: "Registro de programa de computador no INPI (certificado expedido em 10/11/2026)"

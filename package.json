@@ -1,0 +1,23 @@
+{
+  "name": "decodificador-sinan",
+  "version": "1.0.1",
+  "description": "Decodifica arquivos públicos de notificações do SINAN (DATASUS) para planilhas legíveis, processando tudo no navegador.",
+  "private": true,
+  "type": "module",
+  "author": "Rubens Araujo da Silva Junior",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "test": "node --test testes/",
+    "verificar": "node ferramentas/verificar-dicionarios.js",
+    "conferencia": "node ferramentas/gerar-conferencia.js dicionarios/dengue.json",
+    "exemplos": "node ferramentas/gerar-exemplos.js",
+    "construir": "node ferramentas/construir.js",
+    "testar-navegador": "node ferramentas/testar-navegador.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "dependencies": {
+    "fflate": "0.8.2"
+  }
+}

@@ -1,0 +1,126 @@
+DECODIFICADOR DE NOTIFICAÇÕES DO SINAN
+======================================
+Versão 1.0.1 (15/11/2026). Autor: Rubens Araujo da Silva Junior.
+
+O que é
+-------
+Esta ferramenta transforma um arquivo de notificações do SINAN, em que os
+campos vêm como códigos (1, 2, 9...) e os nomes das colunas vêm abreviados
+(CS_SEXO, DT_NOTIFIC...), numa planilha do Excel em linguagem legível,
+seguindo o dicionário de dados oficial.
+
+Os dados não saem do seu computador. Todo o processamento acontece no
+navegador, sem internet e sem envio de arquivos. A planilha gerada contém os
+mesmos dados pessoais do arquivo original e deve ser tratada conforme as
+regras do seu serviço.
+
+
+Como abrir
+----------
+1. Descompacte o arquivo .zip (clique com o botão direito > Extrair tudo).
+2. Abra a pasta "decodificador-sinan" e dê dois cliques em "index.html".
+3. A ferramenta abre no navegador. Use o Google Chrome ou o Microsoft Edge.
+   Se abrir em outro navegador: clique com o botão direito em "index.html" >
+   Abrir com > Google Chrome (ou Microsoft Edge).
+
+Não precisa de internet nem de instalação.
+
+
+Como usar
+---------
+1. Escolha o agravo: Dengue, Chikungunya, Zika, Leishmaniose Tegumentar
+   Americana ou Leishmaniose Visceral.
+2. Escolha o arquivo: clique em "Escolher arquivo" ou arraste o arquivo para a
+   área indicada. Formatos aceitos:
+     - DBC: arquivos públicos do DATASUS
+       (https://datasus.saude.gov.br/transferencia-de-arquivos/);
+     - DBF e CSV.
+3. A ferramenta lê o arquivo e mostra quantas notificações e colunas ele tem.
+4. Escolha as opções:
+     - Filtros: UF, município e período. Use para reduzir o tamanho da
+       planilha.
+     - Colunas: manter o código original ao lado do texto (padrão: sim);
+       segunda linha de cabeçalho com o nome original (padrão: não);
+       escolher quais colunas incluir (padrão: todas).
+     - Formato para análise (R, Stata, Python): veja a seção "Usar no R".
+     - Formato: Excel ou CSV.
+5. Clique em "Processar e baixar a planilha". O arquivo vai para a pasta de
+   downloads do navegador.
+
+
+A planilha gerada
+-----------------
+- Dados: as notificações traduzidas. Valores que não estão no dicionário
+  ficam como vieram, destacados em amarelo. Campo em branco continua em
+  branco.
+- Inconsistências: lista dos valores sem tradução, com a quantidade e o
+  motivo. Também entram as idades implausíveis (acima de 23 horas, 29 dias,
+  11 meses ou 110 anos), que ficam como vieram e destacadas.
+- Dicionário usado: agravo, versão, quem conferiu, fontes oficiais e as
+  categorias aplicadas em cada coluna.
+- Resumo: número de registros, filtros, data e hora e versão da ferramenta.
+
+
+Usar no R (ou Stata, Python)
+----------------------------
+Marque "Formato para análise (R, Stata, Python)" antes de processar. Assim:
+  - as colunas usam o nome do SINAN em minúsculas (cs_sexo, dt_notific...),
+    com o código original ao lado em <nome>_cod (cs_sexo_cod);
+  - a coluna idade_anos traz a idade em anos completos, como número
+    (menor de 1 ano = 0; idade inválida ou implausível fica vazia);
+  - no CSV, o separador é a vírgula, o decimal é o ponto e as datas vêm
+    como aaaa-mm-dd.
+O texto das categorias é o mesmo da planilha comum. "Ignorado" continua
+como categoria: decida na análise se ele conta como valor ausente. O nome
+legível de cada coluna está na aba "Dicionário usado".
+
+No R, peça para o leitor olhar todas as linhas antes de decidir o tipo de
+cada coluna (guess_max). Sem isso, uma coluna de data vazia nas primeiras
+mil linhas pode ser lida como vazia inteira:
+
+  library(readxl)
+  dados <- read_excel("arquivo.xlsx", sheet = "Dados", guess_max = 1048576)
+
+  library(readr)
+  dados <- read_csv("arquivo.csv", guess_max = Inf)
+
+
+Arquivos grandes
+----------------
+- O Excel aceita no máximo 1.048.576 linhas. Um arquivo nacional de um ano
+  inteiro costuma passar disso: use filtros (UF, período) ou a saída em CSV.
+- Acima de cerca de 300 mil notificações, a planilha Excel fica pesada e pode
+  levar vários minutos para abrir. A ferramenta avisa quando for o caso.
+- O processamento de um arquivo nacional leva alguns minutos. A barra de
+  progresso mostra o andamento; a tela não trava.
+
+
+Arquivos de exemplo
+-------------------
+A pasta "exemplos" tem arquivos FICTÍCIOS, criados só para demonstração. Eles
+não contêm dados de pessoas reais e incluem de propósito alguns códigos
+inválidos, para mostrar o destaque e a aba de inconsistências.
+
+
+Problemas comuns
+----------------
+- "O arquivo não parece ser de ...": o arquivo é de outro agravo ou não é um
+  arquivo do SINAN. Confira o agravo escolhido.
+- Acentos estranhos: abra "Acentos aparecendo errado?" e escolha outra
+  codificação.
+- A página abre em branco: use o Chrome ou o Edge atualizados.
+
+
+Licença
+-------
+Copyright (C) 2026 Rubens Araujo da Silva Junior. Registro no INPI:
+processo BR512026010321-5.
+
+Este programa é software livre, distribuído nos termos da Licença Pública
+Geral GNU (GNU GPL), versão 3 ou posterior, SEM NENHUMA GARANTIA. Você pode
+usar, copiar, estudar e modificar a ferramenta; quem distribuir uma versão
+modificada precisa manter este aviso e liberar o código dessa versão sob a
+mesma licença. O texto completo está no arquivo LICENSE, nesta pasta.
+
+Inclui a biblioteca fflate (licença MIT) e uma adaptação do blast.c, de Mark
+Adler (licença zlib).

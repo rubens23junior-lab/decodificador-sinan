@@ -1,0 +1,585 @@
+CO_MICIBGE;CO_STATUS;DS_NOME;DS_NOMEPAD;DS_ABREV;NU_ORDEM
+11000;N;Municipio Ignorado - Ro - ;MUNICIPIO IGNORADO - RO - ; - ;8
+11001;S;Porto Velho - RO;PORTO VELHO - RO;Porto Velho - RO;1
+11002;S;Guajara-Mirim - RO;GUAJARA-MIRIM - RO;Guajará-Mirim - RO;1
+11003;S;Ariquemes - RO;ARIQUEMES - RO;Ariquemes - RO;1
+11004;S;Ji-Parana - RO;JI-PARANA - RO;Ji-Paraná - RO;1
+11005;S;Alvorada D'Oeste - RO;ALVORADA D'OESTE - RO;Alvorada D'Oeste - RO;1
+11006;S;Cacoal - RO;CACOAL - RO;Cacoal - RO;1
+11007;S;Vilhena - RO;VILHENA - RO;Vilhena - RO;1
+11008;S;Colorado Do Oeste - RO;COLORADO DO OESTE - RO;Colorado Oeste - RO;1
+12000;N;Municipio Ignorado - Ac - ;MUNICIPIO IGNORADO - AC - ; - ;8
+12001;S;Cruzeiro Do Sul - AC;CRUZEIRO DO SUL - AC;Cruzeiro do Sul - AC;1
+12002;S;Tarauaca - AC;TARAUACA - AC;Tarauacá - AC;1
+12003;S;Sena Madureira - AC;SENA MADUREIRA - AC;Sena Madureira - AC;1
+12004;S;Rio Branco - AC;RIO BRANCO - AC;Rio Branco - AC;1
+12005;S;Brasileia - AC;BRASILEIA - AC;Brasiléia - AC;1
+13000;N;Municipio Ignorado - Am - ;MUNICIPIO IGNORADO - AM - ; - ;8
+13001;S;Rio Negro - AM;RIO NEGRO - AM;Rio Negro AM - AM;1
+13002;S;Japura - AM;JAPURA - AM;Japurá - AM;1
+13003;S;Alto Solimoes - AM;ALTO SOLIMOES - AM;Alto Solimões - AM;1
+13004;S;Jurua - AM;JURUA - AM;Juruá - AM;1
+13005;S;Tefe - AM;TEFE - AM;Tefé - AM;1
+13006;S;Coari - AM;COARI - AM;Coari - AM;1
+13007;S;Manaus - AM;MANAUS - AM;Manaus - AM;1
+13008;S;Rio Preto Da Eva - AM;RIO PRETO DA EVA - AM;R.Preto da Eva - AM;1
+13009;S;Itacoatiara - AM;ITACOATIARA - AM;Itacoatiara - AM;1
+13010;S;Parintins - AM;PARINTINS - AM;Parintins - AM;1
+13011;S;Boca Do Acre - AM;BOCA DO ACRE - AM;Boca do Acre - AM;1
+13012;S;Purus - AM;PURUS - AM;Purus - AM;1
+13013;S;Madeira - AM;MADEIRA - AM;Madeira - AM;1
+14000;N;Municipio Ignorado - Rr - ;MUNICIPIO IGNORADO - RR - ; - ;8
+14001;S;Boa Vista - RR;BOA VISTA - RR;Boa Vista - RR;1
+14002;S;Nordeste De Roraima - RR;NORDESTE DE RORAIMA - RR;Nordeste RR - RR;1
+14003;S;Caracarai - RR;CARACARAI - RR;Caracaraí - RR;1
+14004;S;Sudeste De Roraima - RR;SUDESTE DE RORAIMA - RR;Sudeste RR - RR;1
+15000;N;Municipio Ignorado - Pa - ;MUNICIPIO IGNORADO - PA - ; - ;8
+15001;S;Obidos - PA;OBIDOS - PA;Óbidos - PA;1
+15002;S;Santarem - PA;SANTAREM - PA;Santarém - PA;1
+15003;S;Almeirim - PA;ALMEIRIM - PA;Almeirim - PA;1
+15004;S;Portel - PA;PORTEL - PA;Portel - PA;1
+15005;S;Furos De Breves - PA;FUROS DE BREVES - PA;Furos de Breves - PA;1
+15006;S;Arari - PA;ARARI - PA;Arari - PA;1
+15007;S;Belem - PA;BELEM - PA;Belém - PA;1
+15008;S;Castanhal - PA;CASTANHAL - PA;Castanhal - PA;1
+15009;S;Salgado - PA;SALGADO - PA;Salgado - PA;1
+15010;S;Bragantina - PA;BRAGANTINA - PA;Bragantina - PA;1
+15011;S;Cameta - PA;CAMETA - PA;Cametá - PA;1
+15012;S;Tome-Acu - PA;TOME-ACU - PA;Tomé-Açu - PA;1
+15013;S;Guama - PA;GUAMA - PA;Guamá - PA;1
+15014;S;Itaituba - PA;ITAITUBA - PA;Itaituba - PA;1
+15015;S;Altamira - PA;ALTAMIRA - PA;Altamira - PA;1
+15016;S;Tucurui - PA;TUCURUI - PA;Tucuruí - PA;1
+15017;S;Paragominas - PA;PARAGOMINAS - PA;Paragominas - PA;1
+15018;S;Sao Felix Do Xingu - PA;SAO FELIX DO XINGU - PA;S.Félix Xingu - PA;1
+15019;S;Parauapebas - PA;PARAUAPEBAS - PA;Parauapebas - PA;1
+15020;S;Maraba - PA;MARABA - PA;Marabá - PA;1
+15021;S;Redencao - PA;REDENCAO - PA;Redenção - PA;1
+15022;S;Conceicao Do Araguaia - PA;CONCEICAO DO ARAGUAIA - PA;Conc.Araguaia - PA;1
+16000;N;Municipio Ignorado - Ap - ;MUNICIPIO IGNORADO - AP - ; - ;8
+16001;S;Oiapoque - AP;OIAPOQUE - AP;Oiapoque - AP;1
+16002;S;Amapa - AP;AMAPA - AP;Amapá - AP;1
+16003;S;Macapa - AP;MACAPA - AP;Macapá - AP;1
+16004;S;Mazagao - AP;MAZAGAO - AP;Mazagão - AP;1
+17000;N;Municipio Ignorado - To - ;MUNICIPIO IGNORADO - TO - ; - ;8
+17001;S;Bico Do Papagaio - TO;BICO DO PAPAGAIO - TO;Bico Papagaio - TO;1
+17002;S;Araguaina - TO;ARAGUAINA - TO;Araguaína - TO;1
+17003;S;Miracema Do Tocantins - TO;MIRACEMA DO TOCANTINS - TO;Miracema TO - TO;1
+17004;S;Rio Formoso - TO;RIO FORMOSO - TO;Rio Formoso - TO;1
+17005;S;Gurupi - TO;GURUPI - TO;Gurupi TO - TO;1
+17006;S;Porto Nacional - TO;PORTO NACIONAL - TO;Porto Nacional - TO;1
+17007;S;Jalapao - TO;JALAPAO - TO;Jalapão - TO;1
+17008;S;Dianopolis - TO;DIANOPOLIS - TO;Dianópolis - TO;1
+21000;N;Municipio Ignorado - Ma - ;MUNICIPIO IGNORADO - MA - ; - ;8
+21001;S;Litoral Ocidental Maranhense - MA;LITORAL OCIDENTAL MARANHENSE - MA;Litoral Ocid.MA - MA;1
+21002;S;Aglomeracao Urbana De Sao Luis - MA;AGLOMERACAO URBANA DE SAO LUIS - MA;São Luís - MA;1
+21003;S;Rosario - MA;ROSARIO - MA;Rosário - MA;1
+21004;S;Lencois Maranhenses - MA;LENCOIS MARANHENSES - MA;Lençóis MA - MA;1
+21005;S;Baixada Maranhense - MA;BAIXADA MARANHENSE - MA;Baixada MA - MA;1
+21006;S;Itapecuru Mirim - MA;ITAPECURU MIRIM - MA;Itapecuru Mirim - MA;1
+21007;S;Gurupi - MA;GURUPI - MA;Gurupi MA - MA;1
+21008;S;Pindare - MA;PINDARE - MA;Pindaré - MA;1
+21009;S;Imperatriz - MA;IMPERATRIZ - MA;Imperatriz - MA;1
+21010;S;Medio Mearim - MA;MEDIO MEARIM - MA;Médio Mearim - MA;1
+21011;S;Alto Mearim E Grajau - MA;ALTO MEARIM E GRAJAU - MA;A.Mearim/Grajaú - MA;1
+21012;S;Presidente Dutra - MA;PRESIDENTE DUTRA - MA;Pres. Dutra - MA;1
+21013;S;Baixo Parnaiba Maranhense - MA;BAIXO PARNAIBA MARANHENSE - MA;B.Parnaíba MA - MA;1
+21014;S;Chapadinha - MA;CHAPADINHA - MA;Chapadinha - MA;1
+21015;S;Codo - MA;CODO - MA;Codó - MA;1
+21016;S;Coelho Neto - MA;COELHO NETO - MA;Coelho Neto - MA;1
+21017;S;Caxias - MA;CAXIAS - MA;Caxias - MA;1
+21018;S;Chapadas Do Alto Itapecuru - MA;CHAPADAS DO ALTO ITAPECURU - MA;Chap.Itapecuru - MA;1
+21019;S;Porto Franco - MA;PORTO FRANCO - MA;Porto Franco - MA;1
+21020;S;Gerais De Balsas - MA;GERAIS DE BALSAS - MA;Gerais Balsas - MA;1
+21021;S;Chapadas Das Mangabeiras - MA;CHAPADAS DAS MANGABEIRAS - MA;Chap.Mangab. - MA;1
+22000;N;Municipio Ignorado - Pi - ;MUNICIPIO IGNORADO - PI - ; - ;8
+22001;S;Baixo Parnaiba Piauiense - PI;BAIXO PARNAIBA PIAUIENSE - PI;B.Parnaíba PI - PI;1
+22002;S;Litoral Piauiense - PI;LITORAL PIAUIENSE - PI;Litoral PI - PI;1
+22003;S;Teresina - PI;TERESINA - PI;Teresina - PI;1
+22004;S;Campo Maior - PI;CAMPO MAIOR - PI;Campo Maior - PI;1
+22005;S;Medio Parnaiba Piauiense - PI;MEDIO PARNAIBA PIAUIENSE - PI;M.Parnaíba PI - PI;1
+22006;S;Valenca Do Piaui - PI;VALENCA DO PIAUI - PI;Valença PI - PI;1
+22007;S;Alto Parnaiba Piauiense - PI;ALTO PARNAIBA PIAUIENSE - PI;A.Parnaíba PI - PI;1
+22008;S;Bertolinia - PI;BERTOLINIA - PI;Bertolínia - PI;1
+22009;S;Floriano - PI;FLORIANO - PI;Floriano - PI;1
+22010;S;Alto Medio Gurgueia - PI;ALTO MEDIO GURGUEIA - PI;A.M.Gurguéia - PI;1
+22011;S;Sao Raimundo Nonato - PI;SAO RAIMUNDO NONATO - PI;S.Raim.Nonato - PI;1
+22012;S;Chapadas Do Extremo Sul Piauiense - PI;CHAPADAS DO EXTREMO SUL PIAUIENSE - PI;Chap.Ext.Sul PI - PI;1
+22013;S;Picos - PI;PICOS - PI;Picos - PI;1
+22014;S;Pio Ix - PI;PIO IX - PI;Pio IX - PI;1
+22015;S;Alto Medio Caninde - PI;ALTO MEDIO CANINDE - PI;A.M.Canindé - PI;1
+23000;N;Municipio Ignorado - Ce - ;MUNICIPIO IGNORADO - CE - ; - ;8
+23001;S;Litoral De Camocim E Acarau - CE;LITORAL DE CAMOCIM E ACARAU - CE;Camocim/Acaraú - CE;1
+23002;S;Ibiapaba - CE;IBIAPABA - CE;Ibiapaba - CE;1
+23003;S;Coreau - CE;COREAU - CE;Coreaú - CE;1
+23004;S;Meruoca - CE;MERUOCA - CE;Meruoca - CE;1
+23005;S;Sobral - CE;SOBRAL - CE;Sobral - CE;1
+23006;S;Ipu - CE;IPU - CE;Ipu - CE;1
+23007;S;Santa Quiteria - CE;SANTA QUITERIA - CE;Santa Quitéria - CE;1
+23008;S;Itapipoca - CE;ITAPIPOCA - CE;Itapipoca - CE;1
+23009;S;Baixo Curu - CE;BAIXO CURU - CE;Baixo Curu - CE;1
+23010;S;Uruburetama - CE;URUBURETAMA - CE;Uruburetama - CE;1
+23011;S;Medio Curu - CE;MEDIO CURU - CE;Médio Curu - CE;1
+23012;S;Caninde - CE;CANINDE - CE;Canindé - CE;1
+23013;S;Baturite - CE;BATURITE - CE;Baturité - CE;1
+23014;S;Chorozinho - CE;CHOROZINHO - CE;Chorozinho - CE;1
+23015;S;Cascavel - CE;CASCAVEL - CE;Cascavel CE - CE;1
+23016;S;Fortaleza - CE;FORTALEZA - CE;Fortaleza - CE;1
+23017;S;Pacajus - CE;PACAJUS - CE;Pacajus - CE;1
+23018;S;Sertao De Crateus - CE;SERTAO DE CRATEUS - CE;Sertão Cratéus - CE;1
+23019;S;Sertao De Quixeramobim - CE;SERTAO DE QUIXERAMOBIM - CE;Quixeramobim - CE;1
+23020;S;Sertao De Inhamuns - CE;SERTAO DE INHAMUNS - CE;Sertão Inhamuns - CE;1
+23021;S;Sertao De Senador Pompeu - CE;SERTAO DE SENADOR POMPEU - CE;Senador Pompeu - CE;1
+23022;S;Litoral De Aracati - CE;LITORAL DE ARACATI - CE;Litoral Aracati - CE;1
+23023;S;Baixo Jaguaribe - CE;BAIXO JAGUARIBE - CE;Baixo Jaguaribe - CE;1
+23024;S;Medio Jaguaribe - CE;MEDIO JAGUARIBE - CE;Médio Jaguaribe - CE;1
+23025;S;Serra Do Pereiro - CE;SERRA DO PEREIRO - CE;Serra Pereiro - CE;1
+23026;S;Iguatu - CE;IGUATU - CE;Iguatu - CE;1
+23027;S;Varzea Alegre - CE;VARZEA ALEGRE - CE;Várzea Alegre - CE;1
+23028;S;Lavras Da Mangabeira - CE;LAVRAS DA MANGABEIRA - CE;Lavr.Mangabeira - CE;1
+23029;S;Chapada Do Araripe - CE;CHAPADA DO ARARIPE - CE;Chap.Araripe - CE;1
+23030;S;Caririacu - CE;CARIRIACU - CE;Caririaçu - CE;1
+23031;S;Barro - CE;BARRO - CE;Barro - CE;1
+23032;S;Cariri - CE;CARIRI - CE;Cariri - CE;1
+23033;S;Brejo Santo - CE;BREJO SANTO - CE;Brejo Santo - CE;1
+24000;N;Municipio Ignorado - Rn - ;MUNICIPIO IGNORADO - RN - ; - ;8
+24001;S;Mossoro - RN;MOSSORO - RN;Mossoró - RN;1
+24002;S;Chapada Do Apodi - RN;CHAPADA DO APODI - RN;Chap.Apodi - RN;1
+24003;S;Medio Oeste - RN;MEDIO OESTE - RN;Médio Oeste - RN;1
+24004;S;Vale Do Acu - RN;VALE DO ACU - RN;Vale do Açu - RN;1
+24005;S;Serra De Sao Miguel - RN;SERRA DE SAO MIGUEL - RN;Serra S.Miguel - RN;1
+24006;S;Pau Dos Ferros - RN;PAU DOS FERROS - RN;Pau dos Ferros - RN;1
+24007;S;Umarizal - RN;UMARIZAL - RN;Umarizal - RN;1
+24008;S;Macau - RN;MACAU - RN;Macau - RN;1
+24009;S;Angicos - RN;ANGICOS - RN;Angicos - RN;1
+24010;S;Serra De Santana - RN;SERRA DE SANTANA - RN;Serra Santana - RN;1
+24011;S;Serido Ocidental - RN;SERIDO OCIDENTAL - RN;Seridó Ocid. - RN;1
+24012;S;Serido Oriental - RN;SERIDO ORIENTAL - RN;Seridó Oriental - RN;1
+24013;S;Baixa Verde - RN;BAIXA VERDE - RN;Baixa Verde - RN;1
+24014;S;Borborema Potiguar - RN;BORBOREMA POTIGUAR - RN;Borborema RN - RN;1
+24015;S;Agreste Potiguar - RN;AGRESTE POTIGUAR - RN;Agreste RN - RN;1
+24016;S;Litoral Nordeste - RN;LITORAL NORDESTE - RN;Litoral NE - RN;1
+24017;S;Macaiba - RN;MACAIBA - RN;Macaíba - RN;1
+24018;S;Natal - RN;NATAL - RN;Natal - RN;1
+24019;S;Litoral Sul - RN;LITORAL SUL - RN;Litoral Sul RN - RN;1
+25000;N;Municipio Ignorado - Pb - ;MUNICIPIO IGNORADO - PB - ; - ;8
+25001;S;Catole Do Rocha - PB;CATOLE DO ROCHA - PB;Catolé do Rocha - PB;1
+25002;S;Cajazeiras - PB;CAJAZEIRAS - PB;Cajazeiras - PB;1
+25003;S;Sousa - PB;SOUSA - PB;Sousa - PB;1
+25004;S;Patos - PB;PATOS - PB;Patos - PB;1
+25005;S;Pianco - PB;PIANCO - PB;Piancó - PB;1
+25006;S;Itaporanga - PB;ITAPORANGA - PB;Itaporanga - PB;1
+25007;S;Serra Do Teixeira - PB;SERRA DO TEIXEIRA - PB;Serra Teixeira - PB;1
+25008;S;Serido Ocidental Paraibano - PB;SERIDO OCIDENTAL PARAIBANO - PB;Seridó Ocid.PB - PB;1
+25009;S;Serido Oriental Paraibano - PB;SERIDO ORIENTAL PARAIBANO - PB;Seridó Or.PB - PB;1
+25010;S;Cariri Ocidental - PB;CARIRI OCIDENTAL - PB;Cariri Ocid. - PB;1
+25011;S;Cariri Oriental - PB;CARIRI ORIENTAL - PB;Cariri Oriental - PB;1
+25012;S;Curimatau Ocidental - PB;CURIMATAU OCIDENTAL - PB;Curimataú Ocid. - PB;1
+25013;S;Curimatau Oriental - PB;CURIMATAU ORIENTAL - PB;Curimataú Or. - PB;1
+25014;S;Esperanca - PB;ESPERANCA - PB;Esperança - PB;1
+25015;S;Brejo Paraibano - PB;BREJO PARAIBANO - PB;Brejo PB - PB;1
+25016;S;Guarabira - PB;GUARABIRA - PB;Guarabira - PB;1
+25017;S;Campina Grande - PB;CAMPINA GRANDE - PB;Campina Grande - PB;1
+25018;S;Itabaiana - PB;ITABAIANA - PB;Itabaiana - PB;1
+25019;S;Umbuzeiro - PB;UMBUZEIRO - PB;Umbuzeiro - PB;1
+25020;S;Litoral Norte - PB;LITORAL NORTE - PB;Litoral Norte - PB;1
+25021;S;Sape - PB;SAPE - PB;Sapé - PB;1
+25022;S;Joao Pessoa - PB;JOAO PESSOA - PB;João Pessoa - PB;1
+25023;S;Litoral Sul - PB;LITORAL SUL - PB;Litoral Sul PB - PB;1
+26000;N;Municipio Ignorado - Pe - ;MUNICIPIO IGNORADO - PE - ; - ;8
+26001;S;Araripina - PE;ARARIPINA - PE;Araripina - PE;1
+26002;S;Salgueiro - PE;SALGUEIRO - PE;Salgueiro - PE;1
+26003;S;Pajeu - PE;PAJEU - PE;Pajeú - PE;1
+26004;S;Sertao Do Moxoto - PE;SERTAO DO MOXOTO - PE;Sertão Moxotó - PE;1
+26005;S;Petrolina - PE;PETROLINA - PE;Petrolina - PE;1
+26006;S;Itaparica - PE;ITAPARICA - PE;Itaparica - PE;1
+26007;S;Vale Do Ipanema - PE;VALE DO IPANEMA - PE;Vale do Ipanema - PE;1
+26008;S;Vale Do Ipojuca - PE;VALE DO IPOJUCA - PE;Vale do Ipojuca - PE;1
+26009;S;Alto Capibaribe - PE;ALTO CAPIBARIBE - PE;Alto Capibaribe - PE;1
+26010;S;Medio Capibaribe - PE;MEDIO CAPIBARIBE - PE;M.Capibaribe - PE;1
+26011;S;Garanhuns - PE;GARANHUNS - PE;Garanhuns - PE;1
+26012;S;Brejo Pernambucano - PE;BREJO PERNAMBUCANO - PE;Brejo PE - PE;1
+26013;S;Mata Setentrional Pernambucana - PE;MATA SETENTRIONAL PERNAMBUCANA - PE;Mata Set.PE - PE;1
+26014;S;Vitoria De Santo Antao - PE;VITORIA DE SANTO ANTAO - PE;Vitória S.Antão - PE;1
+26015;S;Mata Meridional Pernambucana - PE;MATA MERIDIONAL PERNAMBUCANA - PE;Mata Merid.PE - PE;1
+26016;S;Itamaraca - PE;ITAMARACA - PE;Itamaracá - PE;1
+26017;S;Recife - PE;RECIFE - PE;Recife - PE;1
+26018;S;Suape - PE;SUAPE - PE;Suape - PE;1
+26019;S;Fernando De Noronha - PE;FERNANDO DE NORONHA - PE;Fern.Noronha - PE;1
+27000;N;Municipio Ignorado - Al - ;MUNICIPIO IGNORADO - AL - ; - ;8
+27001;S;Serrana Do Sertao Alagoano - AL;SERRANA DO SERTAO ALAGOANO - AL;Serr.Sertão AL - AL;1
+27002;S;Alagoana Do Sertao Do Sao Francisco - AL;ALAGOANA DO SERTAO DO SAO FRANCISCO - AL;Sert.S.Franc.AL - AL;1
+27003;S;Santana Do Ipanema - AL;SANTANA DO IPANEMA - AL;Santana Ipanema - AL;1
+27004;S;Batalha - AL;BATALHA - AL;Batalha - AL;1
+27005;S;Palmeira Dos Indios - AL;PALMEIRA DOS INDIOS - AL;Palmeira Índios - AL;1
+27006;S;Arapiraca - AL;ARAPIRACA - AL;Arapiraca - AL;1
+27007;S;Traipu - AL;TRAIPU - AL;Traipu - AL;1
+27008;S;Serrana Dos Quilombos - AL;SERRANA DOS QUILOMBOS - AL;Serr.Quilombos - AL;1
+27009;S;Mata Alagoana - AL;MATA ALAGOANA - AL;Mata AL - AL;1
+27010;S;Litoral Norte Alagoano - AL;LITORAL NORTE ALAGOANO - AL;Litoral N AL - AL;1
+27011;S;Maceio - AL;MACEIO - AL;Maceió - AL;1
+27012;S;Sao Miguel Dos Campos - AL;SAO MIGUEL DOS CAMPOS - AL;S.Miguel Campos - AL;1
+27013;S;Penedo - AL;PENEDO - AL;Penedo - AL;1
+28000;N;Municipio Ignorado - Se - ;MUNICIPIO IGNORADO - SE - ; - ;8
+28001;S;Sergipana Do Sertao Do Sao Francisco - SE;SERGIPANA DO SERTAO DO SAO FRANCISCO - SE;Sert.S.Franc.SE - SE;1
+28002;S;Carira - SE;CARIRA - SE;Carira - SE;1
+28003;S;Nossa Senhora Das Dores - SE;NOSSA SENHORA DAS DORES - SE;NS das Dores - SE;1
+28004;S;Agreste De Itabaiana - SE;AGRESTE DE ITABAIANA - SE;Agr.Itabaiana - SE;1
+28005;S;Tobias Barreto - SE;TOBIAS BARRETO - SE;Tobias Barreto - SE;1
+28006;S;Agreste De Lagarto - SE;AGRESTE DE LAGARTO - SE;Agr.Lagarto - SE;1
+28007;S;Propria - SE;PROPRIA - SE;Propriá - SE;1
+28008;S;Cotinguiba - SE;COTINGUIBA - SE;Cotinguiba - SE;1
+28009;S;Japaratuba - SE;JAPARATUBA - SE;Japaratuba - SE;1
+28010;S;Baixo Cotinguiba - SE;BAIXO COTINGUIBA - SE;B.Cotinguiba - SE;1
+28011;S;Aracaju - SE;ARACAJU - SE;Aracaju - SE;1
+28012;S;Boquim - SE;BOQUIM - SE;Boquim - SE;1
+28013;S;Estancia - SE;ESTANCIA - SE;Estância - SE;1
+29000;N;Municipio Ignorado - Ba - ;MUNICIPIO IGNORADO - BA - ; - ;8
+29001;S;Barreiras - BA;BARREIRAS - BA;Barreiras - BA;1
+29002;S;Cotegipe - BA;COTEGIPE - BA;Cotegipe - BA;1
+29003;S;Santa Maria Da Vitoria - BA;SANTA MARIA DA VITORIA - BA;S Maria Vitória - BA;1
+29004;S;Juazeiro - BA;JUAZEIRO - BA;Juazeiro - BA;1
+29005;S;Paulo Afonso - BA;PAULO AFONSO - BA;Paulo Afonso - BA;1
+29006;S;Barra - BA;BARRA - BA;Barra - BA;1
+29007;S;Bom Jesus Da Lapa - BA;BOM JESUS DA LAPA - BA;B Jesus da Lapa - BA;1
+29008;S;Senhor Do Bonfim - BA;SENHOR DO BONFIM - BA;Senhor Bonfim - BA;1
+29009;S;Irece - BA;IRECE - BA;Irecê - BA;1
+29010;S;Jacobina - BA;JACOBINA - BA;Jacobina - BA;1
+29011;S;Itaberaba - BA;ITABERABA - BA;Itaberaba - BA;1
+29012;S;Feira De Santana - BA;FEIRA DE SANTANA - BA;F Santana - BA;1
+29013;S;Jeremoabo - BA;JEREMOABO - BA;Jeremoabo - BA;1
+29014;S;Euclides Da Cunha - BA;EUCLIDES DA CUNHA - BA;Euclides Cunha - BA;1
+29015;S;Ribeira Do Pombal - BA;RIBEIRA DO POMBAL - BA;Ribeira Pombal - BA;1
+29016;S;Serrinha - BA;SERRINHA - BA;Serrinha - BA;1
+29017;S;Alagoinhas - BA;ALAGOINHAS - BA;Alagoinhas - BA;1
+29018;S;Entre Rios - BA;ENTRE RIOS - BA;Entre Rios - BA;1
+29019;S;Catu - BA;CATU - BA;Catu - BA;1
+29020;S;Santo Antonio De Jesus - BA;SANTO ANTONIO DE JESUS - BA;S Antônio Jesus - BA;1
+29021;S;Salvador - BA;SALVADOR - BA;Salvador - BA;1
+29022;S;Boquira - BA;BOQUIRA - BA;Boquira - BA;1
+29023;S;Seabra - BA;SEABRA - BA;Seabra - BA;1
+29024;S;Jequie - BA;JEQUIE - BA;Jequié - BA;1
+29025;S;Livramento Do Brumado - BA;LIVRAMENTO DO BRUMADO - BA;Livr.Brumado - BA;1
+29026;S;Guanambi - BA;GUANAMBI - BA;Guanambi - BA;1
+29027;S;Brumado - BA;BRUMADO - BA;Brumado - BA;1
+29028;S;Vitoria Da Conquista - BA;VITORIA DA CONQUISTA - BA;Vit.Conquista - BA;1
+29029;S;Itapetinga - BA;ITAPETINGA - BA;Itapetinga - BA;1
+29030;S;Valenca - BA;VALENCA - BA;Valença - BA;1
+29031;S;Ilheus-Itabuna - BA;ILHEUS-ITABUNA - BA;Ilhéus-Itabuna - BA;1
+29032;S;Porto Seguro - BA;PORTO SEGURO - BA;Porto Seguro - BA;1
+31000;N;Municipio Ignorado - Mg - ;MUNICIPIO IGNORADO - MG - ; - ;8
+31001;S;Unai - MG;UNAI - MG;Unaí - MG;1
+31002;S;Paracatu - MG;PARACATU - MG;Paracatu - MG;1
+31003;S;Januaria - MG;JANUARIA - MG;Januária - MG;1
+31004;S;Janauba - MG;JANAUBA - MG;Janaúba - MG;1
+31005;S;Salinas - MG;SALINAS - MG;Salinas - MG;1
+31006;S;Pirapora - MG;PIRAPORA - MG;Pirapora - MG;1
+31007;S;Montes Claros - MG;MONTES CLAROS - MG;Montes Claros - MG;1
+31008;S;Grao Mogol - MG;GRAO MOGOL - MG;Grão Mogol - MG;1
+31009;S;Bocaiuva - MG;BOCAIUVA - MG;Bocaiúva - MG;1
+31010;S;Diamantina - MG;DIAMANTINA - MG;Diamantina - MG;1
+31011;S;Capelinha - MG;CAPELINHA - MG;Capelinha - MG;1
+31012;S;Aracuai - MG;ARACUAI - MG;Araçuaí - MG;1
+31013;S;Pedra Azul - MG;PEDRA AZUL - MG;Pedra Azul - MG;1
+31014;S;Almenara - MG;ALMENARA - MG;Almenara - MG;1
+31015;S;Teofilo Otoni - MG;TEOFILO OTONI - MG;Teófilo Otoni - MG;1
+31016;S;Nanuque - MG;NANUQUE - MG;Nanuque - MG;1
+31017;S;Ituiutaba - MG;ITUIUTABA - MG;Ituiutaba - MG;1
+31018;S;Uberlandia - MG;UBERLANDIA - MG;Uberlândia - MG;1
+31019;S;Patrocinio - MG;PATROCINIO - MG;Patrocínio - MG;1
+31020;S;Patos De Minas - MG;PATOS DE MINAS - MG;Patos de Minas - MG;1
+31021;S;Frutal - MG;FRUTAL - MG;Frutal - MG;1
+31022;S;Uberaba - MG;UBERABA - MG;Uberaba - MG;1
+31023;S;Araxa - MG;ARAXA - MG;Araxá - MG;1
+31024;S;Tres Marias - MG;TRES MARIAS - MG;Três Marias - MG;1
+31025;S;Curvelo - MG;CURVELO - MG;Curvelo - MG;1
+31026;S;Bom Despacho - MG;BOM DESPACHO - MG;Bom Despacho - MG;1
+31027;S;Sete Lagoas - MG;SETE LAGOAS - MG;Sete Lagoas - MG;1
+31028;S;Conceicao Do Mato Dentro - MG;CONCEICAO DO MATO DENTRO - MG;Conc. M. Dentro - MG;1
+31029;S;Para De Minas - MG;PARA DE MINAS - MG;Pará de Minas - MG;1
+31030;S;Belo Horizonte - MG;BELO HORIZONTE - MG;B Horizonte - MG;1
+31031;S;Itabira - MG;ITABIRA - MG;Itabira - MG;1
+31032;S;Itaguara - MG;ITAGUARA - MG;Itaguara - MG;1
+31033;S;Ouro Preto - MG;OURO PRETO - MG;Ouro Preto - MG;1
+31034;S;Conselheiro Lafaiete - MG;CONSELHEIRO LAFAIETE - MG;Cons. Lafaiete - MG;1
+31035;S;Guanhaes - MG;GUANHAES - MG;Guanhães - MG;1
+31036;S;Pecanha - MG;PECANHA - MG;Peçanha - MG;1
+31037;S;Governador Valadares - MG;GOVERNADOR VALADARES - MG;Gov. Valadares - MG;1
+31038;S;Mantena - MG;MANTENA - MG;Mantena - MG;1
+31039;S;Ipatinga - MG;IPATINGA - MG;Ipatinga - MG;1
+31040;S;Caratinga - MG;CARATINGA - MG;Caratinga - MG;1
+31041;S;Aimores - MG;AIMORES - MG;Aimorés - MG;1
+31042;S;Piui - MG;PIUI - MG;Piuí - MG;1
+31043;S;Divinopolis - MG;DIVINOPOLIS - MG;Divinópolis - MG;1
+31044;S;Formiga - MG;FORMIGA - MG;Formiga - MG;1
+31045;S;Campo Belo - MG;CAMPO BELO - MG;Campo Belo - MG;1
+31046;S;Oliveira - MG;OLIVEIRA - MG;Oliveira - MG;1
+31047;S;Passos - MG;PASSOS - MG;Passos - MG;1
+31048;S;Sao Sebastiao Do Paraiso - MG;SAO SEBASTIAO DO PARAISO - MG;S. Seb. Paraíso - MG;1
+31049;S;Alfenas - MG;ALFENAS - MG;Alfenas - MG;1
+31050;S;Varginha - MG;VARGINHA - MG;Varginha - MG;1
+31051;S;Pocos De Caldas - MG;POCOS DE CALDAS - MG;P. Caldas - MG;1
+31052;S;Pouso Alegre - MG;POUSO ALEGRE - MG;P. Alegre - MG;1
+31053;S;Santa Rita Do Sapucai - MG;SANTA RITA DO SAPUCAI - MG;S Rita Sapucaí - MG;1
+31054;S;Sao Lourenco - MG;SAO LOURENCO - MG;S. Lourenço - MG;1
+31055;S;Andrelandia - MG;ANDRELANDIA - MG;Andrelândia - MG;1
+31056;S;Itajuba - MG;ITAJUBA - MG;Itajubá - MG;1
+31057;S;Lavras - MG;LAVRAS - MG;Lavras - MG;1
+31058;S;Sao Joao Del Rei - MG;SAO JOAO DEL REI - MG;S J del Rei - MG;1
+31059;S;Barbacena - MG;BARBACENA - MG;Barbacena - MG;1
+31060;S;Ponte Nova - MG;PONTE NOVA - MG;Ponte Nova - MG;1
+31061;S;Manhuacu - MG;MANHUACU - MG;Manhuaçu - MG;1
+31062;S;Vicosa - MG;VICOSA - MG;Viçosa - MG;1
+31063;S;Muriae - MG;MURIAE - MG;Muriaé - MG;1
+31064;S;Uba - MG;UBA - MG;Ubá - MG;1
+31065;S;Juiz De Fora - MG;JUIZ DE FORA - MG;Juiz de Fora - MG;1
+31066;S;Cataguases - MG;CATAGUASES - MG;Cataguases - MG;1
+32000;N;Municipio Ignorado - Es - ;MUNICIPIO IGNORADO - ES - ; - ;8
+32001;S;Barra De Sao Francisco - ES;BARRA DE SAO FRANCISCO - ES;Barra S.Franc. - ES;1
+32002;S;Nova Venecia - ES;NOVA VENECIA - ES;Nova Venécia - ES;1
+32003;S;Colatina - ES;COLATINA - ES;Colatina - ES;1
+32004;S;Montanha - ES;MONTANHA - ES;Montanha - ES;1
+32005;S;Sao Mateus - ES;SAO MATEUS - ES;São Mateus - ES;1
+32006;S;Linhares - ES;LINHARES - ES;Linhares - ES;1
+32007;S;Afonso Claudio - ES;AFONSO CLAUDIO - ES;Afonso Cláudio - ES;1
+32008;S;Santa Teresa - ES;SANTA TERESA - ES;Santa Teresa - ES;1
+32009;S;Vitoria - ES;VITORIA - ES;Vitória - ES;1
+32010;S;Guarapari - ES;GUARAPARI - ES;Guarapari - ES;1
+32011;S;Alegre - ES;ALEGRE - ES;Alegre - ES;1
+32012;S;Cachoeiro De Itapemirim - ES;CACHOEIRO DE ITAPEMIRIM - ES;Cach.Itapemirim - ES;1
+32013;S;Itapemirim - ES;ITAPEMIRIM - ES;Itapemirim - ES;1
+33000;N;Municipio Ignorado - Rj - ;MUNICIPIO IGNORADO - RJ - ; - ;8
+33001;S;Itaperuna - RJ;ITAPERUNA - RJ;Itaperuna - RJ;1
+33002;S;Santo Antonio De Padua - RJ;SANTO ANTONIO DE PADUA - RJ;S.Antônio Pádua - RJ;1
+33003;S;Campos Dos Goytacazes - RJ;CAMPOS DOS GOYTACAZES - RJ;Campos Goytac. - RJ;1
+33004;S;Macae - RJ;MACAE - RJ;Macaé - RJ;1
+33005;S;Tres Rios - RJ;TRES RIOS - RJ;Três Rios - RJ;1
+33006;S;Cantagalo-Cordeiro - RJ;CANTAGALO-CORDEIRO - RJ;Cantag/Cordeiro - RJ;1
+33007;S;Nova Friburgo - RJ;NOVA FRIBURGO - RJ;Nova Friburgo - RJ;1
+33008;S;Santa Maria Madalena - RJ;SANTA MARIA MADALENA - RJ;S.M.Madalena - RJ;1
+33009;S;Bacia De Sao Joao - RJ;BACIA DE SAO JOAO - RJ;Bacia de S.João - RJ;1
+33010;S;Lagos - RJ;LAGOS - RJ;Lagos - RJ;1
+33011;S;Vale Do Paraiba Fluminense - RJ;VALE DO PARAIBA FLUMINENSE - RJ;Vale Paraíba RJ - RJ;1
+33012;S;Barra Do Pirai - RJ;BARRA DO PIRAI - RJ;Barra do Piraí - RJ;1
+33013;S;Baia Da Ilha Grande - RJ;BAIA DA ILHA GRANDE - RJ;Baía I.Grande - RJ;1
+33014;S;Vassouras - RJ;VASSOURAS - RJ;Vassouras - RJ;1
+33015;S;Serrana - RJ;SERRANA - RJ;Serrana - RJ;1
+33016;S;Macacu-Caceribu - RJ;MACACU-CACERIBU - RJ;Macacu-Caceribu - RJ;1
+33017;S;Itaguai - RJ;ITAGUAI - RJ;Itaguaí - RJ;1
+33018;S;Rio De Janeiro - RJ;RIO DE JANEIRO - RJ;Rio de Janeiro - RJ;1
+35000;N;Municipio Ignorado - Sp - ;MUNICIPIO IGNORADO - SP - ; - ;8
+35001;S;Jales - SP;JALES - SP;Jales - SP;1
+35002;S;Fernandopolis - SP;FERNANDOPOLIS - SP;Fernandópolis - SP;1
+35003;S;Votuporanga - SP;VOTUPORANGA - SP;Votuporanga - SP;1
+35004;S;Sao Jose Do Rio Preto - SP;SAO JOSE DO RIO PRETO - SP;S.José R.Preto - SP;1
+35005;S;Catanduva - SP;CATANDUVA - SP;Catanduva - SP;1
+35006;S;Auriflama - SP;AURIFLAMA - SP;Auriflama - SP;1
+35007;S;Nhandeara - SP;NHANDEARA - SP;Nhandeara - SP;1
+35008;S;Novo Horizonte - SP;NOVO HORIZONTE - SP;Novo Horizonte - SP;1
+35009;S;Barretos - SP;BARRETOS - SP;Barretos - SP;1
+35010;S;Sao Joaquim Da Barra - SP;SAO JOAQUIM DA BARRA - SP;S.Joaquim Barra - SP;1
+35011;S;Ituverava - SP;ITUVERAVA - SP;Ituverava - SP;1
+35012;S;Franca - SP;FRANCA - SP;Franca - SP;1
+35013;S;Jaboticabal - SP;JABOTICABAL - SP;Jaboticabal - SP;1
+35014;S;Ribeirao Preto - SP;RIBEIRAO PRETO - SP;Ribeirão Preto - SP;1
+35015;S;Batatais - SP;BATATAIS - SP;Batatais - SP;1
+35016;S;Andradina - SP;ANDRADINA - SP;Andradina - SP;1
+35017;S;Aracatuba - SP;ARACATUBA - SP;Araçatuba - SP;1
+35018;S;Birigui - SP;BIRIGUI - SP;Birigui - SP;1
+35019;S;Lins - SP;LINS - SP;Lins - SP;1
+35020;S;Bauru - SP;BAURU - SP;Bauru - SP;1
+35021;S;Jau - SP;JAU - SP;Jaú - SP;1
+35022;S;Avare - SP;AVARE - SP;Avaré - SP;1
+35023;S;Botucatu - SP;BOTUCATU - SP;Botucatu - SP;1
+35024;S;Araraquara - SP;ARARAQUARA - SP;Araraquara - SP;1
+35025;S;Sao Carlos - SP;SAO CARLOS - SP;São Carlos - SP;1
+35026;S;Rio Claro - SP;RIO CLARO - SP;Rio Claro - SP;1
+35027;S;Limeira - SP;LIMEIRA - SP;Limeira - SP;1
+35028;S;Piracicaba - SP;PIRACICABA - SP;Piracicaba - SP;1
+35029;S;Pirassununga - SP;PIRASSUNUNGA - SP;Pirassununga - SP;1
+35030;S;Sao Joao Da Boa Vista - SP;SAO JOAO DA BOA VISTA - SP;S.João B.Vista - SP;1
+35031;S;Moji Mirim - SP;MOJI MIRIM - SP;Moji Mirim - SP;1
+35032;S;Campinas - SP;CAMPINAS - SP;Campinas - SP;1
+35033;S;Amparo - SP;AMPARO - SP;Amparo - SP;1
+35034;S;Dracena - SP;DRACENA - SP;Dracena - SP;1
+35035;S;Adamantina - SP;ADAMANTINA - SP;Adamantina - SP;1
+35036;S;Presidente Prudente - SP;PRESIDENTE PRUDENTE - SP;Pres.Prudente - SP;1
+35037;S;Tupa - SP;TUPA - SP;Tupã - SP;1
+35038;S;Marilia - SP;MARILIA - SP;Marília - SP;1
+35039;S;Assis - SP;ASSIS - SP;Assis - SP;1
+35040;S;Ourinhos - SP;OURINHOS - SP;Ourinhos - SP;1
+35041;S;Itapeva - SP;ITAPEVA - SP;Itapeva - SP;1
+35042;S;Itapetininga - SP;ITAPETININGA - SP;Itapetininga - SP;1
+35043;S;Tatui - SP;TATUI - SP;Tatuí - SP;1
+35044;S;Capao Bonito - SP;CAPAO BONITO - SP;Capão Bonito - SP;1
+35045;S;Piedade - SP;PIEDADE - SP;Piedade - SP;1
+35046;S;Sorocaba - SP;SOROCABA - SP;Sorocaba - SP;1
+35047;S;Jundiai - SP;JUNDIAI - SP;Jundiaí - SP;1
+35048;S;Braganca Paulista - SP;BRAGANCA PAULISTA - SP;Bragança SP - SP;1
+35049;S;Campos Do Jordao - SP;CAMPOS DO JORDAO - SP;Campos Jordão - SP;1
+35050;S;Sao Jose Dos Campos - SP;SAO JOSE DOS CAMPOS - SP;S.José Campos - SP;1
+35051;S;Guaratingueta - SP;GUARATINGUETA - SP;Guaratinguetá - SP;1
+35052;S;Bananal - SP;BANANAL - SP;Bananal - SP;1
+35053;S;Paraibuna/Paraitinga - SP;PARAIBUNA/PARAITINGA - SP;Par./Paraitinga - SP;1
+35054;S;Caraguatatuba - SP;CARAGUATATUBA - SP;Caraguatatuba - SP;1
+35055;S;Registro - SP;REGISTRO - SP;Registro - SP;1
+35056;S;Itanhaem - SP;ITANHAEM - SP;Itanhaém - SP;1
+35057;S;Osasco - SP;OSASCO - SP;Osasco - SP;1
+35058;S;Franco Da Rocha - SP;FRANCO DA ROCHA - SP;Franco da Rocha - SP;1
+35059;S;Guarulhos - SP;GUARULHOS - SP;Guarulhos - SP;1
+35060;S;Itapecerica Da Serra - SP;ITAPECERICA DA SERRA - SP;Itapec.Serra - SP;1
+35061;S;Sao Paulo - SP;SAO PAULO - SP;São Paulo - SP;1
+35062;S;Mogi Das Cruzes - SP;MOGI DAS CRUZES - SP;Mogi das Cruzes - SP;1
+35063;S;Santos - SP;SANTOS - SP;Santos - SP;1
+41000;N;Municipio Ignorado - Pr - ;MUNICIPIO IGNORADO - PR - ; - ;8
+41001;S;Paranavai - PR;PARANAVAI - PR;Paranavaí - PR;1
+41002;S;Umuarama - PR;UMUARAMA - PR;Umuarama - PR;1
+41003;S;Cianorte - PR;CIANORTE - PR;Cianorte - PR;1
+41004;S;Goioere - PR;GOIOERE - PR;Goioerê - PR;1
+41005;S;Campo Mourao - PR;CAMPO MOURAO - PR;Campo Mourão - PR;1
+41006;S;Astorga - PR;ASTORGA - PR;Astorga - PR;1
+41007;S;Porecatu - PR;PORECATU - PR;Porecatu - PR;1
+41008;S;Florai - PR;FLORAI - PR;Floraí - PR;1
+41009;S;Maringa - PR;MARINGA - PR;Maringá - PR;1
+41010;S;Apucarana - PR;APUCARANA - PR;Apucarana - PR;1
+41011;S;Londrina - PR;LONDRINA - PR;Londrina - PR;1
+41012;S;Faxinal - PR;FAXINAL - PR;Faxinal - PR;1
+41013;S;Ivaipora - PR;IVAIPORA - PR;Ivaiporã - PR;1
+41014;S;Assai - PR;ASSAI - PR;Assaí - PR;1
+41015;S;Cornelio Procopio - PR;CORNELIO PROCOPIO - PR;Corn.Procópio - PR;1
+41016;S;Jacarezinho - PR;JACAREZINHO - PR;Jacarezinho - PR;1
+41017;S;Ibaiti - PR;IBAITI - PR;Ibaiti - PR;1
+41018;S;Wenceslau Braz - PR;WENCESLAU BRAZ - PR;Wenceslau Braz - PR;1
+41019;S;Telemaco Borba - PR;TELEMACO BORBA - PR;Telêmaco Borba - PR;1
+41020;S;Jaguariaiva - PR;JAGUARIAIVA - PR;Jaguariaíva - PR;1
+41021;S;Ponta Grossa - PR;PONTA GROSSA - PR;Ponta Grossa - PR;1
+41022;S;Toledo - PR;TOLEDO - PR;Toledo - PR;1
+41023;S;Cascavel - PR;CASCAVEL - PR;Cascavel PR - PR;1
+41024;S;Foz Do Iguacu - PR;FOZ DO IGUACU - PR;Foz do Iguaçu - PR;1
+41025;S;Capanema - PR;CAPANEMA - PR;Capanema - PR;1
+41026;S;Francisco Beltrao - PR;FRANCISCO BELTRAO - PR;Franc.Beltrão - PR;1
+41027;S;Pato Branco - PR;PATO BRANCO - PR;Pato Branco - PR;1
+41028;S;Pitanga - PR;PITANGA - PR;Pitanga - PR;1
+41029;S;Guarapuava - PR;GUARAPUAVA - PR;Guarapuava - PR;1
+41030;S;Palmas - PR;PALMAS - PR;Palmas - PR;1
+41031;S;Prudentopolis - PR;PRUDENTOPOLIS - PR;Prudentópolis - PR;1
+41032;S;Irati - PR;IRATI - PR;Irati - PR;1
+41033;S;Uniao Da Vitoria - PR;UNIAO DA VITORIA - PR;União Vitória - PR;1
+41034;S;Sao Mateus Do Sul - PR;SAO MATEUS DO SUL - PR;S.Mateus do Sul - PR;1
+41035;S;Cerro Azul - PR;CERRO AZUL - PR;Cerro Azul - PR;1
+41036;S;Lapa - PR;LAPA - PR;Lapa - PR;1
+41037;S;Curitiba - PR;CURITIBA - PR;Curitiba - PR;1
+41038;S;Paranagua - PR;PARANAGUA - PR;Paranaguá - PR;1
+41039;S;Rio Negro - PR;RIO NEGRO - PR;Rio Negro PR - PR;1
+42000;N;Municipio Ignorado - Sc - ;MUNICIPIO IGNORADO - SC - ; - ;8
+42001;S;Sao Miguel Do Oeste - SC;SAO MIGUEL DO OESTE - SC;S.Miguel Oeste - SC;1
+42002;S;Chapeco - SC;CHAPECO - SC;Chapecó - SC;1
+42003;S;Xanxere - SC;XANXERE - SC;Xanxerê - SC;1
+42004;S;Joacaba - SC;JOACABA - SC;Joaçaba - SC;1
+42005;S;Concordia - SC;CONCORDIA - SC;Concórdia - SC;1
+42006;S;Canoinhas - SC;CANOINHAS - SC;Canoinhas - SC;1
+42007;S;Sao Bento Do Sul - SC;SAO BENTO DO SUL - SC;S.Bento do Sul - SC;1
+42008;S;Joinville - SC;JOINVILLE - SC;Joinville - SC;1
+42009;S;Curitibanos - SC;CURITIBANOS - SC;Curitibanos - SC;1
+42010;S;Campos De Lages - SC;CAMPOS DE LAGES - SC;Campos de Lages - SC;1
+42011;S;Rio Do Sul - SC;RIO DO SUL - SC;Rio do Sul - SC;1
+42012;S;Blumenau - SC;BLUMENAU - SC;Blumenau - SC;1
+42013;S;Itajai - SC;ITAJAI - SC;Itajaí - SC;1
+42014;S;Ituporanga - SC;ITUPORANGA - SC;Ituporanga - SC;1
+42015;S;Tijucas - SC;TIJUCAS - SC;Tijucas - SC;1
+42016;S;Florianopolis - SC;FLORIANOPOLIS - SC;Florianópolis - SC;1
+42017;S;Tabuleiro - SC;TABULEIRO - SC;Tabuleiro - SC;1
+42018;S;Tubarao - SC;TUBARAO - SC;Tubarão - SC;1
+42019;S;Criciuma - SC;CRICIUMA - SC;Criciúma - SC;1
+42020;S;Ararangua - SC;ARARANGUA - SC;Araranguá - SC;1
+43000;N;Municipio Ignorado - Rs - ;MUNICIPIO IGNORADO - RS - ; - ;8
+43001;S;Santa Rosa - RS;SANTA ROSA - RS;Santa Rosa - RS;1
+43002;S;Tres Passos - RS;TRES PASSOS - RS;Três Passos - RS;1
+43003;S;Frederico Westphalen - RS;FREDERICO WESTPHALEN - RS;Fred.Westphalen - RS;1
+43004;S;Erechim - RS;ERECHIM - RS;Erechim - RS;1
+43005;S;Sananduva - RS;SANANDUVA - RS;Sananduva - RS;1
+43006;S;Cerro Largo - RS;CERRO LARGO - RS;Cerro Largo - RS;1
+43007;S;Santo Angelo - RS;SANTO ANGELO - RS;Santo Ângelo - RS;1
+43008;S;Ijui - RS;IJUI - RS;Ijuí - RS;1
+43009;S;Carazinho - RS;CARAZINHO - RS;Carazinho - RS;1
+43010;S;Passo Fundo - RS;PASSO FUNDO - RS;Passo Fundo - RS;1
+43011;S;Cruz Alta - RS;CRUZ ALTA - RS;Cruz Alta - RS;1
+43012;S;Nao-Me-Toque - RS;NAO-ME-TOQUE - RS;Não-Me-Toque - RS;1
+43013;S;Soledade - RS;SOLEDADE - RS;Soledade - RS;1
+43014;S;Guapore - RS;GUAPORE - RS;Guaporé - RS;1
+43015;S;Vacaria - RS;VACARIA - RS;Vacaria - RS;1
+43016;S;Caxias Do Sul - RS;CAXIAS DO SUL - RS;Caxias do Sul - RS;1
+43017;S;Santiago - RS;SANTIAGO - RS;Santiago - RS;1
+43018;S;Santa Maria - RS;SANTA MARIA - RS;Santa Maria - RS;1
+43019;S;Restinga Seca - RS;RESTINGA SECA - RS;Restinga Seca - RS;1
+43020;S;Santa Cruz Do Sul - RS;SANTA CRUZ DO SUL - RS;S. Cruz do Sul - RS;1
+43021;S;Lajeado-Estrela - RS;LAJEADO-ESTRELA - RS;Lajeado-Estrela - RS;1
+43022;S;Cachoeira Do Sul - RS;CACHOEIRA DO SUL - RS;Cachoeira Sul - RS;1
+43023;S;Montenegro - RS;MONTENEGRO - RS;Montenegro - RS;1
+43024;S;Gramado-Canela - RS;GRAMADO-CANELA - RS;Gramado-Canela - RS;1
+43025;S;Sao Jeronimo - RS;SAO JERONIMO - RS;S. Jerônimo - RS;1
+43026;S;Porto Alegre - RS;PORTO ALEGRE - RS;Porto Alegre - RS;1
+43027;S;Osorio - RS;OSORIO - RS;Osório - RS;1
+43028;S;Camaqua - RS;CAMAQUA - RS;Camaquã - RS;1
+43029;S;Campanha Ocidental - RS;CAMPANHA OCIDENTAL - RS;Campanha Ocid. - RS;1
+43030;S;Campanha Central - RS;CAMPANHA CENTRAL - RS;Campanha Centr. - RS;1
+43031;S;Campanha Meridional - RS;CAMPANHA MERIDIONAL - RS;Campanha Merid. - RS;1
+43032;S;Serras De Sudeste - RS;SERRAS DE SUDESTE - RS;Serras Sudeste - RS;1
+43033;S;Pelotas - RS;PELOTAS - RS;Pelotas - RS;1
+43034;S;Jaguarao - RS;JAGUARAO - RS;Jaguarão - RS;1
+43035;S;Litoral Lagunar - RS;LITORAL LAGUNAR - RS;Litoral Lagunar - RS;1
+50000;N;Municipio Ignorado - Ms - ;MUNICIPIO IGNORADO - MS - ; - ;8
+50001;S;Baixo Pantanal - MS;BAIXO PANTANAL - MS;Baixo Pantanal - MS;1
+50002;S;Aquidauana - MS;AQUIDAUANA - MS;Aquidauana - MS;1
+50003;S;Alto Taquari - MS;ALTO TAQUARI - MS;Alto Taquari - MS;1
+50004;S;Campo Grande - MS;CAMPO GRANDE - MS;Campo Grande - MS;1
+50005;S;Cassilandia - MS;CASSILANDIA - MS;Cassilândia - MS;1
+50006;S;Paranaiba - MS;PARANAIBA - MS;Paranaíba - MS;1
+50007;S;Tres Lagoas - MS;TRES LAGOAS - MS;Três Lagoas - MS;1
+50008;S;Nova Andradina - MS;NOVA ANDRADINA - MS;Nova Andradina - MS;1
+50009;S;Bodoquena - MS;BODOQUENA - MS;Bodoquena - MS;1
+50010;S;Dourados - MS;DOURADOS - MS;Dourados - MS;1
+50011;S;Iguatemi - MS;IGUATEMI - MS;Iguatemi - MS;1
+51000;N;Municipio Ignorado - Mt - ;MUNICIPIO IGNORADO - MT - ; - ;8
+51001;S;Aripuana - MT;ARIPUANA - MT;Aripuanã - MT;1
+51002;S;Alta Floresta - MT;ALTA FLORESTA - MT;Alta Floresta - MT;1
+51003;S;Colider - MT;COLIDER - MT;Colíder - MT;1
+51004;S;Parecis - MT;PARECIS - MT;Parecis - MT;1
+51005;S;Arinos - MT;ARINOS - MT;Arinos - MT;1
+51006;S;Alto Teles Pires - MT;ALTO TELES PIRES - MT;A.Teles Pires - MT;1
+51007;S;Sinop - MT;SINOP - MT;Sinop - MT;1
+51008;S;Paranatinga - MT;PARANATINGA - MT;Paranatinga - MT;1
+51009;S;Norte Araguaia - MT;NORTE ARAGUAIA - MT;Norte Araguaia - MT;1
+51010;S;Canarana - MT;CANARANA - MT;Canarana - MT;1
+51011;S;Medio Araguaia - MT;MEDIO ARAGUAIA - MT;Médio Araguaia - MT;1
+51012;S;Alto Guapore - MT;ALTO GUAPORE - MT;Alto Guaporé - MT;1
+51013;S;Tangara Da Serra - MT;TANGARA DA SERRA - MT;Tangará Serra - MT;1
+51014;S;Jauru - MT;JAURU - MT;Jauru - MT;1
+51015;S;Alto Paraguai - MT;ALTO PARAGUAI - MT;Alto Paraguai - MT;1
+51016;S;Rosario Oeste - MT;ROSARIO OESTE - MT;Rosário Oeste - MT;1
+51017;S;Cuiaba - MT;CUIABA - MT;Cuiabá - MT;1
+51018;S;Alto Pantanal - MT;ALTO PANTANAL - MT;Alto Pantanal - MT;1
+51019;S;Primavera Do Leste - MT;PRIMAVERA DO LESTE - MT;Primavera Leste - MT;1
+51020;S;Tesouro - MT;TESOURO - MT;Tesouro - MT;1
+51021;S;Rondonopolis - MT;RONDONOPOLIS - MT;Rondonópolis - MT;1
+51022;S;Alto Araguaia - MT;ALTO ARAGUAIA - MT;Alto Araguaia - MT;1
+52000;N;Municipio Ignorado - Go - ;MUNICIPIO IGNORADO - GO - ; - ;8
+52001;S;Sao Miguel Do Araguaia - GO;SAO MIGUEL DO ARAGUAIA - GO;S.Miguel Arag. - GO;1
+52002;S;Rio Vermelho - GO;RIO VERMELHO - GO;Rio Vermelho - GO;1
+52003;S;Aragarcas - GO;ARAGARCAS - GO;Aragarças - GO;1
+52004;S;Porangatu - GO;PORANGATU - GO;Porangatu - GO;1
+52005;S;Chapada Dos Veadeiros - GO;CHAPADA DOS VEADEIROS - GO;Chap.Veadeiros - GO;1
+52006;S;Ceres - GO;CERES - GO;Ceres - GO;1
+52007;S;Anapolis - GO;ANAPOLIS - GO;Anápolis - GO;1
+52008;S;Ipora - GO;IPORA - GO;Iporá - GO;1
+52009;S;Anicuns - GO;ANICUNS - GO;Anicuns - GO;1
+52010;S;Goiania - GO;GOIANIA - GO;Goiânia - GO;1
+52011;S;Vao Do Parana - GO;VAO DO PARANA - GO;Vão do Paranã - GO;1
+52012;S;Entorno De Brasilia - GO;ENTORNO DE BRASILIA - GO;Ent.Brasília - GO;1
+52013;S;Sudoeste De Goias - GO;SUDOESTE DE GOIAS - GO;SO de Goiás - GO;1
+52014;S;Vale Do Rio Dos Bois - GO;VALE DO RIO DOS BOIS - GO;Vale Rio Bois - GO;1
+52015;S;Meia Ponte - GO;MEIA PONTE - GO;Meia Ponte - GO;1
+52016;S;Pires Do Rio - GO;PIRES DO RIO - GO;Pires do Rio - GO;1
+52017;S;Catalao - GO;CATALAO - GO;Catalão - GO;1
+52018;S;Quirinopolis - GO;QUIRINOPOLIS - GO;Quirinópolis - GO;1
+53001;S;Brasilia - DF;BRASILIA - DF;Brasília - DF;1

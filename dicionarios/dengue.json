@@ -1,0 +1,383 @@
+{
+  "formato": 1,
+  "agravo": { "nome": "Dengue", "codigo": "A90", "coluna": "ID_AGRAVO" },
+  "versao": "Dados públicos do DATASUS (arquivos DENGBRxx.dbc), Sinan Online, a partir de 2016",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-01",
+    "registro": "docs/conferencia/conferencia-dengue.xlsx (duas rodadas de conferência; aprovação final no chat em 01/11/2026); colunas de macrorregião de saúde conferidas na planilha em 02/11/2026"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DIC2024": {
+      "documento": "Dicionário de Dados – Dengue, Sistema de Informação de Agravos de Notificação – Sinan Online",
+      "orgao": "Ministério da Saúde / SVSA / DAENT",
+      "data": "fevereiro de 2024 (conforme título interno do arquivo PDF)",
+      "arquivo": "docs/fontes/dic_dados_dengue.pdf"
+    },
+    "ONLINE2015": {
+      "documento": "Dicionário de Dados – Sinan Online – Dengue/Chikungunya, versão 3.0",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em 21/10/2015 (última revisão listada: 02/12/2015)",
+      "arquivo": "docs/fontes/DIC_DADOS_ONLINE.pdf"
+    },
+    "NOTA59": {
+      "documento": "Nota Informativa nº 59/2016 CGPNCD/DEVIT/SVS/MS – Sinan Online versão 3.0 – Dengue/Chikungunya",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "2016 (versão 3.0 disponível a partir de 10/05/2016)",
+      "arquivo": "docs/fontes/Nota_Informativa_059.pdf"
+    },
+    "FICHA2016": {
+      "documento": "Ficha de Investigação Dengue e Febre de Chikungunya – Sinan Online",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "14/03/2016",
+      "arquivo": "docs/fontes/Ficha_DENGCHIK_FINAL.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/rl_municip_regsaud.csv; docs/fontes/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": { "arquivo": "tabelas/ibge-municipios.json", "fonte": "IBGE_DTB2023" },
+    "municipios_datasus": { "arquivo": "tabelas/municipios-datasus.json", "fonte": "DATASUS_MUNICIPIOS" },
+    "regioes_saude": { "arquivo": "tabelas/regioes-saude.json", "fonte": "DATASUS_REGSAUD" },
+    "cnes": { "arquivo": "tabelas/cnes.json.gz", "fonte": "CNES" },
+    "cbo": { "arquivo": "tabelas/cbo.json", "fonte": "CBO" },
+    "macrorregioes_saude": { "arquivo": "tabelas/macrorregioes-saude.json", "fonte": "MS_MACRORREGIOES" }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'."
+  },
+  "listas": {
+    "sim_nao": [
+      { "codigos": ["1"], "rotulo": "Sim" },
+      { "codigos": ["2"], "rotulo": "Não" }
+    ],
+    "sim_nao_ignorado": [
+      { "codigos": ["1"], "rotulo": "Sim" },
+      { "codigos": ["2"], "rotulo": "Não" },
+      { "codigos": ["9"], "rotulo": "Ignorado" }
+    ],
+    "resultado_exame": [
+      { "codigos": ["1"], "rotulo": "Reagente" },
+      { "codigos": ["2"], "rotulo": "Não Reagente" },
+      { "codigos": ["3"], "rotulo": "Inconclusivo" },
+      { "codigos": ["4"], "rotulo": "Não realizado" }
+    ]
+  },
+  "colunas": [
+    { "nome": "TP_NOT", "rotulo": "Tipo de notificação", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 1, seq. 1",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Negativa" },
+        { "codigos": ["2"], "rotulo": "Individual" },
+        { "codigos": ["3"], "rotulo": "Surto" },
+        { "codigos": ["4"], "rotulo": "Agregado" }
+      ] },
+    { "nome": "ID_AGRAVO", "rotulo": "Agravo", "tipo": "categorico", "fonte": "FICHA2016", "local": "p. 1, campo 2 (Código CID10)",
+      "categorias": [
+        { "codigos": ["A90"], "rotulo": "Dengue" }
+      ],
+      "observacao": "O DIC2024 (p. 1, seq. 2) remete à tabela de agravos do sistema, que não está nas fontes. O código A90 = Dengue vem da ficha." },
+    { "nome": "DT_NOTIFIC", "rotulo": "Data da notificação", "tipo": "data", "fonte": "DIC2024", "local": "p. 1, seq. 3" },
+    { "nome": "SEM_NOT", "rotulo": "Semana epidemiológica da notificação", "tipo": "texto", "fonte": "DIC2024", "local": "p. 1, seq. 4",
+      "observacao": "Formato AAAASS (ano e semana)." },
+    { "nome": "NU_ANO", "rotulo": "Ano da notificação", "tipo": "texto", "fonte": "DIC2024", "local": "p. 2, seq. 5" },
+    { "nome": "SG_UF_NOT", "rotulo": "UF de notificação", "tipo": "uf", "fonte": "DIC2024", "local": "p. 2, seq. 6",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE." },
+    { "nome": "ID_MUNICIP", "rotulo": "Município de notificação", "tipo": "municipio", "fonte": "DIC2024", "local": "p. 2, seq. 7" },
+    { "nome": "ID_REGIONA", "rotulo": "Regional de saúde de notificação (código)", "tipo": "codigo", "fonte": "DIC2024", "local": "p. 2, seq. 8",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT." },
+    { "nome": "ID_UNIDADE", "rotulo": "Unidade de saúde notificadora (CNES)", "tipo": "tabela", "tabela": "cnes", "fonte": "DIC2024", "local": "p. 2, seq. 9",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. No arquivo de 2025, 99,55% das notificações têm código encontrado; os demais ficam como vieram e vão para as Inconsistências." },
+    { "nome": "DT_SIN_PRI", "rotulo": "Data dos primeiros sintomas", "tipo": "data", "fonte": "DIC2024", "local": "p. 2, seq. 10" },
+    { "nome": "SEM_PRI", "rotulo": "Semana epidemiológica dos primeiros sintomas", "tipo": "texto", "fonte": "DIC2024", "local": "p. 3, seq. 11",
+      "observacao": "Formato AAAASS (ano e semana)." },
+    { "nome": "ANO_NASC", "rotulo": "Ano de nascimento", "tipo": "texto", "fonte": "DIC2024", "local": "p. 3, seq. 12" },
+    { "nome": "NU_IDADE_N", "rotulo": "Idade", "tipo": "idade", "fonte": "DIC2024", "local": "p. 3, seq. 13",
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências.",
+      "unidades": [
+        { "codigos": ["1"], "rotulo": "hora", "plural": "horas", "maximo": 23 },
+        { "codigos": ["2"], "rotulo": "dia", "plural": "dias", "maximo": 29 },
+        { "codigos": ["3"], "rotulo": "mês", "plural": "meses", "maximo": 11 },
+        { "codigos": ["4"], "rotulo": "ano", "plural": "anos", "maximo": 110 }
+      ] },
+    { "nome": "CS_SEXO", "rotulo": "Sexo", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 3, seq. 14",
+      "categorias": [
+        { "codigos": ["M"], "rotulo": "Masculino" },
+        { "codigos": ["F"], "rotulo": "Feminino" },
+        { "codigos": ["I"], "rotulo": "Ignorado" }
+      ] },
+    { "nome": "CS_GESTANT", "rotulo": "Gestante", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 4, seq. 15",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "1º Trimestre" },
+        { "codigos": ["2"], "rotulo": "2º Trimestre" },
+        { "codigos": ["3"], "rotulo": "3º Trimestre" },
+        { "codigos": ["4"], "rotulo": "Idade gestacional ignorada" },
+        { "codigos": ["5"], "rotulo": "Não" },
+        { "codigos": ["6"], "rotulo": "Não se aplica" },
+        { "codigos": ["9"], "rotulo": "Ignorado" }
+      ] },
+    { "nome": "CS_RACA", "rotulo": "Raça/Cor", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 4, seq. 16",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Branca" },
+        { "codigos": ["2"], "rotulo": "Preta" },
+        { "codigos": ["3"], "rotulo": "Amarela" },
+        { "codigos": ["4"], "rotulo": "Parda" },
+        { "codigos": ["5"], "rotulo": "Indígena" },
+        { "codigos": ["9"], "rotulo": "Ignorado" }
+      ] },
+    { "nome": "CS_ESCOL_N", "rotulo": "Escolaridade", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 5, seq. 17",
+      "observacao": "A fonte lista formas com um e dois dígitos para o mesmo código (decisão P6). O rótulo 'Ign/Branco' é o da fonte; campo em branco continua em branco.",
+      "categorias": [
+        { "codigos": ["9", "09", "99"], "rotulo": "Ign/Branco" },
+        { "codigos": ["0", "00"], "rotulo": "Analfabeto" },
+        { "codigos": ["1", "01"], "rotulo": "1ª a 4ª série incompleta do EF" },
+        { "codigos": ["2", "02"], "rotulo": "4ª série completa do EF" },
+        { "codigos": ["3", "03"], "rotulo": "5ª a 8ª série incompleta do EF" },
+        { "codigos": ["4", "04"], "rotulo": "Ensino fundamental completo" },
+        { "codigos": ["5", "05"], "rotulo": "Ensino médio incompleto" },
+        { "codigos": ["6", "06"], "rotulo": "Ensino médio completo" },
+        { "codigos": ["7", "07"], "rotulo": "Educação superior incompleta" },
+        { "codigos": ["8", "08"], "rotulo": "Educação superior completa" },
+        { "codigos": ["10"], "rotulo": "Não se aplica" }
+      ] },
+    { "nome": "SG_UF", "rotulo": "UF de residência", "tipo": "uf", "fonte": "DIC2024", "local": "p. 5, seq. 18" },
+    { "nome": "ID_MN_RESI", "rotulo": "Município de residência", "tipo": "municipio", "fonte": "DIC2024", "local": "p. 5, seq. 19" },
+    { "nome": "ID_RG_RESI", "rotulo": "Regional de saúde de residência (código)", "tipo": "codigo", "fonte": "DIC2024", "local": "p. 6, seq. 20",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES." },
+    { "nome": "ID_PAIS", "rotulo": "País de residência (código)", "tipo": "codigo", "fonte": "DIC2024", "local": "p. 6, seq. 21",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)." },
+    { "nome": "DT_INVEST", "rotulo": "Data da investigação", "tipo": "data", "fonte": "DIC2024", "local": "p. 6, seq. 22" },
+    { "nome": "ID_OCUPA_N", "rotulo": "Ocupação (CBO)", "tipo": "tabela", "tabela": "cbo", "fonte": "DIC2024", "local": "p. 6, seq. 23",
+      "observacao": "O ONLINE2015 (p. 2, campo 32) chama o campo de co_cbo_ocupacao. Nome da ocupação pela CBO 2002. Códigos especiais do Sinan que não estão na CBO (por exemplo 999991, 998999, XXX) ficam como vieram (ver pendências)." },
+    { "nome": "FEBRE", "rotulo": "Sinais clínicos (Febre)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 24", "lista": "sim_nao" },
+    { "nome": "MIALGIA", "rotulo": "Sinais clínicos (Mialgia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 25", "lista": "sim_nao" },
+    { "nome": "CEFALEIA", "rotulo": "Sinais clínicos (Cefaleia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 26", "lista": "sim_nao" },
+    { "nome": "EXANTEMA", "rotulo": "Sinais clínicos (Exantema)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 27", "lista": "sim_nao" },
+    { "nome": "VOMITO", "rotulo": "Sinais clínicos (Vômito)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 28", "lista": "sim_nao" },
+    { "nome": "NAUSEA", "rotulo": "Sinais clínicos (Náusea)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 29", "lista": "sim_nao" },
+    { "nome": "DOR_COSTAS", "rotulo": "Sinais clínicos (Dor nas costas)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 30", "lista": "sim_nao" },
+    { "nome": "CONJUNTVIT", "rotulo": "Sinais clínicos (Conjuntivite)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 31", "lista": "sim_nao" },
+    { "nome": "ARTRITE", "rotulo": "Sinais clínicos (Artrite)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 32", "lista": "sim_nao" },
+    { "nome": "ARTRALGIA", "rotulo": "Sinais clínicos (Artralgia intensa)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 33", "lista": "sim_nao" },
+    { "nome": "PETEQUIA_N", "rotulo": "Sinais clínicos (Petéquias)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 34", "lista": "sim_nao" },
+    { "nome": "LEUCOPENIA", "rotulo": "Sinais clínicos (Leucopenia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 35", "lista": "sim_nao" },
+    { "nome": "LACO", "rotulo": "Sinais clínicos (Prova do laço)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 36", "lista": "sim_nao" },
+    { "nome": "DOR_RETRO", "rotulo": "Sinais clínicos (Dor retroorbital)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 37", "lista": "sim_nao" },
+    { "nome": "DIABETES", "rotulo": "Doenças pré-existentes (Diabetes)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 38", "lista": "sim_nao" },
+    { "nome": "HEMATOLOG", "rotulo": "Doenças pré-existentes (Doenças hematológicas)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 39", "lista": "sim_nao" },
+    { "nome": "HEPATOPAT", "rotulo": "Doenças pré-existentes (Hepatopatias)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 40", "lista": "sim_nao" },
+    { "nome": "RENAL", "rotulo": "Doenças pré-existentes (Doença renal crônica)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 41", "lista": "sim_nao" },
+    { "nome": "HIPERTENSA", "rotulo": "Doenças pré-existentes (Hipertensão arterial)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 42", "lista": "sim_nao" },
+    { "nome": "ACIDO_PEPT", "rotulo": "Doenças pré-existentes (Doença ácido-péptica)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 43", "lista": "sim_nao" },
+    { "nome": "AUTO_IMUNE", "rotulo": "Doenças pré-existentes (Doenças auto-imunes)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 7, seq. 44", "lista": "sim_nao" },
+    { "nome": "DT_CHIK_S1", "rotulo": "Sorologia (IgM) Chikungunya S1 – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 8, seq. 45" },
+    { "nome": "DT_CHIK_S2", "rotulo": "Sorologia (IgM) Chikungunya S2 – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 8, seq. 46" },
+    { "nome": "DT_PRNT", "rotulo": "Exame PRNT – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 8, seq. 47" },
+    { "nome": "RES_CHIKS1", "rotulo": "Sorologia (IgM) Chikungunya S1 – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 8, seq. 48", "lista": "resultado_exame" },
+    { "nome": "RES_CHIKS2", "rotulo": "Sorologia (IgM) Chikungunya S2 – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 8, seq. 49", "lista": "resultado_exame" },
+    { "nome": "RESUL_PRNT", "rotulo": "Exame PRNT – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 8, seq. 50", "lista": "resultado_exame" },
+    { "nome": "DT_SORO", "rotulo": "Sorologia (IgM) Dengue – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 8, seq. 51" },
+    { "nome": "RESUL_SORO", "rotulo": "Sorologia (IgM) Dengue – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 8, seq. 52", "lista": "resultado_exame" },
+    { "nome": "DT_NS1", "rotulo": "Exame NS1 – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 8, seq. 53" },
+    { "nome": "RESUL_NS1", "rotulo": "Exame NS1 – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 54", "lista": "resultado_exame",
+      "observacao": "Rótulos do DIC2024, o dicionário mais recente (regra do Rubens: seguir sempre o dicionário mais recente)." },
+    { "nome": "DT_VIRAL", "rotulo": "Isolamento viral – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 9, seq. 55" },
+    { "nome": "RESUL_VI_N", "rotulo": "Isolamento viral – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 56", "lista": "resultado_exame",
+      "observacao": "Rótulos do DIC2024, o dicionário mais recente (regra do Rubens: seguir sempre o dicionário mais recente)." },
+    { "nome": "DT_PCR", "rotulo": "RT-PCR – data da coleta", "tipo": "data", "fonte": "DIC2024", "local": "p. 9, seq. 57" },
+    { "nome": "RESUL_PCR_", "rotulo": "RT-PCR – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 58", "lista": "resultado_exame",
+      "observacao": "Rótulos do DIC2024, o dicionário mais recente (regra do Rubens: seguir sempre o dicionário mais recente)." },
+    { "nome": "SOROTIPO", "rotulo": "Sorotipo", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 59",
+      "observacao": "A ficha de 2016 escreve DENV 1 a DENV 4.",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "DEN 1" },
+        { "codigos": ["2"], "rotulo": "DEN 2" },
+        { "codigos": ["3"], "rotulo": "DEN 3" },
+        { "codigos": ["4"], "rotulo": "DEN 4" }
+      ] },
+    { "nome": "HISTOPA_N", "rotulo": "Histopatologia – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 60", "lista": "resultado_exame",
+      "observacao": "Rótulos do DIC2024, o dicionário mais recente (regra do Rubens: seguir sempre o dicionário mais recente)." },
+    { "nome": "IMUNOH_N", "rotulo": "Imunohistoquímica – resultado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 61", "lista": "resultado_exame",
+      "observacao": "Rótulos do DIC2024, o dicionário mais recente (regra do Rubens: seguir sempre o dicionário mais recente)." },
+    { "nome": "HOSPITALIZ", "rotulo": "Ocorreu hospitalização?", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 9, seq. 62", "lista": "sim_nao_ignorado" },
+    { "nome": "DT_INTERNA", "rotulo": "Data da internação", "tipo": "data", "fonte": "DIC2024", "local": "p. 9, seq. 63" },
+    { "nome": "UF", "rotulo": "UF de hospitalização", "tipo": "uf", "fonte": "ONLINE2015", "local": "p. 7, campo 52 (DBF 'UF')",
+      "observacao": "O DIC2024 (p. 10, seq. 64) escreve 'coufinf' nesta posição, mas o arquivo real traz 'UF'; o significado vem do ONLINE2015." },
+    { "nome": "MUNICIPIO", "rotulo": "Município de hospitalização", "tipo": "municipio", "fonte": "DIC2024", "local": "p. 10, seq. 65" },
+    { "nome": "TPAUTOCTO", "rotulo": "O caso é autóctone do município de residência?", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 10, seq. 66",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Sim" },
+        { "codigos": ["2"], "rotulo": "Não" },
+        { "codigos": ["3"], "rotulo": "Indeterminado" }
+      ] },
+    { "nome": "COUFINF", "rotulo": "UF provável de infecção", "tipo": "uf", "fonte": "DIC2024", "local": "p. 11, seq. 67" },
+    { "nome": "COPAISINF", "rotulo": "País provável de infecção (código)", "tipo": "codigo", "fonte": "DIC2024", "local": "p. 12, seq. 68",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10)." },
+    { "nome": "COMUNINF", "rotulo": "Município provável de infecção", "tipo": "municipio", "fonte": "DIC2024", "local": "p. 12, seq. 69" },
+    { "nome": "CLASSI_FIN", "rotulo": "Classificação final", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 12, seq. 70",
+      "observacao": "Decisão do Rubens na conferência (01/11/2026): seguir o DIC2024, inclusive os códigos 11, 12 e 13 citados nas regras do próprio DIC2024, mais o código 10 da ficha de 2016. O código 5 (Descartado na versão 3.0) não entra.",
+      "categorias": [
+        { "codigos": ["0", "9"], "rotulo": "Ignorado" },
+        { "codigos": ["1"], "rotulo": "Confirmado" },
+        { "codigos": ["2"], "rotulo": "Descartado" },
+        { "codigos": ["8"], "rotulo": "Inconclusivo" },
+        { "codigos": ["10"], "rotulo": "Dengue", "fonte": "FICHA2016", "local": "p. 2, campo 62" },
+        { "codigos": ["11"], "rotulo": "Dengue com Sinais de Alarme", "local": "p. 13, seq. 77 (regra do campo: 'Classificação = 11 Dengue com Sinais de Alarme')" },
+        { "codigos": ["12"], "rotulo": "Dengue grave", "local": "p. 13, seq. 77 (regra do campo: 'Classificação = 12- Dengue grave')" },
+        { "codigos": ["13"], "rotulo": "Chikungunya", "fonte": "FICHA2016", "local": "p. 2, campo 62 (também citado na regra do DIC2024, p. 13, seq. 73)" }
+      ] },
+    { "nome": "CRITERIO", "rotulo": "Critério de confirmação", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 12, seq. 71",
+      "observacao": "Decisão P3: código 3 = 'Clínico' (DIC2024). O ONLINE2015 e a ficha de 2016 dizem '3 Em investigação'.",
+      "categorias": [
+        { "codigos": ["0", "9"], "rotulo": "Ignorado" },
+        { "codigos": ["1"], "rotulo": "Laboratório" },
+        { "codigos": ["2"], "rotulo": "Clínico-epidemiológico" },
+        { "codigos": ["3"], "rotulo": "Clínico" }
+      ] },
+    { "nome": "DOENCA_TRA", "rotulo": "Doença relacionada ao trabalho", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 12, seq. 72", "lista": "sim_nao_ignorado" },
+    { "nome": "CLINC_CHIK", "rotulo": "Apresentação clínica (Chikungunya)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 13, seq. 73",
+      "observacao": "O DIC2024 escreve 'clinic_chik', mas o arquivo real traz 'CLINC_CHIK'.",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Aguda" },
+        { "codigos": ["2"], "rotulo": "Crônica" }
+      ] },
+    { "nome": "EVOLUCAO", "rotulo": "Evolução do caso", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 13, seq. 74",
+      "observacao": "Aprovado pelo Rubens (01/11/2026): o código 0 (2.091 registros em 2025), ausente das fontes, fica como veio e vai para as Inconsistências.",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Cura" },
+        { "codigos": ["2"], "rotulo": "Óbito pelo agravo" },
+        { "codigos": ["3"], "rotulo": "Óbito por outras causas" },
+        { "codigos": ["4"], "rotulo": "Óbito em investigação" },
+        { "codigos": ["9"], "rotulo": "Ignorado" }
+      ] },
+    { "nome": "DT_OBITO", "rotulo": "Data do óbito", "tipo": "data", "fonte": "DIC2024", "local": "p. 13, seq. 75" },
+    { "nome": "DT_ENCERRA", "rotulo": "Data do encerramento", "tipo": "data", "fonte": "DIC2024", "local": "p. 13, seq. 76" },
+    { "nome": "ALRM_HIPOT", "rotulo": "Dengue com sinais de alarme (Hipotensão)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 13, seq. 77", "lista": "sim_nao" },
+    { "nome": "ALRM_PLAQ", "rotulo": "Dengue com sinais de alarme (Queda abrupta de plaquetas)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 14, seq. 78", "lista": "sim_nao" },
+    { "nome": "ALRM_VOM", "rotulo": "Dengue com sinais de alarme (Vômitos persistentes)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 14, seq. 79", "lista": "sim_nao" },
+    { "nome": "ALRM_SANG", "rotulo": "Dengue com sinais de alarme (Sangramento de mucosa/outras hemorragias)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 14, seq. 80", "lista": "sim_nao" },
+    { "nome": "ALRM_HEMAT", "rotulo": "Dengue com sinais de alarme (Aumento hematócrito)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 15, seq. 81", "lista": "sim_nao" },
+    { "nome": "ALRM_ABDOM", "rotulo": "Dengue com sinais de alarme (Dor abdominal)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 15, seq. 82", "lista": "sim_nao" },
+    { "nome": "ALRM_LETAR", "rotulo": "Dengue com sinais de alarme (Letargia ou irritabilidade)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 15, seq. 83", "lista": "sim_nao" },
+    { "nome": "ALRM_HEPAT", "rotulo": "Dengue com sinais de alarme (Hepatomegalia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 16, seq. 84", "lista": "sim_nao" },
+    { "nome": "ALRM_LIQ", "rotulo": "Dengue com sinais de alarme (Acúmulo de líquidos)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 16, seq. 85", "lista": "sim_nao" },
+    { "nome": "DT_ALRM", "rotulo": "Dengue com sinais de alarme – data de início dos sintomas", "tipo": "data", "fonte": "DIC2024", "local": "p. 17, seq. 86" },
+    { "nome": "GRAV_PULSO", "rotulo": "Dengue grave (Pulso débil ou indectável)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 17, seq. 87", "lista": "sim_nao",
+      "observacao": "Grafia 'indectável' como na fonte; a ficha de 2016 escreve 'indetectável'." },
+    { "nome": "GRAV_CONV", "rotulo": "Dengue grave (PA convergente)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 17, seq. 88", "lista": "sim_nao" },
+    { "nome": "GRAV_ENCH", "rotulo": "Dengue grave (Tempo de enchimento capilar)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 17, seq. 89", "lista": "sim_nao" },
+    { "nome": "GRAV_INSUF", "rotulo": "Dengue grave (Acúmulo de líquidos com insuficiência respiratória)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 18, seq. 90", "lista": "sim_nao" },
+    { "nome": "GRAV_TAQUI", "rotulo": "Dengue grave (Taquicardia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 18, seq. 91", "lista": "sim_nao" },
+    { "nome": "GRAV_EXTRE", "rotulo": "Dengue grave (Extremidade frias)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 18, seq. 92", "lista": "sim_nao" },
+    { "nome": "GRAV_HIPOT", "rotulo": "Dengue grave (Hipotensão arterial em fase tardia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 18, seq. 93", "lista": "sim_nao" },
+    { "nome": "GRAV_HEMAT", "rotulo": "Dengue grave (Hematêmese)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 18, seq. 94", "lista": "sim_nao" },
+    { "nome": "GRAV_MELEN", "rotulo": "Dengue grave (Melena)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 19, seq. 95", "lista": "sim_nao" },
+    { "nome": "GRAV_METRO", "rotulo": "Dengue grave (Metrorragia volumosa)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 19, seq. 96", "lista": "sim_nao" },
+    { "nome": "GRAV_SANG", "rotulo": "Dengue grave (Sangramento do SNC)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 19, seq. 97", "lista": "sim_nao" },
+    { "nome": "GRAV_AST", "rotulo": "Dengue grave (AST/ALT > 1.000)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 19, seq. 98", "lista": "sim_nao" },
+    { "nome": "GRAV_MIOC", "rotulo": "Dengue grave (Miocardite)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 19, seq. 99", "lista": "sim_nao" },
+    { "nome": "GRAV_CONSC", "rotulo": "Dengue grave (Alteração da consciência)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 100", "lista": "sim_nao" },
+    { "nome": "GRAV_ORGAO", "rotulo": "Dengue grave (Outros órgãos)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 101", "lista": "sim_nao",
+      "observacao": "Decisão P5. O ONLINE2015 deixa as categorias em branco. Aprovado pelo Rubens (01/11/2026): os códigos 0 e 9, ausentes da fonte, ficam como vieram e vão para as Inconsistências." },
+    { "nome": "DT_GRAV", "rotulo": "Dengue grave – data de início dos sintomas", "tipo": "data", "fonte": "DIC2024", "local": "p. 20, seq. 102" },
+    { "nome": "MANI_HEMOR", "rotulo": "Manifestações hemorrágicas", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 103", "lista": "sim_nao_ignorado" },
+    { "nome": "EPISTAXE", "rotulo": "Epistaxe", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 104", "lista": "sim_nao_ignorado" },
+    { "nome": "GENGIVO", "rotulo": "Gengivorragia", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 105", "lista": "sim_nao_ignorado" },
+    { "nome": "METRO", "rotulo": "Metrorragia", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 106", "lista": "sim_nao_ignorado" },
+    { "nome": "PETEQUIAS", "rotulo": "Petéquias (manifestação hemorrágica)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 20, seq. 107", "lista": "sim_nao_ignorado" },
+    { "nome": "HEMATURA", "rotulo": "Hematúria", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 108", "lista": "sim_nao_ignorado" },
+    { "nome": "SANGRAM", "rotulo": "Sangramento gastrointestinal", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 109", "lista": "sim_nao_ignorado",
+      "observacao": "A coluna 'Nome do campo' da fonte escreve 'Sangramaneto'; usada a grafia da coluna 'Descrição'." },
+    { "nome": "LACO_N", "rotulo": "Prova do laço positiva", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 110", "lista": "sim_nao_ignorado" },
+    { "nome": "PLASMATICO", "rotulo": "Extravasamento plasmático", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 111", "lista": "sim_nao_ignorado" },
+    { "nome": "EVIDENCIA", "rotulo": "Extravasamento plasmático evidenciado", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 112", "lista": "sim_nao_ignorado" },
+    { "nome": "PLAQ_MENOR", "rotulo": "Plaquetas (menor)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 113", "lista": "sim_nao_ignorado",
+      "observacao": "Campo de 7 caracteres com categorias Sim/Não/Ignorado na fonte (P7). No arquivo de 2025 só aparecem branco e 0." },
+    { "nome": "CON_FHD", "rotulo": "Caso de FHD", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 114", "lista": "sim_nao_ignorado" },
+    { "nome": "COMPLICA", "rotulo": "Caso de dengue com complicações", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 115", "lista": "sim_nao_ignorado" },
+    { "nome": "TP_SISTEMA", "rotulo": "Tipo de sistema", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 116",
+      "observacao": "Aprovado pelo Rubens (01/11/2026): o código 0 (34.252 registros em 2025), ausente da fonte, fica como veio e vai para as Inconsistências.",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Sinan Net" },
+        { "codigos": ["2"], "rotulo": "Sinan Online" }
+      ] },
+    { "nome": "NDUPLIC_N", "rotulo": "Não listar/Não contar (duplicidade)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 21, seq. 117",
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo.",
+      "categorias": [
+        { "codigos": ["0"], "rotulo": "Não identificado" },
+        { "codigos": ["1"], "rotulo": "Não é duplicidade (não listar)" },
+        { "codigos": ["2"], "rotulo": "Duplicidade (não contar)" }
+      ] },
+    { "nome": "DT_DIGITA", "rotulo": "Data da digitação", "tipo": "data", "fonte": "DIC2024", "local": "p. 21, seq. 118" },
+    { "nome": "CS_FLXRET", "rotulo": "Fluxo de retorno", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 22, seq. 119",
+      "categorias": [
+        { "codigos": ["0"], "rotulo": "Não" },
+        { "codigos": ["1"], "rotulo": "Habilitado para envio" },
+        { "codigos": ["2"], "rotulo": "Enviado" }
+      ] },
+    { "nome": "FLXRECEBI", "rotulo": "Recebida por fluxo de retorno", "tipo": "texto", "fonte": "DIC2024", "local": "p. 22, seq. 120" },
+    { "nome": "MIGRADO_W", "rotulo": "Migrado do Sinan Windows", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 22, seq. 121",
+      "categorias": [
+        { "codigos": ["1"], "rotulo": "Migrado do Sinan Windows" }
+      ] }
+  ],
+  "derivadas": [
+    { "nome": "REGSAUD_NOT", "rotulo": "Região de saúde de notificação (DATASUS)", "de": "ID_MUNICIP", "tabela": "regioes_saude", "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)." },
+    { "nome": "REGSAUD_RES", "rotulo": "Região de saúde de residência (DATASUS)", "de": "ID_MN_RESI", "tabela": "regioes_saude", "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)." },
+    { "nome": "MACSAUD_NOT", "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)", "de": "ID_MUNICIP", "tabela": "macrorregioes_saude", "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual." },
+    { "nome": "MACSAUD_RES", "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)", "de": "ID_MN_RESI", "tabela": "macrorregioes_saude", "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual." }
+  ],
+  "pendencias": [
+    { "coluna": "ID_PAIS", "descricao": "Sem tabela de países compatível com a numeração do Sinan (a tabela_codigos_paises.xlsx tem Brasil = 10, e o arquivo usa 1). O código fica como veio. Decisão do Rubens (01/11/2026): '1 = Brasil' não entra sem fonte documental." },
+    { "coluna": "COPAISINF", "descricao": "Mesma situação de ID_PAIS." },
+    { "coluna": "ID_OCUPA_N", "descricao": "Códigos especiais do Sinan que não estão na CBO 2002 (no arquivo de 2025: 999991, 998999, 999993, 999992, XXX, 0, 000000…). Ficam como vieram até haver documento oficial com o significado." },
+    { "coluna": "ID_REGIONA", "descricao": "Tabela de regionais do Sinan não disponível; a do DATASUS não corresponde (2% de coincidência). Código mantido; coluna extra REGSAUD_NOT criada." },
+    { "coluna": "ID_RG_RESI", "descricao": "Mesma situação de ID_REGIONA; coluna extra REGSAUD_RES criada." }
+  ]
+}

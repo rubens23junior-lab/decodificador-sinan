@@ -1,0 +1,1402 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Leishmaniose Tegumentar Americana",
+    "codigos": [
+      "B55.1",
+      "B551"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos LTANBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-01",
+    "registro": "docs/conferencia/conferencia-leishmaniose-tegumentar.xlsx (conferência na planilha; correção do ID_AGRAVO e linhas iguais às de dengue aprovadas no chat em 01/11/2026); colunas de macrorregião de saúde conferidas na planilha em 02/11/2026"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICLTA": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Leishmaniose Tegumentar Americana",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em julho de 2010",
+      "arquivo": "docs/fontes/Dicionário de Leishmaniose Tegumentar.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "FICHALTA": {
+      "documento": "Ficha de Investigação – Leishmaniose Tegumentar Americana – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "27/09/2005",
+      "arquivo": "docs/fontes/LEISHMANIOSE TEGUMENTAR AMERICANA.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/rl_municip_regsaud.csv; docs/fontes/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES"
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'."
+  },
+  "listas": {},
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHALTA",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "B55.1",
+            "B551"
+          ],
+          "rotulo": "Leishmaniose cutânea"
+        }
+      ],
+      "observacao": "A ficha de LTA mostra o CID 'B 55.1'; o NOTIF2018 (p. 1, campo 2) diz que o ponto é retirado ao exportar. Decisão do Rubens na conferência (01/11/2026): 'B55.1' e 'B551' correspondem a 'Leishmaniose cutânea'. O arquivo de 2025 traz 'B551'."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "FICHALTA",
+      "local": "p. 1, campo 7",
+      "rotulo": "Data do diagnóstico",
+      "tipo": "data",
+      "observacao": "O DICLTA (p. 1) avisa que os campos 1 a 30 seguem a ficha de notificação, 'exceto a data de diagnóstico'. O campo 7 da ficha de LTA é 'Data do Diagnóstico'; a coluna do arquivo se chama DT_DIAG (pendência: o nome DBF não aparece nas fontes)."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno (semana epidemiológica dos primeiros sintomas/diagnósticos)",
+      "rotulo": "Semana epidemiológica do diagnóstico",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS. O NOTIF2018 descreve a semana dos primeiros sintomas/diagnóstico (SEM_PRI); a coluna do arquivo se chama SEM_DIAG (pendência: o nome DBF não aparece nas fontes)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHALTA",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de LTA. As formas com dois dígitos ('01'...'09'), usadas no arquivo, seguem a decisão P6 do Rubens ('1' e '01' são a mesma resposta)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 9",
+      "rotulo": "Não listar/Não contar (duplicidade)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "CS_FLXRET",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Fluxo de retorno",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Habilitado para envio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enviado"
+        }
+      ]
+    },
+    {
+      "nome": "FLXRECEBI",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Recebida por fluxo de retorno",
+      "tipo": "texto"
+    },
+    {
+      "nome": "MIGRADO_W",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Migrado do Sinan Windows",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Migrado do Sinan Windows"
+        }
+      ]
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICLTA",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICLTA",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "observacao": "Nome da ocupação pela CBO 2002. Códigos especiais do Sinan que não estão na CBO ficam como vieram (ver pendências)."
+    },
+    {
+      "nome": "CLI_CUTANE",
+      "fonte": "DICLTA",
+      "local": "p. 2, campo 33",
+      "rotulo": "Presença de lesão cutânea",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        }
+      ]
+    },
+    {
+      "nome": "CLI_MUCOSA",
+      "fonte": "DICLTA",
+      "local": "p. 2, campo 33",
+      "rotulo": "Presença de lesão mucosa",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        }
+      ]
+    },
+    {
+      "nome": "CLI_CICATR",
+      "fonte": "DICLTA",
+      "local": "p. 3, campo 34",
+      "rotulo": "Em caso de lesão mucosa, há cicatrizes cutâneas",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        }
+      ]
+    },
+    {
+      "nome": "CLI_CO_HIV",
+      "fonte": "DICLTA",
+      "local": "p. 3, campo 35",
+      "rotulo": "Co-infecção HIV",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "LAB_PARASI",
+      "fonte": "DICLTA",
+      "local": "p. 3, campo 36",
+      "rotulo": "Parasitológico direto",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ]
+    },
+    {
+      "nome": "LAB_IRM",
+      "fonte": "DICLTA",
+      "local": "p. 4, campo 37",
+      "rotulo": "IRM (Intradermorreação de Montenegro)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não Realizado"
+        }
+      ]
+    },
+    {
+      "nome": "LAB_HISTOP",
+      "fonte": "DICLTA",
+      "local": "p. 4, campo 38",
+      "rotulo": "Histopatologia",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Encontro do Parasita"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Compatível"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não Compatível"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não Realizado"
+        }
+      ]
+    },
+    {
+      "nome": "CLA_TIPO_N",
+      "fonte": "DICLTA",
+      "local": "p. 4, campo 39",
+      "rotulo": "Tipo de entrada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Caso Novo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Recidiva"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Transferência"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CLAS_FORMA",
+      "fonte": "DICLTA",
+      "local": "p. 4, campo 40",
+      "rotulo": "Forma clínica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cutânea"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Mucosa"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorada"
+        }
+      ]
+    },
+    {
+      "nome": "DT_INIC_TR",
+      "fonte": "DICLTA",
+      "local": "p. 5, campo 41",
+      "rotulo": "Data do início do tratamento",
+      "tipo": "data"
+    },
+    {
+      "nome": "TRA_DROGA_",
+      "fonte": "DICLTA",
+      "local": "p. 5, campo 42",
+      "rotulo": "Droga inicial administrada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Antimonial Pentavalente"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Anfotericina B"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Pentamidina"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outras"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não Utilizada"
+        }
+      ]
+    },
+    {
+      "nome": "TRA_PESO",
+      "fonte": "DICLTA",
+      "local": "p. 6, campo 43",
+      "rotulo": "Peso (kg)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "TRA_DOSE",
+      "fonte": "DICLTA",
+      "local": "p. 6, campo 44",
+      "rotulo": "Dose prescrita em mg/kg/dia Sb+5",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Menor que 10"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Maior ou igual a 10 e menor que 15"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Igual a 15"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Maior ou igual a 15 e menor que 20"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Maior ou igual a 20"
+        }
+      ],
+      "observacao": "A ficha de LTA de 2005 escreve o 4 como 'Maior que 15 e menor que 20'; seguido o DICLTA, mais recente."
+    },
+    {
+      "nome": "TRA_AMPOLA",
+      "fonte": "DICLTA",
+      "local": "p. 6, campo 45",
+      "rotulo": "Nº total de ampolas prescritas",
+      "tipo": "numero"
+    },
+    {
+      "nome": "TRA_OUTR_N",
+      "fonte": "DICLTA",
+      "local": "p. 6, campo 46",
+      "rotulo": "Outra droga utilizada na falência do tratamento inicial",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Anfotericina B"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Pentamidina"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ]
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICLTA",
+      "local": "p. 6, campo 47",
+      "rotulo": "Critério de confirmação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Laboratorial"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Clínico Epidemiológico"
+        }
+      ]
+    },
+    {
+      "nome": "CON_CLASS_",
+      "fonte": "DICLTA",
+      "local": "p. 7, campo 48",
+      "rotulo": "Classificação epidemiológica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Autóctone"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Importado"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ]
+    },
+    {
+      "nome": "TPAUTOCTO",
+      "fonte": "DICLTA",
+      "local": "p. 7, campo 49",
+      "rotulo": "O caso é autóctone do município de residência?",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ]
+    },
+    {
+      "nome": "COUFINF",
+      "fonte": "DICLTA",
+      "local": "p. 8, campo 50",
+      "rotulo": "UF provável de infecção",
+      "tipo": "uf"
+    },
+    {
+      "nome": "COPAISINF",
+      "fonte": "DICLTA",
+      "local": "p. 8, campo 51",
+      "rotulo": "País provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10)."
+    },
+    {
+      "nome": "COMUNINF",
+      "fonte": "DICLTA",
+      "local": "p. 9, campo 52",
+      "rotulo": "Município provável de infecção",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICLTA",
+      "local": "p. 10, campo 55",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICLTA",
+      "local": "p. 10, campo 56",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Alta por cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por LTA"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Mudança de diagnóstico"
+        }
+      ],
+      "observacao": "A ficha de 2005 escreve o 1 como 'Cura'; seguido o DICLTA, mais recente."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICLTA",
+      "local": "p. 10, campo 57",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICLTA",
+      "local": "p. 10, campo 58",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "DICLTA",
+      "local": "p. 10",
+      "rotulo": "Transferência vertical da investigação (lote)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "DT_DESC1",
+      "fonte": "DICLTA",
+      "local": "p. 10-11",
+      "rotulo": "Deslocamento 1 – data",
+      "tipo": "data",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "DT_DESC2",
+      "fonte": "DICLTA",
+      "local": "p. 10-11",
+      "rotulo": "Deslocamento 2 – data",
+      "tipo": "data",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "DT_DESC3",
+      "fonte": "DICLTA",
+      "local": "p. 10-11",
+      "rotulo": "Deslocamento 3 – data",
+      "tipo": "data",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "CO_UF_DES1",
+      "fonte": "DICLTA",
+      "local": "p. 11-12",
+      "rotulo": "Deslocamento 1 – UF",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). No arquivo a UF vem como sigla (ex.: 'ES'), já legível."
+    },
+    {
+      "nome": "CO_UF_DES2",
+      "fonte": "DICLTA",
+      "local": "p. 11-12",
+      "rotulo": "Deslocamento 2 – UF",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). No arquivo a UF vem como sigla (ex.: 'ES'), já legível."
+    },
+    {
+      "nome": "CO_UF_DES3",
+      "fonte": "DICLTA",
+      "local": "p. 11-12",
+      "rotulo": "Deslocamento 3 – UF",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). No arquivo a UF vem como sigla (ex.: 'ES'), já legível."
+    },
+    {
+      "nome": "MUN_DES1",
+      "fonte": "DICLTA",
+      "local": "p. 12-13",
+      "rotulo": "Deslocamento 1 – município",
+      "tipo": "municipio",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "MUN_DES2",
+      "fonte": "DICLTA",
+      "local": "p. 12-13",
+      "rotulo": "Deslocamento 2 – município",
+      "tipo": "municipio",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "MUN_DES3",
+      "fonte": "DICLTA",
+      "local": "p. 12-13",
+      "rotulo": "Deslocamento 3 – município",
+      "tipo": "municipio",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência)."
+    },
+    {
+      "nome": "PA_DES1",
+      "fonte": "DICLTA",
+      "local": "p. 13",
+      "rotulo": "Deslocamento 1 – país (código)",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). Sem tabela de países compatível: o código fica como veio."
+    },
+    {
+      "nome": "PA_DES2",
+      "fonte": "DICLTA",
+      "local": "p. 13",
+      "rotulo": "Deslocamento 2 – país (código)",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). Sem tabela de países compatível: o código fica como veio."
+    },
+    {
+      "nome": "PA_DES3",
+      "fonte": "DICLTA",
+      "local": "p. 13",
+      "rotulo": "Deslocamento 3 – país (código)",
+      "tipo": "codigo",
+      "observacao": "O DICLTA (p. 10-13) descreve o deslocamento (datas e locais frequentados nos seis meses anteriores aos sintomas) como 'variável não exportada', sem nome de coluna. A correspondência com esta coluna do arquivo é suposta pelo nome (pendência). Sem tabela de países compatível: o código fica como veio."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "DT_DESC1 a PA_DES3",
+      "descricao": "Deslocamento: o DICLTA traz os campos como 'variável não exportada', sem nome de coluna. Confirmar que DT_DESC, CO_UF_DES, MUN_DES e PA_DES correspondem às datas, UFs, municípios e países do deslocamento."
+    },
+    {
+      "coluna": "DT_DIAG",
+      "descricao": "Confirmar que DT_DIAG é a 'Data do diagnóstico' (campo 7 da ficha de LTA). O nome da coluna não aparece nas fontes."
+    },
+    {
+      "coluna": "SEM_DIAG",
+      "descricao": "Confirmar que SEM_DIAG é a semana epidemiológica do diagnóstico. O nome da coluna não aparece nas fontes."
+    },
+    {
+      "coluna": "CS_ESCOL_N",
+      "descricao": "Analfabeto = 0 tirado da ficha de LTA (o NOTIF2018 mostra '43', erro do PDF). Confirmar."
+    },
+    {
+      "coluna": "ID_PAIS",
+      "descricao": "Sem tabela de países compatível com a numeração do Sinan (a tabela_codigos_paises.xlsx tem Brasil = 10, e o arquivo usa 1). O código fica como veio. Decisão do Rubens (01/11/2026): '1 = Brasil' não entra sem fonte documental."
+    },
+    {
+      "coluna": "COPAISINF",
+      "descricao": "Mesma situação de ID_PAIS."
+    },
+    {
+      "coluna": "ID_OCUPA_N",
+      "descricao": "Códigos especiais do Sinan que não estão na CBO 2002 (no arquivo de 2025: 999991, 998999, 999993, 999992, XXX, 0, 000000…). Ficam como vieram até haver documento oficial com o significado."
+    },
+    {
+      "coluna": "ID_REGIONA",
+      "descricao": "Tabela de regionais do Sinan não disponível; a do DATASUS não corresponde (2% de coincidência). Código mantido; coluna extra REGSAUD_NOT criada."
+    },
+    {
+      "coluna": "ID_RG_RESI",
+      "descricao": "Mesma situação de ID_REGIONA; coluna extra REGSAUD_RES criada."
+    }
+  ]
+}

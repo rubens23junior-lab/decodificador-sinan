@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--POLITICA-->
+<title>Decodificador de notificações do SINAN</title>
+<!--ESTILO-->
+</head>
+<body>
+<header>
+  <h1>Decodificador de notificações do SINAN</h1>
+  <p class="aviso" role="note"><strong>Os dados não saem do seu computador.</strong> A planilha gerada contém os mesmos dados pessoais do arquivo original e deve ser tratada conforme as regras do seu serviço.</p>
+</header>
+
+<main>
+  <section id="passo-agravo" class="passo">
+    <h2><span class="num">1</span> Agravo</h2>
+    <label for="agravo">Escolha o agravo do arquivo:</label>
+    <select id="agravo"></select>
+    <p id="info-dicionario" class="detalhe"></p>
+  </section>
+
+  <section id="passo-arquivo" class="passo">
+    <h2><span class="num">2</span> Arquivo</h2>
+    <div id="area-arquivo" class="area-arquivo" tabindex="0">
+      <p>Arraste o arquivo para cá ou</p>
+      <label class="botao" for="arquivo">Escolher arquivo</label>
+      <input type="file" id="arquivo" accept=".dbc,.dbf,.csv,.txt">
+      <p class="detalhe">Formatos aceitos: DBC (DATASUS), DBF e CSV.</p>
+    </div>
+    <details class="avancado">
+      <summary>Acentos aparecendo errado?</summary>
+      <label for="codificacao">Codificação do arquivo:</label>
+      <select id="codificacao">
+        <option value="">Automática (recomendado)</option>
+        <option value="windows-1252">Windows-1252 (sistemas antigos)</option>
+        <option value="utf-8">UTF-8</option>
+      </select>
+    </details>
+    <div id="analise" hidden></div>
+  </section>
+
+  <section id="passo-opcoes" class="passo" hidden>
+    <h2><span class="num">3</span> Opções</h2>
+
+    <fieldset>
+      <legend>Filtrar registros (opcional)</legend>
+      <div class="linha-filtro">
+        <label for="filtro-uf-coluna">UF:</label>
+        <select id="filtro-uf-coluna"></select>
+        <select id="filtro-uf"></select>
+      </div>
+      <div class="linha-filtro">
+        <label for="filtro-mun-coluna">Município:</label>
+        <select id="filtro-mun-coluna"></select>
+        <select id="filtro-mun" disabled></select>
+      </div>
+      <div class="linha-filtro">
+        <label for="filtro-data-coluna">Período:</label>
+        <select id="filtro-data-coluna"></select>
+        <label for="filtro-de" class="curto">de</label> <input type="date" id="filtro-de">
+        <label for="filtro-ate" class="curto">até</label> <input type="date" id="filtro-ate">
+      </div>
+      <p id="intervalo-datas" class="detalhe"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Colunas</legend>
+      <label><input type="checkbox" id="manter-originais" checked> Manter também a coluna com o código original, ao lado da traduzida</label>
+      <label><input type="checkbox" id="cabecalho-original"> Incluir o nome original da coluna numa segunda linha de cabeçalho</label>
+      <label><input type="checkbox" id="formato-analise"> Formato para análise (R, Stata, Python)</label>
+      <p class="detalhe">Nomes de coluna do SINAN em minúsculas (por exemplo, cs_sexo, com o código em cs_sexo_cod), uma coluna numérica idade_anos (anos completos) e, no CSV, separador vírgula, ponto decimal e datas em aaaa-mm-dd. O texto das categorias é o mesmo.</p>
+      <details>
+        <summary>Escolher quais colunas incluir (<span id="conta-colunas"></span>)</summary>
+        <p><button type="button" id="marcar-todas" class="botao-leve">Marcar todas</button> <button type="button" id="desmarcar-todas" class="botao-leve">Desmarcar todas</button></p>
+        <div id="lista-colunas" class="lista-colunas"></div>
+      </details>
+    </fieldset>
+
+    <fieldset>
+      <legend>Formato da saída</legend>
+      <label><input type="radio" name="saida" value="xlsx" checked> Planilha Excel (.xlsx)</label>
+      <label><input type="radio" name="saida" value="csv"> CSV (para arquivos muito grandes; as abas de apoio vêm num Excel separado)</label>
+      <p id="estimativa" class="detalhe"></p>
+    </fieldset>
+
+    <p><button type="button" id="processar" class="botao principal">Processar e baixar a planilha</button></p>
+  </section>
+
+  <section id="progresso" class="passo" hidden aria-live="polite">
+    <h2 id="etapa">Processando…</h2>
+    <progress id="barra" max="1" value="0"></progress>
+    <p id="progresso-texto" class="detalhe"></p>
+    <p><button type="button" id="cancelar" class="botao-leve">Cancelar</button></p>
+  </section>
+
+  <section id="resultado" class="passo" hidden aria-live="polite"></section>
+  <section id="erro" class="erro" hidden role="alert"></section>
+</main>
+
+<footer>
+  <p>Versão <span id="versao"></span>. Funciona sem internet. Nenhum dado é enviado, guardado ou registrado pela ferramenta.</p>
+  <p>© 2026 Rubens Araujo da Silva Junior. Software livre sob a licença GNU GPL versão 3 ou posterior, sem nenhuma garantia; veja o arquivo LICENSE. Registro no INPI: BR512026010321-5.</p>
+</footer>
+<!--CODIGO-WORKER-->
+<!--CODIGO-APP-->
+</body>
+</html>

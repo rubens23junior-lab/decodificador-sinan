@@ -1,0 +1,19 @@
+{
+  "descricao": "Revisão (adjudicação) das células marcadas como NÃO na conferência por amostra. A marcação original do Rubens continua intacta em amostra-conferencia.xlsx; este arquivo registra a decisão tomada depois de rever cada divergência na fonte oficial.",
+  "revisoes": [
+    {
+      "linha": 109,
+      "decisao": "SIM",
+      "por": "Rubens Araujo da Silva Junior",
+      "data": "2026-11-02",
+      "motivo": "CLASSI_FIN 13 = Chikungunya consta na Ficha_DENGCHIK_FINAL.pdf (FICHA2016), p. 2, campo 62. O texto da ferramenta tem base oficial; a coluna 'Onde conferir' apontou a regra do DIC2024 (seq. 73), fonte mais fraca, cuja lista do campo (seq. 70) não traz o 13."
+    },
+    {
+      "linha": 110,
+      "decisao": "SIM",
+      "por": "Rubens Araujo da Silva Junior",
+      "data": "2026-11-02",
+      "motivo": "Mesmo código da linha 109 (CLASSI_FIN 13 = Chikungunya), confirmado na FICHA2016, p. 2, campo 62."
+    }
+  ]
+}
