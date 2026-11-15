@@ -20,7 +20,7 @@ A versão 1.0.1 tem o mesmo programa de decodificação e os mesmos dicionários
 
 Para analisar no R, Stata ou Python, marque "Formato para análise". Assim saem nomes de coluna do SINAN em minúsculas, a idade em anos como número e um CSV no padrão internacional.
 
-Instruções completas em [docs/LEIA-ME.txt](docs/LEIA-ME.txt), que também vai dentro do pacote. A pasta `exemplos/` tem arquivos fictícios para experimentar.
+Instruções completas, com fotos de cada passo e de como baixar o arquivo no site do DATASUS, no [guia de uso em PDF](docs/guia-de-uso.pdf). O resumo em texto está em [docs/LEIA-ME.txt](docs/LEIA-ME.txt), que também vai dentro do pacote. A pasta `exemplos/` tem arquivos fictícios para experimentar.
 
 ## Organização das pastas
 
