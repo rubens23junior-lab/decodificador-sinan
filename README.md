@@ -59,9 +59,9 @@ Relatórios: [testes](docs/relatorio-testes.md), [desempenho](docs/desempenho.md
 
 ## Como citar
 
-Os dados para citação estão em [CITATION.cff](CITATION.cff). Quando o código for publicado no GitHub e no Zenodo, as duas páginas mostrarão um botão para citar a ferramenta, e o DOI será acrescentado aqui.
+Os dados para citação estão em [CITATION.cff](CITATION.cff). O código está arquivado no Zenodo: DOI da versão 1.0.1 [10.5281/zenodo.24245072](https://doi.org/10.5281/zenodo.24245072); DOI geral, que aponta sempre para a versão mais recente, [10.5281/zenodo.24245071](https://doi.org/10.5281/zenodo.24245071).
 
-SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.0.1. 2026. Programa de computador registrado no INPI, processo BR512026010321-5.
+SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.0.1. 2026. Zenodo. DOI: 10.5281/zenodo.24245072. Programa de computador registrado no INPI, processo BR512026010321-5.
 
 ## Licença
 

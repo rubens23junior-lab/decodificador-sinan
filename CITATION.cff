@@ -9,6 +9,8 @@ authors:
     name-particle: "da"
     family-names: "Silva Junior"
 license: GPL-3.0-or-later
+doi: "10.5281/zenodo.24245071"
+repository-code: "https://github.com/rubens23junior-lab/decodificador-sinan"
 abstract: >-
   Ferramenta gratuita que decodifica os microdados públicos do Sistema de
   Informação de Agravos de Notificação (SINAN), distribuídos pelo DATASUS nos
@@ -24,6 +26,9 @@ keywords:
   - sistemas de informação em saúde
   - dicionário de dados
 identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24245072"
+    description: "DOI da versão 1.0.1 no Zenodo"
   - type: other
     value: "BR512026010321-5"
     description: "Registro de programa de computador no INPI (certificado expedido em 10/11/2026)"
