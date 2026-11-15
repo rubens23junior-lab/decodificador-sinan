@@ -119,7 +119,7 @@ Regras de manutenção:
 
 - Acrescentar um agravo ou atualizar uma versão não exige alterar o código da ferramenta.
 - Deve existir um verificador que confere os dicionários: JSON válido, sem código repetido na mesma coluna, todo campo categórico com rótulos preenchidos.
-- A transcrição do dicionário oficial para JSON pode ser feita com ajuda do Claude Code a partir dos documentos fornecidos, mas **o Rubens confere cada dicionário antes de ele ser usado**. Tudo o que o Claude Code não conseguir ler com segurança deve ser listado, e não preenchido.
+- A transcrição do dicionário oficial para JSON pode ser feita com ajuda de uma ferramenta de inteligência artificial a partir dos documentos fornecidos, mas **o Rubens confere cada dicionário antes de ele ser usado**. Tudo o que essa ferramenta não conseguir ler com segurança deve ser listado, e não preenchido.
 
 ## 9. Privacidade e segurança
 
@@ -141,7 +141,7 @@ Regras de manutenção:
 ## 11. Tecnologia sugerida
 
 - Aplicação web estática: HTML, CSS e JavaScript, sem servidor. Pode ser distribuída como pasta compactada para abrir no computador ou hospedada como página estática (o processamento continua local).
-- Bibliotecas para ler DBF e CSV e para gerar XLSX, a escolher pelo Claude Code, preferindo as mantidas ativamente e de licença livre.
+- Bibliotecas para ler DBF e CSV e para gerar XLSX, a escolher pela ferramenta de inteligência artificial usada no desenvolvimento, preferindo as mantidas ativamente e de licença livre.
 - Processamento pesado em segundo plano (Web Worker) para não travar a tela.
 
 A sugestão pode ser trocada se houver motivo, desde que os princípios da seção 2 sejam mantidos.
