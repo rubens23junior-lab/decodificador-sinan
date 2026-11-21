@@ -1,11 +1,11 @@
 # Comparação com o microdatasus
 
-Situação em 02/11/2026. Esta é a primeira parte da validação para uso científico (seção 13 dos requisitos): a "comparação com outro método". A dengue vem primeiro. Chikungunya, zika e as duas leishmanioses estão na última seção.
+Situação em 06/11/2026, comparações refeitas na versão 1.0.0 da ferramenta. Esta é a primeira parte da validação para uso científico (seção 13 dos requisitos): a "comparação com outro método". A dengue vem primeiro. Chikungunya, zika e as duas leishmanioses estão na última seção.
 
 ## Método
 
 - **Arquivo:** `DENGBR25.dbc`, baixado do DATASUS pelo Rubens em 01/11/2026. Tem 1.643.215 notificações e 121 colunas. As duas ferramentas leram o mesmo arquivo, sem nenhuma conversão no meio.
-- **Nossa ferramenta (versão 0.1.0, a mesma tradução da 1.0.0 exceto as idades implausíveis):** dicionário de dengue conferido pelo Rubens em 01/11/2026. A comparação roda o mesmo código usado na tela (`validacao/ferramenta-pares.js`).
+- **Nossa ferramenta (versão 1.0.0):** dicionário de dengue conferido pelo Rubens em 01/11/2026. A comparação roda o mesmo código usado na tela (`validacao/ferramenta-pares.js`).
 - **microdatasus 3.0.0** (R 4.6.1):
   - Leitura com o leitor interno que o `fetch_datasus()` usa (`read_dbc`, `as_character = TRUE`).
   - Decodificação com `process_sinan_dengue(municipality_data = FALSE)`, pelo script `validacao/microdatasus-pares.R`.
@@ -19,8 +19,8 @@ Situação em 02/11/2026. Esta é a primeira parte da validação para uso cient
 Para repetir a comparação:
 
 ```
-Rscript validacao/microdatasus-pares.R dados_publicos/DENGBR25.dbc process_sinan_dengue dados_publicos/saida/pares-microdatasus-dengue.csv
-node validacao/ferramenta-pares.js dados_publicos/DENGBR25.dbc dengue dados_publicos/saida/pares-ferramenta-dengue.csv
+Rscript validacao/microdatasus-pares.R dados_publicos/dengue-chikungunya/DENGBR25.dbc process_sinan_dengue dados_publicos/saida/pares-microdatasus-dengue.csv
+node validacao/ferramenta-pares.js dados_publicos/dengue-chikungunya/DENGBR25.dbc dengue dados_publicos/saida/pares-ferramenta-dengue.csv
 node validacao/comparar.js dengue dados_publicos/saida/pares-ferramenta-dengue.csv dados_publicos/saida/pares-microdatasus-dengue.csv --versao-microdatasus 3.0.0 --arquivo DENGBR25.dbc
 ```
 
@@ -32,13 +32,13 @@ A contagem vai por registro e por coluna, ou seja, cada célula da planilha cont
 |---|---:|---:|
 | Igual | 6.961 | 166.898.416 |
 | Só grafia (acentos, maiúsculas, º) | 1.262 | 1.204.467 |
-| Significado diferente | 318 | 3.508.115 |
+| Significado diferente | 244 | 3.507.969 |
 | Só a ferramenta traduz | 45.696 | 10.697.588 |
-| Só o microdatasus traduz | 34 | 3.459.621 |
+| Só o microdatasus traduz | 108 | 3.459.767 |
 | Microdatasus apaga o valor | 32 | 1.571.271 |
 | Nenhuma traduz (texto livre, códigos sem tabela) | 1.184 | 11.489.537 |
 
-As contagens de registros por código são idênticas nas duas ferramentas. Isso confirma que as duas leram o arquivo da mesma forma.
+As contagens de registros por código são idênticas nas duas ferramentas. Isso confirma que as duas leram o arquivo da mesma forma. Na versão 1.0.0, as idades implausíveis deixaram de ser traduzidas pela ferramenta; por isso, parte delas passou de "Significado diferente" para "Só o microdatasus traduz".
 
 ## Achados
 
@@ -101,19 +101,19 @@ Usei o mesmo método e os mesmos scripts. Os resultados estão em `docs/validaca
 | Chikungunya | `CHIKBR25.dbc` | 253.753 | `process_sinan_chikungunya` |
 | Zika | `ZIKABR25.dbc` | 25.764 | `process_sinan_zika` |
 | Leishmaniose tegumentar | `LTANBR25.dbc` | 11.299 | `process_sinan_leishmaniose_tegumentar` |
-| Leishmaniose visceral | `LVH.csv` | 87.746 | `process_sinan_leishmaniose_visceral` |
+| Leishmaniose visceral | `LEIVBR25.dbc` | 9.168 | `process_sinan_leishmaniose_visceral` |
 
-Sobre o `LVH.csv`: o Rubens o extraiu com o `fetch_datasus()` (2016 a 2025) e salvou com `rio::export()`. As duas ferramentas leram esse mesmo CSV. As contagens por código só diferem em dois campos de texto livre, `OUTROS_ESP` e `DS_TRANS_1`, porque os acentos já vieram quebrados no arquivo e cada ferramenta lê a codificação de um jeito. Nos demais agravos, as contagens são idênticas.
+Em 06/11/2026, a comparação de leishmaniose visceral foi refeita com o arquivo original `LEIVBR25.dbc`, de 2025, no lugar do `LVH.csv` (2016 a 2025, extraído com o `fetch_datasus()`). Assim, os cinco agravos ficam com o mesmo ano e o mesmo formato. As contagens por código são idênticas nas duas ferramentas nos cinco agravos.
 
 | Grupo (células) | Chikungunya | Zika | LTA | LV |
 |---|---:|---:|---:|---:|
-| Igual | 26.182.756 | 605.076 | 563.968 | 6.087.449 |
-| Só grafia | 125.537 | 6.685 | 25.471 | 13.689 |
-| Significado diferente | 485.659 | 28.369 | 24.108 | 94.638 |
-| Só a ferramenta traduz | 1.556.984 | 128.035 | 83.992 | 480.104 |
-| Só o microdatasus traduz | 467.106 | 31.724 | 21.220 | 110.108 |
-| Microdatasus apaga o valor | 309.715 | 23.597 | 7.098 | 154.921 |
-| Nenhuma traduz | 1.830.109 | 155.546 | 98.970 | 691.355 |
+| Igual | 26.182.756 | 605.076 | 563.968 | 598.071 |
+| Só grafia | 125.537 | 6.685 | 25.471 | 1.312 |
+| Significado diferente | 485.624 | 28.368 | 24.106 | 9.828 |
+| Só a ferramenta traduz | 1.556.984 | 128.035 | 83.992 | 49.242 |
+| Só o microdatasus traduz | 467.141 | 31.725 | 21.222 | 10.584 |
+| Microdatasus apaga o valor | 309.715 | 23.597 | 7.098 | 18.227 |
+| Nenhuma traduz | 1.830.109 | 155.546 | 98.970 | 110.140 |
 
 ### A. Erros no código do microdatasus 3.0.0
 
@@ -131,14 +131,14 @@ Os erros abaixo foram conferidos no código das funções.
 ### B. "Ignorado" vira campo vazio
 
 O microdatasus transforma o código 9 (Ignorado) em vazio em várias colunas. Quem usa o pacote não consegue mais separar "ignorado" de "não preenchido":
-- **Leishmaniose visceral:** `HIV` (19.216 registros); 12 sinais e sintomas (`FEBRE`, `FRAQUEZA`, `EDEMA`, `EMAGRA`, `TOSSE`, `PALIDEZ`, `BACO`, `INFECCIOSO`, `FEN_HEMORR`, `FIGADO`, `ICTERICIA`, `OUTROS`); `ENTRADA`; e `DOENCA_TRA`.
+- **Leishmaniose visceral:** `HIV` (1.267 registros); 12 sinais e sintomas (`FEBRE`, `FRAQUEZA`, `EDEMA`, `EMAGRA`, `TOSSE`, `PALIDEZ`, `BACO`, `INFECCIOSO`, `FEN_HEMORR`, `FIGADO`, `ICTERICIA`, `OUTROS`); `ENTRADA`; e `DOENCA_TRA`.
 - **Leishmaniose tegumentar:** `CLI_CO_HIV` (1.927), `CLA_TIPO_N`, `CLAS_FORMA` e `DOENCA_TRA`.
 
 Nos quatro agravos, o pacote também apaga os códigos especiais de ocupação (999991, 999992, 999993…) e o código 0 de país de infecção.
 
 ### C. Códigos que só a nossa ferramenta traduz, todos com fonte oficial
 
-- **Leishmaniose visceral:** `DROGA` 6 "Não utilizada" (28.596), `DOSE` 1 a 3, `FALENCIA` 4 "Não se aplica" (6.678), `CO_UF_1` a `CO_UF_3`.
+- **Leishmaniose visceral:** `DROGA` 6 "Não utilizada" (3.217), `DOSE` 1 a 3, `FALENCIA` 4 "Não se aplica" (174), `CO_UF_1` a `CO_UF_3`.
 - **Leishmaniose tegumentar:** `TRA_DOSE` 1 a 5, `EVOLUCAO` 6 "Mudança de diagnóstico" (335), `LAB_PARASI` 3 e `LAB_IRM` 3 "Não realizado".
 - **Zika:** `CS_ESCOL_N` com dois dígitos ("01" a "09", 20.204 registros); `NDUPLIC_N` e `IN_VINCULA`.
 - **Todos:** o código do agravo (`ID_AGRAVO`).

@@ -3,7 +3,7 @@ dados_publicos/
 
 # Pacote do TabWin/CNES (846 MB): grande demais para o histórico.
 # As tabelas usadas dele são extraídas para a pasta dicionarios/.
-docs/fontes/TAB_CNES/
+docs/fontes/tabelas-apoio/TAB_CNES/
 
 # Dependências e arquivos gerados
 node_modules/
@@ -14,9 +14,12 @@ dist/
 Thumbs.db
 
 # Base completa do CNES (2,9 GB, com dados pessoais de profissionais): fora do histórico.
-docs/fontes/CNES/
+docs/fontes/tabelas-apoio/CNES/
 
 # Arquivos de outros trabalhos no R, salvos aqui por engano: fora do projeto.
 dados_brutos/
 dados_processados/
 *.rds
+
+# Documentos do pedido de registro no INPI (podem ter dados pessoais): fora do Git.
+registro_inpi/

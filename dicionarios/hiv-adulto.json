@@ -1,0 +1,1804 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "HIV em adulto",
+    "codigos": [
+      "B24",
+      "B 24",
+      "B 2 4"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos HIVABRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-hiv-adulto.xlsx (conferência na planilha em 20/11/2026, com as correções pedidas por ele aplicadas no mesmo dia; explicação da pontuação do critério Rio de Janeiro/Caracas escrita por ele na planilha)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICHIVA": {
+      "documento": "Dicionário de Dados – HIV adulto",
+      "orgao": "Ministério da Saúde / SVSA / DAENT / CGIAE / GT-Sinan",
+      "data": "Revisado em fevereiro/2024 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 19/11/2026, com a decisão do Rubens de usar os dicionários de HIV de 2024 como fonte principal.",
+      "arquivo": "docs/fontes/hiv-adulto/HIVAN_DIC_DADOS.pdf"
+    },
+    "FICHAAIDSA": {
+      "documento": "Ficha de Notificação/Investigação – Aids (pacientes com 13 anos ou mais) – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 08/06/2006 (rodapé). Colocada pelo Rubens em docs/fontes em 19/11/2026.",
+      "arquivo": "docs/fontes/hiv-adulto/Aids_adulto_v5.pdf"
+    },
+    "INSTAIDSA": {
+      "documento": "Aids (pacientes maiores que 13 anos) – Instrumento para preenchimento – Ficha de investigação – Sinan",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Colocado pelo Rubens em docs/fontes em 19/11/2026.",
+      "arquivo": "docs/fontes/hiv-adulto/Aids_adulto_v5_instr.pdf"
+    },
+    "SINANNET_AIDS": {
+      "documento": "Arquivos de definições do TabWin para aids em adultos (AidsNET.def) e em crianças (AidsCriNET.def), com as conversões Sim_nao, sim_naoap, simnaoaids, AntrelN, Posnegaidsa, Posnegaids, ClascatN, Critaids, CritaidsC, evoaids e EvoAIDScri",
+      "orgao": "Ministério da Saúde / GT-Sinan e UT-Sinan",
+      "data": "Conversões revisadas pela UT-Sinan em 2019 (cabeçalho dos arquivos). Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/AidsNET.def e AidsCriNET.def"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    },
+    "DICAIDSA": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Aids (pacientes com 13 anos ou mais)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "Revisado em fevereiro/2012 (rodapé). Colocado pelo Rubens em docs/fontes em 19/11/2026.",
+      "arquivo": "docs/fontes/hiv-adulto/DIC_DADOS_Aids_adulto_v5.pdf"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sn_nao_se_aplica": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não se aplica"
+      }
+    ],
+    "resultado_teste": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positivo/reagente"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativo/não reagente"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "categoria_exposicao": [
+      {
+        "codigos": [
+          "10"
+        ],
+        "rotulo": "Homossexual"
+      },
+      {
+        "codigos": [
+          "11"
+        ],
+        "rotulo": "Homo/Drogas"
+      },
+      {
+        "codigos": [
+          "12"
+        ],
+        "rotulo": "Homo/Hemofilico"
+      },
+      {
+        "codigos": [
+          "13"
+        ],
+        "rotulo": "Homo/transfusão"
+      },
+      {
+        "codigos": [
+          "14"
+        ],
+        "rotulo": "Homo/Droga/Hemof"
+      },
+      {
+        "codigos": [
+          "15"
+        ],
+        "rotulo": "Homo/Droga/Transf"
+      },
+      {
+        "codigos": [
+          "20"
+        ],
+        "rotulo": "Bissexual"
+      },
+      {
+        "codigos": [
+          "21"
+        ],
+        "rotulo": "Bi/Drogas"
+      },
+      {
+        "codigos": [
+          "22"
+        ],
+        "rotulo": "Bi/Hemofílico"
+      },
+      {
+        "codigos": [
+          "23"
+        ],
+        "rotulo": "Bi/Transfusão"
+      },
+      {
+        "codigos": [
+          "24"
+        ],
+        "rotulo": "Bi/Droga/Hemofílico"
+      },
+      {
+        "codigos": [
+          "25"
+        ],
+        "rotulo": "Bi/Droga/Transfusão"
+      },
+      {
+        "codigos": [
+          "30"
+        ],
+        "rotulo": "Heterossexual"
+      },
+      {
+        "codigos": [
+          "31"
+        ],
+        "rotulo": "Hetero/Droga"
+      },
+      {
+        "codigos": [
+          "32"
+        ],
+        "rotulo": "Hetero/Hemofílico"
+      },
+      {
+        "codigos": [
+          "33"
+        ],
+        "rotulo": "Hetero/Transfusão"
+      },
+      {
+        "codigos": [
+          "34"
+        ],
+        "rotulo": "Hetero/Droga/Hemofílico"
+      },
+      {
+        "codigos": [
+          "35"
+        ],
+        "rotulo": "Hetero/Droga/Transfusão"
+      },
+      {
+        "codigos": [
+          "36"
+        ],
+        "rotulo": "Hetero c/parceria de risco indefinido"
+      },
+      {
+        "codigos": [
+          "40"
+        ],
+        "rotulo": "Drogas"
+      },
+      {
+        "codigos": [
+          "41"
+        ],
+        "rotulo": "Drogas/Hemofílico"
+      },
+      {
+        "codigos": [
+          "42"
+        ],
+        "rotulo": "Drogas/Transfusão"
+      },
+      {
+        "codigos": [
+          "50"
+        ],
+        "rotulo": "Hemofilico"
+      },
+      {
+        "codigos": [
+          "59"
+        ],
+        "rotulo": "Transfusão/Droga/Hetero/Hemofílico"
+      },
+      {
+        "codigos": [
+          "60"
+        ],
+        "rotulo": "Transfusão"
+      },
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Transfusão/Drogas"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Transfusão/Homo"
+      },
+      {
+        "codigos": [
+          "63"
+        ],
+        "rotulo": "Transfusão/Bi"
+      },
+      {
+        "codigos": [
+          "64"
+        ],
+        "rotulo": "Transfusão/Droga/ Homossexual"
+      },
+      {
+        "codigos": [
+          "65"
+        ],
+        "rotulo": "Transfusão/Droga/Bissexual"
+      },
+      {
+        "codigos": [
+          "66"
+        ],
+        "rotulo": "Transfusão/Hetero"
+      },
+      {
+        "codigos": [
+          "67"
+        ],
+        "rotulo": "Transfusão/Droga/Hetero"
+      },
+      {
+        "codigos": [
+          "68"
+        ],
+        "rotulo": "Transfusão/Droga/Homo/Hemofílico"
+      },
+      {
+        "codigos": [
+          "69"
+        ],
+        "rotulo": "Transfusão/Drogas/Bissexual/Hemofílico",
+        "fonte": "SINANNET_AIDS",
+        "local": "ClascatN.cnv, código 69"
+      },
+      {
+        "codigos": [
+          "70"
+        ],
+        "rotulo": "Acidente com material biológico com posterior soroconversão até 06 meses."
+      },
+      {
+        "codigos": [
+          "80"
+        ],
+        "rotulo": "Perinatal"
+      },
+      {
+        "codigos": [
+          "90"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAAIDSA",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "B24",
+            "B 24",
+            "B 2 4"
+          ],
+          "rotulo": "Doença pelo vírus da imunodeficiência humana [HIV] não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código B24"
+        }
+      ],
+      "observacao": "A ficha mostra 'AIDS' com o CID 'B 24'; no arquivo vem 'B24' (regra do Rubens: o CID como na ficha e sem espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026). Atenção: o HIV criança usa o mesmo CID; os dois arquivos são diferenciados pelas colunas."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "INSTAIDSA",
+      "local": "p. 1, item 7",
+      "rotulo": "Data do diagnóstico ou da evidência laboratorial e/ou clínica",
+      "tipo": "data",
+      "observacao": "Ficha, campo 7 (\"Data do Diagnóstico\"). Instrucional, item 7: \"data do diagnóstico ou da evidência laboratorial e/ou clínica da doença de acordo com a definição de caso vigente no momento da notificação\". Nome como na gestante HIV (decisão do Rubens, 20/11/2026)."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "DICHIVA",
+      "local": "p. 2",
+      "rotulo": "Semana epidemiológica do diagnóstico",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros de 2023 e 2024; a semana calculada pela data do diagnóstico está na coluna extra logo depois (regra do Rubens, 18/11/2026)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 12 só comporta 1 a 6 e 9"
+      },
+      "observacao": "As formas com um e dois dígitos (01 e 1) entram (regra do Rubens); 9, 09 e 99 = Ignorado (decisão do Rubens nas hepatites, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAAIDSA",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de aids (campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026). Nos arquivos de HIV adulto de 2023 e 2024 (18.798 notificações) o Ignorado vem como \"99\"; 9, 09 e 99 = Ignorado (regra do Rubens para o Ignorado com dois dígitos, hepatites, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 14 só comporta 0 a 10"
+      }
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 31",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá. Em 767 notificações de 2023 e 2024 o código vem com ponto (por exemplo \"5161.1\"): sai como veio, destacado e nas Inconsistências, e a coluna extra logo depois tenta recuperar o código multiplicando por 100 (decisão do Rubens, 20/11/2026)."
+    },
+    {
+      "nome": "ANT_TRASMI",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 32",
+      "rotulo": "Transmissão vertical",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não foi transmissão vertical"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTRELSE_N",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 33",
+      "rotulo": "Transmissão sexual",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Relações sexuais com homens"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Relações sexuais com mulheres"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Relações sexuais com homens e mulheres"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não foi transmissão sexual"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Rótulos da ficha (campo 33), iguais aos do DICHIVA, que escreve \"Homens\" e \"Mulheres\" com maiúscula. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DROGA",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 34",
+      "rotulo": "Transmissão sanguínea: uso de drogas injetáveis",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_HEMOLF",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 34",
+      "rotulo": "Transmissão sanguínea: tratamento/hemotransfusão para hemofilia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTTRANS_M",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 34",
+      "rotulo": "Transmissão sanguínea: transfusão sanguínea",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ACIDEN",
+      "fonte": "DICHIVA",
+      "local": "p. 4, campo 34",
+      "rotulo": "Transmissão sanguínea: acidente com material biológico com posterior soroconversão até 6 meses",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTDTTRANS",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 35",
+      "rotulo": "Data da transfusão/acidente",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANTUFTRANS",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 36",
+      "rotulo": "UF da transfusão/acidente",
+      "tipo": "texto",
+      "observacao": "O AidsNET.def lê a coluna como sigla da UF (UFsigla.CNV). Vem em branco em todos os registros de 2023 e 2024; se vier, fica como veio (regra do Rubens para UF em sigla, 19/11/2026)."
+    },
+    {
+      "nome": "ANTMUNTRAN",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 37",
+      "rotulo": "Município onde foi realizada a transfusão/acidente",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ANT_INSTTR",
+      "fonte": "DICAIDSA",
+      "local": "p. 4, campo 38",
+      "rotulo": "Instituição onde ocorreu a transfusão/acidente (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Código da unidade de saúde; sai o nome do estabelecimento pelo CNES (o AidsNET.def usa a tabela de unidades). Não vem nos arquivos públicos do DATASUS (HIVABR23 e 24) nem no DICHIVA de 2024; o nome da coluna vem do dicionário de aids adulto de 2012 (DICAIDSA) e do AidsNET.def. Incluída para arquivos exportados do próprio Sinan (decisão do Rubens: \"seguir a ficha\", 20/11/2026)."
+    },
+    {
+      "nome": "ANT_INVEST",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 39",
+      "rotulo": "A transfusão/acidente com material biológico foi considerada causa da infecção pelo HIV",
+      "tipo": "categorico",
+      "lista": "sn_nao_se_aplica",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 3"
+      },
+      "observacao": "Ficha, campo 39: \"Após investigação realizada conforme algoritmo do PN DST/AIDS, a transfusão/acidente com material biológico foi considerada causa da infecção pelo HIV?\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_TRIAGE",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 40",
+      "rotulo": "Evidência laboratorial de infecção pelo HIV: teste de triagem",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 4 e 9 (DICHIVA)"
+      },
+      "observacao": "O DICHIVA lista 1 a 4 e 9 para o teste de triagem; a ficha (campo 40) lista também 5 - Indeterminado, que o dicionário só dá ao teste confirmatório. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTTRIAGEM",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 40",
+      "rotulo": "Data da coleta do teste de triagem",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_CONFIR",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 40",
+      "rotulo": "Evidência laboratorial de infecção pelo HIV: teste confirmatório",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positivo/reagente"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo/não reagente"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Inconclusivo"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizado"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indeterminado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 5 e 9"
+      },
+      "observacao": "Rótulos da ficha (campo 40); o DICHIVA escreve \"Positivo / Reagente\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_CONFIRM",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 40",
+      "rotulo": "Data da coleta do teste confirmatório",
+      "tipo": "data"
+    },
+    {
+      "nome": "TPRAPIDO1",
+      "fonte": "DICHIVA",
+      "local": "p. 5, campo 40",
+      "rotulo": "Evidência laboratorial de infecção pelo HIV: teste rápido 1",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 4 e 9 (DICHIVA)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPRAPIDO2",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 40",
+      "rotulo": "Evidência laboratorial de infecção pelo HIV: teste rápido 2",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 4 e 9 (DICHIVA)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPRAPIDO3",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 40",
+      "rotulo": "Evidência laboratorial de infecção pelo HIV: teste rápido 3",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 4 e 9 (DICHIVA)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_RAPIDO",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 40",
+      "rotulo": "Data da coleta dos testes rápidos",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_SARCOM",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Sarcoma de Kaposi (10)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_TUBERC",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Tuberculose disseminada/extra-pulmonar/não cavitária (10)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_CANDID",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Candidose oral ou leucoplasia pilosa (5)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_PULMON",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Tuberculose pulmonar cavitária ou não especificada (5)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_HERPES",
+      "fonte": "DICHIVA",
+      "local": "p. 6, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Herpes zoster em indivíduo menor ou igual a 60 anos (5)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_DISFUN",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Disfunção do sistema nervoso central (5)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_DIARRE",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Diarréia igual ou maior a 1 mês (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_FEBRE",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Febre maior ou igual a 38ºC por tempo maior ou igual a 1 mês (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_CAQUEX",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Caquexia ou perda de peso maior que 10% (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_ASTERI",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Astenia maior ou igual a 1 mês (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_DERMAT",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Dermatite persistente (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_ANEMIA",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Anemia e/ou linfopenia e/ou trombocitopenia (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_TOSSE",
+      "fonte": "DICHIVA",
+      "local": "p. 7, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Tosse persistente ou qualquer pneumonia (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_LINFO",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 41",
+      "rotulo": "Critério Rio de Janeiro/Caracas: Linfadenopatia maior ou igual a 1cm, maior ou igual a 2 sítios extra-inguinais e por tempo maior ou igual a 1 mês (2)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 41). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026). Pontuação (explicação do Rubens na conferência, 20/11/2026): o número entre parênteses é a pontuação do sinal, sintoma ou doença no Critério Rio de Janeiro/Caracas, usado na ficha do Sinan para definir caso de aids em pessoas com 13 anos ou mais. Além da evidência laboratorial da infecção pelo HIV, a soma dos pontos das manifestações presentes deve ser igual ou superior a 10. Itens de 10 pontos (Sarcoma de Kaposi; tuberculose disseminada/extrapulmonar/não cavitária) bastam sozinhos; itens de 5 pontos precisam ser somados a outro de 5 ou a itens de 2; itens de 2 pontos são mais inespecíficos e só contam somados a outros. Os itens de 2 pontos marcados com asterisco na ficha (febre, caquexia/perda de peso, astenia e tosse persistente ou qualquer pneumonia) só são pontuados se a tuberculose for excluída como causa."
+    },
+    {
+      "nome": "ANT_CANCER",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Câncer cervical invasivo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ESOF_N",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Candidose de esôfago",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_PULM_N",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Candidose de traquéia, brônquios ou pulmão",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CITO",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Citomegalovirose (exceto fígado, baço ou linfonodos)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CRIPTO",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Criptococose extrapulmonar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CRIP_1",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Criptosporidiose intestinal crônica > 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_H_SIMP",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Herpes simples mucocutâneo > 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_HISTO",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Histoplasmose disseminada",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ISOPOR",
+      "fonte": "DICHIVA",
+      "local": "p. 8, campo 42",
+      "rotulo": "Critério CDC adaptado: Isosporidiose intestinal crônica > 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_LEUCO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Leucoencefalopatia multifocal progressiva",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_LINFOM",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Linfoma não Hodgkin e outros linfomas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_LINFO_",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Linfoma primário do cérebro",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MICRO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Micobacteriose disseminada exceto tuberculose e hanseníase",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_PNEUMO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Pneumonia por Pneumocystis carinii",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CHAGAS",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Reativação de doença de Chagas (meningoencefalite e/ou miocardite)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_SALMO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Salmonelose (sepse recorrente não-tifóide)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TOXO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Toxoplasmose cerebral",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CONTAG",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 42",
+      "rotulo": "Critério CDC adaptado: Contagem de linfócitos T CD4+ menor que 350 cel/mm3",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 42). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DEF_DIAGNO",
+      "fonte": "DICHIVA",
+      "local": "p. 9, campo 43",
+      "rotulo": "Critério óbito: declaração de óbito com menção de aids, ou HIV e causa de morte associada à imunodeficiência, sem classificação por outro critério após investigação",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 43). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_UF",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo 44",
+      "rotulo": "UF onde se realiza o tratamento",
+      "tipo": "texto",
+      "observacao": "O arquivo traz a sigla da UF (ES, RJ): fica só com a sigla, como veio (regra do Rubens para UF em sigla, 19/11/2026). Vem preenchida em poucos registros."
+    },
+    {
+      "nome": "TRA_MUNICI",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo 45",
+      "rotulo": "Município onde se realiza o tratamento",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "TRA_UNIDAD",
+      "fonte": "DICAIDSA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Unidade de saúde onde se realiza o tratamento (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Código da unidade de saúde; sai o nome do estabelecimento pelo CNES (o AidsNET.def usa a tabela de unidades). Não vem nos arquivos públicos do DATASUS (HIVABR23 e 24) nem no DICHIVA de 2024; o nome da coluna vem do dicionário de aids adulto de 2012 (DICAIDSA) e do AidsNET.def. Incluída para arquivos exportados do próprio Sinan (decisão do Rubens: \"seguir a ficha\", 20/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo 47",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Vivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por Aids"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 47 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo 48",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo interno",
+      "rotulo": "Critério de definição de caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "100"
+          ],
+          "rotulo": "CDC adaptado"
+        },
+        {
+          "codigos": [
+            "300"
+          ],
+          "rotulo": "Rio de Janeiro/Caracas"
+        },
+        {
+          "codigos": [
+            "600"
+          ],
+          "rotulo": "Critério óbito"
+        },
+        {
+          "codigos": [
+            "900"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "901"
+          ],
+          "rotulo": "HIV+"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHIVA só lista 100, 300, 600, 900 e 901"
+      },
+      "observacao": "Campo interno, preenchido pelo sistema. Rótulos do DICHIVA. A conversão do TabWin (Critaids.cnv) tem outros códigos antigos (120, 123, 130, 140, 200, 400 e 500), que não estão no dicionário de 2024. Nos arquivos de 2023 e 2024 vem sempre 901 (HIV+). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_REL_CA",
+      "fonte": "DICHIVA",
+      "local": "p. 10, campo interno",
+      "rotulo": "Categoria de exposição",
+      "tipo": "categorico",
+      "lista": "categoria_exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: fora da lista de categorias de exposição do DICHIVA"
+      },
+      "observacao": "Campo interno: o sistema atribui a categoria pelos campos de transmissão. Rótulos do DICHIVA; o 69 vem do ClascatN.cnv, porque o dicionário repete nele o rótulo do 68 (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    },
+    {
+      "nome": "OCUPA_X100",
+      "rotulo": "Ocupação (CBO): tentativa de correção do código com ponto (× 100)",
+      "de": "ID_OCUPA_N",
+      "calculo": "codigo_com_ponto_vezes_100",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "tamanho": 6,
+      "depois_de": "ID_OCUPA_N",
+      "observacao": "Coluna extra, pedida pelo Rubens (20/11/2026). Estratégia para tentar prever o erro de preenchimento: só nos códigos de ocupação gravados com ponto (por exemplo \"5161.1\"), o valor é multiplicado por 100 (516110) e procurado na CBO e na tabela de ocupações do Sinan; sai o código encontrado e o nome da ocupação (por exemplo \"516110 – Cabeleireiro\"). É uma suposição, não uma informação do arquivo: nenhum documento explica por que o código vem com ponto. Os demais códigos ficam em branco nesta coluna. Se o código × 100 não existir nas tabelas, a coluna fica vazia e o caso vai para as Inconsistências."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICHIVA (dicionário de HIV adulto, revisado em fevereiro/2024), que descreve exatamente as 76 colunas do arquivo. A ficha e o instrucional são de aids adulto (2006); o AidsNET.def do TabWin confirma a ligação das colunas e os códigos. O PDF do DICHIVA desalinha as linhas da tabela; os nomes dos sinais vieram da ficha, conferidos com o dicionário e com o .def."
+    },
+    {
+      "coluna": "CS_ESCOL_N",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Em 18.798 notificações (24%) a escolaridade vem \"99\", que não está na ficha. Seguiu-se a regra do Rubens das hepatites (19/11/2026): 9, 09 e 99 = Ignorado."
+    },
+    {
+      "coluna": "ID_OCUPA_N",
+      "descricao": "Resolvida (Rubens, 20/11/2026): o código com ponto continua como veio, nas Inconsistências, e uma coluna extra (OCUPA_X100) multiplica por 100 e procura na CBO, informando que é uma estratégia para tentar prever o erro de preenchimento."
+    },
+    {
+      "coluna": "LAB_TRIAGE e testes rápidos",
+      "descricao": "Aprovada (Rubens, 20/11/2026). A ficha (campo 40) lista 1 a 5 e 9 para todos os testes; o DICHIVA dá o 5 (Indeterminado) só ao teste confirmatório. Seguiu-se o DICHIVA; nos arquivos não aparece 5 nesses testes."
+    },
+    {
+      "coluna": "CRITERIO",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O DICHIVA lista 100, 300, 600, 900 e 901; a conversão do TabWin tem também códigos antigos (120 a 500). Nos arquivos vem sempre 901 (HIV+). Ficaram só os do DICHIVA."
+    },
+    {
+      "coluna": "ANT_REL_CA",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O DICHIVA repete no código 69 o rótulo do 68 (\"Transfusão/Droga/Homo/Hemofílico\"). O 69 ficou \"Transfusão/Drogas/Bissexual/Hemofílico\", como no ClascatN.cnv do TabWin (revisado em 2019). Nos arquivos não aparece 69."
+    },
+    {
+      "coluna": "ANTUFTRANS e TRA_UF",
+      "descricao": "Aprovada (Rubens, 20/11/2026). UF em sigla, que fica como veio (regra do Rubens). ANTUFTRANS vem em branco em todos os registros; TRA_UF vem em 1.215 registros (ES e RJ)."
+    },
+    {
+      "coluna": "SEM_DIAG",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Vem em branco em todos os registros. Foi criada a coluna extra com a semana calculada pela data do diagnóstico (regra do Rubens, 18/11/2026)."
+    },
+    {
+      "coluna": "Campos da ficha fora do dicionário",
+      "descricao": "Resolvida (Rubens, 20/11/2026): \"seguir a ficha\". A instituição da transfusão (campo 38, ANT_INSTTR) e a unidade de tratamento (campo 46, TRA_UNIDAD) entraram, com o nome da coluna do dicionário de aids adulto de 2012 e do AidsNET.def, para arquivos exportados do próprio Sinan."
+    }
+  ]
+}

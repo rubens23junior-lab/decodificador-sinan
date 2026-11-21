@@ -8,6 +8,7 @@ import { analisarArquivo } from '../analisar.js';
 import { processar } from '../processar.js';
 
 const tabelasCarregadas = {};
+const DICIONARIOS = Object.fromEntries(Object.entries(AGRAVOS).map(([id, a]) => [id, a.dic]));
 const BLOCO_BLOB = 32 << 20; // a cada 32 MB, os pedaços viram um Blob (libera memória)
 
 /** Abre as tabelas de um agravo (descompactando quando necessário). */
@@ -68,6 +69,7 @@ onmessage = async ({ data: msg }) => {
         bytes,
         nomeArquivo: msg.arquivo.name,
         dic,
+        dicionarios: DICIONARIOS,
         codificacao: msg.codificacao,
         aoProgresso: avisarProgresso(id, 'Lendo o arquivo…'),
       });
@@ -98,6 +100,6 @@ onmessage = async ({ data: msg }) => {
     const mensagem = erro?.constructor?.name?.startsWith('Erro')
       ? erro.message
       : `Erro inesperado: ${erro?.message ?? erro}. Se persistir, informe ao responsável pela ferramenta.`;
-    postMessage({ tipo: 'erro', id, mensagem });
+    postMessage({ tipo: 'erro', id, mensagem, sugestao: erro?.sugestao ?? null });
   }
 };

@@ -1,0 +1,2000 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Leptospirose",
+    "codigos": [
+      "A279",
+      "A27.9",
+      "A 27.9",
+      "A 2 7. 9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos LEPTBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-leptospirose.xlsx (conferência na planilha em 20/11/2026, tudo aprovado, sem correções)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICLEPT": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Leptospirose (campos 31 a 74 e informações complementares)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "Sem data impressa (18 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/leptospirose/LEPTON_DIC_DADOS.pdf"
+    },
+    "FICHALEPT": {
+      "documento": "Ficha de Investigação – Leptospirose – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 02/02/2007 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/leptospirose/LEPTON_FICHA.pdf"
+    },
+    "INSTLEPT": {
+      "documento": "Leptospirose – Instruções para preenchimento – Ficha de investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/leptospirose/LEPTON_INSTRUCIONAL.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "elisa": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Reagente"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não Reagente"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      }
+    ],
+    "micro": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Reagente"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não Reagente"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não Realizada"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "resultado": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positivo"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativo"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHALEPT",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A279",
+            "A27.9",
+            "A 27.9",
+            "A 2 7. 9"
+          ],
+          "rotulo": "Leptospirose não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código A279"
+        }
+      ],
+      "observacao": "A ficha mostra 'LEPTOSPIROSE' com o CID 'A 2 7. 9'; no arquivo vem 'A279' (regra do Rubens: o CID como na ficha e sem ponto e espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana). Algumas semanas de anos muito antigos (por exemplo 194936) vêm da data dos primeiros sintomas digitada com o ano errado; ficam como vieram."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC. Fica como veio."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHALEPT",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 9",
+      "rotulo": "Não listar/Não contar (duplicidade)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "CS_FLXRET",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Fluxo de retorno",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Habilitado para envio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enviado"
+        }
+      ]
+    },
+    {
+      "nome": "FLXRECEBI",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Recebida por fluxo de retorno",
+      "tipo": "texto"
+    },
+    {
+      "nome": "MIGRADO_W",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Migrado do Sinan Windows",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Migrado do Sinan Windows"
+        }
+      ]
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICLEPT",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICLEPT",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "ANT_CB_LAM",
+      "fonte": "DICLEPT",
+      "local": "p. 2, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: água ou lama de enchente",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_CRI",
+      "fonte": "DICLEPT",
+      "local": "p. 2, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: criação de animais",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_CAI",
+      "fonte": "DICLEPT",
+      "local": "p. 2, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: caixa d´água",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_FOS",
+      "fonte": "DICLEPT",
+      "local": "p. 2, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: fossa, caixa de gordura ou esgoto",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_SIN",
+      "fonte": "DICLEPT",
+      "local": "p. 2, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: local com sinais de roedores",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_PLA",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: plantio/colheita (lavoura)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_COR",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: rio, córrego, lagoa ou represa",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_ROE",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: roedores diretamente",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_GRA",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: armazenamento de grãos/alimentos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_TER",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: terreno baldio",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_LIX",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: lixo/entulho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CB_OUT",
+      "fonte": "DICLEPT",
+      "local": "p. 3, campo 33",
+      "rotulo": "Situação de risco nos 30 dias antes dos primeiros sintomas: outras",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Ficha, campo 33: \"Situação de Risco Ocorrida nos 30 dias que Antecederam os Primeiros Sintomas - Contato/limpeza de\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_OU_DES",
+      "fonte": "DICLEPT",
+      "local": "p. 3-4, campo 33",
+      "rotulo": "Situação de risco: outras (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_HUMANO",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 34",
+      "rotulo": "Casos anteriores de leptospirose no local provável de infecção nos últimos 2 meses: casos humanos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ANIMAI",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 34",
+      "rotulo": "Casos anteriores de leptospirose no local provável de infecção nos últimos 2 meses: casos animais",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_DT_ATE",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 35",
+      "rotulo": "Data de atendimento",
+      "tipo": "data"
+    },
+    {
+      "nome": "CLI_FEBRE",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: febre",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_MIALGI",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: mialgia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CEFALE",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: cefaléia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_PROST",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: prostração",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CONGES",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: congestão conjuntival",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_PANTUR",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: dor na panturrilha",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_VOMITO",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: vômito",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_DIARRE",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: diarréia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_ICTERI",
+      "fonte": "DICLEPT",
+      "local": "p. 4, campo 36",
+      "rotulo": "Sinais e sintomas: icterícia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_RENAL",
+      "fonte": "DICLEPT",
+      "local": "p. 4-5, campo 36",
+      "rotulo": "Sinais e sintomas: insuficiência renal",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_RESPIR",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: alterações respiratórias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CARDIA",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: alterações cardíacas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HEMOPU",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: hemorragia pulmonar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HEMORR",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: outras hemorragias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_MENING",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: meningismo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OUTROS",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: outros",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OTRDES",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 36",
+      "rotulo": "Sinais e sintomas: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ATE_HOSP",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 37",
+      "rotulo": "Ocorreu hospitalização",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ATE_DT_INT",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 38",
+      "rotulo": "Data da internação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ATE_DT_ALT",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 39",
+      "rotulo": "Data da alta",
+      "tipo": "data"
+    },
+    {
+      "nome": "ATE_UF",
+      "fonte": "DICLEPT",
+      "local": "p. 5, campo 40",
+      "rotulo": "UF do hospital",
+      "tipo": "texto",
+      "observacao": "O DICLEPT fala em sigla da UF, e o arquivo traz a sigla: fica só com a sigla, como veio (regra do Rubens para UF em sigla, 19/11/2026)."
+    },
+    {
+      "nome": "ATE_MUNICI",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 41",
+      "rotulo": "Município do hospital",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ATE_HOSPIT",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 42",
+      "rotulo": "Hospital (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "O DICLEPT descreve o código da unidade (co_unidade_hospital); sai o nome do estabelecimento pelo CNES. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "LAB_DT_1",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia IgM – Elisa: data da coleta da 1ª amostra",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_ELIS_1",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 44",
+      "rotulo": "Sorologia IgM – Elisa: resultado da 1ª amostra",
+      "tipo": "categorico",
+      "lista": "elisa",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_DT_2",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sorologia IgM – Elisa: data da coleta da 2ª amostra",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_ELIS_2",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 46",
+      "rotulo": "Sorologia IgM – Elisa: resultado da 2ª amostra",
+      "tipo": "categorico",
+      "lista": "elisa",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTMICRO1",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 47",
+      "rotulo": "Microaglutinação: data da coleta da 1ª amostra",
+      "tipo": "data"
+    },
+    {
+      "nome": "MICRO1_S1",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 48",
+      "rotulo": "Microaglutinação 1ª amostra: 1º sorovar",
+      "tipo": "texto",
+      "observacao": "Texto como veio: o arquivo traz o código e o nome do sorovar (por exemplo \"10 - COPENHAGENI\") e, às vezes, só o número; nenhum documento lista os códigos dos sorovares."
+    },
+    {
+      "nome": "MICRO1_T_1",
+      "fonte": "DICLEPT",
+      "local": "p. 6, campo 48",
+      "rotulo": "Microaglutinação 1ª amostra: título do 1º sorovar",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 100 = 1:100). Fica como veio."
+    },
+    {
+      "nome": "MICRO1_S_2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 49",
+      "rotulo": "Microaglutinação 1ª amostra: 2º sorovar",
+      "tipo": "texto",
+      "observacao": "Texto como veio: o arquivo traz o código e o nome do sorovar (por exemplo \"10 - COPENHAGENI\") e, às vezes, só o número; nenhum documento lista os códigos dos sorovares."
+    },
+    {
+      "nome": "MICRO1_T_2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 49",
+      "rotulo": "Microaglutinação 1ª amostra: título do 2º sorovar",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 100 = 1:100). Fica como veio."
+    },
+    {
+      "nome": "LAB_MICR_1",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 50",
+      "rotulo": "Resultado da microaglutinação: 1ª amostra",
+      "tipo": "categorico",
+      "lista": "micro",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Rótulos do DICLEPT e da ficha. O código 4 aparece em cerca de 285 (1ª amostra) e 598 (2ª amostra) registros e sai como inconsistência (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTMICRO2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 51",
+      "rotulo": "Microaglutinação: data da coleta da 2ª amostra",
+      "tipo": "data"
+    },
+    {
+      "nome": "MICRO2_S1",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 52",
+      "rotulo": "Microaglutinação 2ª amostra: 1º sorovar",
+      "tipo": "texto",
+      "observacao": "Texto como veio: o arquivo traz o código e o nome do sorovar (por exemplo \"10 - COPENHAGENI\") e, às vezes, só o número; nenhum documento lista os códigos dos sorovares."
+    },
+    {
+      "nome": "MICRO2_T_1",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 52",
+      "rotulo": "Microaglutinação 2ª amostra: título do 1º sorovar",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 100 = 1:100). Fica como veio."
+    },
+    {
+      "nome": "MICRO2_S_2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 53",
+      "rotulo": "Microaglutinação 2ª amostra: 2º sorovar",
+      "tipo": "texto",
+      "observacao": "Texto como veio: o arquivo traz o código e o nome do sorovar (por exemplo \"10 - COPENHAGENI\") e, às vezes, só o número; nenhum documento lista os códigos dos sorovares."
+    },
+    {
+      "nome": "MICRO2_T_2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 53",
+      "rotulo": "Microaglutinação 2ª amostra: título do 2º sorovar",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 100 = 1:100). Fica como veio."
+    },
+    {
+      "nome": "LAB_MICR_2",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 54",
+      "rotulo": "Resultado da microaglutinação: 2ª amostra",
+      "tipo": "categorico",
+      "lista": "micro",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 54 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Rótulos do DICLEPT e da ficha. O código 4 aparece em cerca de 285 (1ª amostra) e 598 (2ª amostra) registros e sai como inconsistência (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTISOLA",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 55",
+      "rotulo": "Isolamento: data da coleta",
+      "tipo": "data"
+    },
+    {
+      "nome": "RES_ISOL",
+      "fonte": "DICLEPT",
+      "local": "p. 7, campo 56",
+      "rotulo": "Isolamento: resultado",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 56 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTIMUNO",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 57",
+      "rotulo": "Imunohistoquímica: data da coleta",
+      "tipo": "data"
+    },
+    {
+      "nome": "RES_IMUNO",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 58",
+      "rotulo": "Imunohistoquímica: resultado",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_PCR",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 59",
+      "rotulo": "RT-PCR: data da coleta",
+      "tipo": "data"
+    },
+    {
+      "nome": "RES_PCR",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 60",
+      "rotulo": "RT-PCR: resultado",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 60 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 61",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 61 só comporta 1 e 2"
+      },
+      "observacao": "O DICLEPT e a ficha só listam 1 (Confirmado) e 2 (Descartado). O código 8 aparece em 2.688 registros (4%) e sai como \"Inconsistência/Não Preenchido\", pela regra geral do Rubens (como no tétano e na hanseníase). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 62",
+      "rotulo": "Critério de confirmação ou descarte",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Clínico-Laboratorial"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Clínico-Epidemiológico"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 62 só comporta 1 e 2"
+      },
+      "observacao": "Rótulos da ficha (o DICLEPT escreve \"Clínico Laboratorial\" e \"Clínico Epidemiológico\", sem hífen). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPAUTOCTO",
+      "fonte": "DICLEPT",
+      "local": "p. 8, campo 63",
+      "rotulo": "O caso é autóctone do município de residência?",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 63 só comporta 1, 2 e 3"
+      },
+      "observacao": "Rótulos do DICLEPT, iguais aos da leishmaniose visceral. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COUFINF",
+      "fonte": "DICLEPT",
+      "local": "p. 9, campo 64",
+      "rotulo": "UF provável de infecção",
+      "tipo": "texto",
+      "observacao": "O arquivo traz a sigla da UF: fica só com a sigla, como veio (regra do Rubens para UF em sigla, 19/11/2026)."
+    },
+    {
+      "nome": "COPAISINF",
+      "fonte": "DICLEPT",
+      "local": "p. 10, campo 65",
+      "rotulo": "País provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10). Nos arquivos vem \"0\" em cerca de 51 mil registros (80%), sobretudo nos que não têm a autoctonia preenchida."
+    },
+    {
+      "nome": "COMUNINF",
+      "fonte": "DICLEPT",
+      "local": "p. 11, campo 66",
+      "rotulo": "Município provável de infecção",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "CODISINF",
+      "fonte": "DICLEPT",
+      "local": "p. 11, campo 67",
+      "rotulo": "Distrito provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "CO_BAINFC",
+      "fonte": "DICLEPT",
+      "local": "p. 12, campo 68",
+      "rotulo": "Bairro provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NOBAIINF",
+      "fonte": "DICLEPT",
+      "local": "p. 12, campo 68",
+      "rotulo": "Bairro provável de infecção (nome)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "CON_AREA",
+      "fonte": "DICLEPT",
+      "local": "p. 13, campo 69",
+      "rotulo": "Área provável de infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Urbana"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Rural"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Peri-Urbana"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 69 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CON_AMBIEN",
+      "fonte": "DICLEPT",
+      "local": "p. 13, campo 70",
+      "rotulo": "Ambiente da infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Domiciliar"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Trabalho"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Lazer"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 70 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICLEPT",
+      "local": "p. 14, campo 71",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 71 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICLEPT",
+      "local": "p. 14, campo 72",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por leptospirose"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 72 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICLEPT",
+      "local": "p. 14, campo 73",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICLEPT",
+      "local": "p. 15, campo 74",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_RISCO1",
+      "fonte": "DICLEPT",
+      "local": "p. 15, informações complementares",
+      "rotulo": "Situação de risco 1: data",
+      "tipo": "data",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "DT_RISCO2",
+      "fonte": "DICLEPT",
+      "local": "p. 15, informações complementares",
+      "rotulo": "Situação de risco 2: data",
+      "tipo": "data",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "DT_RISCO3",
+      "fonte": "DICLEPT",
+      "local": "p. 15, informações complementares",
+      "rotulo": "Situação de risco 3: data",
+      "tipo": "data",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "DT_RISCO4",
+      "fonte": "DICLEPT",
+      "local": "p. 15, informações complementares",
+      "rotulo": "Situação de risco 4: data",
+      "tipo": "data",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "CO_MUN_R1",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 1: município",
+      "tipo": "municipio",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "CO_MUN_R2",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 2: município",
+      "tipo": "municipio",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "CO_MUN_R3",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 3: município",
+      "tipo": "municipio",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "CO_MUN_R4",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 4: município",
+      "tipo": "municipio",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas."
+    },
+    {
+      "nome": "CO_UF_R1",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 1: UF",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. O arquivo traz a sigla da UF: fica só com a sigla, como veio (regra do Rubens)."
+    },
+    {
+      "nome": "CO_UF_R2",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 2: UF",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. O arquivo traz a sigla da UF: fica só com a sigla, como veio (regra do Rubens)."
+    },
+    {
+      "nome": "CO_UF_R3",
+      "fonte": "DICLEPT",
+      "local": "p. 16, informações complementares",
+      "rotulo": "Situação de risco 3: UF",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. O arquivo traz a sigla da UF: fica só com a sigla, como veio (regra do Rubens)."
+    },
+    {
+      "nome": "CO_UF_R4",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 4: UF",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. O arquivo traz a sigla da UF: fica só com a sigla, como veio (regra do Rubens)."
+    },
+    {
+      "nome": "NO_END_R1",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 1: endereço",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_LOC_R1",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 1: localidade",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_END_R2",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 2: endereço",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_LOC_R2",
+      "fonte": "DICLEPT",
+      "local": "p. 18, informações complementares",
+      "rotulo": "Situação de risco 2: localidade",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_END_R3",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 3: endereço",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_LOC_R3",
+      "fonte": "DICLEPT",
+      "local": "p. 18, informações complementares",
+      "rotulo": "Situação de risco 3: localidade",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_END_R4",
+      "fonte": "DICLEPT",
+      "local": "p. 17, informações complementares",
+      "rotulo": "Situação de risco 4: endereço",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NO_LOC_R4",
+      "fonte": "DICLEPT",
+      "local": "p. 18, informações complementares",
+      "rotulo": "Situação de risco 4: localidade",
+      "tipo": "texto",
+      "observacao": "Informações complementares da ficha: data e endereço, se esteve em situação de risco nos 30 dias que antecederam os primeiros sintomas. Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "DS_OBS",
+      "fonte": "DICLEPT",
+      "local": "p. 18",
+      "rotulo": "Observações",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (LEPTBR22 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Transferência vertical da investigação (lote)",
+      "tipo": "texto",
+      "observacao": "Nenhum documento de leptospirose descreve esta coluna; nome como na meningite (DICMENI, p. 14). Fica como veio."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICLEPT (dicionário de leptospirose do pacote Docs_TAB_SINAN, sem data), que descreve todas as colunas próprias do arquivo. A ficha é de 2007. Os campos da notificação e internos foram copiados da meningite e a autoctonia da leishmaniose visceral, já conferidas."
+    },
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O código 8 aparece em 2.688 registros (4%); o DICLEPT e a ficha só listam 1 (Confirmado) e 2 (Descartado). Sai como \"Inconsistência/Não Preenchido\", pela regra geral (no tétano e na hanseníase foi assim)."
+    },
+    {
+      "coluna": "LAB_MICR_1 e LAB_MICR_2",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O resultado da microaglutinação só comporta 1, 2, 3 e 9, mas o código 4 aparece em cerca de 285 e 598 registros. Sai como inconsistência."
+    },
+    {
+      "coluna": "Sorovares e títulos (MICRO*)",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Ficam como texto, como vieram: o arquivo traz o código e o nome do sorovar juntos (por exemplo \"10 - COPENHAGENI\") e, às vezes, só o número; o título vem como número (100 = 1:100) e às vezes com zeros (\"0000\"). Nenhum documento lista os códigos dos sorovares."
+    },
+    {
+      "coluna": "UFs em sigla",
+      "descricao": "Aprovada (Rubens, 20/11/2026). ATE_UF (hospital), COUFINF (infecção) e CO_UF_R1 a R4 (situações de risco) vêm em sigla e ficam como vieram (regra do Rubens). SG_UF_NOT e SG_UF vêm em código e saem com o nome da UF."
+    },
+    {
+      "coluna": "COPAISINF",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Vem \"0\" em cerca de 51 mil registros (80%), quase sempre quando a autoctonia está em branco. Fica como código mantido como veio, como na leishmaniose visceral."
+    },
+    {
+      "coluna": "NU_LOTE_I",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Não aparece no DICLEPT; nome como na meningite. Fica como veio."
+    },
+    {
+      "coluna": "Campos do DICLEPT fora do arquivo",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Entraram, pela regra do Rubens: hospital (42), distrito e bairro prováveis de infecção (67 e 68), área provável de infecção (69), endereço e localidade das situações de risco e observações."
+    },
+    {
+      "coluna": "Arquivos",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Vieram só 2022, 2023 e 2024 (15.192, 20.888 e 27.509 notificações); o arquivo de 2025 não foi baixado."
+    }
+  ]
+}

@@ -1,0 +1,2300 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Hepatites virais",
+    "codigos": [
+      "B19",
+      "B 19",
+      "B 1 9",
+      "B19."
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos HEPABRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-19",
+    "registro": "docs/conferencia/conferencia-hepatites-virais.xlsx (conferência na planilha em 19/11/2026, com as correções pedidas por ele aplicadas em 19/11/2026; decisões sobre HIV 3, nome da classificação final e data do campo 7 tomadas no chat)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICHEPA": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Hepatites Virais (campos 31 a 52 e campos ajustados)",
+      "orgao": "Ministério da Saúde / Secretaria de Vigilância em Saúde e Ambiente / Departamento de Análise Epidemiológica e Vigilância de Doenças Não Transmissíveis / Coordenação-Geral de Informações e Análises Epidemiológicas",
+      "data": "sem data no documento (16 páginas); o cabeçalho usa o nome da Secretaria de Vigilância em Saúde e Ambiente, e o arquivo do pacote é de 26/03/2025. Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hepatites-virais/HEPANET_DIC_DADOS.pdf"
+    },
+    "FICHAHEPA": {
+      "documento": "Ficha de Investigação – Hepatites Virais – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 29/09/2006 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hepatites-virais/HEPANET_FICHA.pdf"
+    },
+    "INSTHEPA": {
+      "documento": "Hepatites Virais – Instruções para preenchimento – Ficha de Investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "16/06/2008 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hepatites-virais/HEPANET_INSTRUCIONAL.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    },
+    "DATASUS_UF": {
+      "documento": "Tabela de UFs do DATASUS (tb_uf.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_uf.csv"
+    },
+    "SINANNET_HEPA": {
+      "documento": "Definições do TabWin para Hepatites Virais (HepavirNET.def) e tabelas de conversão do mesmo pacote (classhepat.cnv, HEPAGCRnet.CNV, HEPvirusnet.CNV, Hepfontenet.cnv, Hepreag.cnv, Hepa6mes.cnv, revisadas pela UT-Sinan em 2019)",
+      "orgao": "Ministério da Saúde / GT-Sinan / DATASUS",
+      "data": "HepavirNET.def atualizado em 17/06/2008, 02/09/2010 e 24/09/2010 (cabeçalho). Pacote TAB_SINANNET baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/HepavirNET.def; docs/fontes/tabelas-apoio/TAB_SINANNET/HEPvirusnet.CNV"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "exposicao": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim, há menos de seis meses"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Sim, há mais de seis meses"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "vacina": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Completa"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Incompleta"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não vacinado"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sorologia_banco": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Reagente"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não reagente"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "marcador": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Reagente/Positivo"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não reagente/Negativo"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      }
+    ],
+    "sim_nao": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      }
+    ],
+    "uf_sigla": [
+      {
+        "codigos": [
+          "RO",
+          "11"
+        ],
+        "rotulo": "RO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 11 e ds_sigla RO"
+      },
+      {
+        "codigos": [
+          "AC",
+          "12"
+        ],
+        "rotulo": "AC",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 12 e ds_sigla AC"
+      },
+      {
+        "codigos": [
+          "AM",
+          "13"
+        ],
+        "rotulo": "AM",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 13 e ds_sigla AM"
+      },
+      {
+        "codigos": [
+          "RR",
+          "14"
+        ],
+        "rotulo": "RR",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 14 e ds_sigla RR"
+      },
+      {
+        "codigos": [
+          "PA",
+          "15"
+        ],
+        "rotulo": "PA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 15 e ds_sigla PA"
+      },
+      {
+        "codigos": [
+          "AP",
+          "16"
+        ],
+        "rotulo": "AP",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 16 e ds_sigla AP"
+      },
+      {
+        "codigos": [
+          "TO",
+          "17"
+        ],
+        "rotulo": "TO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 17 e ds_sigla TO"
+      },
+      {
+        "codigos": [
+          "MA",
+          "21"
+        ],
+        "rotulo": "MA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 21 e ds_sigla MA"
+      },
+      {
+        "codigos": [
+          "PI",
+          "22"
+        ],
+        "rotulo": "PI",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 22 e ds_sigla PI"
+      },
+      {
+        "codigos": [
+          "CE",
+          "23"
+        ],
+        "rotulo": "CE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 23 e ds_sigla CE"
+      },
+      {
+        "codigos": [
+          "RN",
+          "24"
+        ],
+        "rotulo": "RN",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 24 e ds_sigla RN"
+      },
+      {
+        "codigos": [
+          "PB",
+          "25"
+        ],
+        "rotulo": "PB",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 25 e ds_sigla PB"
+      },
+      {
+        "codigos": [
+          "PE",
+          "26"
+        ],
+        "rotulo": "PE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 26 e ds_sigla PE"
+      },
+      {
+        "codigos": [
+          "AL",
+          "27"
+        ],
+        "rotulo": "AL",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 27 e ds_sigla AL"
+      },
+      {
+        "codigos": [
+          "SE",
+          "28"
+        ],
+        "rotulo": "SE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 28 e ds_sigla SE"
+      },
+      {
+        "codigos": [
+          "BA",
+          "29"
+        ],
+        "rotulo": "BA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 29 e ds_sigla BA"
+      },
+      {
+        "codigos": [
+          "MG",
+          "31"
+        ],
+        "rotulo": "MG",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 31 e ds_sigla MG"
+      },
+      {
+        "codigos": [
+          "ES",
+          "32"
+        ],
+        "rotulo": "ES",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 32 e ds_sigla ES"
+      },
+      {
+        "codigos": [
+          "RJ",
+          "33"
+        ],
+        "rotulo": "RJ",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 33 e ds_sigla RJ"
+      },
+      {
+        "codigos": [
+          "SP",
+          "35"
+        ],
+        "rotulo": "SP",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 35 e ds_sigla SP"
+      },
+      {
+        "codigos": [
+          "PR",
+          "41"
+        ],
+        "rotulo": "PR",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 41 e ds_sigla PR"
+      },
+      {
+        "codigos": [
+          "SC",
+          "42"
+        ],
+        "rotulo": "SC",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 42 e ds_sigla SC"
+      },
+      {
+        "codigos": [
+          "RS",
+          "43"
+        ],
+        "rotulo": "RS",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 43 e ds_sigla RS"
+      },
+      {
+        "codigos": [
+          "MS",
+          "50"
+        ],
+        "rotulo": "MS",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 50 e ds_sigla MS"
+      },
+      {
+        "codigos": [
+          "MT",
+          "51"
+        ],
+        "rotulo": "MT",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 51 e ds_sigla MT"
+      },
+      {
+        "codigos": [
+          "GO",
+          "52"
+        ],
+        "rotulo": "GO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 52 e ds_sigla GO"
+      },
+      {
+        "codigos": [
+          "DF",
+          "53"
+        ],
+        "rotulo": "DF",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 53 e ds_sigla DF"
+      }
+    ]
+  },
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_NOT_CALC",
+      "rotulo": "Semana epidemiológica da notificação (calculada pela data da notificação)",
+      "de": "DT_NOTIFIC",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_NOT",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data da notificação, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_NOT continua como veio."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAHEPA",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "B19",
+            "B 19",
+            "B 1 9",
+            "B19."
+          ],
+          "rotulo": "Hepatite viral não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código B19"
+        }
+      ],
+      "observacao": "A ficha mostra 'HEPATITES VIRAIS' com o CID 'B 19'; no arquivo vem 'B19' (regra do Rubens: o CID como na ficha e sem espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026). Atenção: o B19 é o código usado em todas as notificações de hepatites virais, inclusive as de vírus A, B ou C; o tipo de hepatite está nas colunas de suspeita, classificação e etiologia (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana). Nos arquivos de 2021 a 2023, os 1.119 registros do Espírito Santo (UF 32) trazem só \"20\", e uns poucos de outras UFs vêm com 4 ou 5 dígitos; ficam como vieram. A semana calculada pela data da notificação está na coluna extra logo depois (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "INSTHEPA",
+      "local": "p. 1, item 7",
+      "rotulo": "Data do diagnóstico ou dos primeiros sintomas",
+      "tipo": "data",
+      "observacao": "Campo 7. A ficha escreve \"Data dos Primeiros Sintomas\"; o instrucional (item 7), \"data do diagnóstico ou da evidência laboratorial e/ou clínica da doença\". Nome padronizado pelo Rubens (conferência, 19/11/2026). A data sai como veio. Orientação de leitura do Rubens, registrada aqui e não aplicada pelo programa: (1) forma clínica (campo 49) 1 - Hepatite aguda ou 3 - Hepatite fulminante: ler como data dos primeiros sintomas; (2) forma clínica 2 - Hepatite crônica/Portador assintomático, ou paciente encaminhado de banco de sangue/CTA (campo 42 = 1 ou 2), ou classificação final 4 - Cicatriz sorológica (campo 48): ler como data do diagnóstico ou da evidência laboratorial (no encaminhado de banco de sangue/CTA, costuma ficar próxima da data da coleta, campo 43); (3) demais casos (forma 4 - Inconclusivo ou em branco): data do diagnóstico ou dos primeiros sintomas (evidência clínica ou laboratorial)."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "INSTHEPA",
+      "local": "p. 1, item 7 (Data do diagnóstico)",
+      "rotulo": "Semana epidemiológica do diagnóstico do caso notificado",
+      "tipo": "texto",
+      "observacao": "Nenhum documento de hepatites descreve SEM_DIAG; é a semana epidemiológica do diagnóstico, gerada pelo Sinan na digitação (decisão do Rubens na hanseníase, 16/11/2026). Nos arquivos de 2021 a 2023, os 1.119 registros do Espírito Santo trazem só \"20\". A semana calculada pela data do diagnóstico está na coluna extra logo depois (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 12 só comporta 1 a 6 e 9"
+      },
+      "observacao": "Nos arquivos de hepatites o código vem com dois dígitos (06, 02, 01...); as duas formas (01 e 1) entram, como na escolaridade e na meningite (regra do Rubens). O \"99\" (3.129 registros de 2021 a 2023) = Ignorado, como o 9 e o 09 (decisão do Rubens na conferência, 19/11/2026; nenhum documento define o 99). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAHEPA",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICHEPA",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICHEPA",
+      "local": "p. 2, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "HEPATITE_N",
+      "fonte": "DICHEPA",
+      "local": "p. 2, campo 33",
+      "rotulo": "Suspeita de",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Hepatite A"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Hepatite B/C"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não especificada"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEPATITA",
+      "fonte": "DICHEPA",
+      "local": "p. 2, campo 34",
+      "rotulo": "Tomou vacina para hepatite A",
+      "tipo": "categorico",
+      "lista": "vacina",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEPATITB",
+      "fonte": "DICHEPA",
+      "local": "p. 2, campo 34",
+      "rotulo": "Tomou vacina para hepatite B",
+      "tipo": "categorico",
+      "lista": "vacina",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "INSTITUCIO",
+      "fonte": "DICHEPA",
+      "local": "p. 3, campo 35",
+      "rotulo": "Institucionalizado em",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Creche"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Escola"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Asilo"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Empresa"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Penitenciária"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Hospital/Clínica"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Outras"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não institucionalizado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 1 a 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HIV",
+      "fonte": "DICHEPA",
+      "local": "p. 3, campo 36",
+      "rotulo": "Agravos associados: HIV/AIDS",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Preenchido erroneamente",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "O código 3 aparece em 2 registros (2021 a 2023). Códigos que o campo não comporta saem como \"Inconsistência/Preenchido erroneamente\" nesta coluna (decisão do Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "OUTRA_DST",
+      "fonte": "DICHEPA",
+      "local": "p. 3, campo 36",
+      "rotulo": "Agravos associados: outras DSTs",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Preenchido erroneamente",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "O código 3 aparece em 1 registro (2021 a 2023). Códigos que o campo não comporta saem como \"Inconsistência/Preenchido erroneamente\" nesta coluna (decisão do Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "SEXUAL",
+      "fonte": "DICHEPA",
+      "local": "p. 3, campo 37",
+      "rotulo": "Contato com paciente portador de HBV ou HCV: sexual",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "A ficha escreve \"portador de HBV ou HBC\"; o DICHEPA, \"portador de VHB ou VHC\". Explicação do Rubens (conferência, 19/11/2026): HBV e VHB são o vírus da hepatite B (sigla em inglês e em português); \"HBC\" no campo 37 da ficha é erro de grafia de HCV, o vírus da hepatite C (não confundir com HBc, o antígeno core da hepatite B, de Anti-HBc). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOMICILI",
+      "fonte": "DICHEPA",
+      "local": "p. 4, campo 37",
+      "rotulo": "Contato com paciente portador de HBV ou HCV: domiciliar (não sexual)",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "A ficha escreve \"portador de HBV ou HBC\"; o DICHEPA, \"portador de VHB ou VHC\". Explicação do Rubens (conferência, 19/11/2026): HBV e VHB são o vírus da hepatite B (sigla em inglês e em português); \"HBC\" no campo 37 da ficha é erro de grafia de HCV, o vírus da hepatite C (não confundir com HBc, o antígeno core da hepatite B, de Anti-HBc). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OCUPACIO",
+      "fonte": "DICHEPA",
+      "local": "p. 4, campo 37",
+      "rotulo": "Contato com paciente portador de HBV ou HCV: ocupacional",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "A ficha escreve \"portador de HBV ou HBC\"; o DICHEPA, \"portador de VHB ou VHC\". Explicação do Rubens (conferência, 19/11/2026): HBV e VHB são o vírus da hepatite B (sigla em inglês e em português); \"HBC\" no campo 37 da ficha é erro de grafia de HCV, o vírus da hepatite C (não confundir com HBc, o antígeno core da hepatite B, de Anti-HBc). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MEDICAMENT",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Medicamentos injetáveis",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TMedicam  Injetáveis,MEDICAMENT,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TATU_PIER",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Tatuagem/Piercing",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTatuagem,TATU_PIER,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MATBIOLOGI",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Acidente com material biológico",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"xAcid.Mat.Biológico, MATBIOLOGI, 1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "INAL_CRACK",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Drogas inaláveis ou crack",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TDrog Inaláveis,INAL_CRACK,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ACUPUNTURA",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Acupuntura",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TAcupuntura,ACUPUNTURA,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRANSFUSAO",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Transfusão de sangue/derivados",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTransf Sangue/Derivados,TRANSFUSAO,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "INJETAVEIS",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Drogas injetáveis",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TDrog Injetáveis,INJETAVEIS,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CIRURGICO",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Tratamento cirúrgico",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTrat Cirúrgico,CIRURGICO,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGUA_ALIME",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Água/alimento contaminado",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"xÁgua/alimento, AGUA_ALIME, 1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DENTARIO",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Tratamento dentário",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTrat Dentário,DENTARIO,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRESMAIS",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Três ou mais parceiros sexuais",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTrês ou + parc sexuais,TRESMAIS,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEMODIALIS",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Hemodiálise",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"THemodiálise,HEMODIALIS,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRANSPLA",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Transplante",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"TTransplante,TRANSPLA,1,HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OUTRAS",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 38",
+      "rotulo": "O paciente foi submetido ou exposto a: Outras",
+      "tipo": "categorico",
+      "lista": "exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Nome e categorias como na ficha, campo 38 (decisão do Rubens na conferência, 19/11/2026): 1 - Sim, há menos de seis meses; 2 - Sim, há mais de seis meses; 3 - Não; 9 - Ignorado. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"XOutras Exposições, OUTRAS, 1, HEPA6MES.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_ACIDENT",
+      "fonte": "DICHEPA",
+      "local": "p. 7, campo 39",
+      "rotulo": "Data do acidente, transfusão ou transplante",
+      "tipo": "data"
+    },
+    {
+      "nome": "CO_UF_EXP",
+      "fonte": "DICHEPA",
+      "local": "p. 8, campo 40",
+      "rotulo": "Local de exposição 1: UF",
+      "tipo": "categorico",
+      "lista": "uf_sigla",
+      "observacao": "O DICHEPA descreve \"Tabela com códigos e siglas padronizados pelo IBGE\". No arquivo a UF vem quase sempre em código numérico (35), mas às vezes em sigla (ES, BA, MG...). Pela regra do Rubens (19/11/2026), a coluna que mistura sigla e código sai só com a sigla: a sigla fica como veio e o código numérico sai com a sigla correspondente, pela tabela de UFs do DATASUS (tb_uf.csv). As três UFs de exposição seguem a mesma regra (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "CO_MUN_EXP",
+      "fonte": "DICHEPA",
+      "local": "p. 8, campo 40",
+      "rotulo": "Local de exposição 1: município",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "CO_UF_EX2",
+      "fonte": "DICHEPA",
+      "local": "p. 9, campo 40",
+      "rotulo": "Local de exposição 2: UF",
+      "tipo": "categorico",
+      "lista": "uf_sigla",
+      "observacao": "O DICHEPA descreve \"Tabela com códigos e siglas padronizados pelo IBGE\". No arquivo a UF vem em código numérico. Pela regra do Rubens (19/11/2026), a coluna que mistura sigla e código sai só com a sigla: a sigla fica como veio e o código numérico sai com a sigla correspondente, pela tabela de UFs do DATASUS (tb_uf.csv). As três UFs de exposição seguem a mesma regra (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "CO_MUN_EX2",
+      "fonte": "DICHEPA",
+      "local": "p. 9, campo 40",
+      "rotulo": "Local de exposição 2: município",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "CO_UF_EX3",
+      "fonte": "DICHEPA",
+      "local": "p. 10, campo 40",
+      "rotulo": "Local de exposição 3: UF",
+      "tipo": "categorico",
+      "lista": "uf_sigla",
+      "observacao": "O DICHEPA descreve \"Tabela com códigos e siglas padronizados pelo IBGE\". No arquivo a UF vem em código numérico. Pela regra do Rubens (19/11/2026), a coluna que mistura sigla e código sai só com a sigla: a sigla fica como veio e o código numérico sai com a sigla correspondente, pela tabela de UFs do DATASUS (tb_uf.csv). As três UFs de exposição seguem a mesma regra (aprovado pelo Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "CO_MUN_EX3",
+      "fonte": "DICHEPA",
+      "local": "p. 10, campo 40",
+      "rotulo": "Local de exposição 3: município",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "BANCOSANGU",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 42",
+      "rotulo": "Paciente encaminhado de",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Banco de sangue"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Centro de Testagem e Aconselhamento (CTA)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RES_HBSAG",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 44",
+      "rotulo": "Sorologia do banco de sangue ou CTA: HBsAg",
+      "tipo": "categorico",
+      "lista": "sorologia_banco",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1, 2, 3, 4 e 9"
+      },
+      "observacao": "O código 5 aparece em 33 a 40 registros (2021 a 2023). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RE_ANTIHBC",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 44",
+      "rotulo": "Sorologia do banco de sangue ou CTA: Anti-HBc total",
+      "tipo": "categorico",
+      "lista": "sorologia_banco",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1, 2, 3, 4 e 9"
+      },
+      "observacao": "O código 5 aparece em 33 a 40 registros (2021 a 2023). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RE_ANTIHCV",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 44",
+      "rotulo": "Sorologia do banco de sangue ou CTA: Anti-HCV",
+      "tipo": "categorico",
+      "lista": "sorologia_banco",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1, 2, 3, 4 e 9"
+      },
+      "observacao": "O código 5 aparece em 33 a 40 registros (2021 a 2023). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_COLETA",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 43",
+      "rotulo": "Data da coleta da amostra no banco de sangue ou CTA",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANTIHAVIGM",
+      "fonte": "DICHEPA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HAV IgM",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHBS",
+      "fonte": "DICHEPA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HBs",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHDVIGM",
+      "fonte": "DICHEPA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HDV IgM",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGHBS",
+      "fonte": "DICHEPA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Resultado sorológico/virológico: HBsAg",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGHBE",
+      "fonte": "DICHEPA",
+      "local": "p. 12, campo 46",
+      "rotulo": "Resultado sorológico/virológico: HBeAg",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHEVIGM",
+      "fonte": "DICHEPA",
+      "local": "p. 13, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HEV IgM",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHBCIGM",
+      "fonte": "DICHEPA",
+      "local": "p. 13, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HBc IgM",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHBE",
+      "fonte": "DICHEPA",
+      "local": "p. 13, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HBe",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHCV",
+      "fonte": "DICHEPA",
+      "local": "p. 13, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HCV",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HBC_TOTAL",
+      "fonte": "DICHEPA",
+      "local": "p. 14, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HBc total",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTIHDV",
+      "fonte": "DICHEPA",
+      "local": "p. 14, campo 46",
+      "rotulo": "Resultado sorológico/virológico: Anti-HDV total",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA escreve \"Reagente\" e \"Não reagente\" em alguns marcadores (por exemplo, Anti-HDV IgM) e \"Reagente/Positivo\" nos outros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TP_SOROHCV",
+      "fonte": "DICHEPA",
+      "local": "p. 14, campo 46",
+      "rotulo": "Resultado sorológico/virológico: HCV-RNA",
+      "tipo": "categorico",
+      "lista": "marcador",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2, 3 e 4"
+      },
+      "observacao": "Rótulos da ficha (campo 46). O DICHEPA descreve \"Marcadores sorológicos/virológicos: HCV-RNA\" (exame de biologia molecular; quando 1, habilita o genótipo). O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"XHCVRNASorol/virol.,TP_SOROHCV,1,HEPREAG.CNV\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "GEN_VHC",
+      "fonte": "DICHEPA",
+      "local": "p. 14, campo 47",
+      "rotulo": "Genótipo para HCV",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Genótipo 1"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Genótipo 2"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Genótipo 3"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Genótipo 4"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Genótipo 5"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Genótipo 6"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 47 só comporta 1 a 7 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COLETAMARC",
+      "fonte": "DICHEPA",
+      "local": "p. 11, campo 45",
+      "rotulo": "Data da coleta da sorologia",
+      "tipo": "data"
+    },
+    {
+      "nome": "FONTE",
+      "fonte": "DICHEPA",
+      "local": "p. 15, campo 51",
+      "rotulo": "Provável fonte/mecanismo de infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "Sexual"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "Transfusional"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "Uso de drogas"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "Vertical"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "Acidente de trabalho"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Hemodiálise"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Domiciliar"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "Tratamento cirúrgico"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "Tratamento dentário"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Pessoa/pessoa"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Alimento/água contaminada"
+        },
+        {
+          "codigos": [
+            "12"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 51 só comporta 01 a 12 e 99"
+      },
+      "observacao": "A ficha escreve 01 a 12 e 99; o DICHEPA, 1 a 12 e 99. O arquivo grava o código com dois dígitos (por exemplo, 01); as duas formas (01 e 1) entram, como na escolaridade e na meningite (regra do Rubens). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICHEPA",
+      "local": "p. 15, campo 52",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "DSFONTE",
+      "fonte": "DICHEPA",
+      "local": "p. 15, campo 51",
+      "rotulo": "Provável fonte/mecanismo de infecção: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 48",
+      "rotulo": "Classificação final ajustada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmação laboratorial"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Confirmação clínico-epidemiológica"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Cicatriz sorológica"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Inconclusivo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 só comporta 1, 2, 3, 4 e 8"
+      },
+      "observacao": "Nome do DICHEPA (\"Classificação final ajustada\", decisão do Rubens na conferência, 19/11/2026). Categorias da ficha (campo 48) e do instrucional (item 48), iguais às do DICHEPA e da tabela classhepat.cnv do TabWin. O HepavirNET.def do TAB_SINANNET (GT-Sinan/MS) confirma a coluna: \"xClassificação final, CLASSI_FIN, 1, classhepat.cnv\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "FORMA",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 49",
+      "rotulo": "Forma clínica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "Hepatite aguda"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "Hepatite crônica/Portador assintomático"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "Hepatite fulminante"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Inconclusivo"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta 1 a 4 (e o Ignorado, por decisão do Rubens)"
+      },
+      "observacao": "Categorias da ficha (campo 49) e do instrucional (item 49, \"opções de 1 a 4\"); a tabela HEPAGCRnet.CNV do TabWin (2019) tem as mesmas. O arquivo grava 01 a 04; as duas formas (01 e 1) entram. O \"99\" (18.135 registros de 2021 a 2023), o 9 e o 09 = Ignorado (decisão do Rubens na conferência, 19/11/2026; nenhum documento define esses códigos). O DICHEPA descreve a \"forma clínica ajustada\" (FORMA_AJ), com as mesmas categorias 1 a 4. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLAS_ETIOL",
+      "fonte": "FICHAHEPA",
+      "local": "p. 2, campo 50",
+      "rotulo": "Classificação etiológica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "Vírus A"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "Vírus B"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "Vírus C"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "Vírus B e D"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "Vírus E"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Vírus B e C"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Vírus A e B"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "Vírus A e C"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "Outras hepatites virais",
+          "fonte": "SINANNET_HEPA",
+          "local": "HEPvirusnet.CNV (revisado pela UT-Sinan em 2019), código 09"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 01 a 09 e 99"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos que tragam o campo 50 (decisão do Rubens na conferência, 19/11/2026). O nome da coluna vem do HepavirNET.def do TAB_SINANNET (\"TClass. Etiológica,CLAS_ETIOL,1,HEPvirusnet.CNV\"). Categorias da ficha (campo 50), com dois dígitos; a forma sem o zero também entra. O código 09 é \"Não se aplica\" na ficha (2006) e \"Outras hepatites virais\" na tabela HEPvirusnet.CNV do TabWin (revisada em 2019); ficou a mais recente, como o Rubens confirmou (19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HAV",
+      "fonte": "DICHEPA",
+      "local": "p. 15 (VIRUS_A)",
+      "rotulo": "Etiologia: vírus da hepatite A (HAV)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo VIRUS_A do DICHEPA só comporta 1 e 2"
+      },
+      "observacao": "HAV é o vírus da hepatite A (sigla em inglês, Hepatitis A Virus; em português, VHA), conforme explicação do Rubens (conferência, 19/11/2026). Nenhuma fonte descreve a coluna HAV; ela foi ligada a VIRUS_A do DICHEPA (\"Etiologia pelo vírus A\", 1 = Sim, 2 = Não), ligação aprovada pelo Rubens (19/11/2026). No arquivo vem só \"1\" ou em branco. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HBV",
+      "fonte": "DICHEPA",
+      "local": "p. 16 (VIRUS_B)",
+      "rotulo": "Etiologia: vírus da hepatite B (HBV)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo VIRUS_B do DICHEPA só comporta 1 e 2"
+      },
+      "observacao": "HBV é o vírus da hepatite B (sigla em inglês, Hepatitis B Virus; em português, VHB), conforme explicação do Rubens (conferência, 19/11/2026). Nenhuma fonte descreve a coluna HBV; ela foi ligada a VIRUS_B do DICHEPA (\"Etiologia pelo vírus B\", 1 = Sim, 2 = Não), ligação aprovada pelo Rubens (19/11/2026). No arquivo vem só \"1\" ou em branco. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HCV",
+      "fonte": "DICHEPA",
+      "local": "p. 16 (VIRUS_C)",
+      "rotulo": "Etiologia: vírus da hepatite C (HCV)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo VIRUS_C do DICHEPA só comporta 1 e 2"
+      },
+      "observacao": "HCV é o vírus da hepatite C (sigla em inglês, Hepatitis C Virus; em português, VHC), conforme explicação do Rubens (conferência, 19/11/2026). Nenhuma fonte descreve a coluna HCV; ela foi ligada a VIRUS_C do DICHEPA (\"Etiologia pelo vírus C\", 1 = Sim, 2 = Não), ligação aprovada pelo Rubens (19/11/2026). No arquivo vem só \"1\" ou em branco. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HDV",
+      "fonte": "DICHEPA",
+      "local": "p. 16 (VIRUS_D)",
+      "rotulo": "Etiologia: vírus da hepatite D (HDV)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo VIRUS_D do DICHEPA só comporta 1 e 2"
+      },
+      "observacao": "HDV é o vírus da hepatite D (sigla em inglês, Hepatitis D Virus, também chamado vírus delta; em português, VHD), conforme explicação do Rubens (conferência, 19/11/2026). Nenhuma fonte descreve a coluna HDV; ela foi ligada a VIRUS_D do DICHEPA (\"Etiologia pelo vírus D\", 1 = Sim, 2 = Não), ligação aprovada pelo Rubens (19/11/2026). No arquivo vem só \"1\" ou em branco. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEV",
+      "fonte": "DICHEPA",
+      "local": "p. 16 (VIRUS_E)",
+      "rotulo": "Etiologia: vírus da hepatite E (HEV)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo VIRUS_E do DICHEPA só comporta 1 e 2"
+      },
+      "observacao": "HEV é o vírus da hepatite E (sigla em inglês, Hepatitis E Virus; em português, VHE), conforme explicação do Rubens (conferência, 19/11/2026). Nenhuma fonte descreve a coluna HEV; ela foi ligada a VIRUS_E do DICHEPA (\"Etiologia pelo vírus E\", 1 = Sim, 2 = Não), ligação aprovada pelo Rubens (19/11/2026). No arquivo vem só \"1\" ou em branco. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLASSI_FIN_AJ",
+      "fonte": "DICHEPA",
+      "local": "p. 15",
+      "rotulo": "Classificação final ajustada (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmação laboratorial"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Confirmação clínico-epidemiológica"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Cicatriz sorológica"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Inconclusivo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1, 2, 3, 4 e 8"
+      },
+      "observacao": "DICHEPA: \"diagnóstico fechado (de acordo com o algoritmo do DATHI)\". Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "FORMA_AJ",
+      "fonte": "DICHEPA",
+      "local": "p. 15",
+      "rotulo": "Forma clínica ajustada (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Hepatite aguda"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Hepatite crônica/Portador assintomático"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Hepatite fulminante"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Inconclusivo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 a 4"
+      },
+      "observacao": "DICHEPA: \"forma clínica da hepatite (de acordo com o algoritmo do DATHI)\". Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "VIRUS_A",
+      "fonte": "DICHEPA",
+      "local": "p. 15",
+      "rotulo": "Etiologia pelo vírus A (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 e 2"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "VIRUS_B",
+      "fonte": "DICHEPA",
+      "local": "p. 16",
+      "rotulo": "Etiologia pelo vírus B (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 e 2"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "VIRUS_C",
+      "fonte": "DICHEPA",
+      "local": "p. 16",
+      "rotulo": "Etiologia pelo vírus C (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 e 2"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "VIRUS_D",
+      "fonte": "DICHEPA",
+      "local": "p. 16",
+      "rotulo": "Etiologia pelo vírus D (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 e 2"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "VIRUS_E",
+      "fonte": "DICHEPA",
+      "local": "p. 16",
+      "rotulo": "Etiologia pelo vírus E (algoritmo do DATHI)",
+      "tipo": "categorico",
+      "lista": "sim_nao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHEPA só lista 1 e 2"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (HEPABR21 a 23); incluída para arquivos exportados do próprio Sinan, como o Rubens decidiu na meningite (19/11/2026) (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Nomes do arquivo × DICHEPA",
+      "descricao": "Resolvida (Rubens, 19/11/2026): CLASSI_FIN e FORMA seguem a ficha (campos 48 e 49); HAV a HEV ligados a VIRUS_A a VIRUS_E (1 = Sim), com o nome explicado pela sigla. CLASSI_FIN leva o nome do DICHEPA, \"Classificação final ajustada\"."
+    },
+    {
+      "coluna": "Colunas do DICHEPA fora do arquivo",
+      "descricao": "Resolvida (Rubens, 19/11/2026): CLASSI_FIN_AJ, FORMA_AJ e VIRUS_A a VIRUS_E ficam, para arquivos exportados do próprio Sinan."
+    },
+    {
+      "coluna": "ID_AGRAVO",
+      "descricao": "Resolvida (Rubens, 19/11/2026): B19 = Hepatite viral não especificada, rótulo da CID-10 (tabela do TabWin), aprovado na conferência."
+    },
+    {
+      "coluna": "FORMA e CS_GESTANT: 9, 09 e 99",
+      "descricao": "Resolvida (Rubens, 19/11/2026): 9, 09 e 99 = Ignorado na forma clínica (18.135 registros com 99 de 2021 a 2023) e na gestante (3.129). Nenhum documento define o 99; é decisão do Rubens."
+    },
+    {
+      "coluna": "Códigos com e sem zero à esquerda",
+      "descricao": "Resolvida (Rubens, 19/11/2026): FONTE, FORMA, CS_GESTANT e CLAS_ETIOL aceitam as duas formas."
+    },
+    {
+      "coluna": "Códigos fora do campo",
+      "descricao": "Resolvida (Rubens, 19/11/2026): o 3 em HIV (2 registros) e em OUTRA_DST (1) sai como \"Inconsistência/Preenchido erroneamente\"; o 5 nas sorologias do banco de sangue (33 a 40 registros cada) sai como \"Inconsistência/Não Preenchido\"."
+    },
+    {
+      "coluna": "UF do local de exposição",
+      "descricao": "Resolvida (Rubens, 19/11/2026): as três UFs de exposição saem só com a sigla; o código numérico vira sigla."
+    },
+    {
+      "coluna": "Semana incompleta (SEM_NOT e SEM_DIAG)",
+      "descricao": "Resolvida (Rubens, 19/11/2026): as colunas ficam como vieram, e as duas colunas extras trazem a semana calculada pela data (1.119 registros do Espírito Santo com \"20\")."
+    },
+    {
+      "coluna": "Leitura do DICHEPA",
+      "descricao": "Resolvida em 19/11/2026: a ligação de cada coluna com o campo foi confirmada pelo HepavirNET.def do TAB_SINANNET (por exemplo, TP_SOROHCV = HCV-RNA), e o Rubens confirmou no PDF. As exposições do campo 38 seguem os nomes da ficha."
+    },
+    {
+      "coluna": "DT_DIAG",
+      "descricao": "Resolvida (Rubens, 19/11/2026): nome \"Data do diagnóstico ou dos primeiros sintomas\"; a orientação de leitura conforme a forma clínica, o encaminhamento e a classificação fica registrada na observação da coluna, sem cálculo pelo programa."
+    },
+    {
+      "coluna": "CLAS_ETIOL, código 09",
+      "descricao": "Resolvida (Rubens, 19/11/2026): 09 = Outras hepatites virais, pela tabela HEPvirusnet.CNV do TabWin (2019), mais recente que a ficha (2006, \"Não se aplica\"). A coluna não vem no arquivo público."
+    }
+  ]
+}

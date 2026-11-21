@@ -21,7 +21,7 @@ Situação em 02/11/2026. Esta é a segunda parte da validação para uso cient�
   - 10 em colunas extras (região e macrorregião de saúde).
 
   Quando um tipo não tem células suficientes, a sobra vai para as listas de códigos.
-- **Sorteio:** uniforme dentro de cada tipo (amostragem por reservatório), com o gerador mulberry32 e a semente fixa 20261102. A amostra pode ser refeita: `node validacao/amostra.js`.
+- **Sorteio:** uniforme dentro de cada tipo (amostragem por reservatório), com o gerador mulberry32 e a semente fixa 20261102. A amostra pode ser refeita: `node validacao/amostra.js`, na versão do projeto do commit `f7b7c76` (02/11/2026), quando ela foi sorteada. Conferido em 10/11/2026: nessa versão o sorteio repete as 500 células, sem nenhuma diferença. Na versão atual o sorteio sai diferente, porque os dicionários ganharam colunas depois do sorteio (por exemplo, as de macrorregião de saúde), e isso muda a sequência sorteada. Desde 18/11/2026 os arquivos de `dados_publicos` ficam em pastas por agravo; para refazer no commit `f7b7c76`, que procura os arquivos na raiz de `dados_publicos`, copie para lá DENGBR25.dbc, CHIKBR25.dbc, ZIKABR25.dbc, LTANBR25.dbc e LVH.csv.
 - **Conferência:** feita às claras pelo Rubens Araujo da Silva Junior, em 02/11/2026. Cada célula foi conferida no documento oficial de `docs/fontes`, ou na consulta pública do CNES, e marcada como SIM ou NÃO.
 - **Revisão das divergências:** cada NÃO foi revisto contra todas as fontes oficiais do projeto. A decisão ficou registrada em `docs/validacao/revisao-amostra.json`, com o motivo. A marcação original continua intacta na planilha.
 - **Estatística:** taxa de erro com intervalo de confiança de 95% exato (Clopper-Pearson). O cálculo é feito por `node validacao/resultado-amostra.js`.
@@ -46,6 +46,7 @@ Situação em 02/11/2026. Esta é a segunda parte da validação para uso cient�
 
 ## Limitações
 
+- A amostra de leishmaniose visceral veio do `LVH.csv` (2016 a 2025). A comparação com o microdatasus foi refeita depois com o `LEIVBR25.dbc` (2025), mas a amostra conferida continua sendo a do `LVH.csv`.
 - A conferência foi feita por uma só pessoa e às claras, ou seja, vendo o texto da ferramenta. Não houve segundo conferente.
 - Com 0 erros em 100 células por agravo, o limite superior do intervalo, 3,62%, mede só o tamanho da amostra. Ele não indica erros encontrados.
 - A amostra cobre células traduzidas. Os códigos sem fonte oficial, que ficam como pendência, foram avaliados à parte, na comparação com o microdatasus.

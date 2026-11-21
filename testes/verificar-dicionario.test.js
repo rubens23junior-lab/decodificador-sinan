@@ -154,3 +154,62 @@ test('coluna extra em conferência é verificada como as demais e não pode repe
   assert.ok(erros.some((e) => /REGIAO: o nome repete outra coluna extra/.test(e)));
   assert.ok(erros.some((e) => /tabela "xyz"/.test(e)));
 });
+
+test('tabela da CID-10: regra de combinação do TabWin 2019 com a CSV 2008', () => {
+  const t = JSON.parse(readFileSync(new URL('../dicionarios/tabelas/cid10.json', import.meta.url), 'utf8'));
+  assert.deepEqual(verificarTabela(t).erros, []);
+  const nome = (c) => (typeof t.valores[c] === 'string' ? t.valores[c] : t.valores[c]?.nome);
+  // códigos no formato dos arquivos do Sinan: categoria sem ponto, subcategoria com ponto
+  assert.equal(nome('Y04.0'), 'Agressão por meio de força corporal - residência');
+  assert.equal(t.valores.Y040, undefined);
+  // nome inteiro no TabWin 2019 vale mesmo quando a CSV 2008 diz outra coisa
+  assert.equal(nome('W26'), 'Contato com outro(s) objeto(s) afiado(s)');
+  assert.equal(nome('Y07'), 'Outros maus tratos');
+  // nome cortado no TabWin, completado pela CSV porque o início é igual
+  assert.equal(t.valores.X64.nome, 'Auto-intoxicação por e exposição, intencional, a outras drogas, medicamentos e substâncias biológicas e às não especificadas');
+  // sem nome seguro: fica fora da tabela e listado como pendência
+  assert.equal(t.valores['X59.2'], undefined);
+  assert.ok(t.pendencias.some((p) => p.codigo === 'X59.2'));
+  // nenhuma marca do TabWin (@, #, &) sobra no começo do nome
+  assert.ok(Object.keys(t.valores).every((c) => !/^[@#&]/.test(nome(c))));
+});
+
+test('complemento de tabela precisa existir e só vale para o tipo tabela', () => {
+  const dic = JSON.parse(readFileSync(new URL('../dicionarios/violencia.json', import.meta.url), 'utf8'));
+  const col = dic.colunas.find((c) => c.nome === 'ID_OCUPA_N');
+  col.complemento = 'nao_existe';
+  assert.ok(verificarDicionario(dic).erros.some((e) => e.includes('complemento "nao_existe"')));
+});
+
+test('verificador: "fora_do_campo" só em categórico e com rótulo e motivo; "completar_zeros" inteiro positivo', async () => {
+  const { verificarDicionario } = await import('../src/dicionario/verificar.js');
+  const { dicionarioFicticio } = await import('./auxiliares/dicionario-ficticio.js');
+  const dic = dicionarioFicticio();
+  dic.colunas.find((c) => c.nome === 'FEBRE').fora_do_campo = { rotulo: 'X' };
+  dic.colunas.find((c) => c.nome === 'ID_UNIDADE').fora_do_campo = { rotulo: 'X', motivo: 'Y' };
+  dic.tabelas.unidades.completar_zeros = '7';
+  const { erros } = verificarDicionario(dic);
+  assert.ok(erros.some((e) => e.includes('FEBRE') && e.includes('"rotulo" e "motivo"')), erros.join('\n'));
+  assert.ok(erros.some((e) => e.includes('ID_UNIDADE') && e.includes('só vale para colunas do tipo "categorico"')), erros.join('\n'));
+  assert.ok(erros.some((e) => e.includes('completar_zeros')), erros.join('\n'));
+});
+
+test('coluna extra calculada precisa de cálculo conhecido e coluna de data', () => {
+  const dic = dicionarioFicticio();
+  dic.derivadas = [{ nome: 'SEM', rotulo: 'Semana', de: 'DT_NOTIFIC', calculo: 'semana_epidemiologica' }];
+  assert.deepEqual(verificarDicionario(dic).erros, []);
+  dic.derivadas = [{ nome: 'SEM', rotulo: 'Semana', de: 'CS_SEXO', calculo: 'semana_epidemiologica' }];
+  assert.ok(verificarDicionario(dic).erros.some((e) => /só pode ser calculada de uma coluna do tipo "data"/.test(e)));
+  dic.derivadas = [{ nome: 'SEM', rotulo: 'Semana', de: 'DT_NOTIFIC', calculo: 'outra' }];
+  assert.ok(verificarDicionario(dic).erros.some((e) => /cálculo "outra" desconhecido/.test(e)));
+});
+
+test('"texto_livre" só em coluna categórica e sem "fora_do_campo"', () => {
+  const dic = dicionarioFicticio();
+  dic.colunas[0].texto_livre = true;
+  assert.deepEqual(verificarDicionario(dic).erros, []);
+  dic.colunas[0].fora_do_campo = { rotulo: 'X', motivo: 'Y' };
+  assert.ok(verificarDicionario(dic).erros.some((e) => /não podem ser usados juntos/.test(e)));
+  dic.colunas[2].texto_livre = true;
+  assert.ok(verificarDicionario(dic).erros.some((e) => /DT_NOTIFIC: "texto_livre" só vale/.test(e)));
+});

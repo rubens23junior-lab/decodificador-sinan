@@ -1,0 +1,732 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Sífilis adquirida",
+    "codigos": [
+      "A539",
+      "A53.9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos SIFABRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-18",
+    "registro": "docs/conferencia/conferencia-sifilis-adquirida.xlsx (conferência na planilha em 18/11/2026, sem correções)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "FICHASIFA": {
+      "documento": "Ficha de Investigação – Sífilis Adquirida – Sinan NET (com instruções de preenchimento na p. 2)",
+      "orgao": "Ministério da Saúde / SINAN",
+      "data": "05/10/2010 no rodapé. Baixada pelo Rubens do Portal do Sinan (informação dele, 18/11/2026)",
+      "arquivo": "docs/fontes/sifilis-adquirida/sifilis-adquirida.pdf"
+    },
+    "FICHANC": {
+      "documento": "Ficha de Notificação/Conclusão – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 27/09/2005 no rodapé",
+      "arquivo": "docs/fontes/notificacao-individual/Fichas de Notificação - Conclusão INdividual.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {},
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHASIFA",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A539",
+            "A53.9"
+          ],
+          "rotulo": "Sífilis adquirida"
+        }
+      ],
+      "observacao": "A ficha mostra 'SÍFILIS ADQUIRIDA' com o CID 'A53.9'; no arquivo vem 'A539' (regra do Rubens: o CID como na ficha e sem o ponto). Nome como na ficha, por decisão do Rubens (18/11/2026); na CID-10 o A53.9 é 'Sífilis não especificada'."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "FICHASIFA",
+      "local": "p. 1, campo 7",
+      "rotulo": "Data do diagnóstico",
+      "tipo": "data",
+      "observacao": "Ficha, observações (p. 2): a data do diagnóstico é a data da coleta de material para exame laboratorial ou da evidência clínica."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "FICHASIFA",
+      "local": "p. 1, campo 7 (Data do diagnóstico)",
+      "rotulo": "Semana epidemiológica do diagnóstico do caso notificado",
+      "tipo": "texto",
+      "observacao": "Semana epidemiológica do diagnóstico, gerada pelo Sinan na digitação (decisão do Rubens na hanseníase, 16/11/2026). Na sífilis adquirida vem preenchida nos arquivos de 2023 a 2025, por isso não há coluna calculada."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHASIFA",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de sífilis em gestante (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. Decisão do Rubens (16/11/2026): 0, 00 e 43 = Analfabeto; 1 e 01 = 1ª a 4ª série incompleta do EF, e assim por diante."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "NOTIF2018",
+      "local": "p. 9, campo 31 (agravos de Notificação/Conclusão)",
+      "rotulo": "Data da investigação",
+      "tipo": "data",
+      "observacao": "Campo da ficha de Notificação/Conclusão, não da ficha de investigação de sífilis adquirida (ver pendência sobre a estrutura do arquivo)."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "FICHASIFA",
+      "local": "p. 1, campo 31 (instrução na p. 2)",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "FICHASIFA",
+      "local": "p. 1, campo 42",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 da ficha só comporta 1 e 2, e o Anexo I do NOTIF2018 não tem linha de sífilis adquirida"
+      },
+      "observacao": "A ficha de Notificação/Conclusão (campo 32) traz as mesmas categorias. O código 8 aparece em cerca de 13% dos registros (33.406 em 2023, 30.443 em 2024 e 12.589 em 2025); nenhuma fonte de sífilis adquirida o define, e ele sai como \"Inconsistência/Não Preenchido\" (decisão do Rubens, 18/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "FICHANC",
+      "local": "p. 1, campo 33",
+      "rotulo": "Critério de confirmação/descarte",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Laboratorial"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Clínico-Epidemiológico"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha de Notificação/Conclusão só comporta 1 e 2"
+      },
+      "observacao": "O NOTIF2018 (p. 9, campo 33) remete ao Anexo I, que não tem linha de sífilis adquirida; as categorias vêm da ficha de Notificação/Conclusão. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "NOTIF2018",
+      "local": "p. 13, campo 40",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Campo da ficha de Notificação/Conclusão (campo 40), com as mesmas categorias. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "FICHANC",
+      "local": "p. 1, campo 41",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito pelo agravo notificado"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 da ficha de Notificação/Conclusão só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "O NOTIF2018 (p. 13, campo 41) remete ao Anexo I, que não tem linha de sífilis adquirida; as categorias vêm da ficha de Notificação/Conclusão. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "NOTIF2018",
+      "local": "p. 13, campo 42",
+      "rotulo": "Data do óbito",
+      "tipo": "data",
+      "observacao": "Campo habilitado se a evolução for 2 ou 3."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campo 43",
+      "rotulo": "Data do encerramento",
+      "tipo": "data",
+      "observacao": "Campo da ficha de Notificação/Conclusão (campo 43)."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Estrutura do arquivo",
+      "descricao": "Aprovada (Rubens, 18/11/2026): o arquivo traz os campos 1 a 30, a ocupação e os campos de conclusão da ficha de Notificação/Conclusão; os campos 32 a 41 da ficha de investigação não vêm."
+    },
+    {
+      "coluna": "CS_ESCOL_N",
+      "descricao": "Resolvida (Rubens, 18/11/2026): o código \"99\" (84.873 registros em 2023, 86.383 em 2024 e 43.403 em 2025), que nenhuma fonte define, fica como veio, destacado e nas Inconsistências."
+    },
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "Resolvida (Rubens, 18/11/2026): o código 8 (33.406 registros em 2023, 30.443 em 2024 e 12.589 em 2025) sai como \"Inconsistência/Não Preenchido\", pela regra geral, porque nenhuma fonte de sífilis adquirida o define."
+    },
+    {
+      "coluna": "CRITERIO e EVOLUCAO",
+      "descricao": "Aprovada (Rubens, 18/11/2026): categorias da ficha de Notificação/Conclusão (critério: 1 Laboratorial, 2 Clínico-Epidemiológico; evolução: 1 Cura, 2 Óbito pelo agravo notificado, 3 Óbito por outras causas, 9 Ignorado), porque o Anexo I do NOTIF2018 não tem linha de sífilis adquirida."
+    },
+    {
+      "coluna": "ID_AGRAVO",
+      "descricao": "Resolvida (Rubens, 18/11/2026): A539 = \"Sífilis adquirida\", como na ficha."
+    },
+    {
+      "coluna": "Dicionário de dados",
+      "descricao": "Aprovada (Rubens, 18/11/2026): não há dicionário de dados específico de sífilis adquirida; as fontes são a ficha de investigação, a ficha de Notificação/Conclusão e o NOTIF2018."
+    }
+  ]
+}

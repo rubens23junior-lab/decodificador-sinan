@@ -9,15 +9,37 @@
 </head>
 <body>
 <header>
-  <h1>Decodificador de notificações do SINAN</h1>
+  <div class="topo">
+    <h1>Decodificador de notificações do SINAN</h1>
+    <button type="button" id="trocar-tema" class="botao-leve botao-tema" aria-pressed="false">Tema claro</button>
+  </div>
+
+  <details class="apresentacao">
+    <summary>Para que serve esta ferramenta</summary>
+    <div class="apresentacao-texto">
+      <p>Os arquivos de notificações do SINAN que o DATASUS disponibiliza para download trazem os campos em <strong>códigos</strong>, e não em palavras. Por exemplo:</p>
+      <ul>
+        <li>a raça/cor aparece como <code>4</code>, e não como "Parda";</li>
+        <li>o sexo vem como <code>M</code>, <code>F</code> ou <code>I</code> (masculino, feminino, ignorado);</li>
+        <li>a idade de 18 anos vem como <code>4018</code>: o primeiro algarismo é a unidade (4 = anos) e o resto é o valor;</li>
+        <li>os nomes das colunas são abreviados, como <code>CS_SEXO</code> e <code>DT_NOTIFIC</code>.</li>
+      </ul>
+      <p>Para entender cada campo, é preciso consultar o dicionário de dados e a ficha de notificação do agravo, campo por campo.</p>
+      <p><strong>Por que não usar só o TABNET?</strong> O TABNET entrega tabelas já agregadas, com os rótulos em texto. Mas ele só permite as combinações de variáveis que oferece e não mostra as notificações individuais.</p>
+      <p><strong>O que o arquivo do DATASUS permite.</strong> Ele tem uma linha por notificação, com todos os campos da ficha. Dá para cruzar qualquer variável, selecionar grupos específicos (por exemplo, gestantes de um município num período) e fazer análises que o TABNET não faz.</p>
+      <p><strong>O que esta ferramenta faz.</strong> Ela traduz os códigos desse arquivo conforme o dicionário oficial de cada agravo, conferido linha por linha, e entrega uma planilha legível em Excel ou CSV, pronta para o Excel, o R, o Stata ou o Python. O que não tem tradução no dicionário oficial nunca é inventado: fica como veio, destacado e listado na aba "Inconsistências".</p>
+      <p><strong>Como usar, em três passos:</strong> (1) escolha o agravo; (2) escolha o arquivo, que pode ser o DBC baixado do DATASUS ou uma exportação do Sinan em DBF ou CSV; (3) ajuste os filtros e as colunas e baixe a planilha. O guia de uso em PDF, que vem junto com o programa, mostra cada passo com fotos.</p>
+    </div>
+  </details>
+
   <p class="aviso" role="note"><strong>Os dados não saem do seu computador.</strong> A planilha gerada contém os mesmos dados pessoais do arquivo original e deve ser tratada conforme as regras do seu serviço.</p>
 </header>
 
 <main>
   <section id="passo-agravo" class="passo">
     <h2><span class="num">1</span> Agravo</h2>
-    <label for="agravo">Escolha o agravo do arquivo:</label>
-    <select id="agravo"></select>
+    <p id="rotulo-agravo">Escolha o agravo do arquivo:</p>
+    <div id="grupos-agravo" class="grupos-agravo" role="radiogroup" aria-labelledby="rotulo-agravo"></div>
     <p id="info-dicionario" class="detalhe"></p>
   </section>
 
@@ -67,7 +89,7 @@
 
     <fieldset>
       <legend>Colunas</legend>
-      <label><input type="checkbox" id="manter-originais" checked> Manter também a coluna com o código original, ao lado da traduzida</label>
+      <label><input type="checkbox" id="manter-originais"> Manter também a coluna com o código original, ao lado da traduzida</label>
       <label><input type="checkbox" id="cabecalho-original"> Incluir o nome original da coluna numa segunda linha de cabeçalho</label>
       <label><input type="checkbox" id="formato-analise"> Formato para análise (R, Stata, Python)</label>
       <p class="detalhe">Nomes de coluna do SINAN em minúsculas (por exemplo, cs_sexo, com o código em cs_sexo_cod), uma coluna numérica idade_anos (anos completos) e, no CSV, separador vírgula, ponto decimal e datas em aaaa-mm-dd. O texto das categorias é o mesmo.</p>
@@ -84,8 +106,6 @@
       <label><input type="radio" name="saida" value="csv"> CSV (para arquivos muito grandes; as abas de apoio vêm num Excel separado)</label>
       <p id="estimativa" class="detalhe"></p>
     </fieldset>
-
-    <p><button type="button" id="processar" class="botao principal">Processar e baixar a planilha</button></p>
   </section>
 
   <section id="progresso" class="passo" hidden aria-live="polite">
@@ -98,6 +118,13 @@
   <section id="resultado" class="passo" hidden aria-live="polite"></section>
   <section id="erro" class="erro" hidden role="alert"></section>
 </main>
+
+<div id="barra-acao" class="barra-acao" hidden>
+  <div class="barra-acao-conteudo">
+    <p id="barra-resumo" class="barra-resumo"></p>
+    <button type="button" id="processar" class="botao principal">Processar e baixar a planilha</button>
+  </div>
+</div>
 
 <footer>
   <p>Versão <span id="versao"></span>. Funciona sem internet. Nenhum dado é enviado, guardado ou registrado pela ferramenta.</p>

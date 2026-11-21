@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "Se você usar esta ferramenta, cite-a como abaixo. / If you use this software, please cite it as below."
 type: software
 title: "Decodificador de notificações do SINAN"
-version: "1.0.1"
-date-released: "2026-11-15"
+version: "1.1.0"
+date-released: "2026-11-21"
 authors:
   - given-names: "Rubens Araujo"
     name-particle: "da"

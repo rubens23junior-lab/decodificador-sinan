@@ -1,0 +1,1216 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Malária",
+    "codigos": [
+      "B54"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos MALABRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-14",
+    "registro": "docs/conferencia/conferencia-malaria.xlsx (duas rodadas de conferência na planilha em 14/11/2026)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "INSTMAL": {
+      "documento": "Instruções para preenchimento – Ficha de Investigação – Malária – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "30/10/2007 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/malaria/MALAN_INSTRUCIONAL.pdf"
+    },
+    "DICMAL": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Malária (campos 31 a 50)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em julho de 2010. Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/malaria/MALAN_DIC_DADOS.pdf"
+    },
+    "FICHAMAL": {
+      "documento": "Ficha de Investigação – Malária – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "01/01/2010 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/malaria/MALAN_FICHA.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o MalariaNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/MalariaNET.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
+  },
+  "listas": {},
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAMAL",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "B54",
+            "B 54"
+          ],
+          "rotulo": "Malária"
+        }
+      ],
+      "observacao": "A ficha traz 'MALÁRIA' e o código 'B 54'; por decisão do Rubens (14/11/2026), as duas formas ('B54' e 'B 54') valem. O arquivo de 2025 traz 'B54'."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC, que não aparece nas fontes de malária (pendência)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 14 (o 43 vem do NOTIF2018, p. 5)"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43'; a ficha de malária (p. 1, campo 14) traz '0-Analfabeto'. Por decisão do Rubens (conferências de violência e Chagas), o 0 e o 43 valem como Analfabeto. As formas com um e dois dígitos seguem a decisão P6 do Rubens."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICMAL",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICMAL",
+      "local": "p. 1-2, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICMAL",
+      "local": "p. 4, campo 42",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Inconclusivo",
+          "fonte": "NOTIF2018",
+          "local": "p. 23, nota (**) do Anexo I (regra geral; o Anexo I não tem linha de malária)"
+        }
+      ],
+      "observacao": "O DICMAL e a ficha listam só 1 e 2. O arquivo de 2025 traz 27 registros com 8. Decisão do Rubens (14/11/2026): 8 = Inconclusivo, pela nota (**) do Anexo I do NOTIF2018 ('categoria atribuída pelo sistema quando ultrapassado o prazo para investigação oportuna'), aplicada por analogia, porque o Anexo I não tem linha de malária."
+    },
+    {
+      "nome": "AT_ATIVIDA",
+      "fonte": "DICMAL",
+      "local": "p. 2, campo 33",
+      "rotulo": "Principal atividade nos últimos 15 dias",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Agricultura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Pecuária"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Doméstica"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Turismo"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Garimpagem"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Exploração vegetal"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Caça/pesca"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Construtor de estradas / barragens"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Mineração"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Viajante"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "12"
+          ],
+          "rotulo": "Motorista",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 33"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "O DICMAL (2010) lista 1 a 11 e 99; o 12 (Motorista) vem da ficha (p. 1, campo 33) e do instrutivo. O arquivo de 2025 traz 42 registros com 12."
+    },
+    {
+      "nome": "AT_LAMINA",
+      "fonte": "DICMAL",
+      "local": "p. 2, campo 34",
+      "rotulo": "Tipo de lâmina",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Busca Passiva (BP)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 34"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Busca Ativa (BA)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 34"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Lâmina de Verificação de Cura (LVC)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 34"
+        }
+      ],
+      "observacao": "O DICMAL (p. 2, campo 34) e a ficha só trazem as siglas; os nomes vêm do instrutivo (p. 2, campo 34), por decisão do Rubens (14/11/2026). Segundo o DICMAL, BA/BP identificam caso novo e LVC, recaída/recrudescência."
+    },
+    {
+      "nome": "AT_SINTOMA",
+      "fonte": "DICMAL",
+      "local": "p. 2, campo 35",
+      "rotulo": "Sintomas",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Com sintomas"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Sem sintomas"
+        }
+      ]
+    },
+    {
+      "nome": "TPAUTOCTO",
+      "fonte": "DICMAL",
+      "local": "p. 4-5, campo 43",
+      "rotulo": "O caso é autóctone de residência?",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ]
+    },
+    {
+      "nome": "COUFINF",
+      "fonte": "DICMAL",
+      "local": "p. 5-6, campo 44",
+      "rotulo": "UF provável da fonte de infecção",
+      "tipo": "uf"
+    },
+    {
+      "nome": "COPAISINF",
+      "fonte": "DICMAL",
+      "local": "p. 6, campo 45",
+      "rotulo": "País provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10)."
+    },
+    {
+      "nome": "COMUNINF",
+      "fonte": "DICMAL",
+      "local": "p. 6-7, campo 46",
+      "rotulo": "Município provável da fonte de infecção",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "LOC_INF",
+      "fonte": "DICMAL",
+      "local": "p. 7-8, campo 49",
+      "rotulo": "Localidade provável de infecção",
+      "tipo": "texto"
+    },
+    {
+      "nome": "DEXAME",
+      "fonte": "DICMAL",
+      "local": "p. 2, campo 36",
+      "rotulo": "Data do exame",
+      "tipo": "data"
+    },
+    {
+      "nome": "RESULT",
+      "fonte": "DICMAL",
+      "local": "p. 2-3, campo 37",
+      "rotulo": "Resultado do exame",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativo",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "F (P. falciparum)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "F+FG (P. falciparum+gametócitos de P. falciparum)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "V (P. vivax)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "F+V (P. falciparum+P. vivax)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "V+FG (P. vivax+ gametócitos de P. falciparum)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "FG (gametócitos de P. falciparum)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "M (P. malariae)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "F+M (P. falciparum +P. malariae)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "O (P. ovale)",
+          "fonte": "INSTMAL",
+          "local": "p. 2, campo 37"
+        }
+      ],
+      "observacao": "O DICMAL (p. 2-3, campo 37) e a ficha só trazem as siglas; os rótulos com o nome das espécies vêm do instrutivo (p. 2, campo 37), por decisão do Rubens (14/11/2026)."
+    },
+    {
+      "nome": "PMM",
+      "fonte": "DICMAL",
+      "local": "p. 3, campo 38",
+      "rotulo": "Parasitos por mm³",
+      "tipo": "numero"
+    },
+    {
+      "nome": "PCRUZ",
+      "fonte": "DICMAL",
+      "local": "p. 3, campo 39",
+      "rotulo": "Parasitemia em cruzes",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Menor ½ + (Menor que meia cruz)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "1/2 + (Meia cruz)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "+ (Uma cruz)"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "++ (Duas cruzes)"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "+++ (Três cruzes)"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "++++ (Quatro cruzes)"
+        }
+      ]
+    },
+    {
+      "nome": "TRA_ESQUEM",
+      "fonte": "DICMAL",
+      "local": "p. 3-4, campo 40",
+      "rotulo": "Esquema de tratamento utilizado",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Infecções por Pv com Cloroquina em 3 dias e Primaquina em 7 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Infecções por Pf com Quinina em 3 dias + Doxiciclina em 5 dias + primaquina no 6º dia",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Infecções mistas por Pv + Pf com Mefloquina em dose única e primaquina em 7 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Infecções por Pm com cloroquina em 3 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Infecções por Pv em crianças apresentando vômitos, com cápsulas retais de artesunato em 4 dias e Primaquina em 7 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Infecções por Pf com Mefloquina em dose única e primaquina no segundo dia",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Infecções por Pf com Quinina em 7 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Infecções por Pf de crianças com cápsulas retais de artesunato em 4 dias e dose única de Mefloquina no 3º dia e Primaquina no 5º ida",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Infecções mistas por Pv + Pf com Quinina em 3 dias, doxiciclina em 5 dias e Primaquina em 7 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Prevenção de recaída da malária por Pv com Cloroquina em dose única semanal durante 3 meses",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Malária grave e complicada",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "12"
+          ],
+          "rotulo": "Infecções por Pf com a associação Artemeter+Lumerfantrina em 3 dias",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Outro esquema utilizado (por médico)",
+          "fonte": "FICHAMAL",
+          "local": "p. 1, campo 40"
+        }
+      ],
+      "observacao": "Rótulos da ficha (p. 1, campo 40), por decisão do Rubens (14/11/2026); o texto de 1 a 11 e 99 é igual ao do DICMAL, que não tem o 12. No 8, 'ida' é a grafia da fonte. No 12, a grafia 'Lumerfantrina' é a da ficha (o texto extraído aparece como 'Lumerfantrin a'; a conferir na página). O arquivo de 2025 traz 53 registros com 12."
+    },
+    {
+      "nome": "DSTRAESQUE",
+      "fonte": "DICMAL",
+      "local": "p. 4, campo 40",
+      "rotulo": "Esquema de tratamento utilizado - Outro (descrever)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "DTRATA",
+      "fonte": "DICMAL",
+      "local": "p. 4, campo 41",
+      "rotulo": "Data do início do tratamento",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "DICMAL",
+      "local": "p. 8, campo interno (Transferência vertical da investigação)",
+      "rotulo": "Lote da transferência vertical da investigação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICMAL",
+      "local": "p. 8, campo 50",
+      "rotulo": "Data de encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "O arquivo de 2025 traz 27 registros com 8. Nenhuma fonte de malária lista o 8, e o Anexo I do NOTIF2018 (que define 8 = Inconclusivo em outros agravos) não tem linha de malária. Decisão do Rubens (14/11/2026): 8 = Inconclusivo, por analogia com a nota do Anexo I."
+    },
+    {
+      "coluna": "AT_ATIVIDA e TRA_ESQUEM",
+      "descricao": "O código 12 (Motorista; e o esquema Artemeter+Lumerfantrina) vem da ficha de 2010, porque o DICMAL não o lista. Confirmar, inclusive a grafia \"Lumerfantrina\" na ficha (p. 1, campo 40)."
+    },
+    {
+      "coluna": "RESULT e AT_LAMINA",
+      "descricao": "Siglas mantidas como na fonte (F, V, FG, M, O; BP, BA, LVC), sem explicação no DICMAL. Confirmar se ficam assim."
+    },
+    {
+      "coluna": "ANO_NASC",
+      "descricao": "Coluna do arquivo público ausente das fontes de malária (que trazem a data de nascimento completa). Mantida como texto."
+    },
+    {
+      "coluna": "ID_PAIS",
+      "descricao": "Sem tabela de países compatível com a numeração do Sinan (a tabela_codigos_paises.xlsx tem Brasil = 10, e o arquivo usa 1). O código fica como veio. Decisão do Rubens (01/11/2026): '1 = Brasil' não entra sem fonte documental."
+    },
+    {
+      "coluna": "COPAISINF",
+      "descricao": "Mesma situação de ID_PAIS."
+    },
+    {
+      "coluna": "ID_OCUPA_N",
+      "descricao": "Códigos especiais do Sinan (999991, 998999, XXX etc.): traduzidos desde 15/11/2026 pela tabela de ocupações do Sinan NET (OCUPANET), que o MalariaNET.def usa para este campo. Códigos que não estão nem na CBO nem no OCUPANET (por exemplo 0 e 000000) continuam como vieram e vão para as Inconsistências."
+    },
+    {
+      "coluna": "ID_REGIONA",
+      "descricao": "Tabela de regionais do Sinan não disponível; a do DATASUS não corresponde (2% de coincidência). Código mantido; coluna extra REGSAUD_NOT criada."
+    },
+    {
+      "coluna": "ID_RG_RESI",
+      "descricao": "Mesma situação de ID_REGIONA; coluna extra REGSAUD_RES criada."
+    }
+  ]
+}

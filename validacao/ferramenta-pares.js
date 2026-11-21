@@ -4,7 +4,7 @@
 //
 // Uso: node validacao/ferramenta-pares.js <arquivo> <agravo> <saida.csv>
 // Exemplo:
-//   node validacao/ferramenta-pares.js dados_publicos/DENGBR25.dbc dengue dados_publicos/saida/pares-ferramenta-dengue.csv
+//   node validacao/ferramenta-pares.js dados_publicos/dengue-chikungunya/DENGBR25.dbc dengue dados_publicos/saida/pares-ferramenta-dengue.csv
 //
 // Saída (CSV em UTF-8): coluna, codigo, rotulo, n
 //   - datas: código e texto em AAAA-MM-DD, como o R as escreve;

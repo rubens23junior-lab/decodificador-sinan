@@ -1,0 +1,961 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Sífilis em gestante",
+    "codigos": [
+      "O981",
+      "O98.1"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos SIFGBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-18",
+    "registro": "docs/conferencia/conferencia-sifilis-gestante.xlsx (conferência na planilha em 17 e 18/11/2026, com as correções pedidas por ele aplicadas em 18/11/2026)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICSIFG": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Sífilis em Gestante (campos 31 a 45)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "revisado em julho de 2010 (5 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/sifilis-gestante/SIFIGEN_DIC_DADOS.pdf"
+    },
+    "FICHASIFG": {
+      "documento": "Ficha de Investigação – Sífilis em Gestante – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "29/09/2008 no rodapé, com a definição de caso atualizada no cabeçalho. Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/sifilis-gestante/SIFIGEN_FICHA.pdf"
+    },
+    "INSTSIFG": {
+      "documento": "Sífilis em Gestante – Instruções para preenchimento – Ficha de Investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "29/09/2008 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/sifilis-gestante/SIFIGEN_INSTRUCIONAL.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
+  },
+  "listas": {},
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHASIFG",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "O981",
+            "O98.1"
+          ],
+          "rotulo": "Sífilis em gestante"
+        }
+      ],
+      "observacao": "A ficha mostra o CID 'O98.1'; no arquivo vem 'O981' (regra do Rubens: o CID como na ficha e sem o ponto/espaços)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "FICHASIFG",
+      "local": "p. 1, campo 7",
+      "rotulo": "Data do diagnóstico",
+      "tipo": "data",
+      "observacao": "Data do diagnóstico (ficha, campo 7), como na hanseníase: o DICSIFG diz que os campos 1 a 30 seguem a notificação \"exceto a data de diagnóstico\"."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "FICHASIFG",
+      "local": "p. 1, campo 7 (Data do diagnóstico)",
+      "rotulo": "Semana epidemiológica do diagnóstico do caso notificado",
+      "tipo": "texto",
+      "observacao": "Semana epidemiológica do diagnóstico, gerada pelo Sinan na digitação (decisão do Rubens na hanseníase, 16/11/2026). Vem em branco em todos os registros de 2024 e 2025; fica como veio, e a semana calculada pela data do diagnóstico está na coluna extra logo depois (decisão do Rubens na conferência, 18/11/2026)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHASIFG",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de sífilis em gestante (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. Decisão do Rubens (16/11/2026): 0, 00 e 43 = Analfabeto; 1 e 01 = 1ª a 4ª série incompleta do EF, e assim por diante."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICSIFG",
+      "local": "p. 1, campo 31",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "PRE_UFREL",
+      "fonte": "DICSIFG",
+      "local": "p. 1, campo 32",
+      "rotulo": "UF de realização do pré-natal",
+      "tipo": "uf",
+      "observacao": "O DICSIFG fala em sigla da UF, mas o arquivo traz o código numérico (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "PRE_MUNIRE",
+      "fonte": "DICSIFG",
+      "local": "p. 2, campo 33",
+      "rotulo": "Município de realização do pré-natal",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "TPEVIDENCI",
+      "fonte": "DICSIFG",
+      "local": "p. 2, campo 36",
+      "rotulo": "Classificação clínica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Primária"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Secundária"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Terciária"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Latente"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 da ficha só comporta 1 a 4 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPTESTE1",
+      "fonte": "DICSIFG",
+      "local": "p. 2-3, campo 37",
+      "rotulo": "Teste não treponêmico no pré-natal",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Reagente"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não reagente"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não realizado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 da ficha só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Teste não treponêmico: VDRL ou RPR. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DSTITULO1",
+      "fonte": "DICSIFG",
+      "local": "p. 3, campo 38",
+      "rotulo": "Título do teste não treponêmico no pré-natal (1:)",
+      "tipo": "texto",
+      "observacao": "Resultado da titulação do VDRL/RPR; o número é o denominador do título (por exemplo, 8 = 1:8). Fica como veio."
+    },
+    {
+      "nome": "DTTESTE1",
+      "fonte": "DICSIFG",
+      "local": "p. 3, campo 39",
+      "rotulo": "Data do teste não treponêmico no pré-natal",
+      "tipo": "data"
+    },
+    {
+      "nome": "TPCONFIRMA",
+      "fonte": "DICSIFG",
+      "local": "p. 3, campo 40",
+      "rotulo": "Teste treponêmico no pré-natal",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Reagente",
+          "fonte": "FICHASIFG",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não reagente",
+          "fonte": "FICHASIFG",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não realizado",
+          "fonte": "FICHASIFG",
+          "local": "p. 1, campo 40"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado",
+          "fonte": "FICHASIFG",
+          "local": "p. 1, campo 40"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 da ficha só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "O DICSIFG não lista as categorias deste campo (só diz \"aceita apenas os códigos listados\"); elas vêm da ficha (campo 40). Testes treponêmicos: FTA-Abs, MHA-Tp, TPHA, ELISA. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPESQUEMA",
+      "fonte": "DICSIFG",
+      "local": "p. 4, campo 41",
+      "rotulo": "Esquema de tratamento prescrito à gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Penicilina G benzatina 2.400.000 UI"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Penicilina G benzatina 4.800.000 UI"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Penicilina G benzatina 7.200.000 UI"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro esquema"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não realizado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 da ficha só comporta 1 a 5 e 9"
+      },
+      "observacao": "Rótulos do DICSIFG. Código 3 = \"Penicilina G benzatina 7.200.000 UI\" (decisão do Rubens na conferência, 18/11/2026; o DICSIFG escreve \"7.200..000UI\" e a ficha escreve \"benzantina\"). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DSMOTIVO",
+      "fonte": "DICSIFG",
+      "local": "p. 5, campo 45",
+      "rotulo": "Motivo para o não tratamento do parceiro – outro (descrição)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "TPMOTPARC",
+      "fonte": "DICSIFG",
+      "local": "p. 4, campo 44",
+      "rotulo": "Motivo para o não tratamento do parceiro",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Parceiro não teve mais contato com a gestante"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Parceiro não foi comunicado/convocado à US para tratamento"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Parceiro foi comunicado/convocado à US para tratamento, mas não compareceu"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parceiro foi comunicado/convocado à US mas recusou o tratamento"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Parceiro com sorologia não reagente"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outro motivo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 da ficha só comporta 1 a 6"
+      },
+      "observacao": "Rótulos como na ficha (o DICSIFG traz o mesmo texto em minúsculas); US = unidade de saúde. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPESQPAR",
+      "fonte": "DICSIFG",
+      "local": "p. 4, campo 43",
+      "rotulo": "Esquema de tratamento prescrito ao parceiro",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Penicilina G benzatina 2.400.000 UI"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Penicilina G benzatina 4.800.000 UI"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Penicilina G benzatina 7.200.000 UI"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro esquema"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não realizado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 da ficha só comporta 1 a 5 e 9"
+      },
+      "observacao": "Rótulos do DICSIFG. Código 3 = \"Penicilina G benzatina 7.200.000 UI\" (decisão do Rubens na conferência, 18/11/2026; o DICSIFG escreve \"7.200..000UI\" e a ficha escreve \"benzantina\"). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRATPARC",
+      "fonte": "DICSIFG",
+      "local": "p. 4, campo 42",
+      "rotulo": "Parceiro tratado concomitantemente à gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "NOTIF2018",
+      "local": "campo 32 (Classificação final), Anexo I",
+      "rotulo": "Classificação final",
+      "tipo": "codigo",
+      "observacao": "Nenhum documento de sífilis em gestante descreve a classificação final, e o Anexo I do NOTIF2018 não tem linha de sífilis. A coluna vem em branco em todos os registros de 2024 e 2025; se vier algum código, fica como veio."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra, pedida pelo Rubens (18/11/2026): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "Resolvida (Rubens, 18/11/2026): sem fonte de sífilis em gestante e sem linha no Anexo I do NOTIF2018; vem sempre em branco (2024 e 2025); o código fica como veio."
+    },
+    {
+      "coluna": "DTTESTE1",
+      "descricao": "Resolvida (Rubens, 16/11/2026): valor só com asteriscos vale como campo em branco, em todos os agravos (18.747 registros de 2024 e 12.473 de 2025 na data do teste)."
+    },
+    {
+      "coluna": "TPCONFIRMA",
+      "descricao": "Resolvida (Rubens, 18/11/2026): as categorias (1 Reagente, 2 Não reagente, 3 Não realizado, 9 Ignorado) vêm da ficha, porque o DICSIFG não as lista."
+    },
+    {
+      "coluna": "TPESQUEMA e TPESQPAR",
+      "descricao": "Resolvida (Rubens, 18/11/2026): código 3 = \"Penicilina G benzatina 7.200.000 UI\", apesar das grafias divergentes nas fontes (\"7.200..000UI\" no DICSIFG, \"benzantina\" na ficha)."
+    },
+    {
+      "coluna": "PRE_MUNIRE",
+      "descricao": "Resolvida (Rubens, 18/11/2026): os dois registros de 2025 com texto no lugar do código do município ficam como vieram, nas Inconsistências."
+    },
+    {
+      "coluna": "Nota informativa",
+      "descricao": "Aprovada (Rubens, 18/11/2026): SIFIGEN_NOTA_INFORMATIVA.pdf é uma imagem escaneada, sem texto que a ferramenta consiga ler; não foi usada."
+    },
+    {
+      "coluna": "PRE_UNIPRE, PRE_SISPRE",
+      "descricao": "Resolvida (Rubens, 18/11/2026): estão no DICSIFG (campos 34 e 35), mas não vêm no arquivo público, por isso não entram no dicionário. Se um dia vierem, a unidade do pré-natal (código do CNES) deve sair com o nome do estabelecimento, pela tabela do CNES; o número do SISPRENATAL não deve vir preenchido, porque o sistema deixou de ser usado como ferramenta principal de digitação."
+    },
+    {
+      "coluna": "DSTITULO1 e DSMOTIVO",
+      "descricao": "Resolvida (Rubens, 18/11/2026): título e motivo (texto) ficam como vieram."
+    }
+  ]
+}

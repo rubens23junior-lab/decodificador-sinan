@@ -1,0 +1,764 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "HIV em criança exposta",
+    "codigos": [
+      "Z206",
+      "Z20.6",
+      "Z 20.6",
+      "Z 20 6",
+      "Z 2 0 6"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos HIVEBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-hiv-crianca-exposta.xlsx (conferência na planilha em 20/11/2026, com as correções pedidas por ele aplicadas no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICHIVE": {
+      "documento": "Dicionário de Dados – HIV criança exposta (campos da notificação e de encerramento)",
+      "orgao": "Ministério da Saúde / SVSA / DAENT / CGIAE / GT-Sinan",
+      "data": "Revisado em fevereiro/2024 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 19/11/2026, com a autorização dele para usar os dicionários de HIV de 2024 como fonte principal.",
+      "arquivo": "docs/fontes/hiv-crianca-exposta/HIVCR_DIC_DADOS.pdf"
+    },
+    "FICHAHIVE": {
+      "documento": "Ficha de Notificação/Investigação – Criança exposta ao HIV – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 18/05/2009 (rodapé). PDF escaneado (só imagem), colocado pelo Rubens em docs/fontes em 19/11/2026; lido pelas imagens das duas páginas.",
+      "arquivo": "docs/fontes/hiv-crianca-exposta/11140250-ficha-de-investigacao-crianca-exposta-ao-hiv.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {},
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAHIVE",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "Z206",
+            "Z20.6",
+            "Z 20.6",
+            "Z 20 6",
+            "Z 2 0 6"
+          ],
+          "rotulo": "Contato com e exposição ao vírus da imunodeficiência humana [HIV]",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_21.cnv, código Z206"
+        }
+      ],
+      "observacao": "A ficha mostra 'CRIANÇA EXPOSTA AO HIV' com o CID 'Z 20.6'; no arquivo vem 'Z206' (regra do Rubens: o CID como na ficha e sem ponto e espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana). Nas notificações do Espírito Santo de 2022 a 2024 (394) vem em branco; a semana calculada pela data da notificação está na coluna extra logo depois."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "FICHAHIVE",
+      "local": "p. 2, instruções, item 7",
+      "rotulo": "Data do diagnóstico",
+      "tipo": "data",
+      "observacao": "Instruções da ficha, item 7: entende-se como data do diagnóstico a data de nascimento da criança ou, nos casos de exposição por amamentação cruzada, a data de início da amamentação (quando não conhecida, o 1º dia do mês e ano aproximados da exposição). O DICHIVE (p. 2) descreve o campo como \"Data dos primeiros sintomas / Diagnóstico\"."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "DICHIVE",
+      "local": "p. 2",
+      "rotulo": "Semana epidemiológica do diagnóstico",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS. Nas notificações do Espírito Santo de 2022 a 2024 (394) vem em branco; a semana calculada pela data do diagnóstico está na coluna extra logo depois."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 12 só comporta 1 a 6 e 9"
+      },
+      "observacao": "As formas com um e dois dígitos (01 e 1) entram (regra do Rubens); 9, 09 e 99 = Ignorado (decisão do Rubens nas hepatites, 19/11/2026). O NOTIF2018 diz que na criança exposta o campo Gestante não é habilitado; nos arquivos vem quase sempre 6 (Não se aplica). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "DICHIVE",
+          "local": "p. 3, Escolaridade"
+        },
+        {
+          "codigos": [
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem do DICHIVE (p. 3); na ficha da criança exposta o campo 14 vem riscado, sem categorias. As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026). Nas 394 notificações do Espírito Santo de 2022 a 2024 a escolaridade da criança (campo 14) vem \"1\": sai como \"Inconsistência/Preenchido erroneamente\", destacada e nas Inconsistências (decisão do Rubens na conferência, 20/11/2026). A forma \"01\" continua valendo como 1ª a 4ª série incompleta do EF.",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Preenchido erroneamente",
+        "motivo": "Escolaridade \"1\" gravada para a criança exposta (campo 14); código fora do campo"
+      }
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Data da investigação",
+      "tipo": "data",
+      "observacao": "Vem em branco em todos os registros de 2022 a 2024."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá. Vem em branco em todos os registros de 2022 a 2024."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Classificação final",
+      "tipo": "codigo",
+      "observacao": "O DICHIVE remete ao \"Anexo I\", que não vem no documento; o Anexo I do NOTIF2018 não tem linha de criança exposta, e a ficha não tem esse campo. Vem em branco em todos os registros de 2022 a 2024. Se vier algum código, fica como veio."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Critério de confirmação",
+      "tipo": "codigo",
+      "observacao": "O DICHIVE remete ao \"Anexo I\", que não vem no documento; o Anexo I do NOTIF2018 não tem linha de criança exposta, e a ficha não tem esse campo. Vem em branco em todos os registros de 2022 a 2024. Se vier algum código, fica como veio."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHIVE só lista 1, 2 e 9"
+      },
+      "observacao": "Categorias do DICHIVE (1 - Sim, 2 - Não, 9 - Ignorado), confirmadas pelo Rubens (20/11/2026). Vem em branco em todos os registros de 2022 a 2024. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "FICHAHIVE",
+      "local": "p. 2, campo 47",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Infectada"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não infectada"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Perda de seguimento"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Caso em andamento"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência para outro Município e/ou Estado"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Óbito por HIV/Aids"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Óbito por outras causas"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 47 da ficha só comporta 1 a 7"
+      },
+      "observacao": "O DICHIVE remete ao \"Anexo I\", que não vem no documento; as categorias são as do campo 47 da ficha (\"Evolução do caso (criança exposta ao HIV)\"), como o Rubens decidiu (20/11/2026). A ficha escreve \"Municipio\", sem acento. Vem em branco em todos os registros de 2022 a 2024. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Data do óbito",
+      "tipo": "data",
+      "observacao": "Vem em branco em todos os registros de 2022 a 2024."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICHIVE",
+      "local": "p. 4",
+      "rotulo": "Data do encerramento",
+      "tipo": "data",
+      "observacao": "Na ficha, campo 48 (\"Data de encerramento da investigação de criança exposta ao HIV\"). Vem em branco em todos os registros de 2022 a 2024."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_NOT_CALC",
+      "rotulo": "Semana epidemiológica da notificação (calculada pela data da notificação)",
+      "de": "DT_NOTIFIC",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_NOT",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data da notificação, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_NOT continua como veio."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICHIVE (dicionário de HIV criança exposta, revisado em fevereiro/2024, do pacote Docs_TAB_SINAN). A ficha (2009) é um PDF escaneado; foi lida pelas imagens. Não há arquivo de definições do TabWin para criança exposta."
+    },
+    {
+      "coluna": "CLASSI_FIN e CRITERIO",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O DICHIVE remete ao \"Anexo I\", que não vem no documento, e o Anexo I do NOTIF2018 não tem linha de criança exposta. As colunas vêm em branco em todos os registros: ficaram como código mantido como veio."
+    },
+    {
+      "coluna": "EVOLUCAO",
+      "descricao": "Resolvida (Rubens, 20/11/2026): valem as categorias do campo 47 da ficha (1 Infectada a 7 Óbito por outras causas)."
+    },
+    {
+      "coluna": "DOENCA_TRA",
+      "descricao": "Resolvida (Rubens, 20/11/2026): 1 Sim, 2 Não, 9 Ignorado."
+    },
+    {
+      "coluna": "Notificações do Espírito Santo",
+      "descricao": "Resolvida (Rubens, 20/11/2026): a escolaridade \"1\" é o campo 14 (escolaridade da criança) e sai como \"Inconsistência/Preenchido erroneamente\". O resto dessas 394 notificações sai como está gravado."
+    },
+    {
+      "coluna": "Campos 31 a 46 da ficha",
+      "descricao": "Mantida (20/11/2026): o Rubens mostrou os campos 31 a 46 da ficha de 2009 (mãe/nutriz, parto, aleitamento e exames da criança). Nenhum documento dá o nome dessas colunas no banco (o DICHIVE de 2024 não as descreve), e o arquivo público não as traz; por isso não há como incluí-las sem inventar nomes. Se aparecer um dicionário que as descreva, entram."
+    },
+    {
+      "coluna": "Colunas sem valor",
+      "descricao": "Aprovada (Rubens, 20/11/2026). DT_INVEST, ID_OCUPA_N, CLASSI_FIN, CRITERIO, DOENCA_TRA, EVOLUCAO, DT_OBITO e DT_ENCERRA vêm em branco (ou com asteriscos, que valem como branco) em todos os registros de 2022 a 2024. Ficam no dicionário para arquivos que as tragam."
+    }
+  ]
+}

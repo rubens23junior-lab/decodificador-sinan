@@ -1,0 +1,1614 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Acidentes por animais peçonhentos",
+    "codigos": [
+      "X29",
+      "X 29",
+      "X 2 9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos ANIMBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-animais-peconhentos.xlsx (conferência na planilha em 20/11/2026, tudo aprovado; texto do campo 51 da ficha acrescentado às observações das ampolas)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICANIM": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Acidente por animais peçonhentos (campos 31 a 59)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "Revisado em julho/2010 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/animais-peconhentos/ANIMPN_DIC_DADOS.pdf"
+    },
+    "FICHAANIM": {
+      "documento": "Ficha de Investigação – Acidentes por animais peçonhentos – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 19/01/2006 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/animais-peconhentos/ANIMPN_FICHA.pdf"
+    },
+    "INSTANIM": {
+      "documento": "Acidentes por animais peçonhentos – Instruções para preenchimento – Ficha de investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/animais-peconhentos/ANIMPN_INSTRUCIONAL.pdf"
+    },
+    "TABANIM": {
+      "documento": "Arquivo de definições do TabWin para acidentes por animais peçonhentos (AnimaispNET.DEF)",
+      "orgao": "Ministério da Saúde / GT-Sinan",
+      "data": "Atualizado em 09/04/2008 (\"corrigido nomes dos campos NU_AMPO_5 e 7\") e em 25/08/2010 (cabeçalho do .def). Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/AnimaispNET.DEF"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAANIM",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "X29",
+            "X 29",
+            "X 2 9"
+          ],
+          "rotulo": "Contato com animais ou plantas venenosos, sem especificação",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_20.CNV, código X29"
+        }
+      ],
+      "observacao": "A ficha mostra 'ACIDENTES POR ANIMAIS PEÇONHENTOS' com o CID 'X 29'; no arquivo vem 'X29' (regra do Rubens: o CID como na ficha e sem espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data",
+      "observacao": "Ficha, campo 7. Nos acidentes por animais peçonhentos, corresponde à data do acidente/primeiros sintomas."
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC. Fica como veio."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAANIM",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICANIM",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICANIM",
+      "local": "p. 2, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "ANT_DT_ACI",
+      "fonte": "DICANIM",
+      "local": "p. 2, campo 33",
+      "rotulo": "Data do acidente",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_UF",
+      "fonte": "DICANIM",
+      "local": "p. 2, campo 34",
+      "rotulo": "UF de ocorrência do acidente",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ANT_MUNIC_",
+      "fonte": "DICANIM",
+      "local": "p. 2-3, campo 35",
+      "rotulo": "Município de ocorrência do acidente",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ANT_LOCALI",
+      "fonte": "DICANIM",
+      "local": "p. 3, campo 36",
+      "rotulo": "Localidade da ocorrência do acidente",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (ANIMBR21 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "ANT_ZONA",
+      "fonte": "DICANIM",
+      "local": "p. 3, campo 37",
+      "rotulo": "Zona de ocorrência",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Urbana"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Rural"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Periurbana"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Não vem nos arquivos públicos do DATASUS (ANIMBR21 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TEMPO_",
+      "fonte": "DICANIM",
+      "local": "p. 3, campo 38",
+      "rotulo": "Tempo decorrido picada/atendimento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "0 - 1h"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "1 - 3h"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3 - 6h"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "6 - 12h"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "12 e 24h"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "24 e +h"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1 a 6 e 9"
+      },
+      "observacao": "Rótulos do DICANIM, como escritos na fonte. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_LOCA_1",
+      "fonte": "DICANIM",
+      "local": "p. 3, campo 39",
+      "rotulo": "Local da picada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "Cabeça"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "Braço"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "Ante-Braço"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "Mão"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "Dedo da Mão"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Tronco"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Coxa"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "Perna"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "Pé"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Dedo do Pé"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 01 a 10 e 99"
+      },
+      "observacao": "O DICANIM diz que o código tem 2 dígitos; a forma sem o zero também entra (regra do Rubens). O DICANIM escreve \"tronco\" com minúscula. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MCLI_LOCAL",
+      "fonte": "DICANIM",
+      "local": "p. 3, campo 40",
+      "rotulo": "Manifestações locais",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_DOR",
+      "fonte": "DICANIM",
+      "local": "p. 3-4, campo 41",
+      "rotulo": "Manifestações locais: dor",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_EDEMA",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 41",
+      "rotulo": "Manifestações locais: edema",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_EQUIMO",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 41",
+      "rotulo": "Manifestações locais: equimose",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_NECROS",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 41",
+      "rotulo": "Manifestações locais: necrose",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_LOCAL_",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 41",
+      "rotulo": "Manifestações locais: outras",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_LOCA_1",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 41",
+      "rotulo": "Manifestações locais: outras (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "MCLI_SIST",
+      "fonte": "DICANIM",
+      "local": "p. 4, campo 42",
+      "rotulo": "Manifestações sistêmicas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_NEURO",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: neuroparalíticas (ptose palpebral, turvação visual)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HEMORR",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: hemorrágicas (gengivorragia, outros sangramentos)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_VAGAIS",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: vagais (vômitos/diarréia)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_MIOLIT",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: miolíticas/hemolíticas (mialgia, anemia, urina escura)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_RENAL",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: renais (oligúria/anúria)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OUTR_2",
+      "fonte": "DICANIM",
+      "local": "p. 5, campo 43",
+      "rotulo": "Manifestações sistêmicas: outras",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OUTR_3",
+      "fonte": "DICANIM",
+      "local": "p. 6, campo 43",
+      "rotulo": "Manifestações sistêmicas: outras (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CLI_TEMPO_",
+      "fonte": "DICANIM",
+      "local": "p. 6, campo 44",
+      "rotulo": "Tempo de coagulação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Normal"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Alterado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1, 2 e 9"
+      },
+      "observacao": "Aqui o 9 é \"Não realizado\" (DICANIM e Tempcoa.cnv do TabWin), e não \"Ignorado\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TP_ACIDENT",
+      "fonte": "DICANIM",
+      "local": "p. 6, campo 45",
+      "rotulo": "Tipo de acidente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Serpente"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Aranha"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Escorpião"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Lagarta"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Abelha"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1 a 6 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANI_TIPO_1",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 45",
+      "rotulo": "Tipo de acidente: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre (outro animal responsável pela agressão); fica como veio."
+    },
+    {
+      "nome": "ANI_SERPEN",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 46",
+      "rotulo": "Serpente: tipo de acidente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Botrópico"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Crotálico"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Elapídico"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Laquético"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Serpente não peçonhenta"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1 a 5 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANI_ARANHA",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 47",
+      "rotulo": "Aranha: tipo de acidente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Foneutrismo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Loxoscelismo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Latrodectismo"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outra aranha"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 47 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANI_LAGART",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 48",
+      "rotulo": "Lagarta: tipo de acidente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Lonomia"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Outra lagarta"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_CLASSI",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 49",
+      "rotulo": "Classificação do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Leve"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Moderado"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Grave"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Gravidade do envenenamento. O LEVEMODE.CNV do TabWin tem também 8 (Inconclusivo), que o DICANIM não lista; nos arquivos não aparece. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CON_SOROTE",
+      "fonte": "DICANIM",
+      "local": "p. 7, campo 50",
+      "rotulo": "Soroterapia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_AMPOLAS",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antibotrópico (SAB)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPOL_1",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro anticrotálico (SAC)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPOL_8",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antiaracnídico (SAAr)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPOL_6",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antibotrópico-laquético (SABL)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPOL_4",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antielapídico (SAEL)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPO_7",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antiloxoscélico (SALox)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\". No DICANIM a coluna se chama NU_AMPOL_7; o .def registra a correção do nome para NU_AMPO_7 (09/04/2008)."
+    },
+    {
+      "nome": "NU_AMPO_5",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antibotrópico-crotálico (SABC)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\". No DICANIM a coluna se chama NU_AMPOL_5; o .def registra a correção do nome para NU_AMPO_5 (09/04/2008)."
+    },
+    {
+      "nome": "NU_AMPOL_9",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antiescorpiônico (SAEsc)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "NU_AMPOL_3",
+      "fonte": "DICANIM",
+      "local": "p. 7-9, campo 51",
+      "rotulo": "Número de ampolas de soro antilonômico (SALon)",
+      "tipo": "numero",
+      "observacao": "Ficha, campo 51: \"Se Soroterapia Sim, especificar número de ampolas de soro\" (informar o número de ampolas aplicadas de cada soro: antibotrópico, antibotrópico-laquético, antibotrópico-crotálico, anticrotálico, antielapídico, antiescorpiônico, antiaracnídico, antiloxoscélico e antilonômico; texto da ficha registrado pelo Rubens na conferência, 20/11/2026). Ligação de cada coluna com o soro pelo AnimaispNET.DEF do TabWin, na mesma ordem do DICANIM e da ficha. O DICANIM escreve \"antibrotópico\"."
+    },
+    {
+      "nome": "COM_LOC",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 52",
+      "rotulo": "Complicações locais",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 52 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_SECUND",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 53",
+      "rotulo": "Complicações locais: infecção secundária",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_NECROS",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 53",
+      "rotulo": "Complicações locais: necrose extensa",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_COMPOR",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 53",
+      "rotulo": "Complicações locais: síndrome comportamental",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 só comporta 1, 2 e 9"
+      },
+      "observacao": "Rótulo como no DICANIM e no AnimaispNET.DEF (\"Síndrome Comportamental\"); no DICANIM a coluna se chama COM_COMPAR, e na clínica dos acidentes o termo usual é \"síndrome compartimental\" (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_DEFICT",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 53",
+      "rotulo": "Complicações locais: déficit funcional",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_APUTAC",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 53",
+      "rotulo": "Complicações locais: amputação",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_SISTEM",
+      "fonte": "DICANIM",
+      "local": "p. 9, campo 54",
+      "rotulo": "Complicações sistêmicas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 54 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_RENAL",
+      "fonte": "DICANIM",
+      "local": "p. 9-10, campo 55",
+      "rotulo": "Complicações sistêmicas: insuficiência renal",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_EDEMA",
+      "fonte": "DICANIM",
+      "local": "p. 9-10, campo 55",
+      "rotulo": "Complicações sistêmicas: insuficiência respiratória/edema pulmonar agudo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_SEPTIC",
+      "fonte": "DICANIM",
+      "local": "p. 9-10, campo 55",
+      "rotulo": "Complicações sistêmicas: septicemia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COM_CHOQUE",
+      "fonte": "DICANIM",
+      "local": "p. 9-10, campo 55",
+      "rotulo": "Complicações sistêmicas: choque",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICANIM",
+      "local": "p. 10, campo 56",
+      "rotulo": "Acidente relacionado ao trabalho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 56 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICANIM",
+      "local": "p. 10, campo 57",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por acidente por animais peçonhentos"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 57 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICANIM",
+      "local": "p. 10, campo 58",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICANIM",
+      "local": "p. 11, campo 59",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "DICANIM",
+      "local": "p. 11",
+      "rotulo": "Transferência vertical da investigação (lote)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (ANIMBR21 a 24); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICANIM (dicionário de acidentes por animais peçonhentos, revisado em julho/2010, do pacote Docs_TAB_SINAN). A ficha é de 2006. O AnimaispNET.DEF do TabWin confirma as colunas. Os campos da notificação foram copiados da meningite, já conferida."
+    },
+    {
+      "coluna": "Ampolas de soro (NU_AMPOL*)",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Os nomes das colunas não dizem qual é o soro. A ligação foi feita pelo AnimaispNET.DEF, que dá o soro de cada coluna, na mesma ordem do DICANIM e da ficha: NU_AMPOLAS antibotrópico, NU_AMPOL_1 anticrotálico, NU_AMPOL_8 antiaracnídico, NU_AMPOL_6 antibotrópico-laquético, NU_AMPOL_4 antielapídico, NU_AMPO_7 antiloxoscélico, NU_AMPO_5 antibotrópico-crotálico, NU_AMPOL_9 antiescorpiônico e NU_AMPOL_3 antilonômico. São números e ficam como vieram."
+    },
+    {
+      "coluna": "COM_COMPOR",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O DICANIM e o .def chamam esta complicação local de \"Síndrome Comportamental\"; na clínica dos acidentes o termo usual é \"síndrome compartimental\". Ficou como na fonte. No DICANIM a coluna se chama COM_COMPAR. Fica como na fonte."
+    },
+    {
+      "coluna": "CLI_TEMPO_",
+      "descricao": "Aprovada (Rubens, 20/11/2026). No tempo de coagulação o código 9 quer dizer \"Não realizado\", e não \"Ignorado\" (DICANIM e TabWin). Vem 9 em cerca de 914 mil registros (73%)."
+    },
+    {
+      "coluna": "ANT_LOCA_1",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O local da picada vem com 2 dígitos (01 a 10 e 99); as formas sem zero também entram."
+    },
+    {
+      "coluna": "Campos do DICANIM fora do arquivo",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Entraram, pela regra do Rubens: localidade da ocorrência (36), zona de ocorrência (37) e o lote da transferência vertical. As observações não são exportadas para o DBF (DICANIM)."
+    },
+    {
+      "coluna": "Arquivos",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Vieram 2021 a 2024 (262.723, 298.821, 352.994 e 346.576 notificações). O arquivo de 2025 não foi baixado."
+    }
+  ]
+}

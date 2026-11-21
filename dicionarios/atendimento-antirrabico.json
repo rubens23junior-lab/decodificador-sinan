@@ -1,0 +1,1539 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Atendimento antirrábico humano",
+    "codigos": [
+      "W64",
+      "W 64",
+      "W 6 4"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos ANTRBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-21",
+    "registro": "docs/conferencia/conferencia-atendimento-antirrabico.xlsx (conferência na planilha em 21/11/2026, tudo aprovado, sem correções)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "FICHAANTR": {
+      "documento": "Ficha de Investigação – Atendimento Anti-Rábico Humano – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 27/09/2005 (rodapé). Baixada pelo Rubens do Portal do Sinan (portalsinan.saude.gov.br, documentos de agravos, \"anti_rabico_v5.pdf\") e colocada em docs/fontes em 21/11/2026. Não há dicionário de dados deste agravo no pacote Docs_TAB_SINAN.",
+      "arquivo": "docs/fontes/atendimento-antirrabico/anti_rabico_v5.pdf"
+    },
+    "TABANTR": {
+      "documento": "Arquivo de definições do TabWin para atendimento anti-rábico humano (AntirabNET.def) e conversões (SIM_NAO, CANFELQUNET, SADSUSDENET, UNICMULTNET, FIM_ANIMAL, INSTBUTNET, LAB_SORO, HETEHOMO, PREXPOSINET, AT90AP90, MOTIVO)",
+      "orgao": "Ministério da Saúde / GT-Sinan e UT-Sinan",
+      "data": "Atualizado em 15/10/2007 e 24/09/2010 (cabeçalho do .def); UNICMULTNET revisado em 2019. Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/AntirabNET.def"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sn": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      }
+    ],
+    "localizacao": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Desconhecida"
+      }
+    ],
+    "laboratorio": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Instituto Butantan"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Instituto Vital Brasil"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Aventis Pasteur"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Outro"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ],
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024."
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "W64",
+            "W 64",
+            "W 6 4"
+          ],
+          "rotulo": "Exposição a outras forças mecânicas animadas e às não especificadas",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_20.CNV, código W64"
+        }
+      ],
+      "observacao": "A ficha mostra 'ATENDIMENTO ANTI-RÁBICO HUMANO' com o CID 'W 64'; no arquivo vem 'W64' (regra do Rubens: o CID como na ficha e sem espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026). O Rubens confirmou na conferência que o W64 corresponde a \"Exposição a outras forças mecânicas animadas e às não especificadas\" (21/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 7",
+      "rotulo": "Data do atendimento",
+      "tipo": "data",
+      "observacao": "Na ficha de atendimento anti-rábico humano, o campo 7 é a \"Data do Atendimento\" (no lugar da data dos primeiros sintomas); o TabWin chama a semana dessa data de \"Sem.Atendimento\"."
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "TABANTR",
+      "local": "AntirabNET.def, \"Sem.Atendimento\"",
+      "rotulo": "Semana epidemiológica do atendimento",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana) da data do atendimento. Fica como veio."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC. Fica como veio."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAANTR",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 31",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "ANT_CONTAT",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de exposição ao vírus rábico: contato indireto",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Tipo exp Contatindireto\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ARRANH",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de exposição ao vírus rábico: arranhadura",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Tipo exp Arranhadura\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_LAMBED",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de exposição ao vírus rábico: lambedura",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Tipo exp Lambedura\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MORDED",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de exposição ao vírus rábico: mordedura",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Tipo exp Mordedura\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_OUTRO_",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de exposição ao vírus rábico: outro",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Tipo exp Outro\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MUCOSA",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: mucosa",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Mucosa\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CABECA",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: cabeça/pescoço",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Cabeça/pescoço\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MAOS",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: mãos/pés",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Mãos/pés\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TRONCO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: tronco",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Tronco\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MEMBRO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: membros superiores",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Membros superiores\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_MEMB_1",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 33",
+      "rotulo": "Localização: membros inferiores",
+      "tipo": "categorico",
+      "lista": "localizacao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Local Membros inferiores\". Categorias da ficha (1 Sim, 2 Não, 3 Desconhecida); o .def usa o SIM_NAO.CNV. O código 9 aparece em cerca de 90 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "FERIMENTO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 34",
+      "rotulo": "Ferimento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Único"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Múltiplo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Sem ferimento"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 da ficha só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_PROFUN",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 35",
+      "rotulo": "Tipo de ferimento: profundo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"ferimento profundo\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_SUPERF",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 35",
+      "rotulo": "Tipo de ferimento: superficial",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"ferimento Superficial\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DILACE",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 35",
+      "rotulo": "Tipo de ferimento: dilacerante",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"ferimento Dilacerante\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DT_EXP",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 36",
+      "rotulo": "Data da exposição",
+      "tipo": "data"
+    },
+    {
+      "nome": "PRE_EXPOS",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 37",
+      "rotulo": "Antecedentes de tratamento anti-rábico: pré-exposição",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Antec trat Pré-exp\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "POS_EXPOS",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 37",
+      "rotulo": "Antecedentes de tratamento anti-rábico: pós-exposição",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Antec trat Pós-exp\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_ANTIGO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 38",
+      "rotulo": "Se houve tratamento anterior, quando foi concluído",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Até 90 dias"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Após 90 dias"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 da ficha só comporta 1 e 2"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Antec trat quando?\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOSES",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 39",
+      "rotulo": "Nº de doses aplicadas (tratamento anterior)",
+      "tipo": "numero",
+      "observacao": "Número; fica como veio."
+    },
+    {
+      "nome": "ANIMAL",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 40",
+      "rotulo": "Espécie do animal agressor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Canina"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Felina"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Quiróptera (Morcego)"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Primata (Macaco)"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Raposa"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Herbívoro doméstico"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Outra"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 da ficha só comporta 1 a 7"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HERBIV_DES",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 40",
+      "rotulo": "Espécie do animal agressor: herbívoro doméstico (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio (às vezes vem um número, sem documento que o explique)."
+    },
+    {
+      "nome": "OUTRO_DES",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 40",
+      "rotulo": "Espécie do animal agressor: outra (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CONDIC_ANI",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 41",
+      "rotulo": "Condição do animal para fins de conduta do tratamento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sadio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Suspeito"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Raivoso"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Morto/Desaparecido"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 da ficha só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OBSERVACAO",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 42",
+      "rotulo": "Animal passível de observação (somente para cão ou gato)",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 da ficha só comporta 1 e 2"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Passível observação\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRAT_ATUAL",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 43",
+      "rotulo": "Tratamento indicado",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Pré Exposição"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Dispensa de Tratamento"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Observação do animal (se cão ou gato)"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Observação + Vacina"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Vacina"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Soro + Vacina"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Esquema de Reexposição"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 da ficha só comporta 1 a 7"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_VACINA",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 44",
+      "rotulo": "Laboratório produtor da vacina",
+      "tipo": "categorico",
+      "lista": "laboratorio",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 da ficha só comporta 1 a 4"
+      },
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_VAC_DE",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 44",
+      "rotulo": "Laboratório produtor da vacina: outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "LOTE_VAC",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 45",
+      "rotulo": "Número do lote da vacina",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "DT_VENCIM",
+      "fonte": "FICHAANTR",
+      "local": "p. 1, campo 46",
+      "rotulo": "Data do vencimento da vacina",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DOSE_1",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 47",
+      "rotulo": "Data da aplicação da vacina: 1ª dose (dia/mês)",
+      "tipo": "texto",
+      "observacao": "A ficha pede só o dia e o mês (\"dd/mm\"); fica como veio."
+    },
+    {
+      "nome": "DT_DOSE_2",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 47",
+      "rotulo": "Data da aplicação da vacina: 2ª dose (dia/mês)",
+      "tipo": "texto",
+      "observacao": "A ficha pede só o dia e o mês (\"dd/mm\"); fica como veio."
+    },
+    {
+      "nome": "DT_DOSE_3",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 47",
+      "rotulo": "Data da aplicação da vacina: 3ª dose (dia/mês)",
+      "tipo": "texto",
+      "observacao": "A ficha pede só o dia e o mês (\"dd/mm\"); fica como veio."
+    },
+    {
+      "nome": "DT_DOSE_4",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 47",
+      "rotulo": "Data da aplicação da vacina: 4ª dose (dia/mês)",
+      "tipo": "texto",
+      "observacao": "A ficha pede só o dia e o mês (\"dd/mm\"); fica como veio."
+    },
+    {
+      "nome": "DT_DOSE_5",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 47",
+      "rotulo": "Data da aplicação da vacina: 5ª dose (dia/mês)",
+      "tipo": "texto",
+      "observacao": "A ficha pede só o dia e o mês (\"dd/mm\"); fica como veio. Nos arquivos públicos de 2020 a 2024 a 5ª dose é sempre igual à 4ª, registro a registro: parece cópia na geração do arquivo (pendência)."
+    },
+    {
+      "nome": "DT_VAC_1",
+      "fonte": "FICHAANTR",
+      "local": "não aparece na fonte",
+      "rotulo": "DT_VAC_1 (sem descrição nas fontes)",
+      "tipo": "texto",
+      "observacao": "Nem a ficha nem o AntirabNET.def descrevem esta coluna; pelo nome, parece a data da 1ª dose em outro formato. Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "DT_VAC_2",
+      "fonte": "FICHAANTR",
+      "local": "não aparece na fonte",
+      "rotulo": "DT_VAC_2 (sem descrição nas fontes)",
+      "tipo": "texto",
+      "observacao": "Nem a ficha nem o AntirabNET.def descrevem esta coluna; pelo nome, parece a data da 2ª dose em outro formato. Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "DT_VAC_3",
+      "fonte": "FICHAANTR",
+      "local": "não aparece na fonte",
+      "rotulo": "DT_VAC_3 (sem descrição nas fontes)",
+      "tipo": "texto",
+      "observacao": "Nem a ficha nem o AntirabNET.def descrevem esta coluna; pelo nome, parece a data da 3ª dose em outro formato. Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "DT_VAC_4",
+      "fonte": "FICHAANTR",
+      "local": "não aparece na fonte",
+      "rotulo": "DT_VAC_4 (sem descrição nas fontes)",
+      "tipo": "texto",
+      "observacao": "Nem a ficha nem o AntirabNET.def descrevem esta coluna; pelo nome, parece a data da 4ª dose em outro formato. Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "DT_VAC_5",
+      "fonte": "FICHAANTR",
+      "local": "não aparece na fonte",
+      "rotulo": "DT_VAC_5 (sem descrição nas fontes)",
+      "tipo": "texto",
+      "observacao": "Nem a ficha nem o AntirabNET.def descrevem esta coluna; pelo nome, parece a data da 5ª dose em outro formato. Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "FIM_ANIMAL",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 48",
+      "rotulo": "Condição final do animal (após período de observação)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativo para Raiva (Clínica)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo para Raiva (Laboratório)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Positivo para Raiva (Clínica)"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Positivo para Raiva (Laboratório)"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Morto/Sacrificado/Sem Diagnóstico"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 da ficha só comporta 1 a 5 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_INTERR",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 49",
+      "rotulo": "Houve interrupção do tratamento",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 da ficha só comporta 1 e 2"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_MOTIVO",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 50",
+      "rotulo": "Motivo da interrupção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Indicação da Unidade de Saúde"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Transferência"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 da ficha só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BUSCA_ATIV",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 51",
+      "rotulo": "Se houve abandono do tratamento, a unidade de saúde procurou o paciente",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 51 da ficha só comporta 1 e 2"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"US procurou paciente?\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "REACAO_VAC",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 52",
+      "rotulo": "Evento adverso à vacina",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 52 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_INDI_N",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 53",
+      "rotulo": "Indicação do soro anti-rábico",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 53 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_PESO",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 54",
+      "rotulo": "Peso do paciente (kg)",
+      "tipo": "numero",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "TRA_QTD_SO",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 55",
+      "rotulo": "Quantidade de soro aplicada (ml)",
+      "tipo": "numero",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "TIP_SORO",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 55",
+      "rotulo": "Tipo de soro",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Heterólogo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Homólogo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 da ficha só comporta 1 e 2"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_INFILT",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 56",
+      "rotulo": "Infiltração de soro no(s) local(is) do(s) ferimento(s): total",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 56 da ficha só comporta 1 e 2"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Infil soro Total\". A ficha escreve \"Infriltração\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_INFI_1",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 56",
+      "rotulo": "Infiltração de soro no(s) local(is) do(s) ferimento(s): parcial",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 56 da ficha só comporta 1 e 2"
+      },
+      "observacao": "O AntirabNET.def chama a coluna de \"Infil soro Parcial\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_SORO",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 57",
+      "rotulo": "Laboratório produtor do soro anti-rábico",
+      "tipo": "categorico",
+      "lista": "laboratorio",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 57 da ficha só comporta 1 a 4"
+      },
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_SOR_DE",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 57",
+      "rotulo": "Laboratório produtor do soro: outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "TRA_NUM_PA",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 58",
+      "rotulo": "Número da partida do soro",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga este campo); fica para arquivos exportados do próprio Sinan."
+    },
+    {
+      "nome": "REACAO_SOR",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 59",
+      "rotulo": "Evento adverso ao soro anti-rábico",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 59 da ficha só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "FICHAANTR",
+      "local": "p. 2, campo 60",
+      "rotulo": "Data do encerramento do caso",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Não há dicionário de dados do atendimento anti-rábico no pacote Docs_TAB_SINAN. Fontes: a ficha do Portal do Sinan (SVS 27/09/2005) e o AntirabNET.def do TabWin, que liga cada coluna ao campo e dá os códigos. Os campos da notificação vieram da leptospirose, já conferida."
+    },
+    {
+      "coluna": "Localização (ANT_MUCOSA a ANT_MEMB_1)",
+      "descricao": "Aprovada (Rubens, 21/11/2026). A ficha (campo 33) usa 1 Sim, 2 Não e 3 Desconhecida; o .def lê com o SIM_NAO.CNV. Seguiu-se a ficha. O código 9 aparece em cerca de 90 registros por coluna e sai como inconsistência."
+    },
+    {
+      "coluna": "DT_DOSE_5",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Nos arquivos públicos de 2020 a 2024 a 5ª dose é sempre igual à 4ª, registro a registro (3.444 registros conferidos em 2024, nenhuma diferença). Parece cópia na geração do arquivo. Fica como veio."
+    },
+    {
+      "coluna": "DT_VAC_1 a DT_VAC_5",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Colunas sem descrição na ficha e no .def; pelo nome, parecem as datas das doses em outro formato. Vêm sempre vazias. Ficaram como texto mantido como veio."
+    },
+    {
+      "coluna": "Campos sempre vazios",
+      "descricao": "Aprovada (Rubens, 21/11/2026). TP_NOT, laboratório e lote da vacina, laboratório e partida do soro, peso e quantidade de soro vêm em branco em todos os registros públicos de 2020 a 2024 (o DATASUS não divulga). Ficam no dicionário para arquivos exportados do próprio Sinan."
+    },
+    {
+      "coluna": "DT_SIN_PRI e SEM_PRI",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Nesta ficha o campo 7 é a data do atendimento (não a dos primeiros sintomas); os nomes foram ajustados."
+    },
+    {
+      "coluna": "Arquivos",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Vieram 2020 a 2024 (575.884, 637.187, 688.125, 755.150 e 779.311 notificações; 3,4 milhões no total)."
+    }
+  ]
+}

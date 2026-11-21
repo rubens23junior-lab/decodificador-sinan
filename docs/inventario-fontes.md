@@ -63,7 +63,7 @@ A comparação ignora maiúsculas e minúsculas.
 
 ### 3.1 Conferência com um arquivo real do DATASUS
 
-Arquivo: `dados_publicos/DENGBR25.dbc` (dados públicos, fora do controle de versões). Lido só o cabeçalho, sem abrir os registros.
+Arquivo: `dados_publicos/dengue-chikungunya/DENGBR25.dbc` (dados públicos, fora do controle de versões). Lido só o cabeçalho, sem abrir os registros.
 
 - 1.643.215 registros, 121 colunas, registro de 326 bytes. O cabeçalho do DBF vem sem compressão no início do DBC.
 - **As 121 colunas são as mesmas do `dic_dados_dengue.pdf`, na mesma ordem**, com duas diferenças, ambas erros de digitação do dicionário:
@@ -74,7 +74,7 @@ Arquivo: `dados_publicos/DENGBR25.dbc` (dados públicos, fora do controle de ver
 
 ### 3.2 Valores que aparecem de fato no arquivo real
 
-Contagem feita em 01/11/2026 com `node ferramentas/contar-valores.js dados_publicos/DENGBR25.dbc <COLUNAS>`. A leitura completa encontrou 1.643.215 registros, o mesmo número anunciado no cabeçalho, sem registros excluídos.
+Contagem feita em 01/11/2026 com `node ferramentas/contar-valores.js dados_publicos/dengue-chikungunya/DENGBR25.dbc <COLUNAS>`. A leitura completa encontrou 1.643.215 registros, o mesmo número anunciado no cabeçalho, sem registros excluídos.
 
 | Coluna | Valores encontrados (quantidade) | Observação |
 |---|---|---|
@@ -127,7 +127,7 @@ Campos iguais nas duas fontes (exemplos): sinais clínicos e doenças pré-exist
 
 Material baixado pelo Rubens em 02/11/2026 e analisado no mesmo dia. **Nenhuma tabela da ferramenta foi trocada.**
 
-### 7.1 CBO (pasta `docs/fontes/CBO/`)
+### 7.1 CBO (pasta `docs/fontes/tabelas-apoio/CBO/`)
 
 | Arquivo | O que é | Papel no projeto |
 |---|---|---|
@@ -146,7 +146,7 @@ Comparação com a tabela usada hoje, a `CBO_02.dbf` do pacote TAB_CNES do DATAS
 
 **Conclusão:** a ferramenta continua com a tabela do DATASUS, que é a que o SINAN usa. Os documentos do Ministério do Trabalho ficam como referência oficial.
 
-### 7.2 CNES (pasta `docs/fontes/CNES/`, fora do Git)
+### 7.2 CNES (pasta `docs/fontes/tabelas-apoio/CNES/`, fora do Git)
 
 É a base de dados completa do CNES, competência **setembro de 2026** (arquivos `*202609.csv`, 2,9 GB, com data de 15/10/2026). Tem 118 tabelas. A que interessa à ferramenta é a `tbEstabelecimento202609.csv`, que traz o código CNES e o nome fantasia.
 
@@ -173,7 +173,7 @@ Atualização de 15/11/2026: uma busca mais ampla achou 45 nomes com números de
 
 ### 7.5 Planilha de regiões e macrorregiões de saúde do Ministério da Saúde
 
-- **Arquivo:** `docs/fontes/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx`. O nome é o que o painel deu ao arquivo.
+- **Arquivo:** `docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx`. O nome é o que o painel deu ao arquivo.
 - **Origem:** painel "Macrorregiões" da SEIDIGI/DEMAS do Ministério da Saúde (https://infoms.saude.gov.br/extensions/SEIDIGI_DEMAS_MACRORREGIOES/SEIDIGI_DEMAS_MACRORREGIOES.html), baixado pelo Rubens em 02/11/2026. Segundo o painel, a atualização é de 02/11/2026 às 06:00:22, com dados do Departamento de Gestão Interfederativa e Participativa (DGIP/SE/MS), informação do Rubens. A população vem da estimativa do IBGE de 2022.
 - **Conteúdo:** 5.571 municípios, cada um com região (439), macrorregião (121) e, para 53 municípios, a macrorregião interestadual (MIS-PEBA, Pernambuco e Bahia).
 

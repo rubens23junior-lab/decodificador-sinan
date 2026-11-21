@@ -1,0 +1,2400 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Violência interpessoal/autoprovocada",
+    "codigos": [
+      "Y09"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos VIOLBRxx.dbc), Sinan NET 5.0 (ficha de 2015), com os campos da ficha anterior (versão 4.2)",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-10",
+    "registro": "docs/conferencia/conferencia-violencia.xlsx (duas rodadas de conferência na planilha em 10/11/2026; 9 categorias ditadas pelo Rubens confirmadas no chat no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte.",
+    "Quando o dicionário de 2015 (DICVIOL2015) e o da ficha anterior (DICVIOL42) descrevem a mesma coluna de forma diferente, vale o de 2015; o DICVIOL42 só é usado nos campos que o de 2015 não tem (decisão do Rubens, 10/11/2026)."
+  ],
+  "fontes": {
+    "DICVIOL2015": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0/Patch 5.1 – Violência Interpessoal/Autoprovocada",
+      "orgao": "Ministério da Saúde / SVS / Departamento de Vigilância Epidemiológica / GT-Sinan",
+      "data": "revisado em junho de 2015 (rodapé 'Revisado junho/2015')",
+      "arquivo": "docs/fontes/violencia/DIC_DADOS_NET_Violencias_v5.pdf"
+    },
+    "FICHAVIOL": {
+      "documento": "Ficha de Notificação Individual – Violência interpessoal/autoprovocada – Sinan",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "15/06/2015 (rodapé 'SVS 15.06.2015')",
+      "arquivo": "docs/fontes/violencia/violencia_v5.pdf"
+    },
+    "DICVIOL42": {
+      "documento": "Dicionário de variáveis – Ficha de notificação/investigação individual violência doméstica, sexual e/ou outras violências (ficha anterior a 2015)",
+      "orgao": "Ministério da Saúde / SVS / Coordenação Geral de Doenças e Agravos Não Transmissíveis",
+      "data": "sem data no documento; o nome do arquivo indica versão 4.2, 'não vigente'. Obtido pelo Rubens em 10/11/2026",
+      "arquivo": "docs/fontes/violencia/DIC_DADOS_violencias_4_2_naovigente.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    },
+    "CID10_CSV2008": {
+      "documento": "CID-10 versão 2008 em formato CSV (CID10CSV.zip: CID-10-CATEGORIAS.CSV e CID-10-SUBCATEGORIAS.CSV), CBCD/DATASUS",
+      "orgao": "Centro Brasileiro de Classificação de Doenças / DATASUS",
+      "data": "Baixado em 15/11/2026, com autorização do Rubens, de http://www2.datasus.gov.br/cid10/V2008/downloads/CID10CSV.zip (arquivos internos de 01/10/2007)",
+      "arquivo": "docs/fontes/tabelas-apoio/CID10-CSV/"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o ViolenciaNet.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/ViolenciaNet.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "cid10": {
+      "arquivo": "tabelas/cid10.json",
+      "fonte": "CID10_TABWIN"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'."
+  },
+  "listas": {
+    "sim_nao_ignorado": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sim_nao_nsa_ignorado": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "8"
+        ],
+        "rotulo": "Não se aplica"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ]
+  },
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_MUNICIP",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_MN_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_MUNICIP",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_MN_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAVIOL",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "Y09"
+          ],
+          "rotulo": "Violência interpessoal/autoprovocada"
+        }
+      ],
+      "observacao": "A ficha traz 'VIOLÊNCIA INTERPESSOAL/AUTOPROVOCADA' e o código Y09. O DICVIOL2015 (p. 1, campo 2) diz que o ponto é retirado ao exportar. O arquivo de 2025 traz só 'Y09'."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "DICVIOL2015",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "DT_OCOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 3, campo 9",
+      "rotulo": "Data da ocorrência da violência",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas/diagnósticos",
+      "tipo": "texto",
+      "observacao": "Nome do DICVIOL2015, por decisão do Rubens (conferência de 10/11/2026). Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC, que não aparece nas fontes de violência (pendência)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "DICVIOL2015",
+      "local": "p. 4, campo 12",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 4, campo 13",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 4, campo 14",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 5, campo 15",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "DICVIOL2015",
+      "local": "p. 5, campo 16",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAVIOL",
+          "local": "p. 1, campo 16 (o 43 vem do DICVIOL2015, p. 5)"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No DICVIOL2015 o Analfabeto aparece como '43'; a ficha de violência (p. 1, campo 16) traz '0-Analfabeto'. Por decisão do Rubens (conferência de 10/11/2026), o 0 e o 43 valem como Analfabeto. As formas com um e dois dígitos seguem a decisão P6 do Rubens; o arquivo de 2025 traz sempre dois dígitos."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "DICVIOL2015",
+      "local": "p. 5, campo 19",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 6, campo 20",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "DICVIOL2015",
+      "local": "p. 8, campo 32",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 8 (Não Listar/ Não Contar)",
+      "rotulo": "Identifica duplicidade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "Nome legível tirado da descrição do DICVIOL2015 ('Identifica duplicidade'), por decisão do Rubens (10/11/2026). O DICVIOL2015 chama a coluna de NDUPLIC_N; o arquivo traz NDUPLIC (sempre em branco em 2025). A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "NOTIF2018",
+      "local": "p. 9, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data",
+      "observacao": "Não aparece no DICVIOL2015 nem no DICVIOL42; descrita no NOTIF2018."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICVIOL2015",
+      "local": "p. 9, campo 34",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "SIT_CONJUG",
+      "fonte": "DICVIOL2015",
+      "local": "p. 9-10, campo 35",
+      "rotulo": "Situação conjugal/Estado civil",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Solteiro"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Casado/ União consensual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Viúvo"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Separado"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "DEF_TRANS",
+      "fonte": "DICVIOL2015",
+      "local": "p. 10, campo 38",
+      "rotulo": "Possui algum tipo de deficiência/transtorno",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "DEF_FISICA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 10, campo 39",
+      "rotulo": "Deficiência física",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "DEF_MENTAL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 10, campo 39",
+      "rotulo": "Deficiência intelectual",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado",
+      "observacao": "O DICVIOL2015 chama o campo de 'Deficiência intelectual' (descrição: 'deficiência mental')."
+    },
+    {
+      "nome": "DEF_VISUAL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 11, campo 39",
+      "rotulo": "Deficiência visual",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "DEF_AUDITI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 11, campo 39",
+      "rotulo": "Deficiência auditiva",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "TRAN_MENT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 11, campo 39",
+      "rotulo": "Transtorno mental",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "TRAN_COMP",
+      "fonte": "DICVIOL2015",
+      "local": "p. 11-12, campo 39",
+      "rotulo": "Transtorno de comportamento",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "DEF_OUT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 12, campo 39",
+      "rotulo": "Outras deficiências/síndromes",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "DEF_ESPEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 12, campo 39",
+      "rotulo": "Outras deficiências/síndromes (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_OCOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 12, campo 40",
+      "rotulo": "UF de ocorrência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_OCOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 12, campo 41",
+      "rotulo": "Município de ocorrência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "HORA_OCOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 14, campo 51",
+      "rotulo": "Hora da ocorrência",
+      "tipo": "texto",
+      "observacao": "Formato hh:mm (00:00 a 23:59)."
+    },
+    {
+      "nome": "LOCAL_OCOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 14, campo 52",
+      "rotulo": "Local de ocorrência",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01"
+          ],
+          "rotulo": "Residência"
+        },
+        {
+          "codigos": [
+            "02"
+          ],
+          "rotulo": "Habitação coletiva"
+        },
+        {
+          "codigos": [
+            "03"
+          ],
+          "rotulo": "Escola"
+        },
+        {
+          "codigos": [
+            "04"
+          ],
+          "rotulo": "Local de prática esportiva"
+        },
+        {
+          "codigos": [
+            "05"
+          ],
+          "rotulo": "Bar ou similar"
+        },
+        {
+          "codigos": [
+            "06"
+          ],
+          "rotulo": "Via publica"
+        },
+        {
+          "codigos": [
+            "07"
+          ],
+          "rotulo": "Comércio/Serviços"
+        },
+        {
+          "codigos": [
+            "08"
+          ],
+          "rotulo": "Industrias/ construção"
+        },
+        {
+          "codigos": [
+            "09"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "LOCAL_ESPE",
+      "fonte": "DICVIOL2015",
+      "local": "p. 14, campo 52",
+      "rotulo": "Local de ocorrência - Outro (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "OUT_VEZES",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 53",
+      "rotulo": "Ocorreu outras vezes?",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "LES_AUTOP",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 54",
+      "rotulo": "A lesão foi autoprovocada?",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "VIOL_FISIC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 56",
+      "rotulo": "Tipo de violência - Física",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_PSICO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 56",
+      "rotulo": "Tipo de violência - Psicológica/moral",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_TORT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 56",
+      "rotulo": "Tipo de violência - Tortura",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_SEXU",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 56",
+      "rotulo": "Tipo de violência - Sexual",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_TRAF",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 56",
+      "rotulo": "Tipo de violência - Tráfico de seres humanos",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_FINAN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15-16, campo 56",
+      "rotulo": "Tipo de violência - Financeira/econômica",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_NEGLI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 56",
+      "rotulo": "Tipo de violência - Negligência/abandono",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_INFAN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 56",
+      "rotulo": "Tipo de violência - Trabalho infantil",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_LEGAL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 56",
+      "rotulo": "Tipo de violência - Intervenção legal",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_OUTR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 56",
+      "rotulo": "Tipo de violência - Outros",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "VIOL_ESPEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 56",
+      "rotulo": "Outros tipos de violência (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "AG_FORCA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 57",
+      "rotulo": "Meio de agressão - Força corporal/espancamento",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_ENFOR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 57",
+      "rotulo": "Meio de agressão - Enforcamento",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_OBJETO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 57",
+      "rotulo": "Meio de agressão - Objeto contundente",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_CORTE",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16, campo 57",
+      "rotulo": "Meio de agressão - Objeto perfuro-cortante",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_QUENTE",
+      "fonte": "DICVIOL2015",
+      "local": "p. 16-17, campo 57",
+      "rotulo": "Meio de agressão - Substância/objeto quente",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_ENVEN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 57",
+      "rotulo": "Meio de agressão - Envenenamento, intoxicação",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_FOGO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 57",
+      "rotulo": "Meio de agressão - Arma de fogo",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_AMEACA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 57",
+      "rotulo": "Meio de agressão - Ameaça",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_OUTROS",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 57",
+      "rotulo": "Meio de agressão - Outro",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "AG_ESPEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 57",
+      "rotulo": "Outro meio de agressão (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SEX_ASSEDI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 58",
+      "rotulo": "Violência sexual - Assédio sexual",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_ESTUPR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 17, campo 58",
+      "rotulo": "Violência sexual - Estupro",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_PUDOR",
+      "fonte": "DICVIOL42",
+      "local": "p. 22, campo 53",
+      "rotulo": "Violência sexual - Atentado violento ao pudor",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_PORNO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 18, campo 58",
+      "rotulo": "Violência sexual - Pornografia infantil",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_EXPLO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 18, campo 58",
+      "rotulo": "Violência sexual - Exploração sexual",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_OUTRO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 18, campo 58",
+      "rotulo": "Violência sexual - Outro",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "SEX_ESPEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19, campo 58",
+      "rotulo": "Outro tipo de violência sexual (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "PEN_ORAL",
+      "fonte": "DICVIOL42",
+      "local": "p. 23, campo 54",
+      "rotulo": "Penetração - Oral",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PEN_ANAL",
+      "fonte": "DICVIOL42",
+      "local": "p. 23, campo 54",
+      "rotulo": "Penetração - Anal",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PEN_VAGINA",
+      "fonte": "DICVIOL42",
+      "local": "p. 24, campo 54",
+      "rotulo": "Penetração - Vaginal",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é PEN_VAGINAL; o arquivo guarda só os 10 primeiros caracteres."
+    },
+    {
+      "nome": "PROC_DST",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19, campo 59",
+      "rotulo": "Procedimento realizado - Profilaxia DST",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_HIV",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19, campo 59",
+      "rotulo": "Procedimento realizado - Profilaxia HIV",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_HEPB",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19, campo 59",
+      "rotulo": "Procedimento realizado - Profilaxia Hepatite B",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_SANG",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19, campo 59",
+      "rotulo": "Procedimento realizado - Coleta de sangue",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_SEMEN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 19-20, campo 59",
+      "rotulo": "Procedimento realizado - Coleta de sêmen",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_VAGIN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 20, campo 59",
+      "rotulo": "Procedimento realizado - Coleta de secreção vaginal",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado",
+      "observacao": "No PDF o nome DBF aparece quebrado em duas linhas ('PROC_VAGIN' / 'A'); o arquivo traz PROC_VAGIN."
+    },
+    {
+      "nome": "PROC_CONTR",
+      "fonte": "DICVIOL2015",
+      "local": "p. 20, campo 59",
+      "rotulo": "Procedimento realizado - Contracepção de emergência",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "PROC_ABORT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 20, campo 59",
+      "rotulo": "Procedimento realizado - Aborto previsto em lei",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_ABORT",
+      "fonte": "DICVIOL42",
+      "local": "não aparece na fonte",
+      "rotulo": "Consequência de aborto",
+      "tipo": "codigo",
+      "observacao": "Coluna sem descrição nas fontes de violência. O nome legível é decisão do Rubens (conferência de 10/11/2026), sem documento oficial; os códigos ficam como vieram, porque nenhuma fonte diz o que significam."
+    },
+    {
+      "nome": "CONS_GRAV",
+      "fonte": "DICVIOL42",
+      "local": "p. 25, campo 56",
+      "rotulo": "Consequência no momento da notificação - Gravidez",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_DST",
+      "fonte": "DICVIOL42",
+      "local": "p. 26, campo 56",
+      "rotulo": "Consequência no momento da notificação - DST",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_SUIC",
+      "fonte": "DICVIOL42",
+      "local": "p. 26, campo 56",
+      "rotulo": "Consequência no momento da notificação - Tentativa de suicídio",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_MENT",
+      "fonte": "DICVIOL42",
+      "local": "p. 26, campo 56",
+      "rotulo": "Consequência no momento da notificação - Transtorno mental",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_COMP",
+      "fonte": "DICVIOL42",
+      "local": "p. 26, campo 56",
+      "rotulo": "Consequência no momento da notificação - Transtorno comportamental",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CONS_ESTRE",
+      "fonte": "DICVIOL42",
+      "local": "p. 26, campo 56",
+      "rotulo": "Consequência no momento da notificação - Estresse pós-traumático",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é CONS_ESTRES; o arquivo guarda só os 10 primeiros caracteres."
+    },
+    {
+      "nome": "CONS_OUTR",
+      "fonte": "DICVIOL42",
+      "local": "p. 27, campo 56",
+      "rotulo": "Consequência no momento da notificação - Outros",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é CONS_OUTROS; o arquivo traz CONS_OUTR."
+    },
+    {
+      "nome": "CONS_ESPEC",
+      "fonte": "DICVIOL42",
+      "local": "p. 27, campo 56",
+      "rotulo": "Consequências - Outros (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "LESAO_NAT",
+      "fonte": "DICVIOL42",
+      "local": "p. 27, campo 57",
+      "rotulo": "Natureza da lesão",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01"
+          ],
+          "rotulo": "Contusão"
+        },
+        {
+          "codigos": [
+            "02"
+          ],
+          "rotulo": "Corte/perfuração/laceração"
+        },
+        {
+          "codigos": [
+            "03"
+          ],
+          "rotulo": "Entorse/luxação"
+        },
+        {
+          "codigos": [
+            "04"
+          ],
+          "rotulo": "Fratura"
+        },
+        {
+          "codigos": [
+            "05"
+          ],
+          "rotulo": "Amputação"
+        },
+        {
+          "codigos": [
+            "06"
+          ],
+          "rotulo": "Traumatismo dentário"
+        },
+        {
+          "codigos": [
+            "07"
+          ],
+          "rotulo": "Traumatismo crânio Encefálico"
+        },
+        {
+          "codigos": [
+            "08"
+          ],
+          "rotulo": "Politraumatismo"
+        },
+        {
+          "codigos": [
+            "09"
+          ],
+          "rotulo": "Intoxicação"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Queimadura"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "88"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "LESAO_ESPE",
+      "fonte": "DICVIOL42",
+      "local": "p. 27, campo 57",
+      "rotulo": "Natureza da lesão (especificar)",
+      "tipo": "texto",
+      "observacao": "No DICVIOL42 o nome DBF é LESAO_ESPEC; o arquivo traz LESAO_ESPE."
+    },
+    {
+      "nome": "LESAO_CORP",
+      "fonte": "DICVIOL42",
+      "local": "p. 28, campo 58",
+      "rotulo": "Parte do corpo atingida",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01"
+          ],
+          "rotulo": "Cabeça/face"
+        },
+        {
+          "codigos": [
+            "02"
+          ],
+          "rotulo": "Pescoço"
+        },
+        {
+          "codigos": [
+            "03"
+          ],
+          "rotulo": "Boca/dentes"
+        },
+        {
+          "codigos": [
+            "04"
+          ],
+          "rotulo": "Coluna/medula"
+        },
+        {
+          "codigos": [
+            "05"
+          ],
+          "rotulo": "Tórax/dorso"
+        },
+        {
+          "codigos": [
+            "06"
+          ],
+          "rotulo": "Abdome"
+        },
+        {
+          "codigos": [
+            "07"
+          ],
+          "rotulo": "Quadril/pelve"
+        },
+        {
+          "codigos": [
+            "08"
+          ],
+          "rotulo": "Membros superiores"
+        },
+        {
+          "codigos": [
+            "09"
+          ],
+          "rotulo": "Membros inferiores"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Órgãos genitais/ânus"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Múltiplos órgãos/regiões"
+        },
+        {
+          "codigos": [
+            "88"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "89",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "No DICVIOL42 o nome DBF é LESAO_CORPO. A fonte lista '89- Ignorado'; o arquivo de 2025 traz '99' em 103 registros e nenhum '89'. Por decisão do Rubens (conferência de 10/11/2026), o 99 também vale como Ignorado."
+    },
+    {
+      "nome": "NUM_ENVOLV",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 60",
+      "rotulo": "Número de envolvidos",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Um"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Dois ou mais"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "No PDF o nome DBF aparece quebrado em duas linhas ('NUM_ENVOL' / 'V')."
+    },
+    {
+      "nome": "REL_SEXUAL",
+      "fonte": "DICVIOL42",
+      "local": "p. 12, campo 33",
+      "rotulo": "Relações sexuais",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Só com homens"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Só com mulheres"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Com homens e mulheres"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "No DICVIOL42 o nome DBF é REL_SEXUAIS; o arquivo guarda só os 10 primeiros caracteres."
+    },
+    {
+      "nome": "REL_PAI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Pai",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_MAE",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Mãe",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_PAD",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Padrasto",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_CONJ",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Cônjuge",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_EXCON",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Ex-cônjuge",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_NAMO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Namorado(a)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_EXNAM",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Ex-namorado(a)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_FILHO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Filho(a)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_DESCO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Desconhecido",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_IRMAO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Irmão(ã)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "O PDF escreve o nome DBF com acento (REL_IRMÃO); o arquivo traz REL_IRMAO."
+    },
+    {
+      "nome": "REL_CONHEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Amigos/conhecidos",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_CUIDA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Cuidador",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_PATRAO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Patrão/chefe",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_INST",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Pessoa com relação institucional",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_POL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Policial/agente da lei",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_PROPRI",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Própria pessoa",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_OUTROS",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Outros",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_ESPEC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 22, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Outros (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "AUTOR_SEXO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 62",
+      "rotulo": "Sexo do provável autor da violência",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Ambos os sexos"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "AUTOR_ALCO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 63",
+      "rotulo": "Suspeita de uso de álcool",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_SAUDE",
+      "fonte": "DICVIOL42",
+      "local": "p. 32, campo 63",
+      "rotulo": "Encaminhamento no setor saúde (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Encaminhamento atenção básica"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Internação hospitalar"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "O DICVIOL2015 (p. 23, campo 65) dá o nome ENC_SAUDE ao encaminhamento 'Rede da Saúde', mas o arquivo traz esse campo na coluna REDE_SAU. A coluna ENC_SAUDE do arquivo segue a ficha anterior (DICVIOL42), cujas categorias batem com os valores encontrados (pendência P2)."
+    },
+    {
+      "nome": "ENC_TUTELA",
+      "fonte": "DICVIOL42",
+      "local": "p. 32, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Conselho tutelar (criança/adolescente)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é ENC_TUTELAR; o arquivo guarda só os 10 primeiros caracteres."
+    },
+    {
+      "nome": "ENC_VARA",
+      "fonte": "DICVIOL42",
+      "local": "p. 32, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Vara da infância/juventude",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_ABRIGO",
+      "fonte": "DICVIOL42",
+      "local": "p. 32, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Casa abrigo",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_SENTIN",
+      "fonte": "DICVIOL42",
+      "local": "p. 32, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Programa sentinela",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é ENC_SENTINELA; o arquivo guarda só os 10 primeiros caracteres."
+    },
+    {
+      "nome": "ENC_DEAM",
+      "fonte": "DICVIOL42",
+      "local": "p. 33, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Delegacia de atendimento à mulher/DEAM",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_DPCA",
+      "fonte": "DICVIOL42",
+      "local": "p. 33, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Delegacia de proteção da criança e adolescente",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_DELEG",
+      "fonte": "DICVIOL42",
+      "local": "p. 33, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Outras delegacias",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_MPU",
+      "fonte": "DICVIOL42",
+      "local": "p. 33, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Ministério Público",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_MULHER",
+      "fonte": "DICVIOL42",
+      "local": "p. 33, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Centro de referência da mulher",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_CREAS",
+      "fonte": "DICVIOL42",
+      "local": "p. 34, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Centro de referencia da assistência social/CREAS-CRAS",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_IML",
+      "fonte": "DICVIOL42",
+      "local": "p. 34, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Instituto Médico Legal (IML)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "ENC_OUTR",
+      "fonte": "DICVIOL42",
+      "local": "p. 34, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Outros",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "No DICVIOL42 o nome DBF é ENC_OUTROS; o arquivo traz ENC_OUTR."
+    },
+    {
+      "nome": "ENC_ESPEC",
+      "fonte": "DICVIOL42",
+      "local": "p. 34, campo 64",
+      "rotulo": "Encaminhamento para outros setores - Outros (especificar)",
+      "tipo": "texto"
+    },
+    {
+      "nome": "REL_TRAB",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 66",
+      "rotulo": "Violência relacionada ao trabalho",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "REL_CAT",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 67",
+      "rotulo": "Se sim, foi emitida a Comunicação de Acidente do Trabalho (CAT)",
+      "tipo": "categorico",
+      "lista": "sim_nao_nsa_ignorado"
+    },
+    {
+      "nome": "CIRC_LESAO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 68",
+      "rotulo": "Circunstância da lesão (CID-10)",
+      "tipo": "tabela",
+      "tabela": "cid10",
+      "observacao": "Nome pela CID-10 (TabWin 2019; nomes cortados completados com a CSV 2008, ver pendência P5). O dicionário fala em capítulo XX, mas o arquivo de 2025 também traz códigos de outros capítulos (por exemplo T74, R45, Z61)."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICVIOL42",
+      "local": "p. 35, campo 68",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Provável"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Inconclusivo"
+        }
+      ],
+      "observacao": "Campo da ficha anterior (no DICVIOL42, CLAS_FINAL). A ficha de 2015 não tem classificação final; em 2025 só 536 registros vêm preenchidos."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICVIOL42",
+      "local": "p. 35, campo 69",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Alta"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Evasão/fuga"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por violência"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Campo da ficha anterior (no DICVIOL42, 'EVOLUCÃO'). A ficha de 2015 não tem evolução."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICVIOL42",
+      "local": "p. 35, campo 70",
+      "rotulo": "Se óbito por violência, data",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "REL_MAD",
+      "fonte": "DICVIOL2015",
+      "local": "p. 21, campo 61",
+      "rotulo": "Relação com a pessoa atendida - Madrasta",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado"
+    },
+    {
+      "nome": "TPUNINOT",
+      "fonte": "DICVIOL2015",
+      "local": "não aparece na fonte",
+      "rotulo": "Tipo da unidade notificadora (estabelecimento de saúde que realizou o registro do caso)",
+      "tipo": "codigo",
+      "observacao": "Coluna sem descrição nas fontes de violência. O nome legível é decisão do Rubens (conferência de 10/11/2026), sem documento oficial; os códigos ficam como vieram, porque nenhuma fonte diz o que significam."
+    },
+    {
+      "nome": "ORIENT_SEX",
+      "fonte": "DICVIOL2015",
+      "local": "p. 10, campo 36",
+      "rotulo": "Orientação sexual",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Heterossexual"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Homossexual (gay/lésbica)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Bissexual"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "IDENT_GEN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 10, campo 37",
+      "rotulo": "Identidade de gênero",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Travesti"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Mulher Transexual",
+          "fonte": "FICHAVIOL",
+          "local": "p. 1, campo 37"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Homem Transexual",
+          "fonte": "FICHAVIOL",
+          "local": "p. 1, campo 37"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "O DICVIOL2015 escreve '2. Transexual Mulher' e '3. Transexual Homem'; por decisão do Rubens (10/11/2026), seguem os rótulos da ficha de 2015."
+    },
+    {
+      "nome": "VIOL_MOTIV",
+      "fonte": "DICVIOL2015",
+      "local": "p. 15, campo 55",
+      "rotulo": "Violência motivada por",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01"
+          ],
+          "rotulo": "Sexismo"
+        },
+        {
+          "codigos": [
+            "02"
+          ],
+          "rotulo": "Homofobia/Lesbofobia/Bifobia/Transfobia"
+        },
+        {
+          "codigos": [
+            "03"
+          ],
+          "rotulo": "Racismo"
+        },
+        {
+          "codigos": [
+            "04"
+          ],
+          "rotulo": "Intolerância religiosa"
+        },
+        {
+          "codigos": [
+            "05"
+          ],
+          "rotulo": "Xenofobia"
+        },
+        {
+          "codigos": [
+            "06"
+          ],
+          "rotulo": "Conflito geracional"
+        },
+        {
+          "codigos": [
+            "07"
+          ],
+          "rotulo": "Situação de rua"
+        },
+        {
+          "codigos": [
+            "08"
+          ],
+          "rotulo": "Deficiência"
+        },
+        {
+          "codigos": [
+            "09"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "88"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CICL_VID",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 64",
+      "rotulo": "Ciclo de vida do provável autor da violência",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Criança (0 a 9 anos)",
+          "fonte": "FICHAVIOL",
+          "local": "p. 2, campo 64"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Adolescente (10 a 19 anos)",
+          "fonte": "FICHAVIOL",
+          "local": "p. 2, campo 64"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Jovem (20 a 24 anos)",
+          "fonte": "FICHAVIOL",
+          "local": "p. 2, campo 64"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Pessoa adulta (25 a 59 anos)",
+          "fonte": "FICHAVIOL",
+          "local": "p. 2, campo 64"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Pessoa idosa (60 anos ou mais)",
+          "fonte": "FICHAVIOL",
+          "local": "p. 2, campo 64"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "No DICVIOL2015 o nome DBF é CICL_VID_AUTOR (quebrado em duas linhas); o arquivo traz CICL_VID. Rótulos com as faixas de idade da ficha de 2015, por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "REDE_SAU",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Rede da Saúde (Unidade Básica de Saúde, hospital, outras)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026). No DICVIOL2015 este campo aparece com o nome DBF ENC_SAUDE; o arquivo traz REDE_SAU, preenchida em quase todos os registros (P2, aprovada pelo Rubens)."
+    },
+    {
+      "nome": "ASSIST_SOC",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Rede da Assistência Social (CRAS, CREAS, outras)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "REDE_EDUCA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Rede da Educação (Creche, escola, outras)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "ATEND_MULH",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Rede de Atendimento à Mulher (Centro Especializado de Atendimento à Mulher, Casa da Mulher Brasileira, outras)",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026). No PDF o nome DBF aparece quebrado em duas linhas ('ATEND_MUL' / 'H')."
+    },
+    {
+      "nome": "CONS_TUTEL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Conselho Tutelar",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "CONS_IDO",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Conselho do Idoso",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "DELEG_IDOS",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Delegacia de Atendimento ao Idoso",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026). No PDF o nome DBF aparece como 'DELEG_IDOS' / 'O' (duas linhas); o arquivo traz DELEG_IDOS."
+    },
+    {
+      "nome": "DIR_HUMAN",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23, campo 65",
+      "rotulo": "Encaminhamento - Centro de Referência dos Direitos Humanos",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "MPU",
+      "fonte": "DICVIOL2015",
+      "local": "p. 23-24, campo 65",
+      "rotulo": "Encaminhamento - Ministério Público",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "DELEG_CRIA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 65",
+      "rotulo": "Encaminhamento - Delegacia Especializada de Proteção à Criança e Adolescente",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "DELEG_MULH",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 65",
+      "rotulo": "Encaminhamento - Delegacia de Atendimento à Mulher",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026). No PDF o nome DBF aparece quebrado em duas linhas ('DELEG_MUL' / 'H')."
+    },
+    {
+      "nome": "DELEG",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 65",
+      "rotulo": "Encaminhamento - Outras delegacias",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "INFAN_JUV",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 65",
+      "rotulo": "Encaminhamento - Justiça da Infância e da Juventude",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "DEFEN_PUBL",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 65",
+      "rotulo": "Encaminhamento - Defensoria Pública",
+      "tipo": "categorico",
+      "lista": "sim_nao_ignorado",
+      "observacao": "Nome legível como na ficha de 2015 (p. 2, campo 65), por decisão do Rubens (10/11/2026)."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICVIOL2015",
+      "local": "p. 24, campo 69",
+      "rotulo": "Data de encerramento",
+      "tipo": "data"
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "REDE_SAU e ENC_SAUDE",
+      "descricao": "P2. O DICVIOL2015 chama de ENC_SAUDE o encaminhamento 'Rede da Saúde' (Sim/Não), mas o arquivo traz esse campo em REDE_SAU. Proposta: REDE_SAU com o campo 65 de 2015; ENC_SAUDE com o campo 63 da ficha anterior (categorias 1, 2, 8, 9, que batem com o arquivo). Confirmar."
+    },
+    {
+      "coluna": "IDENT_GEN",
+      "descricao": "P4. O DICVIOL2015 escreve '2. Transexual Mulher' e '3. Transexual Homem'; a ficha de 2015 escreve '2-Mulher Transexual' e '3-Homem Transexual'. Usado o dicionário. Confirmar qual seguir."
+    },
+    {
+      "coluna": "CIRC_LESAO",
+      "descricao": "P5. Nome pela tabela cid10 (TabWin 2019; quando o nome vem cortado, completado com a CSV 2008 só se o início for igual). 18 códigos da CID-10 ficaram sem nome seguro (lista em dicionarios/tabelas/cid10.json, campo pendencias), entre eles X59.2, e o significado das marcas @, # e & do TabWin não está nos arquivos. Códigos de 5 dígitos que não são da CID-10 vão para as Inconsistências."
+    },
+    {
+      "coluna": "LESAO_CORP",
+      "descricao": "O DICVIOL42 lista '89- Ignorado', mas o arquivo de 2025 traz '99' (103 registros) e nenhum '89'. O 99 fica como veio e vai para as Inconsistências. Confirmar."
+    },
+    {
+      "coluna": "CONS_ABORT",
+      "descricao": "Coluna sem descrição em nenhuma fonte (o DICVIOL42 lista outras consequências, mas não esta). Fica como veio."
+    },
+    {
+      "coluna": "TPUNINOT",
+      "descricao": "Coluna sem descrição em nenhuma fonte de violência; sempre em branco em 2025. Fica como veio."
+    },
+    {
+      "coluna": "ANO_NASC",
+      "descricao": "Coluna do arquivo público ausente das fontes de violência (que trazem a data de nascimento completa). Mantida como texto."
+    },
+    {
+      "coluna": "CS_ESCOL_N",
+      "descricao": "Analfabeto = 0 tirado da ficha de violência (o DICVIOL2015 mostra '43', erro do PDF). Confirmar."
+    },
+    {
+      "coluna": "ID_PAIS",
+      "descricao": "Sem tabela de países compatível com a numeração do Sinan (a tabela_codigos_paises.xlsx tem Brasil = 10, e o arquivo usa 1). O código fica como veio. Decisão do Rubens (01/11/2026): '1 = Brasil' não entra sem fonte documental."
+    },
+    {
+      "coluna": "ID_OCUPA_N",
+      "descricao": "Códigos especiais do Sinan (999991, 998999, XXX etc.): traduzidos desde 15/11/2026 pela tabela de ocupações do Sinan NET (OCUPANET), que o ViolenciaNet.def usa para este campo. No arquivo de 2025 ainda ficam sem nome 10001 (2.516 registros), 999990 (515), 0, 000000 e alguns códigos de 5 dígitos; vão para as Inconsistências."
+    }
+  ]
+}

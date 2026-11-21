@@ -1,0 +1,1373 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Hanseníase",
+    "codigos": [
+      "A309",
+      "A30.9",
+      "A 30.9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos HANSBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-16",
+    "registro": "docs/conferencia/conferencia-hanseniase.xlsx (conferência na planilha em 16/11/2026, com as correções pedidas por ele aplicadas no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICHANS": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Hanseníase (campos 31 a 43 e tela de acompanhamento)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "sem data impressa (8 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hanseniase/HANSN_DIC_DADOS.pdf"
+    },
+    "FICHAHANS": {
+      "documento": "Ficha de Notificação/Investigação – Hanseníase – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "30/10/2007 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hanseniase/HANSN_FICHA.pdf"
+    },
+    "INSTHANS": {
+      "documento": "Hanseníase – Instruções para preenchimento – Ficha de Investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "sem data impressa. Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hanseniase/HANSN_INSTRUCIONAL.pdf"
+    },
+    "TABHANS": {
+      "documento": "Arquivo de definição do TabWin para hanseníase (HansNET.def) e tabela de conversão reacional.cnv",
+      "orgao": "Ministério da Saúde / GT-Sinan (HansNET.def revisado em 18/08/2008 e atualizado em 24/09/2010; reacional.cnv revisado pela UT-Sinan em 2019)",
+      "data": "Pacote TAB_SINANNET do TabWin, baixado pelo Rubens do site do DATASUS em 15/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/HansNET.def; docs/fontes/tabelas-apoio/TAB_SINANNET/reacional.cnv"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
+  },
+  "listas": {},
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAHANS",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A309",
+            "A30.9"
+          ],
+          "rotulo": "Hanseníase"
+        }
+      ],
+      "observacao": "A ficha de hanseníase mostra o CID 'A 3 0. 9'; o NOTIF2018 (p. 1, campo 2) diz que o ponto é retirado no banco. O arquivo de 2025 traz 'A309' em todos os registros. Decisão do Rubens (16/11/2026): A30.9 e A309 = Hanseníase."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "INSTHANS",
+      "local": "p. 1, item 7",
+      "rotulo": "Data do diagnóstico",
+      "tipo": "data",
+      "observacao": "Instrucional, item 7: \"data do diagnóstico ou da evidência laboratorial e/ou clínica da doença de acordo com a definição de caso vigente no momento da notificação\" (campo obrigatório). Na ficha, campo 7, no lugar da data dos primeiros sintomas."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "FICHAHANS",
+      "local": "p. 1, campo 7 (Data do diagnóstico)",
+      "rotulo": "Semana epidemiológica do diagnóstico do caso notificado",
+      "tipo": "texto",
+      "observacao": "Nenhum documento de hanseníase descreve SEM_DIAG. Decisão do Rubens (16/11/2026): é a semana epidemiológica do diagnóstico do caso notificado; não aparece na ficha de papel porque é gerada automaticamente pelo Sinan na digitação. No arquivo de 2025, 481 registros têm valor e 30.838 vêm em branco. A semana calculada pela data do diagnóstico está na coluna extra logo depois (decisão do Rubens na conferência, 18/11/2026, na sífilis)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC, que não aparece nas fontes de LV (pendência)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAHANS",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de hanseníase (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. Decisão do Rubens (16/11/2026): 0, 00 e 43 = Analfabeto; 1 e 01 = 1ª a 4ª série incompleta do EF, e assim por diante."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 9",
+      "rotulo": "Não listar/Não contar (duplicidade)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "CS_FLXRET",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Fluxo de retorno",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Habilitado para envio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enviado"
+        }
+      ]
+    },
+    {
+      "nome": "FLXRECEBI",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Recebida por fluxo de retorno",
+      "tipo": "texto"
+    },
+    {
+      "nome": "MIGRADO_W",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Migrado do Sinan Windows",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Migrado do Sinan Windows"
+        }
+      ]
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICHANS",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "NU_LESOES",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 33",
+      "rotulo": "Nº de lesões cutâneas",
+      "tipo": "numero",
+      "observacao": "Número de lesões dermatológicas por ocasião do diagnóstico. O DICHANS diz que até a versão 1.3 era limitado a 20 lesões."
+    },
+    {
+      "nome": "FORMACLINI",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 34",
+      "rotulo": "Forma clínica",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "I - Indeterminada"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "T - Tuberculóide"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "D - Dimorfa"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "V - Virchowiana"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não classificado",
+          "fonte": "FICHAHANS",
+          "local": "p. 1, campo 34"
+        }
+      ],
+      "observacao": "Forma clínica inicial por ocasião do diagnóstico, segundo a classificação de Madri. No DICHANS, o \"5- Não classificado\" fica encostado na linha da classificação operacional; a ficha (campo 34) e o instrucional (item 34) mostram que ele é da forma clínica. O arquivo de 2025 também traz 0 (1.070), 6 (42) e 9 (15), que nenhuma fonte define. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 da ficha (forma clínica) só comporta 1 a 5"
+      }
+    },
+    {
+      "nome": "AVALIA_N",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 37",
+      "rotulo": "Avaliação do grau de incapacidade física no diagnóstico",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Grau zero"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Grau I"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Grau II"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não avaliado"
+        }
+      ]
+    },
+    {
+      "nome": "CLASSOPERA",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 35",
+      "rotulo": "Classificação operacional",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "PB - Paucibacilar"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "MB - Multibacilar"
+        }
+      ],
+      "observacao": "Classificação operacional por ocasião do diagnóstico, para eleição do esquema terapêutico. O arquivo de 2025 também traz 0 (23) e 9 (8), que nenhuma fonte define. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 da ficha (classificação operacional) só comporta 1 e 2"
+      }
+    },
+    {
+      "nome": "MODOENTR",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 38",
+      "rotulo": "Modo de entrada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Caso novo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Transferência do mesmo município (outra unidade)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Transferência de outro município (mesma UF)"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Transferência de outro estado"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência de outro país"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Recidiva"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Outros reingressos"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Rótulos do DICHANS, com a acentuação corrigida por decisão do Rubens (16/11/2026; a fonte escreve \"Transferencia\" nos códigos 2 e 5). Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código que não condiz com o que comporta o campo 38 da ficha de notificação de hanseníase (1 a 7 e 9)"
+      }
+    },
+    {
+      "nome": "MODODETECT",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 39",
+      "rotulo": "Modo de detecção do caso novo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Encaminhamento"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Demanda espontânea"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Exame de coletividade"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Exame de contatos"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Outros modos"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Só é preenchido quando o modo de entrada é caso novo (DICHANS, p. 2: \"campo habilitado para digitação quando campo (Modo de entrada) = 1\"; instrucional, item 39). O arquivo de 2025 traz 0 em 6.916 registros, dos quais 6.743 não são caso novo (modo de entrada 2 a 9 ou 0). Nenhuma fonte define o 0. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Preenchimento inadequado: o campo 39 da ficha só comporta 1 a 5 e 9"
+      }
+    },
+    {
+      "nome": "BACILOSCOP",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 40",
+      "rotulo": "Baciloscopia",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positiva"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não realizada"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "O DICHANS anota \"renomear de BACILOSCOP para BACILOSCO\"; o arquivo público continua com BACILOSCOP. O arquivo de 2025 também traz 0 (1.130), que nenhuma fonte define. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Erro de preenchimento: o campo 40 da ficha só comporta 1, 2, 3 e 9"
+      }
+    },
+    {
+      "nome": "DTINICTRAT",
+      "fonte": "DICHANS",
+      "local": "p. 3, campo 41",
+      "rotulo": "Data do início do tratamento",
+      "tipo": "data"
+    },
+    {
+      "nome": "ESQ_INI_N",
+      "fonte": "DICHANS",
+      "local": "p. 3, campo 42",
+      "rotulo": "Esquema terapêutico inicial",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Poliquimioterapia Paucibacilar - 6 doses"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Poliquimioterapia Multibacilar - 12 doses"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Outros Esquemas Substitutos"
+        }
+      ],
+      "observacao": "Esquema terapêutico instituído por ocasião do diagnóstico. O arquivo de 2025 também traz 0 (130), que nenhuma fonte define. Rótulos 1 e 2 por decisão do Rubens (16/11/2026): a fonte escreve \"PQT/ PB/ 6 doses\" e \"PQT/ MB/ 12 doses\" (PQT = poliquimioterapia). O 3 fica como na fonte: \"Substitutos\" no esquema inicial e \"Substitutivos\" no atual. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 da ficha (esquema terapêutico inicial) só comporta 1 a 3"
+      }
+    },
+    {
+      "nome": "CONTREG",
+      "fonte": "DICHANS",
+      "local": "p. 3, campo 43",
+      "rotulo": "Nº de contatos registrados",
+      "tipo": "numero",
+      "observacao": "Número de pessoas que residam ou tenham residido nos últimos 5 anos com o doente, a contar da data do diagnóstico."
+    },
+    {
+      "nome": "NERVOSAFET",
+      "fonte": "DICHANS",
+      "local": "p. 2, campo 36",
+      "rotulo": "Nº de nervos afetados",
+      "tipo": "numero"
+    },
+    {
+      "nome": "UFATUAL",
+      "fonte": "DICHANS",
+      "local": "p. 3, acompanhamento, campo 1",
+      "rotulo": "UF de atendimento atual",
+      "tipo": "texto",
+      "observacao": "Sigla da UF onde está a unidade de saúde responsável pelo tratamento atual. No arquivo vem a sigla (por exemplo, SP), não o código numérico, por isso fica como veio."
+    },
+    {
+      "nome": "ID_MUNI_AT",
+      "fonte": "DICHANS",
+      "local": "p. 4, acompanhamento, campo 2",
+      "rotulo": "Município de atendimento atual",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "DT_NOTI_AT",
+      "fonte": "DICHANS",
+      "local": "p. 4, acompanhamento, campo 4",
+      "rotulo": "Data de notificação atual",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_UNID_AT",
+      "fonte": "DICHANS",
+      "local": "p. 5, acompanhamento, campo 5",
+      "rotulo": "Unidade de atendimento atual (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "UFRESAT",
+      "fonte": "DICHANS",
+      "local": "p. 5, acompanhamento, campo 6",
+      "rotulo": "UF de residência atual",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "MUNIRESAT",
+      "fonte": "DICHANS",
+      "local": "p. 5, acompanhamento, campo 7",
+      "rotulo": "Município de residência atual",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "DTULTCOMP",
+      "fonte": "DICHANS",
+      "local": "p. 6, acompanhamento, campo 11",
+      "rotulo": "Data do último comparecimento",
+      "tipo": "data"
+    },
+    {
+      "nome": "CLASSATUAL",
+      "fonte": "DICHANS",
+      "local": "p. 6, acompanhamento, campo 12",
+      "rotulo": "Classificação operacional atual",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "PB (Paucibacilar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "MB (Multibacilar)"
+        }
+      ],
+      "observacao": "O arquivo de 2025 também traz 0 (23) e 9 (8), que nenhuma fonte define. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código que não condiz com o preenchimento correto: a classificação operacional atual só comporta 1 (PB) e 2 (MB)"
+      }
+    },
+    {
+      "nome": "AVAL_ATU_N",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 13",
+      "rotulo": "Avaliação de incapacidade física no momento da cura",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Grau zero"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Grau I"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Grau II"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não avaliado"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "ESQ_ATU_N",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 14",
+      "rotulo": "Esquema terapêutico atual",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Poliquimioterapia Paucibacilar - 6 doses"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Poliquimioterapia Multibacilar - 12 doses"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Outros Esquemas Substitutivos"
+        }
+      ],
+      "observacao": "O arquivo de 2025 também traz 0 (492), que nenhuma fonte define. Rótulos 1 e 2 por decisão do Rubens (16/11/2026): a fonte escreve \"PQT/ PB/ 6 doses\" e \"PQT/ MB/ 12 doses\" (PQT = poliquimioterapia). O 3 fica como na fonte: \"Substitutos\" no esquema inicial e \"Substitutivos\" no atual. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o esquema terapêutico atual só comporta 1 a 3"
+      }
+    },
+    {
+      "nome": "DOSE_RECEB",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 15",
+      "rotulo": "Número de doses supervisionadas recebidas",
+      "tipo": "numero"
+    },
+    {
+      "nome": "EPIS_RACIO",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 16",
+      "rotulo": "Episódio reacional durante o tratamento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Reação tipo 1"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Reação tipo 2"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Reação tipo 1 e 2"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Sem reação",
+          "fonte": "TABHANS",
+          "local": "reacional.cnv, linha 5 (\"Sem Reação\"), usada pelo HansNET.def para EPIS_RACIO"
+        }
+      ],
+      "observacao": "O DICHANS lista só 1 a 3. O código 4 (16.169 registros em 2025) vem da tabela oficial do TabWin (reacional.cnv, revisada pela UT-Sinan em 2019). O arquivo também traz 0 (11.890), que nenhuma fonte define. Decisão do Rubens (16/11/2026): códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências (o código original continua na coluna ao lado). O código 4 (\"Sem reação\") foi confirmado pelo Rubens (16/11/2026), com a origem indicada: não está no dicionário de dados nem na ficha, só na tabela oficial do TabWin (reacional.cnv, revisada pela UT-Sinan em 2019, usada pelo HansNET.def).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o episódio reacional só comporta 1 a 3 (dicionário de dados) e 4 (tabela do TabWin)"
+      }
+    },
+    {
+      "nome": "DTMUDESQ",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 17",
+      "rotulo": "Data de mudança do esquema terapêutico",
+      "tipo": "data"
+    },
+    {
+      "nome": "CONTEXAM",
+      "fonte": "DICHANS",
+      "local": "p. 7, acompanhamento, campo 18",
+      "rotulo": "Número de contatos examinados",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DTALTA_N",
+      "fonte": "DICHANS",
+      "local": "p. 8, acompanhamento, campo 20",
+      "rotulo": "Data da alta",
+      "tipo": "data"
+    },
+    {
+      "nome": "TPALTA_N",
+      "fonte": "DICHANS",
+      "local": "p. 8, acompanhamento, campo 19",
+      "rotulo": "Tipo de saída",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Transf. p/ mesmo município"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Transf. p/ outro município"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Transf. p/ outro Estado"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transf. p/ outro país"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Óbito"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Erro diagnóstico"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Transf. não especificada"
+        }
+      ],
+      "observacao": "O DICHANS explica que o 9 não existe para digitação: aparece em casos migrados do Sinan Windows ou notificados até a versão 1.3. Em branco: caso ainda sem saída."
+    },
+    {
+      "nome": "IN_VINCULA",
+      "fonte": "DICHANS",
+      "local": "p. 8, acompanhamento, Vinculação",
+      "rotulo": "Vinculação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não Vinculada"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Vinculada"
+        }
+      ],
+      "observacao": "Indica se a notificação foi vinculada (a categoria 1 é atribuída pelo sistema após a vinculação de notificações de hanseníase ou tuberculose)."
+    },
+    {
+      "nome": "NU_LOTE_IA",
+      "fonte": "DICHANS",
+      "local": "p. 8, Transferência vertical da investigação e do acompanhamento",
+      "rotulo": "Lote da transferência vertical da investigação e do acompanhamento",
+      "tipo": "texto"
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra, pedida pelo Rubens (18/11/2026): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "FORMACLINI, CLASSOPERA, CLASSATUAL, MODOENTR, MODODETECT, BACILOSCOP, ESQ_INI_N, ESQ_ATU_N, EPIS_RACIO",
+      "descricao": "Resolvida (Rubens, 16/11/2026): os códigos que o campo não comporta (0 e, na forma clínica, 6 e 9; 9 na classificação operacional) saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências com o motivo; o código original fica na coluna ao lado. No arquivo de 2025: EPIS_RACIO 0 = 11.890; MODODETECT 0 = 6.916 (preenchimento inadequado; 6.743 não são caso novo); BACILOSCOP 0 = 1.130; FORMACLINI 0/6/9 = 1.070/42/15; ESQ_ATU_N 0 = 492; ESQ_INI_N 0 = 130; MODOENTR 0 = 23; CLASSOPERA e CLASSATUAL 0/9 = 23/8."
+    },
+    {
+      "coluna": "ID_UNIDADE e ID_UNID_AT",
+      "descricao": "Resolvida (Rubens, 16/11/2026): o código do CNES com menos de 7 dígitos é procurado também com zeros à esquerda. Decisão aplicada a todos os agravos."
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 // processamento em segundo plano e download do resultado.
 
 import { AGRAVOS_INTERFACE } from 'dados-interface';
+import { agruparAgravos } from './grupos.js';
 
 /* global __VERSAO__ */
 const VERSAO = __VERSAO__;
@@ -15,7 +16,7 @@ const mb = (b) => (b < 1048576
   : `${(b / 1048576).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} MB`);
 const dataBr = (aaaammdd) => `${aaaammdd.slice(6, 8)}/${aaaammdd.slice(4, 6)}/${aaaammdd.slice(0, 4)}`;
 
-const estado = { arquivo: null, analise: null, idPedido: 0, urls: [] };
+const estado = { agravo: null, arquivo: null, analise: null, idPedido: 0, urls: [] };
 let worker = criarWorker();
 
 // ---------------------------------------------------------------- trabalhador
@@ -27,7 +28,7 @@ function criarWorker() {
     if (data.tipo === 'progresso') mostrarProgresso(data);
     else if (data.tipo === 'analise') mostrarAnalise(data.resultado);
     else if (data.tipo === 'pronto') mostrarResultado(data);
-    else if (data.tipo === 'erro') mostrarErro(data.mensagem);
+    else if (data.tipo === 'erro') mostrarErro(data.mensagem, data.sugestao);
   };
   w.onerror = (e) => mostrarErro(`Erro inesperado no processamento: ${e.message}`);
   return w;
@@ -40,19 +41,71 @@ function pedir(mensagem) {
 
 // ---------------------------------------------------------------- agravo
 function agravoAtual() {
-  return AGRAVOS_INTERFACE[$('agravo').value];
+  return AGRAVOS_INTERFACE[estado.agravo];
+}
+
+/** Botões de agravo, por grupo; o primeiro do primeiro grupo (dengue) já vem escolhido. */
+function montarBotoesAgravo() {
+  const caixa = $('grupos-agravo');
+  for (const grupo of agruparAgravos(Object.keys(AGRAVOS_INTERFACE))) {
+    const bloco = el('div', { className: 'grupo-agravo' });
+    const botoes = el('div', { className: 'botoes-agravo' });
+    for (const id of grupo.agravos) {
+      const rotulo = el('label', { className: 'botao-agravo' });
+      const radio = el('input', { type: 'radio', name: 'agravo', value: id });
+      radio.addEventListener('change', () => escolherAgravo(id));
+      rotulo.append(radio, el('span', { textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome }));
+      botoes.append(rotulo);
+    }
+    bloco.append(el('p', { className: 'nome-grupo', textContent: grupo.nome }), botoes);
+    caixa.append(bloco);
+  }
+  escolherAgravo(caixa.querySelector('input').value, { analisarDeNovo: false });
+}
+
+function escolherAgravo(id, { analisarDeNovo = true } = {}) {
+  estado.agravo = id;
+  for (const r of document.querySelectorAll('input[name="agravo"]')) {
+    r.checked = r.value === id;
+    r.parentElement.classList.toggle('escolhido', r.checked);
+  }
+  mostrarInfoDicionario();
+  if (analisarDeNovo && estado.arquivo) analisar(estado.arquivo);
+}
+
+// ---------------------------------------------------------------- tema
+// Escuro por padrão; a escolha do tema claro fica guardada neste navegador
+// (só a palavra "claro" ou "escuro", nenhum dado do arquivo).
+function lerTemaGuardado() {
+  try {
+    return localStorage.getItem('decodificador-tema');
+  } catch {
+    return null;
+  }
+}
+
+function aplicarTema(tema) {
+  document.documentElement.dataset.tema = tema;
+  const botao = $('trocar-tema');
+  botao.textContent = tema === 'claro' ? 'Tema escuro' : 'Tema claro';
+  botao.setAttribute('aria-pressed', String(tema === 'claro'));
+}
+
+function trocarTema() {
+  const tema = document.documentElement.dataset.tema === 'claro' ? 'escuro' : 'claro';
+  aplicarTema(tema);
+  try {
+    localStorage.setItem('decodificador-tema', tema);
+  } catch {
+    // sem armazenamento (navegação privada, por exemplo): vale só nesta visita
+  }
 }
 
 function iniciar() {
   $('versao').textContent = VERSAO;
-  for (const [id, a] of Object.entries(AGRAVOS_INTERFACE)) {
-    $('agravo').add(new Option(a.dic.agravo.nome, id));
-  }
-  $('agravo').addEventListener('change', () => {
-    mostrarInfoDicionario();
-    if (estado.arquivo) analisar(estado.arquivo);
-  });
-  mostrarInfoDicionario();
+  aplicarTema(lerTemaGuardado() === 'claro' ? 'claro' : 'escuro');
+  $('trocar-tema').addEventListener('click', trocarTema);
+  montarBotoesAgravo();
 
   $('arquivo').addEventListener('change', (e) => e.target.files[0] && analisar(e.target.files[0]));
   const area = $('area-arquivo');
@@ -94,9 +147,10 @@ function mostrarInfoDicionario() {
 function analisar(arquivo) {
   estado.arquivo = arquivo;
   estado.analise = null;
-  esconder('passo-opcoes', 'resultado', 'erro', 'analise');
+  esconder('resultado', 'erro', 'analise');
+  mostrarOpcoes(false);
   mostrarProgresso({ etapa: 'Lendo o arquivo…', fracao: 0 });
-  pedir({ tipo: 'analisar', arquivo, agravo: $('agravo').value, codificacao: $('codificacao').value || undefined });
+  pedir({ tipo: 'analisar', arquivo, agravo: estado.agravo, codificacao: $('codificacao').value || undefined });
 }
 
 function mostrarAnalise(a) {
@@ -120,7 +174,7 @@ function mostrarAnalise(a) {
   }
   div.hidden = false;
   montarOpcoes();
-  $('passo-opcoes').hidden = false;
+  mostrarOpcoes(true);
 }
 
 // ---------------------------------------------------------------- opções
@@ -178,6 +232,7 @@ function marcarColunas(valor) {
 function contarColunas() {
   const caixas = [...$('lista-colunas').querySelectorAll('input')];
   $('conta-colunas').textContent = `${caixas.filter((c) => c.checked).length} de ${caixas.length} marcadas`;
+  atualizarBarra();
 }
 
 function preencherUfs() {
@@ -269,12 +324,12 @@ function processar() {
 
   for (const url of estado.urls) URL.revokeObjectURL(url);
   estado.urls = [];
-  $('passo-opcoes').hidden = true;
+  mostrarOpcoes(false);
   mostrarProgresso({ etapa: 'Preparando…', fracao: 0 });
   pedir({
     tipo: 'processar',
     arquivo: estado.arquivo,
-    agravo: $('agravo').value,
+    agravo: estado.agravo,
     versao: VERSAO,
     opcoes: {
       saida: document.querySelector('input[name="saida"]:checked').value,
@@ -293,7 +348,7 @@ function cancelar() {
   worker = criarWorker();
   estado.idPedido++;
   esconder('progresso');
-  if (estado.analise) $('passo-opcoes').hidden = false;
+  if (estado.analise) mostrarOpcoes(true);
 }
 
 function mostrarProgresso({ etapa, fracao, lidos }) {
@@ -325,7 +380,7 @@ function mostrarResultado(r) {
     links.append(el('a', { href: url, download: a.nome, className: 'botao principal', textContent: `Baixar ${a.nome} (${mb(a.tamanho)})` }));
   }
   const novo = el('button', { type: 'button', className: 'botao-leve', textContent: 'Mudar opções e processar de novo' });
-  novo.addEventListener('click', () => { sec.hidden = true; $('passo-opcoes').hidden = false; });
+  novo.addEventListener('click', () => { sec.hidden = true; mostrarOpcoes(true); });
   const aviso = r.arquivos.length > 1
     ? 'Os arquivos foram gerados no seu computador. O primeiro começou a baixar; clique no segundo botão para baixar também o Excel de apoio (inconsistências, dicionário usado e resumo).'
     : 'A planilha foi gerada no seu computador. Se o download não começou sozinho, use o botão abaixo.';
@@ -340,12 +395,39 @@ function mostrarResultado(r) {
   links.querySelector('a')?.click();
 }
 
-function mostrarErro(mensagem) {
+function mostrarErro(mensagem, sugestao = null) {
   esconder('progresso');
   const sec = $('erro');
   sec.replaceChildren(el('strong', { textContent: 'Não foi possível concluir. ' }), mensagem);
+  // Arquivo de outro agravo: botão para trocar para o agravo provável (nunca troca sozinho).
+  if (sugestao && AGRAVOS_INTERFACE[sugestao.id]) {
+    const usar = el('button', { type: 'button', className: 'botao principal', textContent: `Usar ${sugestao.nome}` });
+    usar.addEventListener('click', () => escolherAgravo(sugestao.id));
+    sec.append(
+      el('p', { className: 'sugestao', textContent: `Se o arquivo for mesmo de ${sugestao.nome}, clique no botão abaixo. O arquivo será lido de novo com esse agravo.` }),
+      usar,
+    );
+  }
   sec.hidden = false;
-  if (estado.analise) $('passo-opcoes').hidden = false;
+  if (estado.analise) mostrarOpcoes(true);
+  sec.scrollIntoView({ block: 'center' });
+}
+
+/** Mostra ou esconde as opções junto com a barra fixa do botão de processar. */
+function mostrarOpcoes(visivel) {
+  $('passo-opcoes').hidden = !visivel;
+  $('barra-acao').hidden = !visivel;
+  document.body.classList.toggle('com-barra', visivel);
+  if (visivel) atualizarBarra();
+}
+
+/** Resumo na barra fixa: arquivo, agravo e colunas marcadas. */
+function atualizarBarra() {
+  if (!estado.analise || !estado.arquivo) return;
+  const caixas = [...$('lista-colunas').querySelectorAll('input')];
+  const marcadas = caixas.filter((c) => c.checked).length;
+  $('barra-resumo').textContent =
+    `${estado.arquivo.name} · ${agravoAtual().dic.agravo.nome} · ${marcadas} de ${caixas.length} colunas`;
 }
 
 // ---------------------------------------------------------------- utilidades

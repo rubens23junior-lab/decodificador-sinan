@@ -53,7 +53,7 @@ Pontos de atenção:
 
 - **Codificação de caracteres.** Arquivos do SINAN costumam vir em codificação antiga. A ferramenta deve detectar ou permitir escolher a codificação, para que acentos apareçam corretamente.
 - **Arquivos grandes.** Deve processar pelo menos 200 mil registros sem travar o navegador, usando processamento em segundo plano e uma barra de progresso.
-- **Arquivo errado.** Se as colunas não correspondem ao agravo escolhido, a ferramenta avisa com uma mensagem clara em português e não gera planilha.
+- **Arquivo errado.** Se as colunas não correspondem ao agravo escolhido, a ferramenta avisa com uma mensagem clara em português e não gera planilha. Também confere o código do agravo (por exemplo, ID_AGRAVO) nos primeiros 1.000 registros, ou em todos, quando o arquivo é menor que isso. Código em branco não conta. Desde 21/11/2026, por decisão do Rubens, o aviso sugere o agravo provável: aquele cujas colunas combinam com o arquivo e cujo código aparece em mais da metade dos registros conferidos. Um botão troca para esse agravo, e a ferramenta nunca troca sozinha.
 
 ## 6. Decodificação
 
@@ -73,6 +73,19 @@ Cada valor de campo categórico é trocado pelo rótulo do dicionário. Os exemp
 
 Para valores como "ignorado", "não se aplica" e campo em branco, a ferramenta mantém a distinção que o dicionário faz. Em branco continua em branco, e nunca é preenchido com "ignorado".
 
+Regras acrescentadas por decisão do Rubens:
+
+- **Código que o campo não comporta** (16/11/2026). Se nenhuma fonte define o código e a ficha mostra que o campo não o comporta, a coluna pode marcar no dicionário um rótulo explícito ("Inconsistência/Não Preenchido"). O valor sai com esse rótulo, destacado, e vai para a aba Inconsistências com o motivo. O código original continua na coluna ao lado.
+- **Código do CNES sem os zeros à esquerda** (16/11/2026). Um código com menos de 7 dígitos que não é encontrado na tabela do CNES é procurado também com zeros à esquerda.
+- **Valor só com asteriscos** (16/11/2026). Um valor feito só de asteriscos ("***", "********"), forma de alguns arquivos públicos marcarem campo não preenchido, vale como campo em branco, inclusive na coluna do código original. A quantidade aparece na aba Resumo.
+- **Valor só com bytes nulos** (19/11/2026). Um valor feito só de bytes nulos (o caractere de código 0), forma de alguns arquivos públicos gravarem o campo vazio (por exemplo, surto de DTA de 2022 e 2023), vale como campo em branco, inclusive na coluna do código original. A quantidade aparece na aba Resumo, como na regra dos asteriscos.
+- **Acentos estragados em texto livre** (19/11/2026). Nas colunas de texto marcadas no dicionário ("corrigir_acentos"), o acento estragado por conversão de codificação é consertado quando o estrago tem uma das duas formas exatas e reversíveis: texto em UTF-8 lido como windows-1252 ("Ãgua", "AÃ§aÃ­") e texto da página de código 850 (DOS) lido como windows-1252 ("Norov¡rus", "µgua"). Texto que não se encaixe nessas formas fica como veio. A quantidade de textos consertados aparece na aba Resumo.
+- **Data no formato americano** (19/11/2026). Nas colunas de data marcadas no dicionário ("mes_dia_ano"), a data com barras é lida como mês/dia/ano (M/D/AAAA), porque o arquivo grava assim (datas de transferência do surto de DTA de 2022 e 2023). Data que não exista lida desse modo vai para as Inconsistências.
+- **Aviso que cruza duas colunas** (21/11/2026). Uma coluna extra ("calculo": "alerta_condicional") mostra um aviso quando duas colunas têm, ao mesmo tempo, valores que indicam possível erro de notificação. Por exemplo, nas toxoplasmoses, o CID B58 (toxoplasmose) em gestante é um possível caso de toxoplasmose gestacional, que deveria ser notificado com O98.6 (regra do Rubens, que trabalhou na qualificação dessas notificações). O dado original não muda; o aviso sai destacado e contado nas Inconsistências.
+- **Número em campo de texto** (19/11/2026). Na coluna de texto marcada no dicionário ("numero_fora_do_campo"), um valor só com algarismos sai com o rótulo dado (por exemplo, "Inconsistência/Preenchido erroneamente"), destacado e nas Inconsistências.
+- **Semana epidemiológica calculada** (18/11/2026). Quando o arquivo traz a data mas não a semana (por exemplo, SEM_DIAG em branco na sífilis), o dicionário pode pedir uma coluna extra com a semana epidemiológica calculada da data, no formato AAAASS dos dicionários do Sinan. A coluna original continua como veio. A regra (semana de domingo a sábado, semana 1 é a que contém 4 de janeiro) foi conferida contra as semanas gravadas pelo próprio Sinan em cerca de 2,5 milhões de registros públicos, todas iguais. Data inválida não gera semana e vai para as Inconsistências.
+- **Texto livre com códigos** (18/11/2026). Num campo de texto em que a fonte também lista códigos (por exemplo, "outro sinal – especificar" na sífilis congênita), os códigos são traduzidos e o texto escrito fica como veio, sem destaque.
+
 ### 6.3 Regras especiais
 
 Alguns campos não são uma simples troca de código por rótulo. Cada regra especial deve estar descrita no dicionário e vir da fonte oficial. Exemplos que o desenvolvimento deve tratar, sempre confirmando com o Rubens e com a documentação oficial:
@@ -84,7 +97,7 @@ Alguns campos não são uma simples troca de código por rótulo. Cada regra esp
 
 ### 6.4 Opções de saída
 
-- Manter também as colunas originais, ao lado das decodificadas (padrão: sim).
+- Manter também as colunas originais, ao lado das decodificadas (padrão: não, por decisão do Rubens em 21/11/2026; até a versão 1.0.1 o padrão era sim).
 - Incluir o nome original da coluna em uma segunda linha de cabeçalho (padrão: não).
 - Incluir apenas as colunas escolhidas pelo usuário (padrão: todas).
 - Formato para análise em R, Stata e Python (padrão: não). Incluído em 02/11/2026, por decisão do Rubens. Traz:

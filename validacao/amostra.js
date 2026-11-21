@@ -8,6 +8,10 @@
 //
 // Uso: node validacao/amostra.js
 // Saída: docs/validacao/amostra-conferencia.xlsx (sem registros inteiros: só a célula sorteada)
+//
+// Um agravo só (versão 1.1 em diante), sem mexer na amostra da 1.0.0:
+//   node validacao/amostra.js --agravo violencia --arquivo <caminho do DBC> --semente 20261110
+// Saída: docs/validacao/amostra-conferencia-<agravo>.xlsx
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { basename } from 'node:path';
@@ -18,18 +22,25 @@ import { criarDecodificador } from '../src/decodificacao/decodificador.js';
 import { categoriasDaColuna, NOMES_TIPOS } from '../src/dicionario/tipos.js';
 import { criarXlsx, ESTILO } from '../src/saida/xlsx.js';
 
-const SEMENTE = 20261102;
-const ARQUIVOS = [
-  ['dengue', 'DENGBR25.dbc'],
-  ['chikungunya', 'CHIKBR25.dbc'],
-  ['zika', 'ZIKABR25.dbc'],
-  ['leishmaniose-tegumentar', 'LTANBR25.dbc'],
-  ['leishmaniose-visceral', 'LVH.csv'],
+const args = process.argv.slice(2);
+const opcao = (n) => (args.includes(n) ? args[args.indexOf(n) + 1] : undefined);
+const AGRAVO = opcao('--agravo');
+if (AGRAVO && (!opcao('--arquivo') || !opcao('--semente'))) {
+  console.error('Com --agravo, informe também --arquivo <caminho> e --semente <número>.');
+  process.exit(1);
+}
+const SEMENTE = AGRAVO ? Number(opcao('--semente')) : 20261102;
+const ARQUIVOS = AGRAVO ? [[AGRAVO, opcao('--arquivo')]] : [
+  ['dengue', 'dengue-chikungunya/DENGBR25.dbc'],
+  ['chikungunya', 'dengue-chikungunya/CHIKBR25.dbc'],
+  ['zika', 'zika/ZIKABR25.dbc'],
+  ['leishmaniose-tegumentar', 'leishmaniose-tegumentar/LTANBR25.dbc'],
+  ['leishmaniose-visceral', 'leishmaniose-visceral/LVH.csv'],
 ];
 // Células por tipo de coluna, em cada agravo (total 100). Se um tipo não tiver
 // células suficientes, a sobra vai para as listas de códigos.
 const COTAS = { categorico: 60, idade: 8, municipio: 8, uf: 6, tabela: 8, extra: 10 };
-const NOME_COTA = { categorico: 'Lista de códigos', idade: 'Idade', municipio: 'Município', uf: 'UF', tabela: 'CNES/CBO', extra: 'Coluna extra (região/macrorregião)' };
+const NOME_COTA = { categorico: 'Lista de códigos', idade: 'Idade', municipio: 'Município', uf: 'UF', tabela: 'CNES/CBO', extra: 'Coluna extra (região, macrorregião ou semana calculada)' };
 
 const raiz = fileURLToPath(new URL('../', import.meta.url));
 
@@ -67,6 +78,13 @@ const arquivoFonte = (dic, id) => (dic.fontes[id] ? basename(dic.fontes[id].arqu
 
 /** Onde o Rubens confere a célula: documento e local. */
 function ondeConferir(dic, col, codigo) {
+  if (col.derivada && col.calculo === 'semana_epidemiologica') {
+    return `Semana epidemiológica da data em ${col.de} (código original desta linha): conferir num calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro)`;
+  }
+  if (col.derivada && col.calculo === 'codigo_com_ponto_vezes_100') {
+    const t = dic.tabelas[col.tabela];
+    return `Código de ${col.de} (código original desta linha) multiplicado por 100 e procurado na tabela ${col.tabela}: ${t.fonte} (${arquivoFonte(dic, t.fonte)})`;
+  }
   if (col.derivada) {
     const t = dic.tabelas[col.tabela];
     return `Tabela ${col.tabela}: ${t.fonte} (${arquivoFonte(dic, t.fonte)}); município pelo código de ${col.de}`;
@@ -74,14 +92,14 @@ function ondeConferir(dic, col, codigo) {
   if (col.tipo === 'categorico') {
     const cat = categoriasDaColuna(dic, col).find((c) => c.codigos.includes(codigo));
     const id = cat?.fonte ?? col.fonte;
-    const decisao = /Decisão do Rubens/.test(col.observacao ?? '') ? ' (ver também a decisão do Rubens na observação da coluna)' : '';
+    const decisao = /decisão do Rubens/i.test(col.observacao ?? '') ? ' (ver também a decisão do Rubens na observação da coluna)' : '';
     return `${id} (${arquivoFonte(dic, id)}), ${cat?.local ?? col.local}${decisao}`;
   }
   if (col.tipo === 'tabela') {
     const t = dic.tabelas[col.tabela];
     const alternativa = {
       cnes: '; também na consulta pública do CNES (cnes.datasus.gov.br)',
-      cbo: '; também em docs/fontes/CBO/cbo2002-ocupacao.csv (os títulos podem diferir em maiúsculas)',
+      cbo: '; também em docs/fontes/tabelas-apoio/CBO/cbo2002-ocupacao.csv (os títulos podem diferir em maiúsculas)',
     }[col.tabela] ?? '';
     return `Tabela ${col.tabela}: ${t.fonte} (${arquivoFonte(dic, t.fonte)})${alternativa}`;
   }
@@ -96,8 +114,8 @@ const linhas = [];
 const metodo = [['Agravo', 'Arquivo', 'Registros lidos', 'Tipo de coluna', 'Células disponíveis', 'Células sorteadas']];
 const sorteio = aleatorio(SEMENTE);
 
-for (const [agravo, nomeArquivo] of ARQUIVOS) {
-  const caminho = `${raiz}dados_publicos/${nomeArquivo}`;
+for (let [agravo, nomeArquivo] of ARQUIVOS) {
+  const caminho = AGRAVO ? nomeArquivo : `${raiz}dados_publicos/${nomeArquivo}`;
   if (!existsSync(caminho)) throw new Error(`Arquivo não encontrado: ${caminho}`);
   const dic = JSON.parse(readFileSync(`${raiz}dicionarios/${agravo}.json`, 'utf8'));
   const tabelas = {};
@@ -114,6 +132,7 @@ for (const [agravo, nomeArquivo] of ARQUIVOS) {
   let colunas; // [{ k, iArquivo, col, cota }]
   let numero = 0;
   const bytes = readFileSync(caminho);
+  nomeArquivo = basename(nomeArquivo);
   const leitura = lerArquivo(bytes, {
     formato: detectarFormato(nomeArquivo, bytes),
     aoCabecalho(campos) {
@@ -157,7 +176,7 @@ for (const [agravo, nomeArquivo] of ARQUIVOS) {
 }
 
 // Ordena por agravo, coluna e registro, para facilitar a consulta aos PDFs.
-const ordemAgravo = new Map(ARQUIVOS.map(([, a], i) => [a, i]));
+const ordemAgravo = new Map(ARQUIVOS.map(([, a], i) => [basename(a), i]));
 linhas.sort((a, b) => ordemAgravo.get(a.nomeArquivo) - ordemAgravo.get(b.nomeArquivo) || a.col.nome.localeCompare(b.col.nome) || a.registro - b.registro);
 
 const amostra = [['Nº', 'Agravo', 'Arquivo', 'Registro nº', 'Coluna', 'Nome legível', 'Tipo', 'Código original', 'Texto da ferramenta', 'Onde conferir', 'Correto? (SIM/NÃO)', 'Comentário']];
@@ -184,7 +203,7 @@ const instrucoes = [
   [`Gerada em ${new Date().toLocaleString('pt-BR')}.`],
 ];
 
-const destino = `${raiz}docs/validacao/amostra-conferencia.xlsx`;
+const destino = `${raiz}docs/validacao/amostra-conferencia${AGRAVO ? `-${AGRAVO}` : ''}.xlsx`;
 writeFileSync(destino, criarXlsx([
   { nome: 'Instruções', linhas: instrucoes.map((l, i) => (i === 0 || l[0] === 'Como conferir' || l[0] === 'Método' ? [{ valor: l[0], estilo: ESTILO.cabecalho }] : l)), larguras: [140], cabecalho: false },
   { nome: 'Amostra', linhas: amostra, larguras: [6, 18, 13, 11, 12, 34, 16, 14, 40, 55, 12, 40] },

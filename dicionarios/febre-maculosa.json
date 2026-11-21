@@ -1,0 +1,1929 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Febre maculosa",
+    "codigos": [
+      "A779",
+      "A77.9",
+      "A 77.9",
+      "A 7 7. 9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos FMACBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-21",
+    "registro": "docs/conferencia/conferencia-febre-maculosa.xlsx (conferência na planilha em 21/11/2026, tudo aprovado, sem correções)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICFMAC": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Febre maculosa (campos 31 a 63)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "Revisado em março/2012 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/febre-maculosa/FMACUN_DIC_DADOS.pdf"
+    },
+    "FICHAFMAC": {
+      "documento": "Ficha de Investigação – Febre maculosa – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 19/09/2006 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/febre-maculosa/FMACUN_FICHA.pdf"
+    },
+    "INSTFMAC": {
+      "documento": "Febre maculosa – Instruções para preenchimento – Ficha de investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/febre-maculosa/FMACUN_INSTRUCIONAL.pdf"
+    },
+    "TABFMAC": {
+      "documento": "Arquivo de definições do TabWin para investigação de febre maculosa (FMacNet.def) e conversões",
+      "orgao": "Ministério da Saúde / GT-Sinan",
+      "data": "Alterado em 16/10/2007 e atualizado em 24/09/2010 (cabeçalho do .def). Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/FMacNet.def"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    },
+    "DATASUS_UF": {
+      "documento": "Tabela de UFs do DATASUS (tb_uf.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_uf.csv"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "resultado": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positivo"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativo"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      }
+    ],
+    "uf_sigla": [
+      {
+        "codigos": [
+          "RO",
+          "11"
+        ],
+        "rotulo": "RO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 11 e ds_sigla RO"
+      },
+      {
+        "codigos": [
+          "AC",
+          "12"
+        ],
+        "rotulo": "AC",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 12 e ds_sigla AC"
+      },
+      {
+        "codigos": [
+          "AM",
+          "13"
+        ],
+        "rotulo": "AM",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 13 e ds_sigla AM"
+      },
+      {
+        "codigos": [
+          "RR",
+          "14"
+        ],
+        "rotulo": "RR",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 14 e ds_sigla RR"
+      },
+      {
+        "codigos": [
+          "PA",
+          "15"
+        ],
+        "rotulo": "PA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 15 e ds_sigla PA"
+      },
+      {
+        "codigos": [
+          "AP",
+          "16"
+        ],
+        "rotulo": "AP",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 16 e ds_sigla AP"
+      },
+      {
+        "codigos": [
+          "TO",
+          "17"
+        ],
+        "rotulo": "TO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 17 e ds_sigla TO"
+      },
+      {
+        "codigos": [
+          "MA",
+          "21"
+        ],
+        "rotulo": "MA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 21 e ds_sigla MA"
+      },
+      {
+        "codigos": [
+          "PI",
+          "22"
+        ],
+        "rotulo": "PI",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 22 e ds_sigla PI"
+      },
+      {
+        "codigos": [
+          "CE",
+          "23"
+        ],
+        "rotulo": "CE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 23 e ds_sigla CE"
+      },
+      {
+        "codigos": [
+          "RN",
+          "24"
+        ],
+        "rotulo": "RN",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 24 e ds_sigla RN"
+      },
+      {
+        "codigos": [
+          "PB",
+          "25"
+        ],
+        "rotulo": "PB",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 25 e ds_sigla PB"
+      },
+      {
+        "codigos": [
+          "PE",
+          "26"
+        ],
+        "rotulo": "PE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 26 e ds_sigla PE"
+      },
+      {
+        "codigos": [
+          "AL",
+          "27"
+        ],
+        "rotulo": "AL",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 27 e ds_sigla AL"
+      },
+      {
+        "codigos": [
+          "SE",
+          "28"
+        ],
+        "rotulo": "SE",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 28 e ds_sigla SE"
+      },
+      {
+        "codigos": [
+          "BA",
+          "29"
+        ],
+        "rotulo": "BA",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 29 e ds_sigla BA"
+      },
+      {
+        "codigos": [
+          "MG",
+          "31"
+        ],
+        "rotulo": "MG",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 31 e ds_sigla MG"
+      },
+      {
+        "codigos": [
+          "ES",
+          "32"
+        ],
+        "rotulo": "ES",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 32 e ds_sigla ES"
+      },
+      {
+        "codigos": [
+          "RJ",
+          "33"
+        ],
+        "rotulo": "RJ",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 33 e ds_sigla RJ"
+      },
+      {
+        "codigos": [
+          "SP",
+          "35"
+        ],
+        "rotulo": "SP",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 35 e ds_sigla SP"
+      },
+      {
+        "codigos": [
+          "PR",
+          "41"
+        ],
+        "rotulo": "PR",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 41 e ds_sigla PR"
+      },
+      {
+        "codigos": [
+          "SC",
+          "42"
+        ],
+        "rotulo": "SC",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 42 e ds_sigla SC"
+      },
+      {
+        "codigos": [
+          "RS",
+          "43"
+        ],
+        "rotulo": "RS",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 43 e ds_sigla RS"
+      },
+      {
+        "codigos": [
+          "MS",
+          "50"
+        ],
+        "rotulo": "MS",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 50 e ds_sigla MS"
+      },
+      {
+        "codigos": [
+          "MT",
+          "51"
+        ],
+        "rotulo": "MT",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 51 e ds_sigla MT"
+      },
+      {
+        "codigos": [
+          "GO",
+          "52"
+        ],
+        "rotulo": "GO",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 52 e ds_sigla GO"
+      },
+      {
+        "codigos": [
+          "DF",
+          "53"
+        ],
+        "rotulo": "DF",
+        "fonte": "DATASUS_UF",
+        "local": "co_uf 53 e ds_sigla DF"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAFMAC",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A779",
+            "A77.9",
+            "A 77.9",
+            "A 7 7. 9"
+          ],
+          "rotulo": "Febre maculosa não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código A779"
+        }
+      ],
+      "observacao": "A ficha mostra 'Febre Maculosa / Rickettsioses' com o CID 'A 77.9'; no arquivo vem 'A779' (regra do Rubens: o CID como na ficha e sem ponto e espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana). Fica como veio."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC. Fica como veio."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAFMAC",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICFMAC",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICFMAC",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "FEBRE",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: febre",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CEFALEIA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: cefaléia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ABDOMINAL",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: dor abdominal",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MIALGIA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: mialgia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NAUSEA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: náusea/vômito",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EXANTEMA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: exantema",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DIARREIA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: diarréia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ICTERICIA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: icterícia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HIPEREMIA",
+      "fonte": "DICFMAC",
+      "local": "p. 2, campo 33",
+      "rotulo": "Sinais e sintomas: hiperemia conjuntival",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEPATOME",
+      "fonte": "DICFMAC",
+      "local": "p. 2-3, campo 33",
+      "rotulo": "Sinais e sintomas: hepatomegalia/esplenomegalia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "PETEQUIAS",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: petéquias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEMORRAG",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: manifestações hemorrágicas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LINFADENO",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: linfadenopatia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CONVULSAO",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: convulsão",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NECROSE",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: necrose de extremidades",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "PROSTACAO",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: prostração",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CHOQUE",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: choque/hipotensão",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COMA",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: estupor/coma",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HEMORRAGI",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: sufusão hemorrágica",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "O DICFMAC liga HEMORRAG às manifestações hemorrágicas e HEMORRAGI à sufusão hemorrágica; o FMacNet.def confirma (\"Manif. Hemorr.\" e \"Sufusão/Hemorag\"). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RESPIRATO",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: alterações respiratórias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OLIGURIA",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: oligúria/anúria",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OUTROS",
+      "fonte": "DICFMAC",
+      "local": "p. 3, campo 33",
+      "rotulo": "Sinais e sintomas: outros",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OUTRO_ESP",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 33",
+      "rotulo": "Sinais e sintomas: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CARRAPATO",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: carrapato",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CAPIVARA",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: capivara",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CAO_GATO",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: cão/gato",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BOVINO",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: bovinos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EQUINOS",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: equinos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OUTROANI",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: outros animais",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Situação/exposição de risco nas últimas duas semanas (14 dias), como diz a ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANIM_ESP",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Teve contato com animais: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "FOI_MATA",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 35",
+      "rotulo": "Frequentou ambientes com mata, floresta, rios, cachoeiras etc.",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HOSPITAL",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 36",
+      "rotulo": "Ocorreu hospitalização",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTINTERNA",
+      "fonte": "DICFMAC",
+      "local": "p. 4, campo 37",
+      "rotulo": "Data da internação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DTALTA",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 38",
+      "rotulo": "Data da alta",
+      "tipo": "data"
+    },
+    {
+      "nome": "COUFHOSP",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 39",
+      "rotulo": "UF do hospital",
+      "tipo": "categorico",
+      "lista": "uf_sigla",
+      "observacao": "O arquivo traz quase sempre o código numérico da UF e, em 594 registros, a sigla (ES). As duas formas saem como sigla, pela tabela de UFs do DATASUS (regra do Rubens para coluna mista, 19/11/2026)."
+    },
+    {
+      "nome": "COMUNHOSP",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 40",
+      "rotulo": "Município do hospital",
+      "tipo": "municipio",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "COUNIHOSP",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 41",
+      "rotulo": "Hospital (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Sai o nome do estabelecimento pelo CNES. Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "DIAGNO_LAB",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 42",
+      "rotulo": "Diagnóstico laboratorial",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTS1",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 43",
+      "rotulo": "Sorologia: data da coleta da amostra S1",
+      "tipo": "data"
+    },
+    {
+      "nome": "DTS2",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 43",
+      "rotulo": "Sorologia: data da coleta da amostra S2",
+      "tipo": "data"
+    },
+    {
+      "nome": "IGM_S1",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 43",
+      "rotulo": "Sorologia: resultado S1 IgM",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1 a 4"
+      },
+      "observacao": "Rótulos do DICFMAC (a ficha escreve \"Reagente\" e \"Não reagente\" para os códigos 1 e 2). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TIT_IGM_S1",
+      "fonte": "DICFMAC",
+      "local": "p. 5, campo 43",
+      "rotulo": "Sorologia: título S1 IgM",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 64 = 1:64). Fica como veio; o arquivo traz também formas como \"-64\" e \"0\"."
+    },
+    {
+      "nome": "IGG_S1",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: resultado S1 IgG",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1 a 4"
+      },
+      "observacao": "Rótulos do DICFMAC (a ficha escreve \"Reagente\" e \"Não reagente\" para os códigos 1 e 2). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TIT_IGG_S1",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: título S1 IgG",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 64 = 1:64). Fica como veio; o arquivo traz também formas como \"-64\" e \"0\"."
+    },
+    {
+      "nome": "IGM_S2",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: resultado S2 IgM",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1 a 4"
+      },
+      "observacao": "Rótulos do DICFMAC (a ficha escreve \"Reagente\" e \"Não reagente\" para os códigos 1 e 2). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TIT_IGM_S2",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: título S2 IgM",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 64 = 1:64). Fica como veio; o arquivo traz também formas como \"-64\" e \"0\"."
+    },
+    {
+      "nome": "IGG_S2",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: resultado S2 IgG",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1 a 4"
+      },
+      "observacao": "Rótulos do DICFMAC (a ficha escreve \"Reagente\" e \"Não reagente\" para os códigos 1 e 2). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TIT_IGG_S2",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 43",
+      "rotulo": "Sorologia: título S2 IgG",
+      "tipo": "texto",
+      "observacao": "O título é o denominador da diluição (por exemplo 64 = 1:64). Fica como veio; o arquivo traz também formas como \"-64\" e \"0\"."
+    },
+    {
+      "nome": "DT_COLETA",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Isolamento: data da coleta",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ISOLAMENTO",
+      "fonte": "DICFMAC",
+      "local": "p. 6, campo 45",
+      "rotulo": "Resultado do isolamento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Detectado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não Detectado"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGENTE",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 46",
+      "rotulo": "Agente",
+      "tipo": "texto",
+      "observacao": "Texto livre (o arquivo traz o número e o nome do agente, por exemplo \"1. RICKETTSIA RICKETTSSII\"); nenhum documento lista esses números. Fica como veio."
+    },
+    {
+      "nome": "HISTOPATO",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 47",
+      "rotulo": "Resultado da histopatologia",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 47 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "IMUNOHIST",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 48",
+      "rotulo": "Resultado da imunohistoquímica",
+      "tipo": "categorico",
+      "lista": "resultado",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 49",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta 1 e 2"
+      },
+      "observacao": "O DICFMAC e a ficha só listam 1 e 2. O código 8 aparece em 2.272 registros (6%) e sai como \"Inconsistência/Não Preenchido\", como na leptospirose (o Classifi.cnv do TabWin o chama de Inconclusivo). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 50",
+      "rotulo": "Critério de confirmação/descarte",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Laboratório"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Clínico-Epidemiológico"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Clínico"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 1, 2 e 3"
+      },
+      "observacao": "O DICFMAC observa que a categoria 3 (Clínico) ficou inválida na versão 4.0, mas a lista ainda na ficha; aparece em 163 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DIAG_DESCA",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 51",
+      "rotulo": "Se descartado, especificar diagnóstico",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "TPAUTOCTO",
+      "fonte": "DICFMAC",
+      "local": "p. 7, campo 52",
+      "rotulo": "O caso é autóctone do município de residência?",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 52 só comporta 1, 2 e 3"
+      },
+      "observacao": "Rótulos do DICFMAC. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "COUFINF",
+      "fonte": "DICFMAC",
+      "local": "p. 8, campo 53",
+      "rotulo": "UF provável de infecção",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "COPAISINF",
+      "fonte": "DICFMAC",
+      "local": "p. 9, campo 54",
+      "rotulo": "País provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). Vem \"0\" em cerca de 34.500 registros (89%), quase sempre sem autoctonia, como na leptospirose."
+    },
+    {
+      "nome": "COMUNINF",
+      "fonte": "DICFMAC",
+      "local": "p. 10, campo 55",
+      "rotulo": "Município provável de infecção",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "CODISINF",
+      "fonte": "DICFMAC",
+      "local": "p. 10, campo 56",
+      "rotulo": "Distrito provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "CO_BAINFC",
+      "fonte": "DICFMAC",
+      "local": "p. 11, campo 57",
+      "rotulo": "Bairro provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NOBAIINF",
+      "fonte": "DICFMAC",
+      "local": "p. 11, campo 57",
+      "rotulo": "Bairro provável de infecção (nome)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "ZONA",
+      "fonte": "DICFMAC",
+      "local": "p. 11, campo 58",
+      "rotulo": "Zona provável de infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Urbana"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Rural"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Peri-urbana"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Rótulos da ficha. Não vem nos arquivos públicos do DATASUS (FMACBR23 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AMBIENTE",
+      "fonte": "DICFMAC",
+      "local": "p. 12, campo 59",
+      "rotulo": "Ambiente provável de infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Domiciliar"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Trabalho"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Lazer"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 59 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Rótulos da ficha (no PDF do DICFMAC as categorias aparecem cortadas). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICFMAC",
+      "local": "p. 12, campo 60",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 60 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICFMAC",
+      "local": "p. 12, campo 61",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por febre maculosa"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outra causa"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 61 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Rótulos da ficha. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICFMAC",
+      "local": "p. 13, campo 62",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICFMAC",
+      "local": "p. 13, campo 63",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "IDENT_MICR",
+      "fonte": "DICFMAC",
+      "local": "não aparece na fonte",
+      "rotulo": "IDENT_MICR (sem descrição nas fontes)",
+      "tipo": "codigo",
+      "observacao": "Nem o DICFMAC, nem a ficha, nem o FMacNet.def descrevem esta coluna. Vem em branco em todos os registros de 2023 a 2025; se vier algum valor, fica como veio (pendência)."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Fonte principal: o DICFMAC (dicionário de febre maculosa, revisado em março/2012, do pacote Docs_TAB_SINAN). A ficha é de 2006. O FMacNet.def do TabWin confirma as colunas. Os campos da notificação, internos e de autoctonia foram copiados da leptospirose, já conferida."
+    },
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "Aprovada (Rubens, 21/11/2026). O código 8 aparece em 2.272 registros (6%); o DICFMAC e a ficha só listam 1 e 2. Sai como \"Inconsistência/Não Preenchido\", como na leptospirose."
+    },
+    {
+      "coluna": "CRITERIO",
+      "descricao": "Aprovada (Rubens, 21/11/2026). O código 3 (Clínico) está na ficha e no DICFMAC, que observa que a categoria ficou inválida na versão 4.0; aparece em 163 registros. Entrou como \"Clínico\"."
+    },
+    {
+      "coluna": "Sorologia (IGM/IGG e títulos)",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Resultados com os rótulos do DICFMAC (1 Positivo, 2 Negativo, 3 Inconclusivo, 4 Não realizado); a ficha escreve \"Reagente/Não reagente\". O código 9 aparece em 1 registro de cada e sai como inconsistência. Os títulos ficam como texto."
+    },
+    {
+      "coluna": "COUFHOSP",
+      "descricao": "Aprovada (Rubens, 21/11/2026). A UF do hospital vem em código numérico e, em 594 registros, em sigla (ES): sai sempre a sigla (lista uf_sigla, regra do Rubens para coluna mista)."
+    },
+    {
+      "coluna": "AGENTE",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Texto como veio: o arquivo traz número e nome do agente (por exemplo \"1. RICKETTSIA RICKETTSSII\"), e nenhum documento lista esses números."
+    },
+    {
+      "coluna": "IDENT_MICR",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Coluna sem descrição em nenhuma fonte (nem no FMacNet.def); vem sempre em branco. Ficou como código mantido como veio."
+    },
+    {
+      "coluna": "Campos do DICFMAC fora do arquivo",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Entraram, pela regra do Rubens: município e nome do hospital (40 e 41), distrito, bairro e zona prováveis de infecção (56 a 58)."
+    },
+    {
+      "coluna": "Arquivos",
+      "descricao": "Aprovada (Rubens, 21/11/2026). Vieram 2023, 2024 e 2025 (17.942, 9.962 e 11.010 notificações)."
+    }
+  ]
+}

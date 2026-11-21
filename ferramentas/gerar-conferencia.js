@@ -10,6 +10,8 @@
 // --ok marca como OK linhas que o Rubens confirmou fora da planilha (no chat):
 // coluna (CS_SEXO), categoria (CS_SEXO|M), coluna extra (REGSAUD_NOT) ou
 // tabela (cnes). --ok-data dd/mm/aaaa informa o dia da confirmação (padrão: hoje).
+// --ok-motivo "texto" troca o comentário padrão dessas linhas (por exemplo, quando
+// a linha foi corrigida exatamente como o Rubens pediu na planilha).
 // --referencia dicionarios/dengue.json: num dicionário novo, as linhas iguais
 // às de um dicionário já conferido (mesmo nome legível, tipo e rótulos) não
 // ficam em amarelo e recebem o comentário "Igual ao dicionário de ...".
@@ -19,7 +21,7 @@ import { basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { criarXlsx, ESTILO } from '../src/saida/xlsx.js';
 import { verificarDicionario } from '../src/dicionario/verificar.js';
-import { NOMES_TIPOS, categoriasDaColuna } from '../src/dicionario/tipos.js';
+import { NOMES_TIPOS, NOMES_CALCULOS, categoriasDaColuna } from '../src/dicionario/tipos.js';
 import { lerXlsx } from './ler-xlsx.js';
 
 const args = process.argv.slice(2);
@@ -27,6 +29,7 @@ const caminho = args.find((a) => a.endsWith('.json'));
 const iOk = args.indexOf('--ok');
 const confirmadosOk = new Set(iOk !== -1 ? args[iOk + 1].split(',').map((s) => s.trim().toUpperCase()) : []);
 const iOkData = args.indexOf('--ok-data');
+const iOkMotivo = args.indexOf('--ok-motivo');
 const iRef = args.indexOf('--referencia');
 if (!caminho || (iRef !== -1 && caminho === args[iRef + 1])) {
   console.error('Uso: node ferramentas/gerar-conferencia.js dicionarios/<agravo>.json [--ok COL1,COL2] [--referencia dicionarios/<conferido>.json]');
@@ -65,6 +68,7 @@ const antColunas = indexar('Colunas', (l) => l[1], [2, 3, 4, 5, 6], 7, 8);
 const antCategorias = indexar('Categorias', (l) => `${l[0]}|${l[2]}`, [3, 4, 5], 6, 7);
 const antExtras = indexar('Colunas extras', (l) => l[0], [1, 2, 3, 4], 5, 6);
 const antTabelas = indexar('Tabelas', (l) => l[0], [1, 2, 3], 4, 5);
+const antListas = indexar('Listas', (l) => `${l[0]}|${l[1]}`, [2, 3], 5, 6);
 const antPendencias = indexar('Pendências', (l) => l[0], [1], 2, 2);
 
 const estatistica = { mantidas: 0, revisar: 0, iguais: 0 };
@@ -76,11 +80,14 @@ const dataOk = iOkData !== -1 ? args[iOkData + 1] : hoje;
 // fonte especial (categorias com fonte própria).
 const assinaturaColuna = (c) => `${c.rotulo}|${c.tipo}|${c.tabela ?? ''}|${c.observacao ?? ''}`;
 const assinaturaCategoria = (cat) => `${cat.rotulo}|${cat.fonte ?? ''}`;
+const assinaturaConjunto = (cats) => JSON.stringify(cats.map((c) => [c.codigos, c.rotulo]));
 const ref = referencia && {
   colunas: new Map(referencia.colunas.map((c) => [c.nome, assinaturaColuna(c)])),
   categorias: new Map(referencia.colunas.flatMap((c) => categoriasDaColuna(referencia, c).map((cat) => [`${c.nome}|${cat.codigos.join(' / ')}`, assinaturaCategoria(cat)]))),
-  extras: new Map((referencia.derivadas ?? []).map((d) => [d.nome, `${d.rotulo}|${d.de}|${d.tabela}`])),
+  extras: new Map((referencia.derivadas ?? []).map((d) => [d.nome, `${d.rotulo}|${d.de}|${d.tabela ?? d.calculo}`])),
   tabelas: new Map(Object.entries(referencia.tabelas ?? {}).map(([id, t]) => [id, t.arquivo])),
+  // Conjuntos completos de categorias já conferidos (de qualquer coluna ou lista).
+  conjuntos: new Set(referencia.colunas.filter((c) => c.tipo === 'categorico').map((c) => assinaturaConjunto(categoriasDaColuna(referencia, c)))),
 };
 const igualNaReferencia = (grupo, chave, assinatura) => !!ref && ref[grupo].get(chave) === assinatura;
 
@@ -91,7 +98,9 @@ const igualNaReferencia = (grupo, chave, assinatura) => !!ref && ref[grupo].get(
 function marcacao(mapa, chave, campos, podeConfirmar, igual = false) {
   const ant = mapa.get(chave);
   const atuais = campos.map((c) => String(c ?? ''));
-  if (!ant && igual) {
+  // Sem marcação anterior, a linha igual à do dicionário de referência continua
+  // sem destaque, também numa segunda rodada (antes voltava a ficar amarela).
+  if (igual && (!ant || (ant.marca === '' && ant.campos.every((c, i) => c === atuais[i])))) {
     estatistica.iguais++;
     return ['', `Igual ao dicionário de ${referencia.agravo.nome} já conferido (muda só a fonte ou a página).`, false];
   }
@@ -106,7 +115,7 @@ function marcacao(mapa, chave, campos, podeConfirmar, igual = false) {
   }
   if (podeConfirmar && confirmadosOk.has(chave.toUpperCase()) && ant.marca !== 'OK') {
     estatistica.mantidas++;
-    return ['OK', `Confirmado como OK pelo Rubens no chat em ${dataOk}.`, false];
+    return ['OK', iOkMotivo !== -1 ? `${args[iOkMotivo + 1]} (${dataOk}).` : `Confirmado como OK pelo Rubens no chat em ${dataOk}.`, false];
   }
   if (ant.marca === '') estatistica.revisar++;
   else estatistica.mantidas++;
@@ -124,6 +133,7 @@ function linha(valores, destacar) {
 
 const colunas = [['Nº', 'Coluna no arquivo', 'Nome legível', 'Tipo', 'Fonte', 'Local na fonte', 'Observação', 'Conferido?', 'Comentário']];
 const categorias = [['Coluna no arquivo', 'Nome legível', 'Código(s)', 'Rótulo', 'Fonte', 'Local na fonte', 'Conferido?', 'Comentário']];
+const usoListas = {};
 
 dic.colunas.forEach((col, i) => {
   const tipo = col.tipo === 'tabela' ? `${NOMES_TIPOS.tabela}: ${col.tabela}` : NOMES_TIPOS[col.tipo];
@@ -131,6 +141,11 @@ dic.colunas.forEach((col, i) => {
   const [marca, comentario, destacar] = marcacao(antColunas, col.nome, campos, true, igualNaReferencia('colunas', col.nome, assinaturaColuna(col)));
   colunas.push(linha([i + 1, col.nome, col.rotulo, tipo, nomeFonte(col.fonte), col.local, quebra(col.observacao), marca, comentario], destacar));
 
+  // Colunas que usam uma lista compartilhada: as categorias vão para a aba Listas (uma vez só).
+  if (col.tipo === 'categorico' && col.lista) {
+    (usoListas[col.lista] ??= []).push(col);
+    return;
+  }
   for (const cat of categoriasDaColuna(dic, col)) {
     const rotulo = col.tipo === 'idade' ? `1º dígito = unidade: ${cat.rotulo} (${cat.plural})` : cat.rotulo;
     const codigos = cat.codigos.join(' / ');
@@ -142,12 +157,37 @@ dic.colunas.forEach((col, i) => {
   }
 });
 
-const extras = [['Coluna extra', 'Nome legível', 'Calculada a partir de', 'Tabela', 'Observação', 'Conferido?', 'Comentário']];
+// Aba Listas: cada lista compartilhada aparece uma vez, com as colunas que a usam.
+// Numa planilha antiga, em que as categorias da lista estavam na aba Categorias,
+// a marcação é aproveitada se a categoria estava OK em todas as colunas da lista.
+const listas = [['Lista', 'Código(s)', 'Rótulo', 'Fonte', 'Usada nas colunas (local na fonte)', 'Conferido?', 'Comentário']];
+for (const [id, cols] of Object.entries(usoListas)) {
+  const cats = dic.listas[id];
+  const igualConjunto = !!ref && ref.conjuntos.has(assinaturaConjunto(cats));
+  const fontes = [...new Set(cols.map((c) => nomeFonte(c.fonte)))].join('; ');
+  const uso = cols.map((c) => `${c.nome} (${c.local})`).join('; ');
+  for (const cat of cats) {
+    const codigos = cat.codigos.join(' / ');
+    const chave = `${id}|${codigos}`;
+    if (!antListas.has(chave)) {
+      const antigas = cols.map((c) => antCategorias.get(`${c.nome}|${codigos}`));
+      if (antigas.every((a) => a && a.marca === 'OK' && a.campos[0] === cat.rotulo)) {
+        antListas.set(chave, { campos: [cat.rotulo, fontes], marca: 'OK', comentario: 'OK em todas as colunas desta lista na conferência anterior (aba Categorias).' });
+      }
+    }
+    // Categoria com fonte própria (por exemplo, uma tabela de apoio): mostra essa fonte.
+    const fonte = cat.fonte ? `${nomeFonte(cat.fonte)}, ${cat.local}` : fontes;
+    const [m, c, d] = marcacao(antListas, chave, [cat.rotulo, fonte], true, igualConjunto);
+    listas.push(linha([id, codigos, cat.rotulo, fonte, quebra(uso), m, c], d));
+  }
+}
+
+const extras = [['Coluna extra', 'Nome legível', 'Calculada a partir de', 'Tabela ou regra', 'Observação', 'Conferido?', 'Comentário']];
 // Inclui as colunas extras ainda em conferência (a ferramenta só as usa depois).
 for (const d of [...(dic.derivadas ?? []), ...(dic.derivadas_em_conferencia ?? [])]) {
-  const campos = [d.rotulo, d.de, d.tabela, d.observacao ?? ''];
-  const [m, c, dest] = marcacao(antExtras, d.nome, campos, true, igualNaReferencia('extras', d.nome, `${d.rotulo}|${d.de}|${d.tabela}`));
-  extras.push(linha([d.nome, d.rotulo, d.de, d.tabela, quebra(d.observacao), m, c], dest));
+  const campos = [d.rotulo, d.de, (d.tabela ?? NOMES_CALCULOS[d.calculo]), d.observacao ?? ''];
+  const [m, c, dest] = marcacao(antExtras, d.nome, campos, true, igualNaReferencia('extras', d.nome, `${d.rotulo}|${d.de}|${d.tabela ?? d.calculo}`));
+  extras.push(linha([d.nome, d.rotulo, d.de, (d.tabela ?? NOMES_CALCULOS[d.calculo]), quebra(d.observacao), m, c], dest));
 }
 
 const tabelas = [['Tabela', 'Fonte', 'Arquivo', 'Códigos', 'Conferido?', 'Comentário']];
@@ -165,6 +205,15 @@ for (const [id, f] of Object.entries(dic.fontes)) fontes.push([id, quebra(f.docu
 const pendencias = [['Coluna', 'Descrição', 'Decisão do Rubens']];
 for (const p of dic.pendencias ?? []) {
   const [, decisao, destacar] = marcacao(antPendencias, p.coluna, [p.descricao]);
+  // Descrição reescrita depois da decisão (por exemplo, para registrar "Resolvida"):
+  // a decisão anterior do Rubens continua na planilha, sem destaque.
+  const anterior = antPendencias.get(p.coluna)?.comentario ?? '';
+  if (destacar && decisao.startsWith('Alterado') && anterior.trim()) {
+    estatistica.revisar--;
+    estatistica.mantidas++;
+    pendencias.push(linha([p.coluna, quebra(p.descricao), anterior], false));
+    continue;
+  }
   pendencias.push(linha([p.coluna, quebra(p.descricao), destacar && decisao.startsWith('Alterado') ? '' : decisao], destacar));
 }
 
@@ -179,7 +228,7 @@ const instrucoes = [
   ['Como conferir'],
   [{ valor: 'LINHAS EM AMARELO: novas, alteradas desde a última conferência ou ainda sem marcação. Só elas precisam ser conferidas agora.', estilo: ESTILO.destaque }],
   ['1. Na aba "Colunas", confira o nome legível e o tipo de cada coluna. Abra o documento indicado em "Fonte" na página de "Local na fonte".'],
-  ['2. Na aba "Categorias", confira cada código e rótulo contra a mesma página.'],
+  ['2. Na aba "Categorias", confira cada código e rótulo contra a mesma página. As listas repetidas (por exemplo, Sim/Não/Ignorado) ficam na aba "Listas" e são conferidas uma vez só.'],
   ['3. Nas abas "Colunas extras" e "Tabelas", confira as colunas calculadas e as tabelas de apoio.'],
   ['4. Nas colunas "Conferido?", escreva OK ou CORRIGIR. Em "Comentário", explique o que mudar.'],
   ['5. Na aba "Pendências", escreva a sua decisão para cada item.'],
@@ -197,11 +246,12 @@ writeFileSync(destino, criarXlsx([
   { nome: 'Instruções', linhas: instrucoes, larguras: [140], cabecalho: false },
   { nome: 'Colunas', linhas: colunas, larguras: [5, 14, 45, 30, 32, 22, 60, 12, 40] },
   { nome: 'Categorias', linhas: categorias, larguras: [14, 40, 14, 45, 32, 30, 12, 40] },
+  ...(listas.length > 1 ? [{ nome: 'Listas', linhas: listas, larguras: [16, 12, 30, 32, 80, 12, 40] }] : []),
   { nome: 'Colunas extras', linhas: extras, larguras: [14, 45, 18, 16, 60, 12, 40] },
   { nome: 'Tabelas', linhas: tabelas, larguras: [20, 40, 34, 12, 12, 40] },
   { nome: 'Fontes', linhas: fontes, larguras: [20, 60, 32, 45, 50] },
   { nome: 'Pendências', linhas: pendencias, larguras: [14, 90, 50] },
   { nome: 'UFs', linhas: ufs, larguras: [14, 30] },
 ]));
-console.log(`Gerada ${destino}: ${colunas.length - 1} colunas, ${categorias.length - 1} categorias, ${extras.length - 1} colunas extras, ${tabelas.length - 1} tabelas.`);
+console.log(`Gerada ${destino}: ${colunas.length - 1} colunas, ${categorias.length - 1} categorias, ${listas.length - 1} linhas de listas, ${extras.length - 1} colunas extras, ${tabelas.length - 1} tabelas.`);
 console.log(`Marcações mantidas: ${estatistica.mantidas}; iguais ao dicionário de referência: ${estatistica.iguais}; linhas para conferir (em amarelo): ${estatistica.revisar}.`);

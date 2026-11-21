@@ -135,6 +135,9 @@ mkdirSync(join(pasta, 'exemplos'), { recursive: true });
 writeFileSync(join(pasta, 'index.html'), pagina);
 copyFileSync(join(raiz, 'docs', 'LEIA-ME.txt'), join(pasta, 'LEIA-ME.txt'));
 copyFileSync(join(raiz, 'LICENSE'), join(pasta, 'LICENSE'));
+// Guia ilustrado em PDF (gerado por ferramentas/gerar-guia.js)
+const guia = join(raiz, 'docs', 'guia-de-uso.pdf');
+if (existsSync(guia)) copyFileSync(guia, join(pasta, 'guia-de-uso.pdf'));
 const pastaExemplos = join(raiz, 'exemplos');
 const exemplos = existsSync(pastaExemplos) ? readdirSync(pastaExemplos) : [];
 for (const e of exemplos) copyFileSync(join(pastaExemplos, e), join(pasta, 'exemplos', e));
@@ -143,6 +146,7 @@ const arquivosZip = [
   { nome: 'decodificador-sinan/index.html', conteudo: pagina },
   { nome: 'decodificador-sinan/LEIA-ME.txt', conteudo: readFileSync(join(pasta, 'LEIA-ME.txt')) },
   { nome: 'decodificador-sinan/LICENSE', conteudo: readFileSync(join(pasta, 'LICENSE')) },
+  ...(existsSync(guia) ? [{ nome: 'decodificador-sinan/guia-de-uso.pdf', conteudo: readFileSync(guia) }] : []),
   ...exemplos.map((e) => ({ nome: `decodificador-sinan/exemplos/${e}`, conteudo: readFileSync(join(pastaExemplos, e)) })),
 ];
 const zip = criarZip(arquivosZip);

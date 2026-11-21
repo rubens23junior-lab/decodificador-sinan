@@ -17,3 +17,10 @@ export function categoriasDaColuna(dic, col) {
   if (col.tipo === 'idade') return col.unidades;
   return [];
 }
+
+// Regras de cálculo das colunas extras sem tabela ("calculo" no dicionário).
+export const NOMES_CALCULOS = {
+  semana_epidemiologica: 'Semana epidemiológica (AAAASS), calculada da data pelo calendário epidemiológico',
+  codigo_com_ponto_vezes_100: 'Tentativa de recuperar código gravado com ponto: valor × 100, procurado na tabela',
+  alerta_condicional: 'Aviso quando duas colunas têm, ao mesmo tempo, valores que indicam possível erro de notificação',
+};

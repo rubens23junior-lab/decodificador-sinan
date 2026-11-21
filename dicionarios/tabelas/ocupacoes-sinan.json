@@ -1,0 +1,27 @@
+{
+ "fonte": {
+  "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin), usada pelo ViolenciaNet.def para ID_OCUPA_N",
+  "orgao": "Ministério da Saúde / DATASUS",
+  "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+  "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF"
+ },
+ "descricao": "Só os códigos de ocupação do Sinan que não estão na CBO 2002 do projeto (por exemplo 999991 Estudante). Usada como complemento: a CBO tem prioridade. Nomes como escritos no arquivo (maiúsculas, sem acento).",
+ "total": 9,
+ "valores": {
+  "223610": {
+   "nome": "FONOAUDIOLOGO",
+   "observacao": "Código antigo: não existe na CBO 2002 (Fonoaudiólogo é 223810). Nome mantido como na tabela do Sinan, por decisão do Rubens (15/11/2026)."
+  },
+  "322310": "TECNICO EM OPTOMETRIA",
+  "998999": "IGNORADA",
+  "999991": "ESTUDANTE",
+  "999992": "DONA DE CASA",
+  "999993": "APOSENTADO/PENSIONISTA",
+  "999994": {
+   "nome": "DESEMPREGADO CRONICO OU CUJA HABITACAO HABITUAL NAO FOI POSSIVEL OBTER",
+   "observacao": "O arquivo oficial diz \"HABITACAO HABITUAL\"; provavelmente quis dizer \"ocupação habitual\", mas não há documento que confirme. Mantido como no arquivo, por decisão do Rubens (15/11/2026)."
+  },
+  "999995": "PRESIDIARIO ( PESSOAS CONFINADAS EM INSTITUICOES PENAIS, INCLUSIVE MENORES DE IDADE )",
+  "XXX": "Não Informado"
+ }
+}

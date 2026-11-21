@@ -99,11 +99,11 @@ try {
   const url = pathToFileURL(pagina).href;
   console.log(`Abrindo ${url}`);
   await cdp('Page.navigate', { url });
-  await ate(() => avaliar('document.readyState === "complete" && !!document.getElementById("agravo")?.options.length'), 20000, 'página carregar');
-  console.log(`Página aberta. Agravos: ${await avaliar('[...document.getElementById("agravo").options].map(o=>o.text).join(", ")')}`);
+  await ate(() => avaliar('document.readyState === "complete" && document.querySelectorAll("input[name=agravo]").length > 0'), 20000, 'página carregar');
+  console.log(`Página aberta. Agravos: ${await avaliar('[...document.querySelectorAll("input[name=agravo]")].map(r=>r.parentElement.innerText).join(", ")')}`);
   {
-    const escolhido = await avaliar(`(() => { const s = document.getElementById("agravo"); s.value = ${JSON.stringify(agravo)};
-      s.dispatchEvent(new Event("change")); return s.selectedIndex === -1 ? "" : s.options[s.selectedIndex].text; })()`);
+    const escolhido = await avaliar(`(() => { const r = document.querySelector('input[name="agravo"][value=' + JSON.stringify(${JSON.stringify(agravo)}) + ']');
+      if (!r) return ""; r.click(); return r.checked ? r.parentElement.innerText : ""; })()`);
     if (!escolhido) throw new Error(`Agravo "${agravo}" não existe no pacote.`);
     console.log(`Agravo escolhido: ${escolhido}`);
   }

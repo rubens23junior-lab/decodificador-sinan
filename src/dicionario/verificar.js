@@ -83,6 +83,9 @@ export function verificarDicionario(dic) {
   for (const [id, t] of Object.entries(tabelas)) {
     if (vazio(t?.arquivo)) erros.push(`Tabela "${id}": falta o arquivo.`);
     if (!fontes[t?.fonte]) erros.push(`Tabela "${id}": a fonte "${t?.fonte}" não está na lista de fontes.`);
+    if (t?.completar_zeros !== undefined && !(Number.isInteger(t.completar_zeros) && t.completar_zeros > 0)) {
+      erros.push(`Tabela "${id}": "completar_zeros" precisa ser um número inteiro positivo (veio ${JSON.stringify(t.completar_zeros)}).`);
+    }
   }
 
   const listas = dic.listas && typeof dic.listas === 'object' ? dic.listas : {};
@@ -121,6 +124,16 @@ export function verificarDicionario(dic) {
       } else if (col?.lista !== undefined || col?.categorias !== undefined) {
         erros.push(`${onde}: só colunas do tipo "categorico" têm categorias.`);
       }
+      if (col?.texto_livre !== undefined) {
+        if (col.tipo !== 'categorico' || col.texto_livre !== true) erros.push(`${onde}: "texto_livre" só vale como true, em colunas do tipo "categorico".`);
+        if (col.fora_do_campo !== undefined) erros.push(`${onde}: "texto_livre" e "fora_do_campo" não podem ser usados juntos.`);
+      }
+      if (col?.fora_do_campo !== undefined) {
+        if (col.tipo !== 'categorico') erros.push(`${onde}: "fora_do_campo" só vale para colunas do tipo "categorico".`);
+        if (vazio(col.fora_do_campo?.rotulo) || vazio(col.fora_do_campo?.motivo)) {
+          erros.push(`${onde}: "fora_do_campo" precisa de "rotulo" e "motivo".`);
+        }
+      }
 
       if (col?.tipo === 'idade') {
         verificarCategorias(col.unidades, `${onde} (unidades de idade)`, fontes, erros);
@@ -132,6 +145,9 @@ export function verificarDicionario(dic) {
       }
       if (col?.tipo === 'tabela' && !tabelas[col.tabela]) {
         erros.push(`${onde}: a tabela "${col.tabela}" não está na lista de tabelas.`);
+      }
+      if (col?.complemento !== undefined && (col.tipo !== 'tabela' || !tabelas[col.complemento])) {
+        erros.push(`${onde}: o complemento "${col.complemento}" só vale para o tipo "tabela" e precisa estar na lista de tabelas.`);
       }
       for (const t of TABELAS_DO_TIPO[col?.tipo] ?? []) {
         if (!tabelas[t]) erros.push(`${onde}: o tipo "${col.tipo}" precisa da tabela "${t}", que não está na lista de tabelas.`);
@@ -150,7 +166,25 @@ export function verificarDicionario(dic) {
       else nomesExtras.add(d.nome.toUpperCase());
       if (vazio(d?.rotulo)) erros.push(`${onde}: falta o nome legível ("rotulo").`);
       if (!nomesColunas.has(String(d?.de).toUpperCase())) erros.push(`${onde}: a coluna de origem "${d?.de}" não existe.`);
-      if (!tabelas[d?.tabela]) erros.push(`${onde}: a tabela "${d?.tabela}" não está na lista de tabelas.`);
+      if (d?.calculo === 'alerta_condicional') {
+        // Aviso quando duas colunas têm, ao mesmo tempo, valores listados.
+        if (!Array.isArray(d.valores) || !d.valores.length) erros.push(`${onde}: faltam os valores da coluna "${d.de}" ("valores").`);
+        if (!nomesColunas.has(String(d.e?.coluna).toUpperCase())) erros.push(`${onde}: a segunda coluna ("e.coluna") não existe.`);
+        if (!Array.isArray(d.e?.valores) || !d.e.valores.length) erros.push(`${onde}: faltam os valores da segunda coluna ("e.valores").`);
+        if (vazio(d.texto) || vazio(d.motivo)) erros.push(`${onde}: faltam o texto do aviso ("texto") e o motivo ("motivo").`);
+      } else if (d?.calculo === 'codigo_com_ponto_vezes_100') {
+        // Tentativa de recuperar código gravado com ponto: precisa de uma tabela (e, se houver, do complemento).
+        if (!tabelas[d.tabela]) erros.push(`${onde}: a tabela "${d.tabela}" não está na lista de tabelas.`);
+        if (d.complemento !== undefined && !tabelas[d.complemento]) erros.push(`${onde}: a tabela "${d.complemento}" não está na lista de tabelas.`);
+      } else if (d?.calculo !== undefined) {
+        // Coluna calculada por regra, sem tabela (a semana epidemiológica, a partir de uma data).
+        if (d.calculo !== 'semana_epidemiologica') erros.push(`${onde}: cálculo "${d.calculo}" desconhecido.`);
+        if (d.tabela !== undefined) erros.push(`${onde}: use "calculo" ou "tabela", não os dois.`);
+        const origem = dic.colunas.find((c) => String(c?.nome).toUpperCase() === String(d.de).toUpperCase());
+        if (origem && origem.tipo !== 'data') erros.push(`${onde}: a semana epidemiológica só pode ser calculada de uma coluna do tipo "data".`);
+      } else if (!tabelas[d?.tabela]) {
+        erros.push(`${onde}: a tabela "${d?.tabela}" não está na lista de tabelas.`);
+      }
       if (d?.depois_de !== undefined && !nomesColunas.has(String(d.depois_de).toUpperCase())) {
         erros.push(`${onde}: a coluna "${d.depois_de}" (posição) não existe.`);
       }

@@ -27,55 +27,61 @@
       "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Leishmaniose Tegumentar Americana",
       "orgao": "Ministério da Saúde / SVS / GT-Sinan",
       "data": "revisado em julho de 2010",
-      "arquivo": "docs/fontes/Dicionário de Leishmaniose Tegumentar.pdf"
+      "arquivo": "docs/fontes/leishmaniose-tegumentar/Dicionário de Leishmaniose Tegumentar.pdf"
     },
     "NOTIF2018": {
       "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
       "orgao": "Ministério da Saúde / SVS / GT-Sinan",
       "data": "revisado em novembro de 2018",
-      "arquivo": "docs/fontes/Dicionario das Fichas de Notificação Individual.pdf"
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
     },
     "FICHALTA": {
       "documento": "Ficha de Investigação – Leishmaniose Tegumentar Americana – Sinan NET",
       "orgao": "Ministério da Saúde / SVS",
       "data": "27/09/2005",
-      "arquivo": "docs/fontes/LEISHMANIOSE TEGUMENTAR AMERICANA.pdf"
+      "arquivo": "docs/fontes/leishmaniose-tegumentar/LEISHMANIOSE TEGUMENTAR AMERICANA.pdf"
     },
     "IBGE_DTB2023": {
       "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
       "orgao": "IBGE",
       "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
-      "arquivo": "docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
     },
     "DATASUS_MUNICIPIOS": {
       "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
-      "arquivo": "docs/fontes/tb_municip.csv"
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
     },
     "DATASUS_REGSAUD": {
       "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
-      "arquivo": "docs/fontes/rl_municip_regsaud.csv; docs/fontes/tb_regsaud.csv"
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
     },
     "CNES": {
       "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
-      "arquivo": "docs/fontes/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
     },
     "CBO": {
       "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
-      "arquivo": "docs/fontes/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
     },
     "MS_MACRORREGIOES": {
       "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
       "orgao": "Ministério da Saúde",
       "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
-      "arquivo": "docs/fontes/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishtegNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishtegNET.def"
     }
   },
   "tabelas": {
@@ -93,7 +99,8 @@
     },
     "cnes": {
       "arquivo": "tabelas/cnes.json.gz",
-      "fonte": "CNES"
+      "fonte": "CNES",
+      "completar_zeros": 7
     },
     "cbo": {
       "arquivo": "tabelas/cbo.json",
@@ -102,11 +109,16 @@
     "macrorregioes_saude": {
       "arquivo": "tabelas/macrorregioes-saude.json",
       "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
     }
   },
   "regras_tabelas": {
     "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
-    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'."
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
   },
   "listas": {},
   "colunas": [
@@ -667,7 +679,8 @@
       "rotulo": "Ocupação (CBO)",
       "tipo": "tabela",
       "tabela": "cbo",
-      "observacao": "Nome da ocupação pela CBO 2002. Códigos especiais do Sinan que não estão na CBO ficam como vieram (ver pendências)."
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
     },
     {
       "nome": "CLI_CUTANE",
@@ -1388,7 +1401,7 @@
     },
     {
       "coluna": "ID_OCUPA_N",
-      "descricao": "Códigos especiais do Sinan que não estão na CBO 2002 (no arquivo de 2025: 999991, 998999, 999993, 999992, XXX, 0, 000000…). Ficam como vieram até haver documento oficial com o significado."
+      "descricao": "Códigos especiais do Sinan (999991, 998999, XXX etc.): traduzidos desde 15/11/2026 pela tabela de ocupações do Sinan NET (OCUPANET), que o LeishtegNET.def usa para este campo. Códigos que não estão nem na CBO nem no OCUPANET (por exemplo 0 e 000000) continuam como vieram e vão para as Inconsistências."
     },
     {
       "coluna": "ID_REGIONA",

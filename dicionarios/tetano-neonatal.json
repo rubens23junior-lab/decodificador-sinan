@@ -1,0 +1,1889 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Tétano neonatal",
+    "codigos": [
+      "A33",
+      "A 33",
+      "A 3 3"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos TETNBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-16",
+    "registro": "docs/conferencia/conferencia-tetano-neonatal.xlsx (conferência na planilha em 16/11/2026, com as correções pedidas por ele aplicadas no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICTETN": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Tétano Neonatal (campos 31 a 62)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "revisado em abril de 2012 (16 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/tetano-neonatal/TETANN_DIC_DADOS.pdf"
+    },
+    "FICHATETN": {
+      "documento": "Ficha de Investigação – Tétano Neonatal – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "27/09/2005 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/tetano-neonatal/TETANN_FICHA.pdf"
+    },
+    "INSTTETN": {
+      "documento": "Tétano Neonatal – Instruções para preenchimento – Ficha de Investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "27/09/2005 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/tetano-neonatal/TETANN_INSTRUCIONAL.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "DICLTA": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Leishmaniose Tegumentar Americana",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em julho de 2010",
+      "arquivo": "docs/fontes/leishmaniose-tegumentar/Dicionário de Leishmaniose Tegumentar.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "regras_tabelas": {
+    "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
+  },
+  "listas": {},
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHATETN",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A33",
+            "A 33",
+            "A 3 3"
+          ],
+          "rotulo": "Tétano Neonatal"
+        }
+      ],
+      "observacao": "A ficha mostra o CID 'A 3 3'. Decisão do Rubens (16/11/2026): 'A 3 3' e 'A33' = Tétano Neonatal."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "DT_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Data de nascimento",
+      "tipo": "data",
+      "observacao": "Os arquivos de 2015 a 2019 trazem a data de nascimento completa (DT_NASC); a partir de 2020 o arquivo traz só o ano (ANO_NASC). No tétano neonatal, é a data de nascimento do recém-nascido."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC, que não aparece nas fontes de LV (pendência)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHATETN",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano neonatal (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICTETN",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICTETN",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação da mãe (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "No tétano neonatal, a ocupação é a da mãe do recém-nascido (DICTETN, campo 32). Nome da ocupação pela CBO 2002; os códigos especiais do Sinan são procurados na tabela de ocupações do Sinan NET (OCUPANET)."
+    },
+    {
+      "nome": "NUM_CON_N",
+      "fonte": "DICTETN",
+      "local": "p. 2, campo 33",
+      "rotulo": "Número de consultas de pré-natal",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Uma"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duas"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "De 3 a 5"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "6 e mais"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Nenhuma"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_VACTETA",
+      "fonte": "DICTETN",
+      "local": "p. 2, campo 34",
+      "rotulo": "Antecedentes vacinais contra tétano (mãe)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Vacinada (comprovado pelo cartão)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não vacinada"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "DT_1_DOSE",
+      "fonte": "DICTETN",
+      "local": "p. 2, campo 35",
+      "rotulo": "Data da 1ª dose (mãe)",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_2_DOSE",
+      "fonte": "DICTETN",
+      "local": "p. 3, campo 36",
+      "rotulo": "Data da 2ª dose (mãe)",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_3_DOSE",
+      "fonte": "DICTETN",
+      "local": "p. 3, campo 37",
+      "rotulo": "Data da 3ª dose (mãe)",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_REFORCO",
+      "fonte": "DICTETN",
+      "local": "p. 3, campo 38",
+      "rotulo": "Data do último reforço (mãe)",
+      "tipo": "data"
+    },
+    {
+      "nome": "IDADE_MAE",
+      "fonte": "DICTETN",
+      "local": "p. 4, campo 39",
+      "rotulo": "Idade da mãe",
+      "tipo": "numero",
+      "observacao": "Idade da mãe por ocasião do nascimento do último recém-nascido (number(3) no DICTETN). Fica como veio."
+    },
+    {
+      "nome": "NU_GESTA",
+      "fonte": "DICTETN",
+      "local": "p. 4, campo 40",
+      "rotulo": "Número de gestações (incluindo a atual)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Uma"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duas"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Três"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Quatro"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Cinco e mais"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "ESCOLMAE_N",
+      "fonte": "DICTETN",
+      "local": "p. 4, campo 41",
+      "rotulo": "Escolaridade da mãe",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHATETN",
+          "local": "p. 1, campo 41"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "Mesmas categorias da escolaridade da notificação (campo 14), que o DICTETN e a ficha repetem no campo 41. As formas com um e dois dígitos e o 43 = Analfabeto seguem as decisões do Rubens para a escolaridade."
+    },
+    {
+      "nome": "CS_NASCIDO",
+      "fonte": "DICTETN",
+      "local": "p. 5, campo 42",
+      "rotulo": "Local de ocorrência do parto",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Hospital"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Domicílio"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Casa de parto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "NO_OUPARTO",
+      "fonte": "DICTETN",
+      "local": "p. 5, campo 42 (se outro, especificar)",
+      "rotulo": "Local de ocorrência do parto – outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CS_ATEND_N",
+      "fonte": "DICTETN",
+      "local": "p. 5, campo 43",
+      "rotulo": "Parto atendido por",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Médico"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enfermeiro"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Auxiliar de enfermagem"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parteira treinada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Parteira não treinada"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outros"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "O DICTETN lista 9 = ignorado; a ficha escreve \"6-Outro\"."
+    },
+    {
+      "nome": "NO_ATENOUT",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 43 (se outro, especificar)",
+      "rotulo": "Parto atendido por – outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CS_SUGOU",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 44",
+      "rotulo": "Sugou normalmente após o nascimento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_MAMAR",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – dificuldade de mamar",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_TRISMO",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – trismo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_NUCA",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – rigidez de nuca",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_CHORO",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – choro excessivo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RISO",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – contratura labial",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "No tétano neonatal, CS_RISO é a contratura labial (DICTETN, campo 45, st_sinais_riso), e não o riso sardônico do tétano acidental."
+    },
+    {
+      "nome": "CS_ABDOMEN",
+      "fonte": "DICTETN",
+      "local": "p. 6, campo 45",
+      "rotulo": "Sinais e sintomas – rigidez abdominal",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_INF_COT",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45",
+      "rotulo": "Sinais e sintomas – processo inflamatório no coto umbilical",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_OPISTOT",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45",
+      "rotulo": "Sinais e sintomas – opistótono",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_MEMBROS",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45",
+      "rotulo": "Sinais e sintomas – rigidez de membros",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_CRISE",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45",
+      "rotulo": "Sinais e sintomas – crises de contraturas",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_OUTROS",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45",
+      "rotulo": "Sinais e sintomas – outros",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "NM_OUT_SIN",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 45 (se outros, especificar)",
+      "rotulo": "Sinais e sintomas – outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "DT_TRISMO",
+      "fonte": "DICTETN",
+      "local": "p. 7, campo 46",
+      "rotulo": "Data do trismo",
+      "tipo": "data"
+    },
+    {
+      "nome": "CS_ORIGEM",
+      "fonte": "DICTETN",
+      "local": "p. 8, campo 47",
+      "rotulo": "Origem do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Notificação"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Busca ativa"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Declaração de óbito"
+        }
+      ]
+    },
+    {
+      "nome": "CS_HOSPITA",
+      "fonte": "DICTETN",
+      "local": "p. 8, campo 48",
+      "rotulo": "Ocorreu hospitalização",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_COBERTU",
+      "fonte": "DICTETN",
+      "local": "p. 8, campo 49",
+      "rotulo": "Local de residência coberto pelo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "PACS"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "PSF"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "PACS/PSF"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Nenhum"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Se o local de residência da mãe está coberto por programa da Atenção Básica (PACS: Programa de Agentes Comunitários de Saúde; PSF: Programa Saúde da Família)."
+    },
+    {
+      "nome": "NO_COBOUTR",
+      "fonte": "DICTETN",
+      "local": "p. 8, campo 49 (se outros, especificar)",
+      "rotulo": "Local de residência coberto – outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CS_VACINAC",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – atualização do esquema vacinal da mãe",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_CADASTR",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – cadastro e capacitação de parteiras atuantes",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_DIVULGA",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – divulgação do problema para autoridades e profissionais de saúde",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_BUSCAAT",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – busca ativa de outros casos de tétano neonatal",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ORIENTA",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – orientação às parturientes quanto aos cuidados com o coto umbilical",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ANALISE",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – análise da cobertura vacinal da área e vacinação discriminada em mulheres em idade fértil",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_OUTRAS",
+      "fonte": "DICTETN",
+      "local": "p. 8-9, campo 50",
+      "rotulo": "Medidas adotadas – outras",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "NO_OUTRAS",
+      "fonte": "DICTETN",
+      "local": "p. 9, campo 50 (se outras, especificar)",
+      "rotulo": "Medidas adotadas – outras (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICTETN",
+      "local": "p. 9, campo 51",
+      "rotulo": "Classificação final",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 51 da ficha (classificação final) só comporta 1 e 2"
+      },
+      "observacao": "O DICTETN e a ficha listam só 1 e 2. Como no tétano acidental (decisão do Rubens, 16/11/2026), outros códigos saem como \"Inconsistência/Não Preenchido\", destacados e listados nas Inconsistências."
+    },
+    {
+      "nome": "DS_INF_LOC",
+      "fonte": "DICTETN",
+      "local": "p. 10, campo 52",
+      "rotulo": "Local provável da fonte de infecção",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Hospital"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Domicílio"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Casa de parto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Outro local"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Apesar do nome da coluna (\"DS_\"), é o código do local (tp_local_infeccao no DICTETN)."
+    },
+    {
+      "nome": "DS_INF_OUT",
+      "fonte": "DICTETN",
+      "local": "p. 10, campo 52 (se outros, especificar)",
+      "rotulo": "Local provável da fonte de infecção – outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "TPAUTOCTO",
+      "fonte": "DICTETN",
+      "local": "p. 10, campo 53",
+      "rotulo": "O caso é autóctone do município de residência?",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Indeterminado"
+        }
+      ]
+    },
+    {
+      "nome": "COUFINF",
+      "fonte": "DICTETN",
+      "local": "p. 11, campo 54",
+      "rotulo": "UF provável de infecção",
+      "tipo": "uf"
+    },
+    {
+      "nome": "COPAISINF",
+      "fonte": "DICTETN",
+      "local": "p. 12, campo 55",
+      "rotulo": "País provável de infecção (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10)."
+    },
+    {
+      "nome": "COMUNINF",
+      "fonte": "DICTETN",
+      "local": "p. 13, campo 56",
+      "rotulo": "Município provável de infecção",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "COUNIDINF",
+      "fonte": "DICTETN",
+      "local": "p. 13, campo 57",
+      "rotulo": "Unidade de saúde provável da infecção (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Unidade de saúde onde provavelmente ocorreu a infecção, quando o local provável é hospital ou casa de parto. Nome pela tabela do CNES."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICTETN",
+      "local": "p. 15, campo 60",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por TNN"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "observacao": "Rótulos do DICTETN, conforme a conferência do Rubens (16/11/2026); TNN = tétano neonatal. A ficha escreve \"Óbito por tétano neonatal\"."
+    },
+    {
+      "nome": "DT_OBITO",
+      "fonte": "DICTETN",
+      "local": "p. 15, campo 61",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICTETN",
+      "local": "p. 16, campo 62",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "DICLTA",
+      "local": "p. 10",
+      "rotulo": "Transferência vertical da investigação (lote)",
+      "tipo": "texto",
+      "observacao": "Campo interno ausente do DICLV; descrito no dicionário de LTA (mesmo sistema, Sinan NET 5.0) (pendência)."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Arquivo real",
+      "descricao": "Os arquivos de 2015 a 2025 somam 16 notificações. Não há células suficientes para uma amostra de 100; a proposta é conferir todas as células traduzidas dessas 16 notificações (censo)."
+    },
+    {
+      "coluna": "DT_NASC e anos antigos",
+      "descricao": "Os arquivos de 2015 a 2019 trazem DT_NASC (data de nascimento completa) no lugar de ANO_NASC e não trazem CS_SEXO nem CS_GESTANT; DT_NASC foi incluída como data, pela definição do NOTIF2018 (campo 9). Somando 2015 a 2025, são só 16 notificações."
+    },
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "Aplicada a mesma regra do tétano acidental (decisão do Rubens, 16/11/2026): códigos fora de 1 e 2 saem como \"Inconsistência/Não Preenchido\". Aprovado pelo Rubens (16/11/2026)."
+    },
+    {
+      "coluna": "ID_OCUPA_N",
+      "descricao": "No neonatal, a ocupação é a da mãe; o nome legível ficou \"Ocupação da mãe (CBO)\". Aprovado pelo Rubens (16/11/2026)."
+    },
+    {
+      "coluna": "CS_RISO",
+      "descricao": "No neonatal, CS_RISO é \"contratura labial\", e não \"riso sardônico\" como no acidental. Aprovado pelo Rubens (16/11/2026)."
+    },
+    {
+      "coluna": "EVOLUCAO",
+      "descricao": "Os rótulos 2 e 3 estão cortados no DICTETN; o texto completo veio da ficha (\"Óbito por tétano neonatal\" e \"Óbito por outras causas\"). Aprovado pelo Rubens (16/11/2026)."
+    },
+    {
+      "coluna": "NO_OUPARTO, NO_ATENOUT, NM_OUT_SIN, NO_COBOUTR, NO_OUTRAS, DS_INF_OUT",
+      "descricao": "Texto livre digitado pela unidade; fica como veio, sem tradução."
+    },
+    {
+      "coluna": "CODISINF, CO_BAINFC, NOBAIINF",
+      "descricao": "Distrito e bairro prováveis de infecção estão no DICTETN (campos 58 e 59), mas não vêm no arquivo público. Não entram no dicionário."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 DECODIFICADOR DE NOTIFICAÇÕES DO SINAN
 ======================================
-Versão 1.0.1 (15/11/2026). Autor: Rubens Araujo da Silva Junior.
+Versão 1.1.0 (21/11/2026). Autor: Rubens Araujo da Silva Junior.
 
 O que é
 -------
@@ -25,11 +25,14 @@ Como abrir
 
 Não precisa de internet nem de instalação.
 
+O guia ilustrado, com fotos de cada passo e de como baixar o arquivo no site
+do DATASUS, está no arquivo "guia-de-uso.pdf", nesta pasta.
+
 
 Como usar
 ---------
-1. Escolha o agravo: Dengue, Chikungunya, Zika, Leishmaniose Tegumentar
-   Americana ou Leishmaniose Visceral.
+1. Clique no botão do agravo. Os 28 agravos estão separados por grupo
+   (arboviroses, HIV, sífilis...); veja "Agravos disponíveis", abaixo.
 2. Escolha o arquivo: clique em "Escolher arquivo" ou arraste o arquivo para a
    área indicada. Formatos aceitos:
      - DBC: arquivos públicos do DATASUS
@@ -39,20 +42,42 @@ Como usar
 4. Escolha as opções:
      - Filtros: UF, município e período. Use para reduzir o tamanho da
        planilha.
-     - Colunas: manter o código original ao lado do texto (padrão: sim);
+     - Colunas: manter o código original ao lado do texto (padrão: não);
        segunda linha de cabeçalho com o nome original (padrão: não);
        escolher quais colunas incluir (padrão: todas).
      - Formato para análise (R, Stata, Python): veja a seção "Usar no R".
      - Formato: Excel ou CSV.
-5. Clique em "Processar e baixar a planilha". O arquivo vai para a pasta de
-   downloads do navegador.
+5. Clique em "Processar e baixar a planilha", na barra fixa no pé da tela.
+   O arquivo vai para a pasta de downloads do navegador.
+
+
+Agravos disponíveis
+-------------------
+Acidentes por animais peçonhentos; Atendimento antirrábico humano;
+Chikungunya; Dengue; Doença de Chagas aguda; Febre maculosa; Hanseníase;
+Hepatites virais; HIV em adulto; HIV em criança; HIV em criança exposta;
+HIV em gestante; Leishmaniose Tegumentar Americana; Leishmaniose Visceral;
+Leptospirose; Malária; Meningite; Sífilis adquirida; Sífilis congênita;
+Sífilis em gestante; Surto de doenças transmitidas por alimentos (DTA);
+Tétano acidental; Tétano neonatal; Toxoplasmose congênita; Toxoplasmose
+gestacional; Tuberculose; Violência interpessoal/autoprovocada; Zika.
+
+Cada dicionário foi transcrito dos documentos oficiais e conferido linha
+por linha. A aba "Dicionário usado" da planilha mostra as fontes e a data
+da conferência.
 
 
 A planilha gerada
 -----------------
 - Dados: as notificações traduzidas. Valores que não estão no dicionário
-  ficam como vieram, destacados em amarelo. Campo em branco continua em
-  branco.
+  ficam como vieram, destacados em amarelo. Quando a ficha mostra que o
+  campo não comporta o código, ele sai como "Inconsistência/Não
+  Preenchido" (ou "Inconsistência/Preenchido erroneamente"), também
+  destacado. Campo em branco continua em branco.
+- Colunas extras: alguns agravos ganham colunas calculadas, como região e
+  macrorregião de saúde, semana epidemiológica ou avisos de possível erro
+  de notificação (por exemplo, CID B58 em gestante, nas toxoplasmoses). O
+  dado original nunca é alterado.
 - Inconsistências: lista dos valores sem tradução, com a quantidade e o
   motivo. Também entram as idades implausíveis (acima de 23 horas, 29 dias,
   11 meses ou 110 anos), que ficam como vieram e destacadas.
@@ -105,16 +130,19 @@ inválidos, para mostrar o destaque e a aba de inconsistências.
 Problemas comuns
 ----------------
 - "O arquivo não parece ser de ...": o arquivo é de outro agravo ou não é um
-  arquivo do SINAN. Confira o agravo escolhido.
+  arquivo do SINAN. Quando reconhece o agravo provável, a ferramenta mostra
+  um botão "Usar ..." para trocar; ela nunca troca sozinha.
 - Acentos estranhos: abra "Acentos aparecendo errado?" e escolha outra
   codificação.
 - A página abre em branco: use o Chrome ou o Edge atualizados.
+- Tela escura: é o padrão. O botão "Tema claro", no topo, troca as cores; a
+  escolha fica guardada neste navegador.
 
 
 Licença
 -------
-Copyright (C) 2026 Rubens Araujo da Silva Junior. Registro no INPI:
-processo BR512026010321-5.
+Copyright (C) 2026 Rubens Araujo da Silva Junior. Registro no INPI
+(versão 1.0.0): processo BR512026010321-5.
 
 Este programa é software livre, distribuído nos termos da Licença Pública
 Geral GNU (GNU GPL), versão 3 ou posterior, SEM NENHUMA GARANTIA. Você pode

@@ -1,0 +1,2433 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Tuberculose",
+    "codigos": [
+      "A169",
+      "A16.9",
+      "A 16. 9",
+      "A 16.9",
+      "A16."
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos TUBEBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-tuberculose.xlsx (conferência na planilha em 20/11/2026, com a correção pedida por ele aplicada no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICTUBE": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Tuberculose (campos 31 a 66, acompanhamento e oportunidade)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "Sem data impressa (22 páginas); corresponde à ficha de 2014 (mesmos campos e números). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/tuberculose/TUBEN_DIC_DADOS.pdf"
+    },
+    "FICHATUBE": {
+      "documento": "Ficha de Notificação/Investigação – Tuberculose – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 02/10/2014 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/tuberculose/TUBEN_FICHA.pdf"
+    },
+    "ACOMPTUBE": {
+      "documento": "Tela de acompanhamento de tuberculose – Sinan NET (campos 48 a 66)",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 09/01/2014 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/tuberculose/TUBEN_FICHA_ACOMP.pdf"
+    },
+    "INSTTUBE": {
+      "documento": "Instruções para o preenchimento da ficha de notificação/investigação – Tuberculose – Sinan NET 5.0",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 20/11/2026.",
+      "arquivo": "docs/fontes/tuberculose/TUBEN_INSTRUCIONAL.pdf"
+    },
+    "TABTUBE": {
+      "documento": "Arquivo de definições do TabWin para investigação de tuberculose (TuberculNET5_0.def) e conversões (SIM_NAO, Posnegnr, Posnegnrna, POSNEGEM, BASUTBEM, SUNOPANR, NAOREATO, CUABTRFA2, FORMA, EXTRAPULNET, institutb, CUABOBT9net, sit12mes, encerra, TMR_TB, SENSIBIL, TP_TRANSF)",
+      "orgao": "Ministério da Saúde / GT-Sinan e UT-Sinan",
+      "data": "Atualizado até 15/04/2011 (cabeçalho do .def); algumas conversões revisadas pela UT-Sinan em 2019. Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/TuberculNET5_0.def"
+    },
+    "DICHANS": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Hanseníase (campos 31 a 43 e tela de acompanhamento)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "sem data impressa (8 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/hanseniase/HANSN_DIC_DADOS.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sn": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      }
+    ],
+    "baciloscopia": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positiva"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativa"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não realizada"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não se aplica"
+      }
+    ],
+    "extrapulmonar": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Pleural"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Gang. Perif."
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Geniturinária"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Óssea"
+      },
+      {
+        "codigos": [
+          "5"
+        ],
+        "rotulo": "Ocular"
+      },
+      {
+        "codigos": [
+          "6"
+        ],
+        "rotulo": "Miliar"
+      },
+      {
+        "codigos": [
+          "7"
+        ],
+        "rotulo": "Meningoencefálico"
+      },
+      {
+        "codigos": [
+          "8"
+        ],
+        "rotulo": "Cutânea"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Laringea"
+      },
+      {
+        "codigos": [
+          "10"
+        ],
+        "rotulo": "Outra"
+      }
+    ],
+    "positivo_negativo_antigo": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positivo"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativo"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não realizado"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHATUBE",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A169",
+            "A16.9",
+            "A 16. 9",
+            "A 16.9",
+            "A16."
+          ],
+          "rotulo": "Tuberculose respiratória, não especificada, sem menção de confirmação bacteriológica ou histológica",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código A169 (nome completado pela CSV da CID-10, como na tabela do projeto)"
+        }
+      ],
+      "observacao": "A ficha mostra 'TUBERCULOSE' com o CID 'A 16. 9'; no arquivo vem 'A169' (regra do Rubens: o CID como na ficha e sem ponto e espaços). Em cerca de 2% dos registros (12.089 de 2020 a 2025) vem 'A16.': o campo tem 4 posições, e a forma da ficha com ponto ('A16.9') fica cortada no ponto; por isso 'A16.' entrou como forma do mesmo CID (pendência). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "INSTTUBE",
+      "local": "p. 1, item 7",
+      "rotulo": "Data do diagnóstico ou da evidência laboratorial e/ou clínica",
+      "tipo": "data",
+      "observacao": "Ficha, campo 7 (\"Data do Diagnóstico\"). Instrucional, item 7: \"data do diagnóstico ou da evidência laboratorial e/ou clínica da doença de acordo com a definição de caso vigente no momento da notificação\". Nome como no HIV (decisão do Rubens, 20/11/2026)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC. Fica como veio."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 12 só comporta 1 a 6 e 9"
+      },
+      "observacao": "As formas com um e dois dígitos (01 e 1) entram (regra do Rubens); 9, 09 e 99 = Ignorado (decisão do Rubens nas hepatites, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 13 só comporta 1 a 5 e 9"
+      },
+      "observacao": "O código 6 aparece em 1 registro. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHATUBE",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tuberculose (campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 9",
+      "rotulo": "Não listar/Não contar (duplicidade)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "IN_VINCULA",
+      "fonte": "DICHANS",
+      "local": "p. 8, acompanhamento, Vinculação",
+      "rotulo": "Vinculação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não Vinculada"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Vinculada"
+        }
+      ],
+      "observacao": "Indica se a notificação foi vinculada (a categoria 1 é atribuída pelo sistema após a vinculação de notificações de hanseníase ou tuberculose). Rótulos do dicionário de hanseníase, já conferido; o dicionário de tuberculose cita as regras de vinculação sem listar os códigos."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "CS_FLXRET",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Fluxo de retorno",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Habilitado para envio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enviado"
+        }
+      ]
+    },
+    {
+      "nome": "FLXRECEBI",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Recebida por fluxo de retorno",
+      "tipo": "texto"
+    },
+    {
+      "nome": "MIGRADO_W",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Migrado do Sinan Windows",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Migrado do Sinan Windows"
+        }
+      ],
+      "observacao": "Rótulo do NOTIF2018, como na hanseníase. Vem em branco em todos os registros de 2020 a 2025."
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def, \"Ocupação\"",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá. A ficha de tuberculose de 2014 não tem o campo de ocupação; o TuberculNET.def o inclui desde 2010. Vem preenchida em só 10 registros de 2020 a 2025."
+    },
+    {
+      "nome": "NU_PRONTUA",
+      "fonte": "DICTUBE",
+      "local": "p. 1, campo 31",
+      "rotulo": "Nº do prontuário",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "TRATAMENTO",
+      "fonte": "DICTUBE",
+      "local": "p. 1, campo 32",
+      "rotulo": "Tipo de entrada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Caso Novo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Recidiva"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Reingresso após Abandono"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não Sabe"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Pós-óbito"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 só comporta 1 a 6"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "INSTITUCIO",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Institucionalizado (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Presídio"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Asilo"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Orfanato"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Hospital Psiquiátrico"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outro"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão institutb.cnv só tem 1 a 6"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do institutb.cnv (revisado em 2019). Vem preenchido em só 74 registros de 2020 a 2025. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RAIOX_TORA",
+      "fonte": "DICTUBE",
+      "local": "p. 6, campo 39",
+      "rotulo": "Radiografia do tórax",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Suspeito"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Normal"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Outra patologia"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TESTE_TUBE",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Teste tuberculínico (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não reator"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Reator fraco"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Reator forte"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão NAOREATO.CNV só tem 1 a 4"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do NAOREATO.CNV, que os escreve em maiúsculas. Vem preenchido em só 72 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "FORMA",
+      "fonte": "DICTUBE",
+      "local": "p. 3, campo 35",
+      "rotulo": "Forma",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Pulmonar"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Extrapulmonar"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Pulmonar + Extrapulmonar"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EXTRAPU1_N",
+      "fonte": "DICTUBE",
+      "local": "p. 4, campo 36",
+      "rotulo": "Se extrapulmonar",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "1/"
+          ],
+          "rotulo": "Pleural"
+        },
+        {
+          "codigos": [
+            "2",
+            "2,",
+            "[2"
+          ],
+          "rotulo": "Gang. Perif."
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Geniturinária"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óssea"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Ocular"
+        },
+        {
+          "codigos": [
+            "6",
+            "6/"
+          ],
+          "rotulo": "Miliar"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Meningoencefálico"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Cutânea"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Laringea"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Outra"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1 a 10"
+      },
+      "observacao": "No DICTUBE a coluna se chama EXTRAPU_N; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Rótulos do DICTUBE e da ficha (\"Laringea\", sem acento, como nas duas fontes). As formas \"1/\", \"2,\", \"6/\" e \"[2\" (1 registro cada) valem como 1, 2, 6 e 2 (decisão do Rubens na conferência, 20/11/2026); \"2/\" (1 registro) continua como inconsistência, porque não foi citado. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EXTRAPU2_N",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Se extrapulmonar: segunda localização (ficha anterior)",
+      "tipo": "categorico",
+      "lista": "extrapulmonar",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão EXTRAPULNET.CNV só tem 1 a 10"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O EXTRAPULNET.CNV usa os mesmos códigos 1 a 10 do campo 36 atual (nomes em maiúsculas); ficaram os rótulos do campo 36. Vem preenchido em cerca de 4.800 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EXTRAPUL_O",
+      "fonte": "DICTUBE",
+      "local": "p. 4, campo 36",
+      "rotulo": "Se extrapulmonar: outra (especificar)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "AGRAVAIDS",
+      "fonte": "DICTUBE",
+      "local": "p. 4-5, campo 37",
+      "rotulo": "Doenças e agravos associados: Aids",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVALCOO",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Alcoolismo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVDIABE",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Diabetes",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVDOENC",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Doença mental",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVOUTRA",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Outras",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "Valores como \"/\", \"E\", \"H\" e \"X\" (7 registros) saem como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVOUTDE",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: outras (especificar)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_E",
+      "fonte": "DICTUBE",
+      "local": "p. 6, campo 38",
+      "rotulo": "Baciloscopia de escarro (diagnóstico)",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOS_E2",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "2ª baciloscopia de escarro (ficha anterior)",
+      "tipo": "categorico",
+      "lista": "positivo_negativo_antigo",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão Posnegnr.cnv só tem 1, 2 e 3"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do Posnegnr.cnv. Vem preenchido em só 94 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_O",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Baciloscopia de outro material (ficha anterior)",
+      "tipo": "categorico",
+      "lista": "positivo_negativo_antigo",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão Posnegnr.cnv só tem 1, 2 e 3"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do Posnegnr.cnv. Vem preenchido em só 77 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CULTURA_ES",
+      "fonte": "DICTUBE",
+      "local": "p. 7, campo 43",
+      "rotulo": "Cultura",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positiva"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Em andamento"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizada"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1 a 4"
+      },
+      "observacao": "O TuberculNET5_0.def chama a coluna de \"Cultura Escarro\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CULTURA_OU",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Cultura de outro material (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Em andamento"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão POSNEGEM.CNV só tem 1 a 4"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do POSNEGEM.CNV. Vem preenchido em só 77 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HIV",
+      "fonte": "DICTUBE",
+      "local": "p. 6, campo 40",
+      "rotulo": "HIV",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Positivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Negativo"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Em andamento"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "HISTOPATOL",
+      "fonte": "DICTUBE",
+      "local": "p. 7, campo 42",
+      "rotulo": "Histopatologia",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Baar Positivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Sugestivo de TB"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não sugestivo de TB"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Em andamento"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 42 só comporta 1 a 5"
+      },
+      "observacao": "O código 6 aparece em 212 registros e sai como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_INIC_TR",
+      "fonte": "DICTUBE",
+      "local": "p. 9, campo 46",
+      "rotulo": "Data de início do tratamento atual",
+      "tipo": "data"
+    },
+    {
+      "nome": "RIFAMPICIN",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): rifampicina",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog RIFAMPICINA\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ISONIAZIDA",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): isoniazida",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog ISONIAZIDA\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ETAMBUTOL",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): etambutol",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog ETAMBUTOL\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ESTREPTOMI",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): estreptomicina",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog ESTREPTOMICINA\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "PIRAZINAMI",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): pirazinamida",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog PIRAZINAMIDA\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ETIONAMIDA",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): etionamida",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog ETIONAMIDA\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "OUTRAS",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Drogas em uso (ficha anterior): outras",
+      "tipo": "categorico",
+      "lista": "sn",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão SIM_NAO.CNV só tem 1 e 2"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). O .def chama a coluna de \"Drog OUTRAS\"; códigos do SIM_NAO.CNV (1 Sim, 2 Não). Vem preenchido em menos de 50 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRAT_SUPER",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Tratamento supervisionado indicado (ficha anterior)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o SIM_NAO.CNV só tem 1 e 2 (e o 9 junto do Ign/Branco)"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Códigos do SIM_NAO.CNV; o 9, que o TabWin agrupa como \"Ign/Branco\", ficou Ignorado. Vem preenchido em cerca de 139 mil registros (23%). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_CONTATO",
+      "fonte": "DICTUBE",
+      "local": "p. 9, campo 47",
+      "rotulo": "Total de contatos identificados",
+      "tipo": "numero",
+      "observacao": "No DICTUBE a coluna se chama NU_COMU_ID; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Valores só com asteriscos (\"**\", 128 registros) valem como campo em branco (regra do Rubens)."
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo de doença relacionada ao trabalho só comporta 1, 2 e 9"
+      },
+      "observacao": "O DICTUBE e a ficha de 2014 não têm este campo; o TuberculNET5_0.def lê a coluna com o SIM_NAO.CNV. Nos arquivos de 2020 a 2025 vem \"0\" em cerca de 129 mil registros e números de 1 a 9 em poucos (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "SG_UF_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 9, campo 48",
+      "rotulo": "UF de notificação atual",
+      "tipo": "uf",
+      "observacao": "No DICTUBE a coluna se chama SG_UF_ATUAL; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). No arquivo vem o código numérico da UF (IBGE)."
+    },
+    {
+      "nome": "ID_MUNIC_A",
+      "fonte": "DICTUBE",
+      "local": "p. 10, campo 49",
+      "rotulo": "Município de notificação atual",
+      "tipo": "municipio",
+      "observacao": "No DICTUBE a coluna se chama ID_MUNIC_AT; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def)."
+    },
+    {
+      "nome": "NU_NOTI_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 10, campo 50",
+      "rotulo": "Número da notificação atual",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "DT_NOTI_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 11, campo 51",
+      "rotulo": "Data da notificação atual",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_UNID_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 12, campo 52",
+      "rotulo": "Unidade de saúde atual (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Sai o nome do estabelecimento pelo CNES. Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "SG_UF_2",
+      "fonte": "DICTUBE",
+      "local": "p. 12, campo 53",
+      "rotulo": "UF de residência atual",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE)."
+    },
+    {
+      "nome": "ID_MUNIC_2",
+      "fonte": "DICTUBE",
+      "local": "p. 13, campo 54",
+      "rotulo": "Município de residência atual",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "NU_CEP2",
+      "fonte": "DICTUBE",
+      "local": "p. 14, campo 55",
+      "rotulo": "CEP de residência atual",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "ID_BAIRRO2",
+      "fonte": "DICTUBE",
+      "local": "p. 15, campo 57",
+      "rotulo": "Bairro de residência atual (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "NM_BAIRRO2",
+      "fonte": "DICTUBE",
+      "local": "p. 15, campo 57",
+      "rotulo": "Bairro de residência atual (nome)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_1",
+      "fonte": "DICTUBE",
+      "local": "p. 16, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 1º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_2",
+      "fonte": "DICTUBE",
+      "local": "p. 16, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 2º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_3",
+      "fonte": "DICTUBE",
+      "local": "p. 16, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 3º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_4",
+      "fonte": "DICTUBE",
+      "local": "p. 17, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 4º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_5",
+      "fonte": "DICTUBE",
+      "local": "p. 17, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 5º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BACILOSC_6",
+      "fonte": "DICTUBE",
+      "local": "p. 17, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): 6º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRATSUP_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 18, campo 60",
+      "rotulo": "Tratamento Diretamente Observado (TDO) realizado",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 60 só comporta 1, 2 e 9"
+      },
+      "observacao": "Vem em branco em todos os registros de 2020 a 2025. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_MUDANCA",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Data da mudança de tratamento (ficha anterior)",
+      "tipo": "data",
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome pelo TuberculNET5_0.def do TabWin (pendência). O nome legível é uma interpretação do nome da coluna (pendência). Vem preenchida em só 4 registros."
+    },
+    {
+      "nome": "NU_COMU_EX",
+      "fonte": "DICTUBE",
+      "local": "p. 19, campo 61",
+      "rotulo": "Total de contatos examinados",
+      "tipo": "numero",
+      "observacao": "No DICTUBE a coluna se chama NU_CONT_EX; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def)."
+    },
+    {
+      "nome": "SITUA_9_M",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Situação no 9º mês (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por tuberculose"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência p/ mesmo município"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Transferência p/ Outro Município"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Transferência p/ Outra UF"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Transferência p/ Outro País"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Mudança de Esquema"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Mudança de Diagnóstico"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Falência"
+        },
+        {
+          "codigos": [
+            "12"
+          ],
+          "rotulo": "Continua em Tratamento"
+        },
+        {
+          "codigos": [
+            "13"
+          ],
+          "rotulo": "TB Multirresistente"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão CUABOBT9net.CNV só tem 1 a 13"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do CUABOBT9net.CNV. Vem preenchida em só 85 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "SITUA_12_M",
+      "fonte": "TABTUBE",
+      "local": "TuberculNET5_0.def",
+      "rotulo": "Situação no 12º mês (ficha anterior)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por tuberculose"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência p/ mesmo município"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Transferência p/ Outro Município"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Transferência p/ Outra UF"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Transferência p/ Outro País"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Mudança de Esquema"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Mudança de Diagnóstico"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Continua em Tratamento"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: a conversão sit12mes.CNV só tem 1 a 11"
+      },
+      "observacao": "Campo da ficha anterior à de 2014: não está no DICTUBE nem na ficha atual; nome e códigos pelo TuberculNET5_0.def do TabWin (pendência). Rótulos do sit12mes.CNV. Vem preenchida em só 6 registros. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "SITUA_ENCE",
+      "fonte": "DICTUBE",
+      "local": "p. 19, campo 62",
+      "rotulo": "Situação de encerramento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Cura"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Abandono"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por TB"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Transferência"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Mudança de Diagnóstico"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "TB-DR"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Mudança de Esquema"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Falência"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Abandono Primário"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 62 só comporta 1 a 10"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICTUBE",
+      "local": "p. 21, campo 66",
+      "rotulo": "Data de encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "OPORTU",
+      "fonte": "DICTUBE",
+      "local": "p. 22",
+      "rotulo": "Oportunidade de encerramento",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Oportuno"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Inoportuno"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo de oportunidade só comporta 1 e 2"
+      },
+      "observacao": "Campo preenchido automaticamente pelo sistema (1 se o intervalo entre a data de encerramento e a data de notificação estiver dentro do prazo). Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_OPORTU",
+      "fonte": "DICTUBE",
+      "local": "p. 22",
+      "rotulo": "Data de oportunidade",
+      "tipo": "data",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "TPUNINOT",
+      "fonte": "NOTIF2018",
+      "local": "não aparece na fonte",
+      "rotulo": "Tipo da unidade notificadora (estabelecimento de saúde que realizou o registro do caso)",
+      "tipo": "codigo",
+      "observacao": "Nenhum documento de tuberculose descreve esta coluna. O nome legível é o que o Rubens decidiu na violência (10/11/2026), sem documento oficial; os códigos ficam como vieram (pendência)."
+    },
+    {
+      "nome": "POP_LIBER",
+      "fonte": "DICTUBE",
+      "local": "p. 2, campo 33",
+      "rotulo": "Populações especiais: população privada de liberdade",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "POP_RUA",
+      "fonte": "DICTUBE",
+      "local": "p. 3, campo 33",
+      "rotulo": "Populações especiais: população em situação de rua",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "POP_SAUDE",
+      "fonte": "DICTUBE",
+      "local": "p. 3, campo 33",
+      "rotulo": "Populações especiais: profissional de saúde",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "O código 3 aparece em cerca de 27 mil registros e sai como inconsistência (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "POP_IMIG",
+      "fonte": "DICTUBE",
+      "local": "p. 3, campo 33",
+      "rotulo": "Populações especiais: imigrante",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "O código 3 aparece em cerca de 2.150 registros e sai como inconsistência (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BENEF_GOV",
+      "fonte": "DICTUBE",
+      "local": "p. 3, campo 34",
+      "rotulo": "Beneficiário de programa de transferência de renda do governo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVDROGA",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Uso de drogas ilícitas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "No DICTUBE a coluna se chama AGRAVDROGAS; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "AGRAVTABAC",
+      "fonte": "DICTUBE",
+      "local": "p. 5, campo 37",
+      "rotulo": "Doenças e agravos associados: Tabagismo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1, 2 e 9"
+      },
+      "observacao": "No DICTUBE a coluna se chama AGRAVTABACO; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TEST_MOLEC",
+      "fonte": "DICTUBE",
+      "local": "p. 8, campo 44",
+      "rotulo": "Teste Molecular Rápido TB (TMR-TB)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Detectável sensível à Rifampicina"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Detectável resistente à Rifampicina"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Não detectável"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Inconclusivo"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 5"
+      },
+      "observacao": "No DICTUBE a coluna se chama TESTE_MOLEC; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TEST_SENSI",
+      "fonte": "DICTUBE",
+      "local": "p. 8-9, campo 45",
+      "rotulo": "Teste de sensibilidade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Resistente somente à Isoniazida"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Resistente somente à Rifampicina"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Resistente à Isoniazida e Rifampicina"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Resistente a outras drogas de 1ª linha"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Sensível"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Em andamento"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Não realizado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1 a 7"
+      },
+      "observacao": "No DICTUBE a coluna se chama TEST_SENSIBILID; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_RETRO",
+      "fonte": "DICTUBE",
+      "local": "p. 7, campo 41",
+      "rotulo": "Terapia antirretroviral durante o tratamento para a TB",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "No DICTUBE a coluna se chama ANTIRRETROVIRAL; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "BAC_APOS_6",
+      "fonte": "DICTUBE",
+      "local": "p. 17-18, campo 58",
+      "rotulo": "Baciloscopia de acompanhamento (escarro): após o 6º mês",
+      "tipo": "categorico",
+      "lista": "baciloscopia",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 4"
+      },
+      "observacao": "No DICTUBE a coluna se chama BACILOSC_APOS_6; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). Valores como 0, 5, 6, 8, 9, \"x\", \"q\", \"T\" e sinais de pontuação (cerca de 170 registros) saem como inconsistência. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_PRONT_AT",
+      "fonte": "DICTUBE",
+      "local": "p. 18, campo 59",
+      "rotulo": "Nº do prontuário atual",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (TUBEBR20 a 25); incluída para arquivos exportados do próprio Sinan (regra do Rubens para colunas do dicionário oficial fora do arquivo, 19/11/2026)."
+    },
+    {
+      "nome": "TRANSF",
+      "fonte": "DICTUBE",
+      "local": "p. 20, campo 63",
+      "rotulo": "Se transferência",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Mesmo município"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Município diferente (mesma UF)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "UF diferente"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "País diferente"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 63 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "UF_TRANSF",
+      "fonte": "DICTUBE",
+      "local": "p. 21, campo 64",
+      "rotulo": "UF de transferência",
+      "tipo": "uf",
+      "observacao": "No DICTUBE a coluna se chama SG_UF_TRANSF; no arquivo, com o nome encurtado (ligação pelo número do campo e pelo TuberculNET5_0.def). No arquivo vem o código numérico da UF (IBGE)."
+    },
+    {
+      "nome": "MUN_TRANSF",
+      "fonte": "DICTUBE",
+      "local": "p. 21, campo 65",
+      "rotulo": "Município de transferência (código)",
+      "tipo": "codigo",
+      "observacao": "O DICTUBE descreve o código do município (6 dígitos), mas nos arquivos públicos de 2020 a 2025 a coluna traz só 2 dígitos, sempre iguais à UF de transferência (UF_TRANSF): o município vem cortado. Por isso fica como veio, sem tradução (pendência)."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICTUBE (dicionário de tuberculose do pacote Docs_TAB_SINAN, sem data, com os campos da ficha de 2014) e a ficha de 2014 com a tela de acompanhamento. O TuberculNET5_0.def do TabWin liga as colunas do arquivo aos campos."
+    },
+    {
+      "coluna": "Nomes diferentes no DICTUBE",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Várias colunas têm no arquivo um nome encurtado em relação ao DICTUBE: EXTRAPU1_N (EXTRAPU_N), AGRAVDROGA (AGRAVDROGAS), AGRAVTABAC (AGRAVTABACO), ANT_RETRO (ANTIRRETROVIRAL), TEST_MOLEC (TESTE_MOLEC), TEST_SENSI (TEST_SENSIBILID), SG_UF_AT (SG_UF_ATUAL), ID_MUNIC_A (ID_MUNIC_AT), BAC_APOS_6 (BACILOSC_APOS_6), UF_TRANSF (SG_UF_TRANSF), NU_CONTATO (NU_COMU_ID, campo 47) e NU_COMU_EX (NU_CONT_EX, campo 61). A ligação foi feita pelo número do campo e pelo TuberculNET5_0.def. As duas últimas (contatos identificados e examinados) não estão no .def e foram ligadas pelo sentido (pendência)."
+    },
+    {
+      "coluna": "Campos da ficha anterior",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O arquivo ainda traz colunas da ficha anterior à de 2014, que não estão no DICTUBE: INSTITUCIO, TESTE_TUBE, EXTRAPU2_N, BACILOS_E2, BACILOSC_O, CULTURA_OU, as drogas (RIFAMPICIN a OUTRAS), TRAT_SUPER, DT_MUDANCA, SITUA_9_M e SITUA_12_M. Nomes e códigos vieram do TuberculNET5_0.def e das suas conversões. Quase todas vêm vazias; TRAT_SUPER vem em 23% e EXTRAPU2_N em cerca de 4.800 registros."
+    },
+    {
+      "coluna": "ID_AGRAVO",
+      "descricao": "Aprovada (Rubens, 20/11/2026). A ficha mostra o CID \"A 16. 9\" (A16.9). Em 12.089 registros (2%) o arquivo traz \"A16.\", que parece a forma com ponto cortada pelo tamanho do campo (4 posições). Entrou como forma do mesmo CID."
+    },
+    {
+      "coluna": "DOENCA_TRA",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Não está no DICTUBE nem na ficha de 2014. Vem \"0\" em cerca de 129 mil registros e números de 1 a 9 em poucos, o que não combina com Sim/Não/Ignorado do .def: tudo isso sai como inconsistência. Decidir se a coluna deve ficar como código mantido como veio."
+    },
+    {
+      "coluna": "POP_SAUDE e POP_IMIG",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O código 3 aparece em cerca de 27 mil (profissional de saúde) e 2.150 (imigrante) registros; o campo 33 só comporta 1, 2 e 9. Sai como inconsistência."
+    },
+    {
+      "coluna": "Valores fora da ficha",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Saem como inconsistência: BENEF_GOV \"-\" e 3, 4, 6, 7, 8; HISTOPATOL 6 (212); TEST_SENSI 8 e 9; TRANSF 0; CS_RACA 6; e sinais de pontuação e letras em AGRAVOUTRA e BAC_APOS_6. Em EXTRAPU1_N, \"1/\", \"2,\", \"6/\" e \"[2\" valem como 1, 2, 6 e 2 (decisão do Rubens, 20/11/2026)."
+    },
+    {
+      "coluna": "TPUNINOT",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Sem descrição nos documentos de tuberculose. Ficou com o nome que o Rubens decidiu na violência, com os códigos como vieram."
+    },
+    {
+      "coluna": "IN_VINCULA e MIGRADO_W",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Rótulos copiados da hanseníase (já conferida). O MIGRADO.cnv do TabWin usa 1 = Não e 2 = Sim, diferente do NOTIF2018 (1 = Migrado); a coluna vem em branco em todos os registros."
+    },
+    {
+      "coluna": "Campos do DICTUBE fora do arquivo",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Entraram, pela regra do Rubens: nº do prontuário (31), extrapulmonar \"outra\" (36), outros agravos \"especificar\" (37), número da notificação atual (50), unidade de saúde atual (52), CEP e bairro de residência atual (55 e 57), nº do prontuário atual (59), oportunidade e data de oportunidade. O distrito de residência atual (56) ficou de fora: no PDF o nome da coluna aparece como \"D_DISTR_2\", provavelmente cortado, e não dá para ler com segurança."
+    },
+    {
+      "coluna": "MUN_TRANSF",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Nos arquivos públicos o município de transferência vem só com 2 dígitos, sempre iguais à UF de transferência (cerca de 5 mil registros por ano): o município vem cortado. Ficou como código mantido como veio (sem procurar na tabela de municípios, para não encher as Inconsistências)."
+    },
+    {
+      "coluna": "SEM_NOT e SEM_DIAG",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O arquivo de tuberculose não traz as semanas epidemiológicas; por isso não foram criadas colunas extras de semana. Se quiser, dá para calcular pela data, como nos outros agravos."
+    }
+  ]
+}

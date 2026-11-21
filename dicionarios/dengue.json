@@ -20,74 +20,82 @@
       "documento": "Dicionário de Dados – Dengue, Sistema de Informação de Agravos de Notificação – Sinan Online",
       "orgao": "Ministério da Saúde / SVSA / DAENT",
       "data": "fevereiro de 2024 (conforme título interno do arquivo PDF)",
-      "arquivo": "docs/fontes/dic_dados_dengue.pdf"
+      "arquivo": "docs/fontes/dengue-chikungunya/dic_dados_dengue.pdf"
     },
     "ONLINE2015": {
       "documento": "Dicionário de Dados – Sinan Online – Dengue/Chikungunya, versão 3.0",
       "orgao": "Ministério da Saúde / SVS / GT-Sinan",
       "data": "revisado em 21/10/2015 (última revisão listada: 02/12/2015)",
-      "arquivo": "docs/fontes/DIC_DADOS_ONLINE.pdf"
+      "arquivo": "docs/fontes/dengue-chikungunya/DIC_DADOS_ONLINE.pdf"
     },
     "NOTA59": {
       "documento": "Nota Informativa nº 59/2016 CGPNCD/DEVIT/SVS/MS – Sinan Online versão 3.0 – Dengue/Chikungunya",
       "orgao": "Ministério da Saúde / SVS",
       "data": "2016 (versão 3.0 disponível a partir de 10/05/2016)",
-      "arquivo": "docs/fontes/Nota_Informativa_059.pdf"
+      "arquivo": "docs/fontes/dengue-chikungunya/Nota_Informativa_059.pdf"
     },
     "FICHA2016": {
       "documento": "Ficha de Investigação Dengue e Febre de Chikungunya – Sinan Online",
       "orgao": "Ministério da Saúde / SVS",
       "data": "14/03/2016",
-      "arquivo": "docs/fontes/Ficha_DENGCHIK_FINAL.pdf"
+      "arquivo": "docs/fontes/dengue-chikungunya/Ficha_DENGCHIK_FINAL.pdf"
     },
     "IBGE_DTB2023": {
       "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
       "orgao": "IBGE",
       "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
-      "arquivo": "docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
     },
     "DATASUS_MUNICIPIOS": {
       "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
-      "arquivo": "docs/fontes/tb_municip.csv"
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
     },
     "DATASUS_REGSAUD": {
       "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
-      "arquivo": "docs/fontes/rl_municip_regsaud.csv; docs/fontes/tb_regsaud.csv"
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
     },
     "CNES": {
       "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
-      "arquivo": "docs/fontes/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
     },
     "CBO": {
       "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
       "orgao": "Ministério da Saúde / DATASUS",
       "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
-      "arquivo": "docs/fontes/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
     },
     "MS_MACRORREGIOES": {
       "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
       "orgao": "Ministério da Saúde",
       "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
-      "arquivo": "docs/fontes/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o DengueNETON3.0.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/DengueNETON3.0.def"
     }
   },
   "tabelas": {
     "ibge_municipios": { "arquivo": "tabelas/ibge-municipios.json", "fonte": "IBGE_DTB2023" },
     "municipios_datasus": { "arquivo": "tabelas/municipios-datasus.json", "fonte": "DATASUS_MUNICIPIOS" },
     "regioes_saude": { "arquivo": "tabelas/regioes-saude.json", "fonte": "DATASUS_REGSAUD" },
-    "cnes": { "arquivo": "tabelas/cnes.json.gz", "fonte": "CNES" },
+    "cnes": { "arquivo": "tabelas/cnes.json.gz", "fonte": "CNES", "completar_zeros": 7 },
     "cbo": { "arquivo": "tabelas/cbo.json", "fonte": "CBO" },
-    "macrorregioes_saude": { "arquivo": "tabelas/macrorregioes-saude.json", "fonte": "MS_MACRORREGIOES" }
+    "macrorregioes_saude": { "arquivo": "tabelas/macrorregioes-saude.json", "fonte": "MS_MACRORREGIOES" },
+    "ocupacoes_sinan": { "arquivo": "tabelas/ocupacoes-sinan.json", "fonte": "SINANNET_OCUPA" }
   },
   "regras_tabelas": {
     "municipio": "Procura o código de 6 dígitos em 'ibge_municipios'; se não achar, em 'municipios_datasus'.",
-    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'."
+    "uf": "Nome da UF pelo código numérico, na tabela 'ibge_municipios'.",
+    "cnes": "Procura o código no CNES; se ele tiver menos de 7 dígitos e não for encontrado, procura também com zeros à esquerda (decisão do Rubens, 16/11/2026, por causa dos códigos que vêm sem os zeros)."
   },
   "listas": {
     "sim_nao": [
@@ -189,8 +197,8 @@
     { "nome": "ID_PAIS", "rotulo": "País de residência (código)", "tipo": "codigo", "fonte": "DIC2024", "local": "p. 6, seq. 21",
       "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)." },
     { "nome": "DT_INVEST", "rotulo": "Data da investigação", "tipo": "data", "fonte": "DIC2024", "local": "p. 6, seq. 22" },
-    { "nome": "ID_OCUPA_N", "rotulo": "Ocupação (CBO)", "tipo": "tabela", "tabela": "cbo", "fonte": "DIC2024", "local": "p. 6, seq. 23",
-      "observacao": "O ONLINE2015 (p. 2, campo 32) chama o campo de co_cbo_ocupacao. Nome da ocupação pela CBO 2002. Códigos especiais do Sinan que não estão na CBO (por exemplo 999991, 998999, XXX) ficam como vieram (ver pendências)." },
+    { "nome": "ID_OCUPA_N", "rotulo": "Ocupação (CBO)", "tipo": "tabela", "tabela": "cbo", "complemento": "ocupacoes_sinan", "fonte": "DIC2024", "local": "p. 6, seq. 23",
+      "observacao": "O ONLINE2015 (p. 2, campo 32) chama o campo de co_cbo_ocupacao. Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá." },
     { "nome": "FEBRE", "rotulo": "Sinais clínicos (Febre)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 24", "lista": "sim_nao" },
     { "nome": "MIALGIA", "rotulo": "Sinais clínicos (Mialgia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 25", "lista": "sim_nao" },
     { "nome": "CEFALEIA", "rotulo": "Sinais clínicos (Cefaleia)", "tipo": "categorico", "fonte": "DIC2024", "local": "p. 6, seq. 26", "lista": "sim_nao" },
@@ -376,7 +384,7 @@
   "pendencias": [
     { "coluna": "ID_PAIS", "descricao": "Sem tabela de países compatível com a numeração do Sinan (a tabela_codigos_paises.xlsx tem Brasil = 10, e o arquivo usa 1). O código fica como veio. Decisão do Rubens (01/11/2026): '1 = Brasil' não entra sem fonte documental." },
     { "coluna": "COPAISINF", "descricao": "Mesma situação de ID_PAIS." },
-    { "coluna": "ID_OCUPA_N", "descricao": "Códigos especiais do Sinan que não estão na CBO 2002 (no arquivo de 2025: 999991, 998999, 999993, 999992, XXX, 0, 000000…). Ficam como vieram até haver documento oficial com o significado." },
+    { "coluna": "ID_OCUPA_N", "descricao": "Códigos especiais do Sinan (999991, 998999, XXX etc.): traduzidos desde 15/11/2026 pela tabela de ocupações do Sinan NET (OCUPANET), que o DengueNETON3.0.def usa para este campo. Códigos que não estão nem na CBO nem no OCUPANET (por exemplo 0 e 000000) continuam como vieram e vão para as Inconsistências." },
     { "coluna": "ID_REGIONA", "descricao": "Tabela de regionais do Sinan não disponível; a do DATASUS não corresponde (2% de coincidência). Código mantido; coluna extra REGSAUD_NOT criada." },
     { "coluna": "ID_RG_RESI", "descricao": "Mesma situação de ID_REGIONA; coluna extra REGSAUD_RES criada." }
   ]

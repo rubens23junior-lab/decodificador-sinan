@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia de uso do Decodificador de notificações do SINAN</title>
+<!--
+  Texto-fonte do guia em PDF. Para gerar o PDF: node ferramentas/gerar-guia.js
+  As marcas {{...}} são trocadas pelo script: {{img:nome}} pela foto em
+  docs/guia/imagens/nome.png e {{fig:...}} por tabelas montadas a partir da
+  planilha gerada com o arquivo fictício (docs/guia/planilha-exemplo.xlsx).
+-->
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.45; color: #1f2328; margin: 0; }
+  h1 { font-size: 26pt; line-height: 1.15; margin: 0 0 6mm; color: #0b5cad; }
+  h2 { font-size: 15pt; color: #0b5cad; margin: 0 0 3mm; padding-bottom: 1.5mm; border-bottom: 1.5px solid #0b5cad; break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 1.5mm; break-after: avoid; }
+  p { margin: 0 0 2.5mm; }
+  ol, ul { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1.2mm; }
+  .secao { break-before: page; }
+  .capa { height: 255mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .capa .topo { margin-top: 30mm; }
+  .capa .sub { font-size: 14pt; color: #444; margin-bottom: 10mm; }
+  .capa .dados { font-size: 10pt; color: #444; line-height: 1.7; }
+  .aviso { background: #fff4d6; border-left: 4px solid #e0b100; padding: 3mm 4mm; margin: 3mm 0 4mm; break-inside: avoid; }
+  .nota { background: #eef4fb; border-left: 4px solid #0b5cad; padding: 3mm 4mm; margin: 3mm 0 4mm; break-inside: avoid; }
+  figure { margin: 3mm 0 5mm; break-inside: avoid; }
+  figure img { display: block; max-width: 100%; border: 1px solid #c9ced6; border-radius: 3px; }
+  figure img.media { max-width: 78%; }
+  figure img.pequena { max-width: 62%; }
+  figcaption { font-size: 9pt; color: #555; margin-top: 1.5mm; }
+  table.simples { border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.5pt; break-inside: avoid; }
+  table.simples th, table.simples td { border: 1px solid #c9ced6; padding: 1.2mm 2.5mm; text-align: left; vertical-align: top; }
+  table.simples th { background: #eef1f5; }
+  table.simples.agravos { font-size: 8.8pt; }
+  table.simples.agravos td, table.simples.agravos th { padding: 0.7mm 2.5mm; }
+  table.simples th.grupo { background: #dfe8f3; color: #0b5cad; }
+  h4 { font-size: 10.5pt; margin: 4mm 0 1mm; break-after: avoid; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; background: #f1f3f5; padding: 0 1mm; border-radius: 2px; }
+  .sumario li { margin-bottom: 1.8mm; }
+  /* Planilhas desenhadas a partir do arquivo fictício */
+  .planilha { border: 1px solid #b7bcc4; display: inline-block; max-width: 100%; font-family: Calibri, "Segoe UI", sans-serif; }
+  .planilha table { border-collapse: collapse; font-size: 8pt; }
+  .planilha td, .planilha th { border: 1px solid #d4d7dc; padding: 0.8mm 1.6mm; white-space: nowrap; max-width: 58mm; overflow: hidden; text-overflow: ellipsis; }
+  .planilha th.letra, .planilha td.linha { background: #f0f1f3; color: #666; font-weight: normal; text-align: center; font-size: 7.5pt; }
+  .planilha td.cab { background: #d9d9d9; font-weight: bold; }
+  .planilha td.titulo { background: #f2f2f2; font-weight: bold; }
+  .planilha td.amarelo { background: #ffeb9c; }
+  .planilha td.reticencias { color: #888; text-align: center; }
+  .planilha .abas { background: #f0f1f3; border-top: 1px solid #b7bcc4; font-size: 8pt; padding: 0 2mm; display: flex; gap: 1mm; }
+  .planilha .abas span { padding: 0.8mm 3mm; color: #555; }
+  .planilha .abas span.ativa { background: #fff; color: #0b5cad; font-weight: bold; border-bottom: 2px solid #0b5cad; }
+  .lado { display: flex; gap: 4mm; align-items: center; }
+  .lado .seta { font-size: 20pt; color: #0b5cad; }
+  .pergunta { font-weight: bold; margin-top: 3mm; margin-bottom: 0.8mm; break-after: avoid; }
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <div class="topo">
+    <h1>Guia de uso</h1>
+    <div class="sub">Decodificador de notificações do SINAN<br>Versão {{versao}}</div>
+    <p>Este guia mostra, passo a passo, como baixar um arquivo do SINAN no site do DATASUS, transformar esse arquivo numa planilha legível com o Decodificador e entender o que vem em cada aba da planilha.</p>
+    <p>As telas do programa foram fotografadas com um arquivo fictício, que vem junto com o programa. Nenhum dado de pessoa real aparece neste guia.</p>
+  </div>
+  <div class="dados">
+    Autor: Rubens Araujo da Silva Junior<br>
+    Programa: Decodificador de notificações do SINAN, versão {{versao}}<br>
+    DOI (Zenodo, aponta sempre para a versão mais recente): 10.5281/zenodo.24245071<br>
+    Registro no INPI (versão 1.0.0): BR512026010321-5<br>
+    Código e downloads: github.com/rubens23junior-lab/decodificador-sinan<br>
+    Software livre, licença GNU GPL versão 3 ou posterior<br>
+    Guia de {{data}}
+  </div>
+</div>
+
+<div class="secao">
+  <h2>Sumário</h2>
+  <ol class="sumario">
+    <li>O que o programa faz</li>
+    <li>Antes de começar</li>
+    <li>Como baixar o arquivo do DATASUS</li>
+    <li>Como abrir o programa</li>
+    <li>Como usar o programa</li>
+    <li>Como entender a planilha</li>
+    <li>Situações comuns</li>
+    <li>Para usar no R, Stata ou Python</li>
+  </ol>
+
+  <h2 style="margin-top:10mm">1. O que o programa faz</h2>
+  <p>Os arquivos de notificação do SINAN guardam quase tudo em códigos. O sexo vem como <code>F</code>, <code>M</code> ou <code>I</code>, a raça/cor vem como um número de 1 a 9, o município vem como um código de seis dígitos e a idade vem num código de quatro dígitos que junta a unidade (horas, dias, meses ou anos) e o valor. Os nomes das colunas também são abreviados, como <code>CS_SEXO</code> e <code>ID_MUNICIP</code>.</p>
+  <p>O Decodificador troca cada código pelo texto do dicionário de dados oficial do agravo e entrega uma planilha do Excel pronta para ler. A figura abaixo mostra três notificações do arquivo fictício antes e depois.</p>
+  <figure>
+    {{fig:antes-depois}}
+    <figcaption>Figura 1. Em cima, as notificações como vêm no arquivo. Embaixo, as mesmas notificações na planilha gerada pelo programa. Na terceira, os campos em branco continuam em branco.</figcaption>
+  </figure>
+  <div class="aviso"><b>Os dados não saem do seu computador.</b> O programa funciona inteiro dentro do navegador, sem internet, e não envia nem guarda nada. A planilha gerada tem os mesmos dados pessoais do arquivo original e deve ser tratada conforme as regras do seu serviço.</div>
+  <p>Diferente das tabelas do TABNET, que já vêm agregadas e só permitem as combinações de variáveis que oferecem, o arquivo do DATASUS tem uma linha por notificação, com todos os campos da ficha. Com a planilha legível, dá para cruzar qualquer variável e selecionar exatamente os casos de interesse.</p>
+  <p>O programa não corrige erros de digitação nem faz análises ou gráficos. Quando um valor não está no dicionário, ele fica na planilha como veio, pintado de amarelo, e entra numa lista à parte para conferência. Nada é inventado.</p>
+</div>
+
+<div class="secao">
+  <h2>2. Antes de começar</h2>
+  <h3>O que é preciso</h3>
+  <ul>
+    <li>Um computador com Windows e o navegador Google Chrome ou Microsoft Edge.</li>
+    <li>O arquivo do programa, <code>decodificador-sinan-{{versao}}.zip</code>, baixado da página do projeto no GitHub ou do Zenodo (endereços na capa).</li>
+    <li>Não é preciso instalar nada. Depois de baixado, o programa funciona sem internet.</li>
+  </ul>
+  <h3>Agravos disponíveis nesta versão</h3>
+  <p>São 28 agravos. Cada um tem o seu dicionário, conferido linha por linha pelo autor contra os documentos oficiais. A sigla é a que aparece no nome do arquivo do DATASUS. Os grupos são os mesmos dos botões da tela do programa.</p>
+  <table class="simples agravos">
+    <tr><th>Agravo</th><th>Sigla no DATASUS</th><th>Exemplo de arquivo</th></tr>
+    <tr><th colspan="3" class="grupo">Arboviroses</th></tr>
+    <tr><td>Dengue</td><td>DENG</td><td><code>DENGBR25.dbc</code></td></tr>
+    <tr><td>Chikungunya</td><td>CHIK</td><td><code>CHIKBR25.dbc</code></td></tr>
+    <tr><td>Zika</td><td>ZIKA</td><td><code>ZIKABR25.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Outras doenças transmitidas por vetores</th></tr>
+    <tr><td>Leishmaniose Tegumentar Americana</td><td>LTAN</td><td><code>LTANBR25.dbc</code></td></tr>
+    <tr><td>Leishmaniose Visceral</td><td>LEIV</td><td><code>LEIVBR25.dbc</code></td></tr>
+    <tr><td>Doença de Chagas aguda</td><td>CHAG</td><td><code>CHAGBR25.dbc</code></td></tr>
+    <tr><td>Malária</td><td>MALA</td><td><code>MALABR25.dbc</code></td></tr>
+    <tr><td>Febre maculosa</td><td>FMAC</td><td><code>FMACBR25.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Zoonoses e acidentes com animais</th></tr>
+    <tr><td>Leptospirose</td><td>LEPT</td><td><code>LEPTBR24.dbc</code></td></tr>
+    <tr><td>Acidentes por animais peçonhentos</td><td>ANIM</td><td><code>ANIMBR24.dbc</code></td></tr>
+    <tr><td>Atendimento antirrábico humano</td><td>ANTR</td><td><code>ANTRBR24.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">HIV</th></tr>
+    <tr><td>HIV em adulto</td><td>HIVA</td><td><code>HIVABR24.dbc</code></td></tr>
+    <tr><td>HIV em criança</td><td>HIVC</td><td><code>HIVCBR24.dbc</code></td></tr>
+    <tr><td>HIV em criança exposta</td><td>HIVE</td><td><code>HIVEBR24.dbc</code></td></tr>
+    <tr><td>HIV em gestante</td><td>HIVG</td><td><code>HIVGBR24.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Sífilis</th></tr>
+    <tr><td>Sífilis adquirida</td><td>SIFA</td><td><code>SIFABR25.dbc</code></td></tr>
+    <tr><td>Sífilis em gestante</td><td>SIFG</td><td><code>SIFGBR25.dbc</code></td></tr>
+    <tr><td>Sífilis congênita</td><td>SIFC</td><td><code>SIFCBR25.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Toxoplasmoses</th></tr>
+    <tr><td>Toxoplasmose gestacional</td><td>TOXG</td><td><code>TOXGBR25.dbc</code></td></tr>
+    <tr><td>Toxoplasmose congênita</td><td>TOXC</td><td><code>TOXCBR25.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Hepatites, meningite, tuberculose, hanseníase e tétano</th></tr>
+    <tr><td>Hepatites virais</td><td>HEPA</td><td><code>HEPABR23.dbc</code></td></tr>
+    <tr><td>Meningite</td><td>MENI</td><td><code>MENIBR25.dbc</code></td></tr>
+    <tr><td>Tuberculose</td><td>TUBE</td><td><code>TUBEBR25.dbc</code></td></tr>
+    <tr><td>Hanseníase</td><td>HANS</td><td><code>HANSBR25.dbc</code></td></tr>
+    <tr><td>Tétano acidental</td><td>TETA</td><td><code>TETABR25.dbc</code></td></tr>
+    <tr><td>Tétano neonatal</td><td>TETN</td><td><code>TETNBR25.dbc</code></td></tr>
+    <tr><th colspan="3" class="grupo">Violência e surtos</th></tr>
+    <tr><td>Violência interpessoal/autoprovocada</td><td>VIOL</td><td><code>VIOLBR25.dbc</code></td></tr>
+    <tr><td>Surto de doenças transmitidas por alimentos (DTA)</td><td>SDTA</td><td><code>SDTABR25.dbc</code></td></tr>
+  </table>
+  <h3>Que tipo de arquivo o programa lê</h3>
+  <ul>
+    <li><b>DBC:</b> o formato dos arquivos públicos do DATASUS. É o caso mais comum, e a seção 3 mostra como baixar.</li>
+    <li><b>DBF:</b> o formato da exportação feita no próprio SINAN.</li>
+    <li><b>CSV:</b> arquivo de texto separado por vírgula ou ponto e vírgula, com os nomes de coluna do SINAN.</li>
+  </ul>
+</div>
+
+<div class="secao">
+  <h2>3. Como baixar o arquivo do DATASUS</h2>
+  <p>Os arquivos públicos do SINAN ficam na página de transferência de arquivos do DATASUS: <b>datasus.saude.gov.br/transferencia-de-arquivos</b>. Os arquivos públicos não trazem o nome das pessoas, mas continuam sendo dados de saúde e merecem cuidado.</p>
+  <ol>
+    <li>No campo <b>Fonte</b>, clique em <b>SINAN - Sistema de Informação de Agravos de Notificação</b>.</li>
+    <li>No campo <b>Modalidade</b>, clique em <b>Dados</b>.</li>
+    <li>No campo <b>Tipo de Arquivo</b>, clique no agravo. A lista usa a sigla e o nome, por exemplo <b>DENG - Dengue</b>.</li>
+    <li>No campo <b>Ano</b>, clique no ano. Para escolher vários anos, segure a tecla Ctrl enquanto clica.</li>
+    <li>No campo <b>UF</b>, clique em <b>BR</b>. Os arquivos do SINAN são nacionais; para ficar só com um estado, use o filtro do programa (seção 5, passo 3.1).</li>
+    <li>Clique em <b>Enviar</b>.</li>
+  </ol>
+  <figure>
+    <img class="media" src="{{img:datasus-1-formulario}}">
+    <figcaption>Figura 2. Formulário do DATASUS preenchido para baixar o arquivo de dengue de 2024.</figcaption>
+  </figure>
+  <ol start="7">
+    <li>Aparece a lista de arquivos encontrados, já marcados. Clique em <b>Download</b>.</li>
+    <li>O site junta os arquivos marcados num arquivo compactado e mostra o link <b>arquivo.zip</b>. Clique nele para baixar.</li>
+    <li>Na pasta Downloads, clique com o botão direito em <code>arquivo.zip</code> e escolha <b>Extrair tudo</b>. Dentro dele está o arquivo do agravo, por exemplo <code>DENGBR24.dbc</code>. É esse arquivo que vai para o programa.</li>
+  </ol>
+  <figure>
+    <img src="{{img:datasus-3-zip}}">
+    <figcaption>Figura 3. Lista de arquivos, link Download e, embaixo, o link para baixar o arquivo.zip.</figcaption>
+  </figure>
+  <div class="nota">
+    <b>Como ler o nome do arquivo.</b> <code>DENGBR24.dbc</code> quer dizer: dengue (<code>DENG</code>), Brasil (<code>BR</code>), ano de 2024 (<code>24</code>).<br>
+    <b>Dados finais e preliminares.</b> A coluna Modalidade da lista diz se os dados do ano são finais ou preliminares. Os preliminares, em geral dos anos mais recentes, ainda podem mudar.
+  </div>
+</div>
+
+<div class="secao">
+  <h2>4. Como abrir o programa</h2>
+  <ol>
+    <li>Clique com o botão direito em <code>decodificador-sinan-{{versao}}.zip</code> e escolha <b>Extrair tudo</b>.</li>
+    <li>Abra a pasta <code>decodificador-sinan</code> que foi criada.</li>
+    <li>Dê dois cliques em <code>index.html</code>. O programa abre no navegador.</li>
+  </ol>
+  <p>Se ele abrir num navegador que não seja o Chrome ou o Edge, clique com o botão direito em <code>index.html</code>, escolha <b>Abrir com</b> e depois <b>Google Chrome</b> ou <b>Microsoft Edge</b>.</p>
+  <p>A pasta também tem o arquivo <code>LEIA-ME.txt</code>, com um resumo deste guia, o arquivo <code>LICENSE</code>, com a licença, e a pasta <code>exemplos</code>, com arquivos fictícios de dengue para treinar.</p>
+  <figure>
+    <img src="{{img:programa-1-inicio}}">
+    <figcaption>Figura 4. Topo da tela: o título, o botão do tema, o bloco "Para que serve esta ferramenta" (fechado) e o aviso de privacidade.</figcaption>
+  </figure>
+  <p><b>Tema escuro ou claro.</b> A tela abre com fundo escuro. O botão <b>Tema claro</b>, no canto de cima, troca para fundo claro, e o mesmo botão (que passa a se chamar <b>Tema escuro</b>) volta ao escuro. O navegador lembra a escolha para a próxima vez. Isso muda só as cores, e nada no resultado.</p>
+  <p><b>Para que serve esta ferramenta.</b> Clique nesse título para abrir um texto curto que explica por que os arquivos do DATASUS vêm em códigos, qual é a diferença entre esses arquivos e as tabelas do TABNET, e o que o programa faz. Clique de novo para fechar.</p>
+  <figure>
+    <img class="media" src="{{img:programa-1-apresentacao}}">
+    <figcaption>Figura 5. O bloco "Para que serve esta ferramenta", aberto.</figcaption>
+  </figure>
+</div>
+
+<div class="secao">
+  <h2>5. Como usar o programa</h2>
+  <p>A tela tem três blocos numerados: <b>1 Agravo</b>, <b>2 Arquivo</b> e <b>3 Opções</b>. Basta seguir na ordem.</p>
+
+  <h3>Passo 1. Escolha o agravo</h3>
+  <p>Os agravos aparecem como botões, separados por grupo (arboviroses, HIV, sífilis e assim por diante). Clique no botão do agravo do arquivo. O botão escolhido fica azul. A dengue já vem escolhida quando o programa abre. Logo abaixo dos botões aparece qual dicionário será usado, de que documento ele veio e quando foi conferido.</p>
+  <figure>
+    <img class="media" src="{{img:programa-1-agravo}}">
+    <figcaption>Figura 6. Os 28 agravos em botões por grupo, com a dengue escolhida.</figcaption>
+  </figure>
+  <p>Se você trocar de agravo depois de escolher o arquivo, o programa lê o arquivo de novo com o agravo novo.</p>
+
+  <h3>Passo 2. Escolha o arquivo</h3>
+  <p>Arraste o arquivo para a área tracejada ou clique em <b>Escolher arquivo</b>. O programa lê o arquivo e mostra, numa faixa verde, quantas notificações e colunas ele tem. Se alguma coluna do arquivo não estiver no dicionário, ela aparece listada ali e vai para a planilha como veio, sem tradução. Também aparecem as colunas do dicionário que não existem naquele arquivo, quando houver.</p>
+  <figure>
+    <img class="media" src="{{img:programa-2-arquivo}}">
+    <figcaption>Figura 7. Arquivo fictício lido: 300 notificações, todas as colunas com tradução.</figcaption>
+  </figure>
+  <p><b>Acentos trocados.</b> Se os acentos aparecerem errados, abra <b>Acentos aparecendo errado?</b> e escolha outra codificação. Na maioria dos casos, a opção automática acerta.</p>
+  <p><b>Arquivo de outro agravo.</b> O programa confere se o arquivo é mesmo do agravo escolhido. Ele olha as colunas e o código do agravo gravado nas notificações (por exemplo, A90 na dengue). Se não for, ele não gera planilha e explica o motivo. Quando reconhece de que agravo o arquivo parece ser, mostra um botão, por exemplo <b>Usar Dengue</b>. Clique nele para ler o arquivo de novo com esse agravo. O programa nunca troca de agravo sozinho.</p>
+  <figure>
+    <img class="media" src="{{img:programa-6-outro-agravo}}">
+    <figcaption>Figura 8. O arquivo fictício de dengue com Chikungunya escolhida: o programa avisa e sugere a dengue.</figcaption>
+  </figure>
+
+  <h3>Passo 3. Ajuste as opções</h3>
+  <p>O bloco de opções aparece depois que o arquivo é lido. As opções já vêm prontas para o uso mais comum, e todas são opcionais. A figura mostra o bloco com os valores de quando ele aparece.</p>
+  <figure>
+    <img class="pequena" src="{{img:programa-3-opcoes}}">
+    <figcaption>Figura 9. Bloco de opções, com os valores de quando ele aparece.</figcaption>
+  </figure>
+
+  <h4>3.1 Filtrar registros</h4>
+  <p>Os filtros deixam na planilha só parte das notificações. São três filtros, e dá para usar um, dois ou os três ao mesmo tempo. Quando há mais de um, a notificação precisa passar por todos para entrar na planilha. Sem filtro, entram todas as notificações do arquivo.</p>
+  <p>Em cada linha, a primeira lista escolhe <b>qual coluna</b> do arquivo o filtro usa. Isso importa porque a ficha tem, por exemplo, a UF de notificação e a UF de residência, que nem sempre são iguais. As listas só mostram as colunas daquele tipo que existem no arquivo.</p>
+  <table class="simples">
+    <tr><th>Filtro</th><th>Como funciona</th></tr>
+    <tr><td><b>UF</b></td><td>Na primeira lista, escolha a coluna de UF. Na dengue, por exemplo, há a UF de notificação, de residência, de hospitalização e a provável de infecção. Na segunda lista, escolha a UF. Cada UF aparece com o número de notificações que ela tem no arquivo, contadas na coluna escolhida. Um código de UF que não existe na tabela do IBGE aparece como "Código ... (sem tradução)".</td></tr>
+    <tr><td><b>Município</b></td><td>Só funciona depois de escolher uma UF. Na primeira lista, escolha a coluna de município (de notificação, de residência etc.). Na segunda, escolha o município entre os municípios da UF escolhida. Atenção: o filtro de UF e o de município podem usar colunas diferentes. Por exemplo, dá para pedir as notificações feitas numa UF de pacientes residentes num município. Confira se é isso que você quer.</td></tr>
+    <tr><td><b>Período</b></td><td>Na primeira lista, escolha qual data usar: data da notificação, dos primeiros sintomas, da investigação, do óbito, do encerramento, da digitação e todas as outras datas da ficha que existirem no arquivo. Embaixo, o programa mostra a primeira e a última data dessa coluna no arquivo. Preencha <b>de</b>, <b>até</b> ou os dois. Só "de" pega daquela data em diante, e só "até" pega até aquela data. As duas datas entram no período. Com o filtro de período, as notificações com essa data em branco ou impossível (como 30/02) ficam de fora.</td></tr>
+  </table>
+  <figure>
+    <img class="media" src="{{img:programa-3-filtros}}">
+    <figcaption>Figura 10. Exemplo de filtros preenchidos: notificações feitas no Rio de Janeiro, no município de Angra dos Reis, no primeiro semestre de 2025.</figcaption>
+  </figure>
+  <p>O filtro escolhido fica registrado na aba Resumo da planilha. Assim, dá para saber depois quais notificações entraram.</p>
+
+  <h4>3.2 Colunas</h4>
+  <p>Estas opções definem o formato e a quantidade de colunas da planilha.</p>
+  <ul>
+    <li><b>Manter também a coluna com o código original, ao lado da traduzida</b> (desmarcada no início): marque para que cada coluna traduzida venha acompanhada de uma coluna com o código como veio no arquivo, com o nome usado no SINAN (por exemplo, <b>Sexo</b> e, ao lado, <b>CS_SEXO</b>). Ajuda a conferir a tradução e a comparar com outras bases.</li>
+    <li><b>Incluir o nome original da coluna numa segunda linha de cabeçalho</b> (desmarcada no início): a primeira linha traz o nome legível, e a segunda, o nome do SINAN (por exemplo, "Data da notificação" e, embaixo, <code>DT_NOTIFIC</code>). Fica desligada quando o formato para análise está marcado.</li>
+    <li><b>Formato para análise (R, Stata, Python)</b> (desmarcada no início): veja a seção 8.</li>
+    <li><b>Escolher quais colunas incluir</b>: clique nesse título para abrir a lista de todas as colunas que podem ir para a planilha. Entre parênteses aparece quantas estão marcadas. Cada coluna mostra o nome legível e, entre parênteses, o nome do SINAN. As colunas que o arquivo traz mas o dicionário não tem aparecem como "(sem tradução)". As <b>colunas extras</b>, calculadas pelo programa, aparecem como "(coluna extra)". São, por exemplo, a região e a macrorregião de saúde, a semana epidemiológica calculada e os avisos de possível erro de notificação. Desmarque o que não precisar. Os botões <b>Marcar todas</b> e <b>Desmarcar todas</b> ajudam quando você quer só algumas colunas: desmarque todas e marque as que interessam. É preciso deixar pelo menos uma marcada.</li>
+  </ul>
+  <figure>
+    <img class="media" src="{{img:programa-3-colunas}}">
+    <figcaption>Figura 11. Opções de colunas, com a lista de colunas aberta.</figcaption>
+  </figure>
+  <div class="nota"><b>Dica para escolher variáveis.</b> A lista de colunas é um bom lugar para conhecer o que a ficha do agravo traz. Para uma análise sobre sexo, raça/cor e evolução, por exemplo, desmarque todas, marque só essas colunas (e as de data e local que for usar) e gere uma planilha bem menor e mais rápida de abrir.</div>
+
+  <h4>3.3 Formato da saída</h4>
+  <ul>
+    <li><b>Planilha Excel (.xlsx)</b>: uma planilha com as abas Dados, Inconsistências, Dicionário usado e Resumo (seção 6).</li>
+    <li><b>CSV</b>: um arquivo de texto com os dados, para arquivos muito grandes. Vem com ponto e vírgula entre as colunas e datas em dd/mm/aaaa, e abre direto no Excel em português. As abas de apoio (Inconsistências, Dicionário usado e Resumo) vêm num segundo arquivo, do Excel, com o mesmo nome terminado em <code>_apoio</code>.</li>
+  </ul>
+  <p>Embaixo, o programa mostra quantas notificações vão para a planilha. Com o filtro de UF, o número é exato. Com os filtros de município ou período, ele mostra o máximo possível, porque o número exato só se sabe no processamento. Acima de 300 mil notificações, ele avisa que a planilha do Excel fica pesada. Acima do limite do Excel (1.048.576 linhas), a opção Excel fica bloqueada e o CSV é escolhido sozinho.</p>
+  <figure>
+    <img class="media" src="{{img:programa-3-saida}}">
+    <figcaption>Figura 12. Formato da saída e número de notificações que vão para a planilha.</figcaption>
+  </figure>
+
+  <h3>Passo 4. Processe e baixe a planilha</h3>
+  <p>O botão <b>Processar e baixar a planilha</b> fica numa barra fixa no pé da tela, sempre à vista enquanto você ajusta as opções. Não é preciso rolar a lista de colunas até o fim para achá-lo. A barra também lembra o nome do arquivo, o agravo e quantas colunas estão marcadas.</p>
+  <figure>
+    <img src="{{img:programa-3-barra}}">
+    <figcaption>Figura 13. Barra fixa no pé da tela, com o botão de processar.</figcaption>
+  </figure>
+  <p>Clique no botão. Uma barra mostra o andamento. O botão <b>Cancelar</b> interrompe o processamento e volta para as opções. Um arquivo nacional de um ano pode levar alguns minutos, e a tela não trava enquanto isso.</p>
+  <figure>
+    <img class="media" src="{{img:programa-4-progresso}}">
+    <figcaption>Figura 14. Barra de andamento, logo no início do processamento. O arquivo fictício é pequeno e termina em instantes.</figcaption>
+  </figure>
+  <p>No fim aparece <b>Pronto!</b>, com o número de notificações lidas, quantas foram para a planilha e quantos valores ficaram sem tradução. A planilha vai sozinha para a pasta Downloads do navegador, com o nome do agravo e a data, por exemplo <code>dengue_decodificado_2026-11-21.xlsx</code>. Se o download não começar, use o botão azul.</p>
+  <figure>
+    <img class="media" src="{{img:programa-5-resultado}}">
+    <figcaption>Figura 15. Fim do processamento do arquivo fictício.</figcaption>
+  </figure>
+  <p>Para gerar outra planilha do mesmo arquivo com outras opções (outro filtro ou outras colunas, por exemplo), clique em <b>Mudar opções e processar de novo</b>.</p>
+</div>
+
+<div class="secao">
+  <h2>6. Como entender a planilha</h2>
+  <p>A planilha tem quatro abas: Dados, Inconsistências, Dicionário usado e Resumo. As figuras desta seção foram montadas a partir da planilha gerada com o arquivo fictício, mostrando só algumas linhas e colunas.</p>
+
+  <h3>Aba Dados</h3>
+  <p>Cada linha é uma notificação. Cada coluna tem o nome legível no cabeçalho. Datas saem como datas do Excel, e a idade sai com a unidade, como "85 anos". Quando a opção <b>Manter também a coluna com o código original</b> está marcada, como no exemplo deste guia, a coluna traduzida vem seguida da coluna com o código original, que leva o nome usado no SINAN (por exemplo, <b>Sexo</b> e, ao lado, <b>CS_SEXO</b>).</p>
+  <figure>
+    {{fig:dados}}
+    <figcaption>Figura 16. Parte da aba Dados. As células amarelas têm valores que não estão no dicionário ou que não podem ser lidos: o sexo "X", a data 30/02/2025 e a idade "5099".</figcaption>
+  </figure>
+  <p><b>Amarelo quer dizer "confira".</b> O valor foi mantido como veio no arquivo e não foi traduzido. Pode ser um código que não existe no dicionário, uma data impossível ou uma idade fora do razoável (acima de 23 horas, 29 dias, 11 meses ou 110 anos). Quando a ficha mostra que o campo não comporta aquele código, a célula sai como "Inconsistência/Não Preenchido" (ou "Inconsistência/Preenchido erroneamente"), também em amarelo, e o código original fica na coluna do código, se ela estiver marcada.</p>
+  <p><b>Colunas extras.</b> Alguns agravos ganham colunas calculadas pelo programa, ao lado da coluna de onde vieram. Elas trazem a região e a macrorregião de saúde, a semana epidemiológica calculada da data ou um aviso de possível erro de notificação (por exemplo, nas toxoplasmoses, o CID B58 numa gestante). O dado original nunca é alterado.</p>
+  <p><b>Em branco não é o mesmo que "Ignorado".</b> "Ignorado" é uma resposta do dicionário: quem preencheu a ficha marcou que a informação não era conhecida. Campo em branco é campo que não foi preenchido, e o programa deixa em branco. Na análise, decida você se "Ignorado" conta como dado faltante.</p>
+
+  <h3>Aba Inconsistências</h3>
+  <p>Lista cada valor que ficou sem tradução, com a coluna, o valor encontrado, o motivo e quantas vezes ele aparece. É por aqui que se começa a conferência.</p>
+  <figure>
+    {{fig:inconsistencias}}
+    <figcaption>Figura 17. Aba Inconsistências do arquivo fictício, que tem erros colocados de propósito.</figcaption>
+  </figure>
+
+  <h3>Aba Dicionário usado</h3>
+  <p>Diz qual agravo e qual versão do dicionário foram aplicados, quem conferiu e quando, quais documentos oficiais foram usados e, mais abaixo, todas as categorias de cada coluna. Com essa aba, qualquer pessoa consegue verificar de onde saiu cada tradução.</p>
+  <figure>
+    {{fig:dicionario}}
+    <figcaption>Figura 18. Começo da aba Dicionário usado.</figcaption>
+  </figure>
+
+  <h3>Aba Resumo</h3>
+  <p>Registra o arquivo de entrada, o número de notificações, os filtros aplicados, as opções escolhidas, a data e hora do processamento e a versão do programa. Vale guardar junto com a análise.</p>
+  <figure>
+    {{fig:resumo}}
+    <figcaption>Figura 19. Aba Resumo.</figcaption>
+  </figure>
+</div>
+
+<div class="secao">
+  <h2>7. Situações comuns</h2>
+  <p class="pergunta">O arquivo é grande demais para o Excel.</p>
+  <p>O Excel aceita no máximo 1.048.576 linhas. O arquivo nacional de um ano inteiro de dengue costuma passar disso. Use os filtros de UF, município ou período, ou escolha a saída em CSV. No CSV, as abas de apoio (Inconsistências, Dicionário usado e Resumo) vêm num arquivo do Excel separado.</p>
+  <p class="pergunta">A planilha demora para abrir.</p>
+  <p>Acima de cerca de 300 mil notificações, a planilha do Excel fica pesada e pode levar vários minutos para abrir. O programa avisa quando for o caso. Filtrar ou usar CSV resolve.</p>
+  <p class="pergunta">Apareceu "O arquivo não parece ser de...".</p>
+  <p>O arquivo é de outro agravo ou não é um arquivo do SINAN. Confira o agravo escolhido no passo 1 e a sigla no nome do arquivo (tabela da seção 2). Se aparecer um botão como <b>Usar Dengue</b>, o programa reconheceu o agravo provável: clique nele para ler o arquivo com esse agravo.</p>
+  <p class="pergunta">Os acentos aparecem trocados.</p>
+  <p>No passo 2, abra <b>Acentos aparecendo errado?</b> e escolha outra codificação. Arquivos de sistemas antigos costumam usar Windows-1252.</p>
+  <p class="pergunta">A página abre em branco.</p>
+  <p>Use o Chrome ou o Edge atualizados. Confira se o arquivo .zip do programa foi extraído antes de abrir o <code>index.html</code>.</p>
+  <p class="pergunta">O download da planilha não começou.</p>
+  <p>Clique no botão azul <b>Baixar</b> que aparece no fim do processamento. Se o navegador perguntar se pode baixar, permita.</p>
+  <p class="pergunta">A planilha veio sem as notificações que eu esperava.</p>
+  <p>Confira os filtros (passo 3.1) e a aba Resumo, que registra os filtros usados. Lembre que o filtro de período deixa de fora as notificações com a data escolhida em branco, e que os filtros de UF e de município podem estar usando colunas diferentes (notificação ou residência, por exemplo).</p>
+  <p class="pergunta">Não acho o botão de processar.</p>
+  <p>Ele aparece na barra fixa no pé da tela depois que o arquivo é lido. Se a barra não aparece, escolha o arquivo no passo 2.</p>
+  <p class="pergunta">Muitas células amarelas numa mesma coluna.</p>
+  <p>Veja a aba Inconsistências. Se o mesmo código aparece muitas vezes, pode ser um código novo que o dicionário oficial ainda não tem, ou um arquivo de período diferente do previsto no dicionário. O valor original nunca é perdido.</p>
+
+  <h2 style="margin-top:8mm">8. Para usar no R, Stata ou Python</h2>
+  <p>Marque <b>Formato para análise (R, Stata, Python)</b> antes de processar. Com essa opção:</p>
+  <ul>
+    <li>as colunas usam o nome do SINAN em minúsculas (<code>cs_sexo</code>, <code>dt_notific</code>), e o código original fica em <code>&lt;nome&gt;_cod</code> (<code>cs_sexo_cod</code>);</li>
+    <li>a coluna <code>idade_anos</code> traz a idade em anos completos, como número (menor de 1 ano vale 0; idade inválida ou implausível fica vazia);</li>
+    <li>o cabeçalho tem uma linha só;</li>
+    <li>no CSV, o separador é a vírgula, o decimal é o ponto, as datas vêm como aaaa-mm-dd e o texto vem em UTF-8.</li>
+  </ul>
+  <p>O texto das categorias é o mesmo da planilha comum. O nome legível de cada coluna continua na aba Dicionário usado.</p>
+  <p>No R, peça para o leitor olhar todas as linhas antes de decidir o tipo de cada coluna. Sem isso, uma coluna de data vazia nas primeiras mil linhas pode ser lida como vazia inteira:</p>
+  <p><code>dados &lt;- readxl::read_excel("arquivo.xlsx", sheet = "Dados", guess_max = 1048576)</code><br>
+  <code>dados &lt;- readr::read_csv("arquivo.csv", guess_max = Inf)</code></p>
+
+  <div class="nota" style="margin-top:8mm">
+    <b>Como citar.</b> SILVA JUNIOR, R. A. <b>Decodificador de notificações do SINAN</b>. Versão {{versao}}. 2026. Zenodo. DOI: 10.5281/zenodo.24245071. Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.<br><br>
+    <b>Licença.</b> Software livre, distribuído nos termos da Licença Pública Geral GNU (GNU GPL), versão 3 ou posterior, sem nenhuma garantia. O texto completo está no arquivo LICENSE, na pasta do programa.
+  </div>
+</div>
+
+</body>
+</html>

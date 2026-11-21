@@ -7,7 +7,7 @@ import { lerArquivo, detectarFormato } from './leitura/index.js';
 import { criarDecodificador, codigosDoAgravo, TIPO_CELULA } from './decodificacao/decodificador.js';
 import { criarPlanilhaEmFluxo, ESTILO } from './saida/xlsx.js';
 import { criarCsvEmFluxo } from './saida/csv.js';
-import { NOMES_TIPOS, categoriasDaColuna } from './dicionario/tipos.js';
+import { NOMES_TIPOS, NOMES_CALCULOS, categoriasDaColuna } from './dicionario/tipos.js';
 
 const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
 const MIME_CSV = 'text/csv';
@@ -59,15 +59,16 @@ function escreverAbasDeApoio(planilha, { dic, tabelas, inconsistencias, resumo }
   for (const col of dic.colunas) {
     const cats = categoriasDaColuna(dic, col)
       .map((c) => `${c.codigos.join('/')} = ${c.plural ? `${c.rotulo} (${c.plural})` : c.rotulo}${c.fonte ? ` [${c.fonte}]` : ''}`)
-      .join('; ');
+      .join('; ') + (col.fora_do_campo ? `; outros códigos = ${col.fora_do_campo.rotulo} (${col.fora_do_campo.motivo})` : '')
+      + (col.texto_livre ? '; outros valores = texto livre, fica como veio' : '');
     const tipo = col.tipo === 'tabela' ? `${NOMES_TIPOS.tabela}` : NOMES_TIPOS[col.tipo];
-    planilha.linha([col.nome, col.rotulo, tipo, `${col.fonte} (${col.local})`, col.tabela ?? '', cats, col.observacao ?? '']);
+    planilha.linha([col.nome, col.rotulo, tipo, `${col.fonte} (${col.local})`, col.complemento ? `${col.tabela} (complemento: ${col.complemento})` : (col.tabela ?? ''), cats, col.observacao ?? '']);
   }
   if (dic.derivadas?.length) {
     planilha.linha([]);
     titulo('Colunas extras (calculadas)');
-    planilha.linha(['Coluna', 'Nome legível', 'Calculada a partir de', 'Tabela', 'Observação'], ESTILO.cabecalhoOriginal);
-    for (const d of dic.derivadas) planilha.linha([d.nome, d.rotulo, d.de, d.tabela, d.observacao ?? '']);
+    planilha.linha(['Coluna', 'Nome legível', 'Calculada a partir de', 'Tabela ou regra', 'Observação'], ESTILO.cabecalhoOriginal);
+    for (const d of dic.derivadas) planilha.linha([d.nome, d.rotulo, d.de, d.tabela ?? NOMES_CALCULOS[d.calculo], d.observacao ?? '']);
   }
   if (Object.keys(dic.tabelas ?? {}).length) {
     planilha.linha([]);
@@ -76,7 +77,8 @@ function escreverAbasDeApoio(planilha, { dic, tabelas, inconsistencias, resumo }
     for (const [id, t] of Object.entries(dic.tabelas)) {
       const conteudo = tabelas[id];
       const total = conteudo.total ?? conteudo.total_municipios ?? '';
-      planilha.linha([id, `${t.fonte} – ${dic.fontes[t.fonte].documento}`, total, conteudo.descricao ?? conteudo.regra ?? '']);
+      const zeros = t.completar_zeros ? ` Códigos com menos de ${t.completar_zeros} dígitos são procurados também com zeros à esquerda.` : '';
+      planilha.linha([id, `${t.fonte} – ${dic.fontes[t.fonte].documento}`, total, `${conteudo.descricao ?? conteudo.regra ?? ''}${zeros}`]);
     }
   }
   planilha.fecharAba();
@@ -167,6 +169,7 @@ export function processar({ bytes, nomeArquivo, dic, tabelas, opcoes = {}, versa
     aoProgresso: aoProgresso ? (f) => aoProgresso(f, lidos) : undefined,
   });
 
+  dec.concluirConferencia();
   const inconsistencias = dec.listarInconsistencias();
   const resumo = [
     ['Arquivo de entrada', nomeArquivo],
@@ -180,6 +183,9 @@ export function processar({ bytes, nomeArquivo, dic, tabelas, opcoes = {}, versa
     ['Formato para análise (R, Stata, Python)', formatoAnalise
       ? 'Sim: nomes de coluna do SINAN em minúsculas (código original em <nome>_cod); idade_anos em anos completos (menor de 1 ano = 0; idade inválida ou implausível fica vazia). O nome legível de cada coluna está na aba Dicionário usado.'
       : 'Não'],
+    ['Valores só com asteriscos tratados como campo em branco', dec.contarAsteriscos()],
+    ['Valores só com bytes nulos (campo vazio gravado com o código 0) tratados como campo em branco', dec.contarNulos()],
+    ['Textos livres com acentos estragados consertados', dec.contarAcentos()],
     ['Valores sem tradução (total de ocorrências)', inconsistencias.filter((i) => i.valor !== '(coluna inteira)').reduce((s, i) => s + i.quantidade, 0)],
     ['Dicionário', `${dic.agravo.nome} – ${dic.versao}`],
     ['Dicionário conferido por', `${dic.conferencia.por} em ${dic.conferencia.data}`],

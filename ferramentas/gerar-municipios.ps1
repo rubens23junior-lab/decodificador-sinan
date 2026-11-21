@@ -1,5 +1,5 @@
 ﻿# Gera dicionarios/ibge-municipios.json a partir da planilha do IBGE
-# (docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls).
+# (docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls).
 #
 # Requer o Microsoft Excel instalado (a planilha é aberta somente para leitura).
 # Uso, na pasta do projeto:  powershell -ExecutionPolicy Bypass -File ferramentas/gerar-municipios.ps1
@@ -9,7 +9,7 @@
 
 $ErrorActionPreference = 'Stop'
 $raiz = Split-Path -Parent $PSScriptRoot
-$origem = Join-Path $raiz 'docs\fontes\RELATORIO_DTB_BRASIL_MUNICIPIO.xls'
+$origem = Join-Path $raiz 'docs\fontes\tabelas-apoio\RELATORIO_DTB_BRASIL_MUNICIPIO.xls'
 $destino = Join-Path $raiz 'dicionarios\tabelas\ibge-municipios.json'
 
 $excel = New-Object -ComObject Excel.Application
@@ -51,7 +51,7 @@ $saida = [ordered]@{
         documento = 'Divisão Territorial Brasileira – relatório de municípios (DTB 2023)'
         orgao = 'IBGE'
         data = "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz '$dataBase'"
-        arquivo = 'docs/fontes/RELATORIO_DTB_BRASIL_MUNICIPIO.xls'
+        arquivo = 'docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls'
     }
     regra = 'Chave = 6 primeiros dígitos do código IBGE (o SINAN não grava o dígito verificador).'
     total_municipios = $municipios.Count

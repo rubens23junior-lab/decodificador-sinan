@@ -1,0 +1,2197 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "HIV em criança",
+    "codigos": [
+      "B24",
+      "B 24",
+      "B 2 4"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos HIVCBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-20",
+    "registro": "docs/conferencia/conferencia-hiv-crianca.xlsx (conferência na planilha em 20/11/2026, com as correções pedidas por ele aplicadas no mesmo dia)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICHIVC": {
+      "documento": "Dicionário de Dados – HIV criança",
+      "orgao": "Ministério da Saúde / SVSA / DAENT / CGIAE / GT-Sinan",
+      "data": "Revisado em fevereiro/2024 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026); copiado para o projeto em 19/11/2026, com a decisão do Rubens de usar os dicionários de HIV de 2024 como fonte principal.",
+      "arquivo": "docs/fontes/hiv-crianca/HIVCN_DIC_DADOS.pdf"
+    },
+    "FICHAAIDSC": {
+      "documento": "Ficha de Notificação/Investigação – Aids (pacientes menores que 13 anos) – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 14/06/2006 (rodapé). Colocada pelo Rubens em docs/fontes em 19/11/2026.",
+      "arquivo": "docs/fontes/hiv-crianca/Aids_crianca_v5.pdf"
+    },
+    "INSTAIDSC": {
+      "documento": "Aids (pacientes menores que 13 anos) – Instrumento para preenchimento – Ficha de investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Colocado pelo Rubens em docs/fontes em 19/11/2026.",
+      "arquivo": "docs/fontes/hiv-crianca/Aids_crianca_v5_instr.pdf"
+    },
+    "SINANNET_AIDS": {
+      "documento": "Arquivos de definições do TabWin para aids em adultos (AidsNET.def) e em crianças (AidsCriNET.def), com as conversões Sim_nao, sim_naoap, simnaoaids, AntrelN, Posnegaidsa, Posnegaids, ClascatN, Critaids, CritaidsC, evoaids e EvoAIDScri",
+      "orgao": "Ministério da Saúde / GT-Sinan e UT-Sinan",
+      "data": "Conversões revisadas pela UT-Sinan em 2019 (cabeçalho dos arquivos). Pacote TAB_SINANNET do DATASUS.",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/AidsNET.def e AidsCriNET.def"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sn_nao_se_aplica": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Não se aplica"
+      }
+    ],
+    "resultado_teste": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Positivo/reagente"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Negativo/não reagente"
+      },
+      {
+        "codigos": [
+          "3"
+        ],
+        "rotulo": "Inconclusivo"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "categoria_exposicao": [
+      {
+        "codigos": [
+          "10"
+        ],
+        "rotulo": "Homossexual"
+      },
+      {
+        "codigos": [
+          "11"
+        ],
+        "rotulo": "Homo/Drogas"
+      },
+      {
+        "codigos": [
+          "12"
+        ],
+        "rotulo": "Homo/Hemofilico"
+      },
+      {
+        "codigos": [
+          "13"
+        ],
+        "rotulo": "Homo/transfusão"
+      },
+      {
+        "codigos": [
+          "14"
+        ],
+        "rotulo": "Homo/Droga/Hemof"
+      },
+      {
+        "codigos": [
+          "15"
+        ],
+        "rotulo": "Homo/Droga/Transf"
+      },
+      {
+        "codigos": [
+          "20"
+        ],
+        "rotulo": "Bissexual"
+      },
+      {
+        "codigos": [
+          "21"
+        ],
+        "rotulo": "Bi/Drogas"
+      },
+      {
+        "codigos": [
+          "22"
+        ],
+        "rotulo": "Bi/Hemofílico"
+      },
+      {
+        "codigos": [
+          "23"
+        ],
+        "rotulo": "Bi/Transfusão"
+      },
+      {
+        "codigos": [
+          "24"
+        ],
+        "rotulo": "Bi/Droga/Hemofílico"
+      },
+      {
+        "codigos": [
+          "25"
+        ],
+        "rotulo": "Bi/Droga/Transfusão"
+      },
+      {
+        "codigos": [
+          "30"
+        ],
+        "rotulo": "Heterossexual"
+      },
+      {
+        "codigos": [
+          "31"
+        ],
+        "rotulo": "Hetero/Droga"
+      },
+      {
+        "codigos": [
+          "32"
+        ],
+        "rotulo": "Hetero/Hemofílico"
+      },
+      {
+        "codigos": [
+          "33"
+        ],
+        "rotulo": "Hetero/Transfusão"
+      },
+      {
+        "codigos": [
+          "34"
+        ],
+        "rotulo": "Hetero/Droga/Hemofílico"
+      },
+      {
+        "codigos": [
+          "35"
+        ],
+        "rotulo": "Hetero/Droga/Transfusão"
+      },
+      {
+        "codigos": [
+          "36"
+        ],
+        "rotulo": "Hetero c/parceria de risco indefinido"
+      },
+      {
+        "codigos": [
+          "40"
+        ],
+        "rotulo": "Drogas"
+      },
+      {
+        "codigos": [
+          "41"
+        ],
+        "rotulo": "Drogas/Hemofílico"
+      },
+      {
+        "codigos": [
+          "42"
+        ],
+        "rotulo": "Drogas/Transfusão"
+      },
+      {
+        "codigos": [
+          "50"
+        ],
+        "rotulo": "Hemofilico"
+      },
+      {
+        "codigos": [
+          "59"
+        ],
+        "rotulo": "Transfusão/Droga/Hetero/Hemofílico"
+      },
+      {
+        "codigos": [
+          "60"
+        ],
+        "rotulo": "Transfusão"
+      },
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Transfusão/Drogas"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Transfusão/Homo"
+      },
+      {
+        "codigos": [
+          "63"
+        ],
+        "rotulo": "Transfusão/Bi"
+      },
+      {
+        "codigos": [
+          "64"
+        ],
+        "rotulo": "Transfusão/Droga/ Homossexual"
+      },
+      {
+        "codigos": [
+          "65"
+        ],
+        "rotulo": "Transfusão/Droga/Bissexual"
+      },
+      {
+        "codigos": [
+          "66"
+        ],
+        "rotulo": "Transfusão/Hetero"
+      },
+      {
+        "codigos": [
+          "67"
+        ],
+        "rotulo": "Transfusão/Droga/Hetero"
+      },
+      {
+        "codigos": [
+          "68"
+        ],
+        "rotulo": "Transfusão/Droga/Homo/Hemofílico"
+      },
+      {
+        "codigos": [
+          "69"
+        ],
+        "rotulo": "Transfusão/Drogas/Bissexual/Hemofílico",
+        "fonte": "SINANNET_AIDS",
+        "local": "ClascatN.cnv, código 69"
+      },
+      {
+        "codigos": [
+          "70"
+        ],
+        "rotulo": "Acidente com material biológico com posterior soroconversão até 06 meses."
+      },
+      {
+        "codigos": [
+          "80"
+        ],
+        "rotulo": "Perinatal"
+      },
+      {
+        "codigos": [
+          "90"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "resultado_acido_nucleico": [
+      {
+        "codigos": [
+          "6"
+        ],
+        "rotulo": "Detectável"
+      },
+      {
+        "codigos": [
+          "7"
+        ],
+        "rotulo": "Indetectável"
+      },
+      {
+        "codigos": [
+          "4"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ]
+  },
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAAIDSC",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "B24",
+            "B 24",
+            "B 2 4"
+          ],
+          "rotulo": "Doença pelo vírus da imunodeficiência humana [HIV] não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_01.CNV, código B24"
+        }
+      ],
+      "observacao": "A ficha mostra 'AIDS (pacientes menores que 13 anos)' com o CID 'B 24'; no arquivo vem 'B24' (regra do Rubens: o CID como na ficha e sem espaços). Rótulo da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite (19/11/2026). Atenção: o HIV adulto usa o mesmo CID; os dois arquivos são diferenciados pelas colunas."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "DT_DIAG",
+      "fonte": "INSTAIDSC",
+      "local": "p. 1, item 7",
+      "rotulo": "Data do diagnóstico ou da evidência laboratorial e/ou clínica",
+      "tipo": "data",
+      "observacao": "Ficha, campo 7. Instrucional, item 7: \"data do diagnóstico ou da evidência laboratorial e/ou clínica da doença de acordo com a definição de caso vigente no momento da notificação\". Nome como na gestante HIV (decisão do Rubens, 20/11/2026)."
+    },
+    {
+      "nome": "SEM_DIAG",
+      "fonte": "DICHIVC",
+      "local": "p. 2",
+      "rotulo": "Semana epidemiológica do diagnóstico",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros de 2022 a 2024; a semana calculada pela data do diagnóstico está na coluna extra logo depois (regra do Rubens, 18/11/2026)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 12 só comporta 1 a 6 e 9"
+      },
+      "observacao": "As formas com um e dois dígitos (01 e 1) entram (regra do Rubens); 9, 09 e 99 = Ignorado (decisão do Rubens nas hepatites, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAAIDSC",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de aids (campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026). Nos arquivos de HIV criança de 2022 a 2024 (20 notificações) o Ignorado vem como \"99\"; 9, 09 e 99 = Ignorado (regra do Rubens para o Ignorado com dois dígitos, hepatites, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026).",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 14 só comporta 0 a 10"
+      }
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "IDADE_MAE",
+      "fonte": "DICHIVC",
+      "local": "p. 3, campo 31",
+      "rotulo": "Idade da mãe (anos)",
+      "tipo": "numero",
+      "observacao": "Idade em anos completos. Valores só com asteriscos (\"***\", 84 registros) valem como campo em branco (regra do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ESC_MAE_N",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 32",
+      "rotulo": "Escolaridade da mãe",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09",
+            "99"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 32 só comporta 0 a 9"
+      },
+      "observacao": "Rótulos iguais aos da escolaridade (campo 14), que o Rubens já conferiu; a ficha (campo 32) e o DICHIVC listam 0 a 9 para a mãe (o DICHIVC escreve \"Ignorada\"), sem o 10 (Não se aplica). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "RACA_MAE",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 33",
+      "rotulo": "Raça/cor da mãe",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1 a 5 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ID_OCUP_MA",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 34",
+      "rotulo": "Ocupação da mãe (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "TIPO_INVES",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 35",
+      "rotulo": "Tipo de investigação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Aids em menores de 13 anos"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 2"
+      },
+      "observacao": "O DICHIVC e a ficha só listam o código 2. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_PERINA",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 36",
+      "rotulo": "Transmissão vertical",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Sim"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Não foi transmissão vertical"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_REL_N",
+      "fonte": "DICHIVC",
+      "local": "p. 4, campo 37",
+      "rotulo": "Transmissão sexual",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Relações sexuais com homens"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Relações sexuais com mulheres"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Relações sexuais com homens e mulheres"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Não foi transmissão sexual"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 1 a 4 e 9"
+      },
+      "observacao": "Rótulos da ficha (campo 37); no PDF do DICHIVC a linha do código 2 se perde na diagramação. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DROGA",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 38",
+      "rotulo": "Transmissão sanguínea: uso de drogas injetáveis",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_T_HEMO",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 38",
+      "rotulo": "Transmissão sanguínea: tratamento/hemotransfusão para hemofilia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TRANS_",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 38",
+      "rotulo": "Transmissão sanguínea: transfusão sanguínea",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_ACIDEN",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 38",
+      "rotulo": "Transmissão sanguínea: acidente com material biológico com posterior soroconversão até 6 meses",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANTDTTRANS",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 39",
+      "rotulo": "Data da transfusão/acidente",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANTUFTRANS",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 40",
+      "rotulo": "UF da transfusão/acidente",
+      "tipo": "texto",
+      "observacao": "Vem em branco em todos os registros de 2022 a 2024; se vier, fica como veio."
+    },
+    {
+      "nome": "ANTMUNTRAN",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 41",
+      "rotulo": "Município onde ocorreu a transfusão/acidente",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ANT_INVEST",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 43",
+      "rotulo": "A transfusão/acidente com material biológico foi considerada causa da infecção pelo HIV",
+      "tipo": "categorico",
+      "lista": "sn_nao_se_aplica",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 43 só comporta 1, 2 e 3"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_TRIAGE",
+      "fonte": "DICHIVC",
+      "local": "p. 5, campo 44",
+      "rotulo": "Evidência laboratorial: teste de triagem anti-HIV (após os 18 meses de vida)",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_TRIA_11",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Data da coleta do teste de triagem",
+      "tipo": "data"
+    },
+    {
+      "nome": "CONFIRMA",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: teste confirmatório anti-HIV (após os 18 meses de vida)",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTCONFIRMA",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Data da coleta do teste confirmatório",
+      "tipo": "data"
+    },
+    {
+      "nome": "TPRAPIDO1",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: teste rápido 1",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPRAPIDO2",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: teste rápido 2",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TPRAPIDO3",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: teste rápido 3",
+      "tipo": "categorico",
+      "lista": "resultado_teste",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 1 a 4 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DTRAPIDO1",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Data de realização dos testes rápidos",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_PCR_1",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: 1º teste de detecção de ácido nucléico (antes dos 18 meses de vida)",
+      "tipo": "categorico",
+      "lista": "resultado_acido_nucleico",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 4, 6, 7 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_PCR_1",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Data da coleta do 1º teste de detecção de ácido nucléico",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_PCR_2",
+      "fonte": "DICHIVC",
+      "local": "p. 6, campo 44",
+      "rotulo": "Evidência laboratorial: 2º teste de detecção de ácido nucléico (antes dos 18 meses de vida)",
+      "tipo": "categorico",
+      "lista": "resultado_acido_nucleico",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 4, 6, 7 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_PCR_2",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 44",
+      "rotulo": "Data da coleta do 2º teste de detecção de ácido nucléico",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_PCR_3",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 44",
+      "rotulo": "Evidência laboratorial: 3º teste de detecção de ácido nucléico (antes dos 18 meses de vida)",
+      "tipo": "categorico",
+      "lista": "resultado_acido_nucleico",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 44 só comporta 4, 6, 7 e 9 (DICHIVC)"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_PCR_3",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 44",
+      "rotulo": "Data da coleta do 3º teste de detecção de ácido nucléico",
+      "tipo": "data"
+    },
+    {
+      "nome": "CLI_PAROTI",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Aumento crônico de parótida",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_DERMA",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Dermatite persistente",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_ESPLEN",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Esplenomegalia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HEPATO",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Hepatomegalia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OTITE",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Infecções persistentes ou recorrentes de VAS (Otite ou Sinusite)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_LINFA",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Linfadenopatia >= 0.5 cm em mais de 2 sítios",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_ANEMIA",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Anemia por mais de 30 dias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLICDCCA_N",
+      "fonte": "DICHIVC",
+      "local": "p. 7, campo 45",
+      "rotulo": "Critério CDC adaptado: Candidose de esôfago",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_PULMAO",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Candidose de traquéia, brônquios ou pulmões",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CANDIA",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Candidose oral resistente ao tratamento",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_CI",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Citomegalovirose (qualquer outro local que não fígado, baço ou linfonodo > 1 mês de idade)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDCCRE",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Criptococose extrapulmonar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_CR",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Criptosporidiose com diarréia > 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CRONIC",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Diarréia recorrente ou crônica",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_EN",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Encefalopatia pelo HIV",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_FEBRE",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Febre persistente > 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_GE",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Gengivo-estomatite herpética recorrente (mais de 2 episódios em 1 ano)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HEPATI",
+      "fonte": "DICHIVC",
+      "local": "p. 8, campo 45",
+      "rotulo": "Critério CDC adaptado: Hepatite por HIV",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HERPEG",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Herpes simples em brônquios, pulmões ou trato gastrintestinal",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Ligação pelo AidsCriNET.def (\"Herpes Simp bronquios\"); no PDF do DICHIVC a ordem das três colunas de herpes não bate com a dos campos (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_HE",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Herpes simples mucocutâneo > 1 mês em crianças > 1 mês idade",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Ligação pelo AidsCriNET.def (\"Herpes Simpl muco\"); ver a pendência das colunas de herpes. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_HERPES",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Herpes zoster (ao menos 2 episódios distintos ou em mais de um dermátomo)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Ligação pelo AidsCriNET.def (\"Herpes Zoster\"); ver a pendência das colunas de herpes. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_HI",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Histoplasmose disseminada",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_IN",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Infecções bacterianas de repetição/múltiplas (sepse, pneumonia, meningite, ósteoartrites, abcessos em órgãos internos)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_INFCIT",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Infecção por citomegalovírus < 1 mês de idade",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_IS",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Isosporidiose intestinal crônica, por um período superior a 1 mês",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_LEIOMI",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Leiomiossarcoma",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_LE",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Leucoencefalopatia multifocal progressiva",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_LINFO",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Linfopenia por mais de 30 dias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDCLIH",
+      "fonte": "DICHIVC",
+      "local": "p. 9, campo 45",
+      "rotulo": "Critério CDC adaptado: Linfoma não Hodgkin e outros linfomas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_LI",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Linfoma primário de cérebro",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_MIOCAR",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Miocardiopatia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_MI",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Micobacteriose disseminada (exceto tuberculose e hanseníase)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_ME",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Meningite bacteriana, pneumonia ou sepse (único episódio)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Nome do DICHIVC; a ficha escreve \"penoumonia\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_NEFRO",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Nefropatia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_NOCAR",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Nocardiose",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Nome da ficha; o DICHIVC escreve \"Norcardiose\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_PN",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Pneumonia linfóide intersticial",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_PC",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Pneumonia por Pneumocystis carinii",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_SA",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Salmonelose (sepse recorrente não-tifóide)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_SK",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Sarcoma de Kaposi",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_SI",
+      "fonte": "DICHIVC",
+      "local": "p. 10, campo 45",
+      "rotulo": "Critério CDC adaptado: Síndrome da emaciação (Aids Wasting Syndrome)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CDC_TO",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Toxoplasmose cerebral em crianças com mais de 1 mês de idade",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_TOX1M",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Toxoplasmose iniciada antes de 1 mês de idade",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_TUPULM",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Trombocitopenia por mais de 30 dias",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Apesar do nome da coluna, é a trombocitopenia: o DICHIVC e o AidsCriNET.def concordam. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_TUBERC",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Tuberculose pulmonar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_DISSEM",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Tuberculose disseminada ou extrapulmonar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_VARICE",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Varicela disseminada",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRI_1500",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Achados laboratoriais: contagem de linfócitos T CD4+ < 1.500 células por mm3 (<25%)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRI_1000",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Achados laboratoriais: contagem de linfócitos T CD4+ < 1.000 células por mm3 (<25%)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRI_500",
+      "fonte": "DICHIVC",
+      "local": "p. 11, campo 45",
+      "rotulo": "Critério CDC adaptado: Achados laboratoriais: contagem de linfócitos T CD4+ < 500 células por mm3 (<25%)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 45 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 45). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVO_DIAG",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo 46",
+      "rotulo": "Critério óbito: declaração de óbito com menção de aids, ou HIV e causa de morte associada à imunodeficiência, sem classificação por outro critério após investigação",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2 e 9"
+      },
+      "observacao": "Nome como na ficha (campo 46); o AidsCriNET.def também lê EVO_DIAG como critério óbito. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TRA_UF",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo 47",
+      "rotulo": "UF onde se realiza o tratamento",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "TRA_MUNICI",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo 48",
+      "rotulo": "Município onde se realiza o tratamento",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo 50",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Vivo"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por Aids"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outras causas"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Transferência para outro município",
+          "fonte": "FICHAAIDSC",
+          "local": "p. 2, campo 50"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 1 a 4 e 9"
+      },
+      "observacao": "O DICHIVC lista 1, 2, 3 e 9; o código 4 (Transferência para outro município) vem da ficha (campo 50) e também está no EvoAIDScri.cnv do TabWin (revisado em 2019). Aparece em 1 registro (pendência). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVO_DT_OBI",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo 51",
+      "rotulo": "Data do óbito",
+      "tipo": "data"
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo interno",
+      "rotulo": "Critério de definição de caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "100"
+          ],
+          "rotulo": "CDC adaptado"
+        },
+        {
+          "codigos": [
+            "600"
+          ],
+          "rotulo": "Critério óbito"
+        },
+        {
+          "codigos": [
+            "900"
+          ],
+          "rotulo": "Descartado"
+        },
+        {
+          "codigos": [
+            "901"
+          ],
+          "rotulo": "HIV+"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o DICHIVC só lista 100, 600, 900 e 901"
+      },
+      "observacao": "Campo interno, preenchido pelo sistema. Rótulos do DICHIVC. A conversão do TabWin (CritaidsC.cnv) tem outros códigos antigos. Nos arquivos de 2022 a 2024 vem sempre 901 (HIV+). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_CAT_EX",
+      "fonte": "DICHIVC",
+      "local": "p. 12, campo interno",
+      "rotulo": "Categoria de exposição",
+      "tipo": "categorico",
+      "lista": "categoria_exposicao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: fora da lista de categorias de exposição do DICHIVC"
+      },
+      "observacao": "Campo interno: o sistema atribui a categoria pelos campos de transmissão. Mesma lista do HIV adulto; o 69 vem do ClascatN.cnv, porque o dicionário repete nele o rótulo do 68. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    }
+  ],
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_DIAG_CALC",
+      "rotulo": "Semana epidemiológica do diagnóstico (calculada pela data do diagnóstico)",
+      "de": "DT_DIAG",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_DIAG",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que vêm incompletas): semana epidemiológica (AAAASS) calculada da data do diagnóstico, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_DIAG continua como veio."
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Fontes",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Fonte principal: o DICHIVC (dicionário de HIV criança, revisado em fevereiro/2024), que descreve exatamente as 103 colunas do arquivo. A ficha e o instrucional são de aids criança (2006); o AidsCriNET.def do TabWin confirma a ligação das colunas e os códigos. O PDF do DICHIVC desalinha as linhas da tabela; os nomes dos sinais vieram da ficha, conferidos com o dicionário e com o .def."
+    },
+    {
+      "coluna": "CLI_HERPEG, CLI_CDC_HE e CLI_HERPES",
+      "descricao": "Aprovada (Rubens, 20/11/2026). No PDF do DICHIVC as três colunas de herpes aparecem numa ordem que não bate com a dos campos. Seguiu-se o AidsCriNET.def, que dá um nome a cada coluna: CLI_HERPEG = herpes simples em brônquios, pulmões ou trato gastrintestinal; CLI_CDC_HE = herpes simples mucocutâneo; CLI_HERPES = herpes zoster."
+    },
+    {
+      "coluna": "EVOLUCAO",
+      "descricao": "Aprovada (Rubens, 20/11/2026). O DICHIVC lista 1, 2, 3 e 9; a ficha (campo 50) e o TabWin têm também 4 - Transferência para outro município, que aparece em 1 registro. O 4 entrou pela ficha."
+    },
+    {
+      "coluna": "CS_ESCOL_N e ESC_MAE_N",
+      "descricao": "Aprovada (Rubens, 20/11/2026). A escolaridade da criança vem \"99\" em 20 notificações: 9, 09 e 99 = Ignorado (regra do Rubens). A da mãe vem com um dígito (0 a 9), sem o 10."
+    },
+    {
+      "coluna": "ANT_CAT_EX e CRITERIO",
+      "descricao": "Aprovada (Rubens, 20/11/2026). Mesma lista de categorias de exposição do HIV adulto (o 69 pelo ClascatN.cnv). O critério só lista 100, 600, 900 e 901 no DICHIVC; vem sempre 901 (HIV+)."
+    },
+    {
+      "coluna": "Arquivos pequenos",
+      "descricao": "Aprovada (Rubens, 20/11/2026). São só 373 notificações (186 em 2022, 186 em 2023 e 1 em 2024; nenhuma se repete entre 2022 e 2023). Para a amostra, os três anos serão juntados, como no tétano neonatal."
+    },
+    {
+      "coluna": "Campos da ficha fora do dicionário",
+      "descricao": "Aprovada (Rubens, 20/11/2026). A ficha de aids criança tem a instituição da transfusão (campo 42) e a unidade de tratamento (campo 49), mas o DICHIVC de 2024 e o arquivo público não trazem essas colunas. Não entraram."
+    }
+  ]
+}

@@ -8,7 +8,7 @@
 # Uso (no terminal):
 #   Rscript validacao/microdatasus-pares.R <arquivo.dbc|arquivo.csv> <funcao> <saida.csv>
 # Exemplo:
-#   Rscript validacao/microdatasus-pares.R dados_publicos/DENGBR25.dbc process_sinan_dengue dados_publicos/saida/pares-microdatasus-dengue.csv
+#   Rscript validacao/microdatasus-pares.R dados_publicos/dengue-chikungunya/DENGBR25.dbc process_sinan_dengue dados_publicos/saida/pares-microdatasus-dengue.csv
 #
 # Saída (CSV em UTF-8): coluna, codigo, rotulo, n
 #   - campo vazio no arquivo original aparece com codigo vazio;

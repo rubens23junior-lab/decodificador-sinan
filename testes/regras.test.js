@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { converterData, converterIdade, idadeEmAnos } from '../src/decodificacao/regras.js';
+import { converterData, converterIdade, corrigirAcentos, idadeEmAnos, semanaEpidemiologica } from '../src/decodificacao/regras.js';
 
 const UNIDADES = [
   { codigos: ['1'], rotulo: 'hora', plural: 'horas' },
@@ -69,4 +69,48 @@ test('idade em anos completos para análise: menor de 1 ano = 0; inválida ou im
   assert.equal(idadeEmAnos('3012', limites), null);
   assert.equal(idadeEmAnos('5025', limites), null);
   assert.equal(idadeEmAnos('', limites), null);
+});
+
+test('semana epidemiológica: domingo a sábado, semana 1 é a que contém 4 de janeiro', () => {
+  assert.deepEqual(semanaEpidemiologica('20250115'), { valor: '202503' });
+  assert.deepEqual(semanaEpidemiologica('2025-01-04'), { valor: '202501' }); // sábado
+  assert.deepEqual(semanaEpidemiologica('05/01/2025'), { valor: '202502' }); // domingo
+  // Dias do fim de dezembro podem cair na semana 1 do ano seguinte, e vice-versa.
+  assert.deepEqual(semanaEpidemiologica('20241231'), { valor: '202501' });
+  assert.deepEqual(semanaEpidemiologica('20210102'), { valor: '202053' }); // ano de 53 semanas
+  assert.deepEqual(semanaEpidemiologica('20201231'), { valor: '202053' });
+});
+
+test('semana epidemiológica: data em branco fica em branco; data inválida não vira semana', () => {
+  assert.deepEqual(semanaEpidemiologica(''), { valor: null });
+  assert.match(semanaEpidemiologica('20250231').erro, /^Semana não calculada: data inexistente/);
+  assert.match(semanaEpidemiologica('abc').erro, /^Semana não calculada/);
+});
+
+test('data com barras no formato americano (mês/dia/ano), só quando a coluna pede', () => {
+  const opc = { mesPrimeiro: true };
+  assert.deepEqual(converterData('7/18/2023', opc), converterData('20230718'));
+  assert.deepEqual(converterData('4/3/2023', opc), converterData('20230403'));
+  assert.deepEqual(converterData('12/1/2022', opc), converterData('20221201'));
+  assert.deepEqual(converterData('20240105', opc), converterData('20240105')); // AAAAMMDD continua valendo
+  assert.ok(converterData('18/07/2023', opc).erro); // não existe como mês/dia/ano
+  assert.deepEqual(converterData('04/03/2023'), converterData('20230304')); // sem a marca: dia/mês/ano
+  assert.ok(converterData('4/3/2023').erro);
+});
+
+test('conserto de acentos estragados: só as duas formas conhecidas', () => {
+  // UTF-8 lido como windows-1252
+  assert.equal(corrigirAcentos('MamÃ£o'), 'Mamão');
+  assert.equal(corrigirAcentos('Ãgua de coco'), 'Água de coco');
+  assert.equal(corrigirAcentos('MelÃ£o e cafÃ©'), 'Melão e café');
+  // página 850 (DOS) lida como windows-1252
+  assert.equal(corrigirAcentos('MamÆo'), 'Mamão');
+  assert.equal(corrigirAcentos('Bols¡nea'), 'Bolsínea');
+  assert.equal(corrigirAcentos('µgua'), 'Água');
+  assert.equal(corrigirAcentos('FeijÆo … moda'), 'Feijão à moda');
+  assert.equal(corrigirAcentos('farin ceos'), 'farináceos');
+  // texto certo ou estrago desconhecido: fica como veio
+  for (const t of ['Açaí', 'Ãgua', 'Pão de queijo', 'AGLOMERAA-¿A-¿O', 'Café com ¡', 'texto  comum']) {
+    assert.equal(corrigirAcentos(t), t);
+  }
 });

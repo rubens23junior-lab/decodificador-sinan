@@ -1,5 +1,5 @@
 // Gera as tabelas de apoio em dicionarios/tabelas/ a partir das fontes do
-// DATASUS em docs/fontes:
+// DATASUS em docs/fontes/tabelas-apoio:
 //   cnes.json.gz          código CNES → nome do estabelecimento (TAB_CNES/DBF/CADGERBR.dbf)
 //   cbo.json              código CBO → ocupação (TAB_CNES/DBF/CBO_02.dbf)
 //   municipios-datasus.json  municípios que não estão na tabela do IBGE (tb_municip.csv)
@@ -17,7 +17,7 @@ import { lerArquivo } from '../src/leitura/index.js';
 import { lerXlsx } from './ler-xlsx.js';
 
 const raiz = fileURLToPath(new URL('../', import.meta.url));
-const fontes = `${raiz}docs/fontes/`;
+const fontes = `${raiz}docs/fontes/tabelas-apoio/`;
 const destino = `${raiz}dicionarios/tabelas/`;
 mkdirSync(destino, { recursive: true });
 
@@ -91,7 +91,7 @@ export function omitirNumeroPessoal(nome) {
       documento: 'Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf)',
       orgao: 'Ministério da Saúde / DATASUS',
       data: `${ORIGEM_CNES} ${dataBr(data)}`,
-      arquivo: 'docs/fontes/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)',
+      arquivo: 'docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)',
     },
     descricao: 'Código CNES (7 dígitos) → nome fantasia do estabelecimento (razão social quando não há nome fantasia). Inclui estabelecimentos já excluídos do cadastro. Números de 11 dígitos no nome (em geral CPF) aparecem como "[número omitido]".',
     total: Object.keys(valores).length,
@@ -108,7 +108,7 @@ export function omitirNumeroPessoal(nome) {
       documento: 'Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)',
       orgao: 'Ministério da Saúde / DATASUS',
       data: ORIGEM_CNES.replace(/; cabeçalho.*/, ''),
-      arquivo: 'docs/fontes/TAB_CNES/DBF/CBO_02.dbf (fora do Git)',
+      arquivo: 'docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)',
     },
     descricao: 'Código CBO 2002 (6 dígitos) → ocupação.',
     total: Object.keys(valores).length,
@@ -128,7 +128,7 @@ export function omitirNumeroPessoal(nome) {
       documento: 'Tabela de municípios do DATASUS (tb_municip.csv)',
       orgao: 'Ministério da Saúde / DATASUS',
       data: ORIGEM_DATASUS,
-      arquivo: 'docs/fontes/tb_municip.csv',
+      arquivo: 'docs/fontes/tabelas-apoio/tb_municip.csv',
     },
     descricao: 'Só os códigos de 6 dígitos ausentes da tabela do IBGE (por exemplo "Município ignorado" de cada UF). Usada como complemento: o IBGE tem prioridade.',
     total: Object.keys(valores).length,
@@ -149,7 +149,7 @@ export function omitirNumeroPessoal(nome) {
       documento: 'Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)',
       orgao: 'Ministério da Saúde / DATASUS',
       data: ORIGEM_DATASUS,
-      arquivo: 'docs/fontes/rl_municip_regsaud.csv; docs/fontes/tb_regsaud.csv',
+      arquivo: 'docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv',
     },
     descricao: 'Município (6 dígitos) → nome e código da região de saúde. Não é a regional de saúde do Sinan (ID_REGIONA), que usa outra numeração.',
     total: Object.keys(valores).length,
@@ -180,7 +180,7 @@ export function omitirNumeroPessoal(nome) {
       documento: 'Planilha de regiões e macrorregiões de saúde do painel "Macrorregiões" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS',
       orgao: 'Ministério da Saúde',
       data: 'Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026 de https://infoms.saude.gov.br/extensions/SEIDIGI_DEMAS_MACRORREGIOES/SEIDIGI_DEMAS_MACRORREGIOES.html',
-      arquivo: `docs/fontes/${ARQUIVO}`,
+      arquivo: `docs/fontes/tabelas-apoio/${ARQUIVO}`,
     },
     descricao: 'Município (6 dígitos) → nome e código da macrorregião de saúde, como escritos no painel. Sem a macrorregião interestadual.',
     total: Object.keys(valores).length,

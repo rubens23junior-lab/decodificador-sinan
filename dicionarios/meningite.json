@@ -1,0 +1,2984 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Meningite",
+    "codigos": [
+      "G039",
+      "G03.9",
+      "G 0 3.9",
+      "G 03.9"
+    ],
+    "coluna": "ID_AGRAVO"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos MENIBRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-19",
+    "registro": "docs/conferencia/conferencia-meningite.xlsx (conferência na planilha em 19/11/2026, com as correções pedidas por ele aplicadas em 19/11/2026)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICMENI": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Meningite (campos 31 a 60 e quadros I a XII)",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "revisado em julho de 2010 (23 páginas). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/meningite/MENIN_DIC_DADOS.pdf"
+    },
+    "FICHAMENI": {
+      "documento": "Ficha de Investigação – Meningite – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 15/10/2007 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/meningite/MENIN_FICHA.pdf"
+    },
+    "INSTMENI": {
+      "documento": "Meningite – Instruções para preenchimento – Ficha de Investigação – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/meningite/MENIN_INSTRUCIONAL.pdf"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "quadro_vii": [
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Ignorado"
+      },
+      {
+        "codigos": [
+          "01",
+          "1"
+        ],
+        "rotulo": "Neisseria meningitidis"
+      },
+      {
+        "codigos": [
+          "06",
+          "6"
+        ],
+        "rotulo": "Haemophilus influenzae"
+      },
+      {
+        "codigos": [
+          "07",
+          "7"
+        ],
+        "rotulo": "Streptococos pneumoniae"
+      },
+      {
+        "codigos": [
+          "28"
+        ],
+        "rotulo": "Outras bactérias"
+      },
+      {
+        "codigos": [
+          "51"
+        ],
+        "rotulo": "Nenhum agente"
+      }
+    ],
+    "quadro_viii": [
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Ignorado"
+      },
+      {
+        "codigos": [
+          "32"
+        ],
+        "rotulo": "Bacilos Gram negativo"
+      },
+      {
+        "codigos": [
+          "31"
+        ],
+        "rotulo": "Bacilos Gram positivo"
+      },
+      {
+        "codigos": [
+          "30"
+        ],
+        "rotulo": "Bastonetes Gram negativo"
+      },
+      {
+        "codigos": [
+          "29"
+        ],
+        "rotulo": "Bastonetes Gram positivo"
+      },
+      {
+        "codigos": [
+          "36"
+        ],
+        "rotulo": "Cocobacilos"
+      },
+      {
+        "codigos": [
+          "34"
+        ],
+        "rotulo": "Cocos Gram negativo"
+      },
+      {
+        "codigos": [
+          "33"
+        ],
+        "rotulo": "Cocos Gram positivo"
+      },
+      {
+        "codigos": [
+          "35"
+        ],
+        "rotulo": "Diplobacilos Gram negativo"
+      },
+      {
+        "codigos": [
+          "03",
+          "3"
+        ],
+        "rotulo": "Diplococos Gram negativo"
+      },
+      {
+        "codigos": [
+          "08",
+          "8"
+        ],
+        "rotulo": "Diplococos Gram positivo"
+      },
+      {
+        "codigos": [
+          "28"
+        ],
+        "rotulo": "Outras Bactérias"
+      },
+      {
+        "codigos": [
+          "51"
+        ],
+        "rotulo": "Nenhum agente"
+      }
+    ],
+    "quadro_ix": [
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Ignorado"
+      },
+      {
+        "codigos": [
+          "01",
+          "1"
+        ],
+        "rotulo": "Neisseria meningitidis"
+      },
+      {
+        "codigos": [
+          "06",
+          "6"
+        ],
+        "rotulo": "Haemophilus influenzae"
+      },
+      {
+        "codigos": [
+          "51"
+        ],
+        "rotulo": "Nenhum agente"
+      }
+    ],
+    "quadro_x": [
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Ignorado"
+      },
+      {
+        "codigos": [
+          "01",
+          "1"
+        ],
+        "rotulo": "Neisseria meningitidis"
+      },
+      {
+        "codigos": [
+          "43"
+        ],
+        "rotulo": "Criptococos"
+      },
+      {
+        "codigos": [
+          "06",
+          "6"
+        ],
+        "rotulo": "Haemophilus influenzae"
+      },
+      {
+        "codigos": [
+          "14"
+        ],
+        "rotulo": "Streptococos (sp, piogens, alfa, hemolitico, fecalis, agalactiae)"
+      },
+      {
+        "codigos": [
+          "07",
+          "7"
+        ],
+        "rotulo": "Streptococos pneumoniae"
+      },
+      {
+        "codigos": [
+          "28"
+        ],
+        "rotulo": "Outras Bactérias"
+      },
+      {
+        "codigos": [
+          "51"
+        ],
+        "rotulo": "Nenhum agente"
+      }
+    ],
+    "quadro_xi": [
+      {
+        "codigos": [
+          "75"
+        ],
+        "rotulo": "Não identificado"
+      },
+      {
+        "codigos": [
+          "37"
+        ],
+        "rotulo": "Caxumba"
+      },
+      {
+        "codigos": [
+          "38"
+        ],
+        "rotulo": "Sarampo"
+      },
+      {
+        "codigos": [
+          "39"
+        ],
+        "rotulo": "Herpes Simples"
+      },
+      {
+        "codigos": [
+          "40"
+        ],
+        "rotulo": "Varicela/Catapora/Herpes Zoster"
+      },
+      {
+        "codigos": [
+          "41"
+        ],
+        "rotulo": "Rubéola"
+      },
+      {
+        "codigos": [
+          "55"
+        ],
+        "rotulo": "Influenza"
+      },
+      {
+        "codigos": [
+          "70"
+        ],
+        "rotulo": "Adenovírus"
+      },
+      {
+        "codigos": [
+          "56"
+        ],
+        "rotulo": "Echovírus"
+      },
+      {
+        "codigos": [
+          "63"
+        ],
+        "rotulo": "Coxasackie"
+      },
+      {
+        "codigos": [
+          "59"
+        ],
+        "rotulo": "Outros Enterovírus"
+      },
+      {
+        "codigos": [
+          "71"
+        ],
+        "rotulo": "Vírus do Nilo Ocidental"
+      },
+      {
+        "codigos": [
+          "72"
+        ],
+        "rotulo": "Dengue"
+      },
+      {
+        "codigos": [
+          "73"
+        ],
+        "rotulo": "Outros Arbovírus"
+      },
+      {
+        "codigos": [
+          "74"
+        ],
+        "rotulo": "Outros vírus"
+      }
+    ],
+    "quadro_xii": [
+      {
+        "codigos": [
+          "62"
+        ],
+        "rotulo": "Ignorado"
+      },
+      {
+        "codigos": [
+          "37"
+        ],
+        "rotulo": "Caxumba"
+      },
+      {
+        "codigos": [
+          "38"
+        ],
+        "rotulo": "Sarampo"
+      },
+      {
+        "codigos": [
+          "39"
+        ],
+        "rotulo": "Herpes Simples"
+      },
+      {
+        "codigos": [
+          "40"
+        ],
+        "rotulo": "Varicela/Catapora/Herpes Zoster"
+      },
+      {
+        "codigos": [
+          "41"
+        ],
+        "rotulo": "Rubéola"
+      },
+      {
+        "codigos": [
+          "55"
+        ],
+        "rotulo": "Influenza"
+      },
+      {
+        "codigos": [
+          "72"
+        ],
+        "rotulo": "Dengue"
+      },
+      {
+        "codigos": [
+          "61"
+        ],
+        "rotulo": "Não realizado"
+      },
+      {
+        "codigos": [
+          "75"
+        ],
+        "rotulo": "Não identificado"
+      },
+      {
+        "codigos": [
+          "70"
+        ],
+        "rotulo": "Adenovírus"
+      },
+      {
+        "codigos": [
+          "56"
+        ],
+        "rotulo": "Echovírus"
+      },
+      {
+        "codigos": [
+          "63"
+        ],
+        "rotulo": "Coxasackie"
+      },
+      {
+        "codigos": [
+          "59"
+        ],
+        "rotulo": "Outros Enterovírus"
+      },
+      {
+        "codigos": [
+          "71"
+        ],
+        "rotulo": "Vírus do Nilo Ocidental"
+      },
+      {
+        "codigos": [
+          "73"
+        ],
+        "rotulo": "Outros Arbovírus"
+      },
+      {
+        "codigos": [
+          "74"
+        ],
+        "rotulo": "Outros vírus"
+      },
+      {
+        "codigos": [
+          "01",
+          "1"
+        ],
+        "rotulo": "Neisseria meningitidis"
+      },
+      {
+        "codigos": [
+          "06",
+          "6"
+        ],
+        "rotulo": "Haemophilus influenzae"
+      },
+      {
+        "codigos": [
+          "07",
+          "7"
+        ],
+        "rotulo": "Streptococos pneumoniae"
+      },
+      {
+        "codigos": [
+          "28"
+        ],
+        "rotulo": "Outras bactérias"
+      },
+      {
+        "codigos": [
+          "43"
+        ],
+        "rotulo": "Cryptococcus/Torula"
+      },
+      {
+        "codigos": [
+          "42"
+        ],
+        "rotulo": "Outros fungos"
+      },
+      {
+        "codigos": [
+          "48"
+        ],
+        "rotulo": "Toxoplasma (Gondii, sp)"
+      },
+      {
+        "codigos": [
+          "52"
+        ],
+        "rotulo": "Outros Parasitas"
+      },
+      {
+        "codigos": [
+          "51"
+        ],
+        "rotulo": "Nenhum agente"
+      }
+    ]
+  },
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_RES",
+      "rotulo": "Região de saúde de residência (DATASUS)",
+      "de": "ID_MN_RESI",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de residência. Não é a regional do Sinan (ID_RG_RESI)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_RES",
+      "rotulo": "Macrorregião de saúde de residência (Ministério da Saúde)",
+      "de": "ID_MN_RESI",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de residência, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ]
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "FICHAMENI",
+      "local": "p. 1, campo 2 (Código CID10)",
+      "rotulo": "Agravo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "G039",
+            "G03.9",
+            "G 0 3.9",
+            "G 03.9"
+          ],
+          "rotulo": "Meningite não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "CID10_06.CNV, código G039"
+        }
+      ],
+      "observacao": "A ficha mostra 'MENINGITE' com o CID 'G 0 3. 9'; no arquivo vem 'G039' (regra do Rubens: o CID como na ficha e sem espaços nem ponto). Rótulo da CID-10, pela tabela do TabWin: G03.9 e G039 = Meningite não especificada (decisão do Rubens na conferência, 19/11/2026)."
+    },
+    {
+      "nome": "CS_MENING",
+      "fonte": "FICHAMENI",
+      "local": "p. 1, campo 2 (Agravo/doença)",
+      "rotulo": "Tipo de meningite notificada",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Doença meningocócica"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Outras meningites"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 2 da ficha só comporta 1 e 2"
+      },
+      "observacao": "Na ficha, ao lado do agravo: \"1 - DOENÇA MENINGOCÓCICA\" e \"2 - OUTRAS MENINGITES\". O NOTIF2018 (campo \"Suspeita do agravo\", b) Meningite) escreve \"Doenças Meningocócicas\" e \"Outras Meningites\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 7",
+      "rotulo": "Data dos primeiros sintomas",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "ANO_NASC",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 9 (Data de nascimento)",
+      "rotulo": "Ano de nascimento",
+      "tipo": "texto",
+      "observacao": "O NOTIF2018 descreve a data de nascimento (DT_NASC); o arquivo público traz só o ano, na coluna ANO_NASC, que não aparece nas fontes de LV (pendência)."
+    },
+    {
+      "nome": "NU_IDADE_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 3-4, campo 10",
+      "rotulo": "Idade",
+      "tipo": "idade",
+      "unidades": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "hora",
+          "plural": "horas",
+          "maximo": 23
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "dia",
+          "plural": "dias",
+          "maximo": 29
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "mês",
+          "plural": "meses",
+          "maximo": 11
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "ano",
+          "plural": "anos",
+          "maximo": 110
+        }
+      ],
+      "observacao": "1º dígito = unidade (1 Hora, 2 Dia, 3 Mês, 4 Ano); demais dígitos = valor. Exemplos da fonte: 3009 = nove meses; 4018 = dezoito anos. Limites por decisão do Rubens (02/11/2026), porque as fontes oficiais não definem idade máxima: até 23 horas, 29 dias, 11 meses e 110 anos. Acima disso o código fica como veio, destacado, e vai para a aba Inconsistências."
+    },
+    {
+      "nome": "CS_SEXO",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 11",
+      "rotulo": "Sexo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "M"
+          ],
+          "rotulo": "Masculino"
+        },
+        {
+          "codigos": [
+            "F"
+          ],
+          "rotulo": "Feminino"
+        },
+        {
+          "codigos": [
+            "I"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_GESTANT",
+      "fonte": "NOTIF2018",
+      "local": "p. 4, campo 12",
+      "rotulo": "Gestante",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "1º Trimestre"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "2º Trimestre"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "3º Trimestre"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Idade gestacional ignorada"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Não se aplica"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_RACA",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 13",
+      "rotulo": "Raça/Cor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Branca"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Preta"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Amarela"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Parda"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Indígena"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CS_ESCOL_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 5, campo 14",
+      "rotulo": "Escolaridade",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0",
+            "00",
+            "43"
+          ],
+          "rotulo": "Analfabeto",
+          "fonte": "FICHAMENI",
+          "local": "p. 1, campo 14"
+        },
+        {
+          "codigos": [
+            "1",
+            "01"
+          ],
+          "rotulo": "1ª a 4ª série incompleta do EF"
+        },
+        {
+          "codigos": [
+            "2",
+            "02"
+          ],
+          "rotulo": "4ª série completa do EF (antigo 1° grau)"
+        },
+        {
+          "codigos": [
+            "3",
+            "03"
+          ],
+          "rotulo": "5ª à 8ª série incompleta do EF (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "4",
+            "04"
+          ],
+          "rotulo": "Ensino fundamental completo (antigo ginásio ou 1° grau)"
+        },
+        {
+          "codigos": [
+            "5",
+            "05"
+          ],
+          "rotulo": "Ensino médio incompleto (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "6",
+            "06"
+          ],
+          "rotulo": "Ensino médio completo (antigo colegial ou 2° grau)"
+        },
+        {
+          "codigos": [
+            "7",
+            "07"
+          ],
+          "rotulo": "Educação superior incompleta"
+        },
+        {
+          "codigos": [
+            "8",
+            "08"
+          ],
+          "rotulo": "Educação superior completa"
+        },
+        {
+          "codigos": [
+            "9",
+            "09"
+          ],
+          "rotulo": "Ignorado"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Não se aplica"
+        }
+      ],
+      "observacao": "No NOTIF2018 o Analfabeto aparece como '43' (erro do próprio PDF); o 0 vem da ficha de tétano acidental (p. 1, campo 14). As formas com um e dois dígitos ('1' e '01'), ambas presentes no arquivo, seguem a decisão P6 do Rubens. O 43 = Analfabeto segue a decisão do Rubens na conferência de hanseníase (16/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 17",
+      "rotulo": "UF de residência",
+      "tipo": "uf"
+    },
+    {
+      "nome": "ID_MN_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo 18",
+      "rotulo": "Município de residência",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "NOTIF2018",
+      "local": "p. 6, campo interno",
+      "rotulo": "Regional de saúde de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_RES."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "NDUPLIC_N",
+      "fonte": "NOTIF2018",
+      "local": "p. 9",
+      "rotulo": "Não listar/Não contar (duplicidade)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Não é duplicidade (não listar)"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Duplicidade (não contar)"
+        }
+      ],
+      "observacao": "A fonte diz '0 ou branco – Não identificado'. Pela regra do projeto, o branco continua em branco; só o 0 recebe o rótulo."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data da digitação",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "fonte": "NOTIF2018",
+      "local": "p. 14, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto"
+    },
+    {
+      "nome": "CS_FLXRET",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Fluxo de retorno",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "0"
+          ],
+          "rotulo": "Não"
+        },
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Habilitado para envio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Enviado"
+        }
+      ]
+    },
+    {
+      "nome": "FLXRECEBI",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Recebida por fluxo de retorno",
+      "tipo": "texto"
+    },
+    {
+      "nome": "MIGRADO_W",
+      "fonte": "NOTIF2018",
+      "local": "p. 15, campos internos",
+      "rotulo": "Migrado do Sinan Windows",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Migrado do Sinan Windows"
+        }
+      ]
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICMENI",
+      "local": "p. 1, campo 31",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ID_OCUPA_N",
+      "fonte": "DICMENI",
+      "local": "p. 1, campo 32",
+      "rotulo": "Ocupação (CBO)",
+      "tipo": "tabela",
+      "tabela": "cbo",
+      "complemento": "ocupacoes_sinan",
+      "observacao": "Nome da ocupação pela CBO 2002. Os códigos que não estão na CBO (os especiais do Sinan, como 999991 Estudante, 998999 Ignorada e XXX Não informado) são procurados na tabela de ocupações do Sinan NET (OCUPANET), com o nome como está escrito lá."
+    },
+    {
+      "nome": "ANT_AC",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica A/C",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_3",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica A/C – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_3",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica A/C – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_BC",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica B/C",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSES_",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica B/C – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTULT_",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: polissacarídica B/C – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_CONJ_C",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: conjugada meningo C",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_C",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: conjugada meningo C – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_C",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: conjugada meningo C – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_BCG",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: BCG",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_4",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: BCG – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_4",
+      "fonte": "DICMENI",
+      "local": "p. 2, campo 33",
+      "rotulo": "Vacinação: BCG – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_TRIPLI",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: tríplice viral",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_5",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: tríplice viral – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_5",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: tríplice viral – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_HEMO_T",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: hemófilo (tetravalente ou Hib)",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_T",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: hemófilo (tetravalente ou Hib) – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_T",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: hemófilo (tetravalente ou Hib) – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_PNEUMO",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: pneumococo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_DOSE_7",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: pneumococo – número de doses",
+      "tipo": "numero",
+      "observacao": "Número como veio no arquivo; valores fora do esperado (por exemplo, negativos) não são alterados."
+    },
+    {
+      "nome": "ANT_DTUL_7",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: pneumococo – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_OUTRA",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: outra",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 33 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_OU_DE",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: outra (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_DTUL_8",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 33",
+      "rotulo": "Vacinação: outra – data da última dose",
+      "tipo": "data"
+    },
+    {
+      "nome": "ANT_AIDS",
+      "fonte": "DICMENI",
+      "local": "p. 3, campo 34",
+      "rotulo": "Doença pré-existente: AIDS/HIV",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_IMUNO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: outras doenças imunodepressoras",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_IRA",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: IRA",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TUBE",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: tuberculose",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_TRAUMA",
+      "fonte": "FICHAMENI",
+      "local": "p. 1, campo 34",
+      "rotulo": "Doença pré-existente: traumatismo",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "O DICMENI escreve \"1. Sim 3. Não 9. Ignorado\" para traumatismo; a ficha (campo 34) e o arquivo usam 2 = Não, como nas outras doenças pré-existentes (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_INF_HO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: infecção hospitalar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_OUTRO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: outra",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_OUTR_D",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 34",
+      "rotulo": "Doença pré-existente: outra (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_CONT_N",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 35",
+      "rotulo": "Contato com caso suspeito ou confirmado de meningite (até 15 dias antes dos sintomas)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Domicílio"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Vizinhança"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Trabalho"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Creche/escola"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Posto de Saúde/Hospital"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outro Estado/Município"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Sem história de contato"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Outro país"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 1 a 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ANT_NOMECO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 36",
+      "rotulo": "Nome do contato",
+      "tipo": "texto",
+      "observacao": "O DICMENI descreve: nome completo do contato. Não vem nos arquivos públicos do DATASUS (MENIBR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026). Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_TELECO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 37",
+      "rotulo": "Telefone do contato (com DDD)",
+      "tipo": "texto",
+      "observacao": "O DICMENI descreve: telefone do contato com DDD. Não vem nos arquivos públicos do DATASUS (MENIBR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026). Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_ENDECO",
+      "fonte": "DICMENI",
+      "local": "p. 4, campo 38",
+      "rotulo": "Endereço do contato",
+      "tipo": "texto",
+      "observacao": "O DICMENI descreve: endereço completo do contato. Não vem nos arquivos públicos do DATASUS (MENIBR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026). Texto livre; fica como veio."
+    },
+    {
+      "nome": "ANT_SECUND",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 39",
+      "rotulo": "Caso secundário",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CEFALE",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: cefaleia",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_FEBRE",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: febre",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_VOMITO",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: vômitos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_CONVUL",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: convulsões",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_RIGIDE",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: rigidez de nuca",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_KERNIG",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: Kernig/Brudzinski",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_ABAULA",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: abaulamento de fontanela",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_COMA",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: coma",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_PETEQU",
+      "fonte": "DICMENI",
+      "local": "p. 5, campo 40",
+      "rotulo": "Sinais e sintomas: petéquias/sufusões hemorrágicas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_OUTRAS",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 40",
+      "rotulo": "Sinais e sintomas: outros",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLI_ESPECI",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 40",
+      "rotulo": "Sinais e sintomas: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ATE_HOSPIT",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 41",
+      "rotulo": "Ocorreu hospitalização",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 41 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ATE_INTERN",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 42",
+      "rotulo": "Data da internação",
+      "tipo": "data"
+    },
+    {
+      "nome": "ATE_UF_HOS",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 43",
+      "rotulo": "UF do hospital",
+      "tipo": "texto",
+      "observacao": "O DICMENI descreve a sigla da UF do hospital; no arquivo vem a sigla (por exemplo, SP), que fica como veio (regra aprovada em hanseníase e tétano, confirmada na meningite: decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ATE_MUNICI",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 44",
+      "rotulo": "Município do hospital",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ATE_HOSP_1",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 45",
+      "rotulo": "Hospital (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "O DICMENI descreve o código do hospital onde o paciente foi internado, pela tabela do CNES. Nome do estabelecimento pela tabela do CNES; códigos não encontrados ficam como vieram e vão para as Inconsistências. Não vem nos arquivos públicos do DATASUS (MENIBR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "LAB_PUNCAO",
+      "fonte": "DICMENI",
+      "local": "p. 6, campo 46",
+      "rotulo": "Punção lombar",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 46 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_DTPUNC",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 47",
+      "rotulo": "Data da punção",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_ASPECT",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 48",
+      "rotulo": "Aspecto do líquor",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Límpido"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Purulento"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Hemorrágico"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Turvo"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Xantocrômico"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 só comporta 1 a 6 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CTLIQU",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 49; categorias no Quadro VII, p. 19",
+      "rotulo": "Resultado laboratorial: Cultura – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_vii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VII"
+      },
+      "observacao": "Categorias do Quadro VII, p. 19, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CTLESA",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 49; categorias no Quadro VII, p. 19",
+      "rotulo": "Resultado laboratorial: Cultura – lesão petequial",
+      "tipo": "categorico",
+      "lista": "quadro_vii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VII"
+      },
+      "observacao": "Categorias do Quadro VII, p. 19, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CTSANG",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 49; categorias no Quadro VII, p. 19",
+      "rotulo": "Resultado laboratorial: Cultura – sangue/soro",
+      "tipo": "categorico",
+      "lista": "quadro_vii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VII"
+      },
+      "observacao": "Categorias do Quadro VII, p. 19, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CTESCA",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 49; categorias no Quadro VII, p. 19",
+      "rotulo": "Resultado laboratorial: Cultura – escarro",
+      "tipo": "categorico",
+      "lista": "quadro_vii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VII"
+      },
+      "observacao": "Categorias do Quadro VII, p. 19, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_BCLIQU",
+      "fonte": "DICMENI",
+      "local": "p. 7, campo 49; categorias no Quadro VIII, p. 20",
+      "rotulo": "Resultado laboratorial: Bacterioscopia – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_viii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VIII"
+      },
+      "observacao": "Categorias do Quadro VIII, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_BCLESA",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro VIII, p. 20",
+      "rotulo": "Resultado laboratorial: Bacterioscopia – lesão petequial",
+      "tipo": "categorico",
+      "lista": "quadro_viii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VIII"
+      },
+      "observacao": "Categorias do Quadro VIII, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_BCSANG",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro VIII, p. 20",
+      "rotulo": "Resultado laboratorial: Bacterioscopia – sangue/soro",
+      "tipo": "categorico",
+      "lista": "quadro_viii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VIII"
+      },
+      "observacao": "Categorias do Quadro VIII, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_BCESCA",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro VIII, p. 20",
+      "rotulo": "Resultado laboratorial: Bacterioscopia – escarro",
+      "tipo": "categorico",
+      "lista": "quadro_viii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro VIII"
+      },
+      "observacao": "Categorias do Quadro VIII, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CILIQU",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro IX, p. 20",
+      "rotulo": "Resultado laboratorial: CIE – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_ix",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro IX"
+      },
+      "observacao": "Categorias do Quadro IX, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_CISANG",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro IX, p. 20",
+      "rotulo": "Resultado laboratorial: CIE – sangue/soro",
+      "tipo": "categorico",
+      "lista": "quadro_ix",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro IX"
+      },
+      "observacao": "Categorias do Quadro IX, p. 20, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_AGLIQU",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro X, p. 21",
+      "rotulo": "Resultado laboratorial: Aglutinação pelo látex – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_x",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro X"
+      },
+      "observacao": "Categorias do Quadro X, p. 21, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_AGSANG",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro X, p. 21",
+      "rotulo": "Resultado laboratorial: Aglutinação pelo látex – sangue/soro",
+      "tipo": "categorico",
+      "lista": "quadro_x",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro X"
+      },
+      "observacao": "Categorias do Quadro X, p. 21, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_ISLIQU",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro XI, p. 22",
+      "rotulo": "Resultado laboratorial: Isolamento viral – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_xi",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XI"
+      },
+      "observacao": "Categorias do Quadro XI, p. 22, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_ISFEZE",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro XI, p. 22",
+      "rotulo": "Resultado laboratorial: Isolamento viral – fezes",
+      "tipo": "categorico",
+      "lista": "quadro_xi",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XI"
+      },
+      "observacao": "Categorias do Quadro XI, p. 22, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_PCLIQU",
+      "fonte": "DICMENI",
+      "local": "p. 8, campo 49; categorias no Quadro XII, p. 23",
+      "rotulo": "Resultado laboratorial: PCR – líquor",
+      "tipo": "categorico",
+      "lista": "quadro_xii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XII"
+      },
+      "observacao": "Categorias do Quadro XII, p. 23, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_PCLESA",
+      "fonte": "DICMENI",
+      "local": "p. 9, campo 49; categorias no Quadro XII, p. 23",
+      "rotulo": "Resultado laboratorial: PCR – lesão petequial",
+      "tipo": "categorico",
+      "lista": "quadro_xii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XII"
+      },
+      "observacao": "Categorias do Quadro XII, p. 23, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_PCSANG",
+      "fonte": "DICMENI",
+      "local": "p. 9, campo 49; categorias no Quadro XII, p. 23",
+      "rotulo": "Resultado laboratorial: PCR – sangue/soro",
+      "tipo": "categorico",
+      "lista": "quadro_xii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XII"
+      },
+      "observacao": "Categorias do Quadro XII, p. 23, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "LAB_PCESCA",
+      "fonte": "DICMENI",
+      "local": "p. 9, campo 49; categorias no Quadro XII, p. 23",
+      "rotulo": "Resultado laboratorial: PCR – escarro",
+      "tipo": "categorico",
+      "lista": "quadro_xii",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 49 só comporta os códigos do Quadro XII"
+      },
+      "observacao": "Categorias do Quadro XII, p. 23, pelo título do quadro. O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLASSI_FIN",
+      "fonte": "DICMENI",
+      "local": "p. 9, campo 50",
+      "rotulo": "Classificação do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Confirmado"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Descartado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 50 só comporta 1 e 2"
+      },
+      "observacao": "O código 8 aparece em 1.599 registros de 2022 a 2025. O DICMENI só lista 1 e 2; o Anexo I do NOTIF2018 (p. 22) tem uma linha de meningite que parece citar \"8 - Inconclusivo\", mas a leitura do texto do PDF mistura as colunas. O Rubens aprovou tratar o 8 como inconsistência (conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CON_DIAGES",
+      "fonte": "DICMENI",
+      "local": "p. 9-10, campo 51",
+      "rotulo": "Se confirmado, especifique",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "Meningococcemia"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "Meningite Meningocócica"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "Meningite Meningocócica com Meningococcemia"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "Meningite Tuberculosa"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "Meningite por outras bactérias"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Meningite não especificada"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Meningite Asséptica"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "Meningite por outra etiologia"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "Meningite por Hemófilo"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Meningite por Pneumococo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 51 só comporta 01 a 10"
+      },
+      "observacao": "O DICMENI manda gravar sempre 2 dígitos (01 a 09 com zero à esquerda); a forma sem o zero também entra. Valores como \"00\", \"%\" e \"X\" saem como \"Inconsistência/Não Preenchido\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLA_ME_BAC",
+      "fonte": "DICMENI",
+      "local": "p. 10, campo 51 (5 - meningite por outras bactérias); categorias no Quadro II, p. 16",
+      "rotulo": "Meningite por outras bactérias: bactéria",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "Shigella sp"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Staphylococcus (aureus, sp, epidermidis)"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Salmonella sp"
+        },
+        {
+          "codigos": [
+            "12"
+          ],
+          "rotulo": "Escherichia coli"
+        },
+        {
+          "codigos": [
+            "13"
+          ],
+          "rotulo": "Klebsiella (sp, pneumoniae)"
+        },
+        {
+          "codigos": [
+            "14"
+          ],
+          "rotulo": "Streptococcus (sp, pyogenes, agalactiae)"
+        },
+        {
+          "codigos": [
+            "15"
+          ],
+          "rotulo": "Enterococcus"
+        },
+        {
+          "codigos": [
+            "16"
+          ],
+          "rotulo": "Pseudomonas (aeruginosa, sp)"
+        },
+        {
+          "codigos": [
+            "18"
+          ],
+          "rotulo": "Serratia (marcescens, sp)"
+        },
+        {
+          "codigos": [
+            "19"
+          ],
+          "rotulo": "Alcaligenes (sp, faecalis)"
+        },
+        {
+          "codigos": [
+            "20"
+          ],
+          "rotulo": "Proteus (sp, vulgaris, mirabilis)"
+        },
+        {
+          "codigos": [
+            "21"
+          ],
+          "rotulo": "Listeria monocytogenes"
+        },
+        {
+          "codigos": [
+            "22"
+          ],
+          "rotulo": "Enterobacter (sp, cloacae)"
+        },
+        {
+          "codigos": [
+            "23"
+          ],
+          "rotulo": "Acinetobacter (sp, baumannii)"
+        },
+        {
+          "codigos": [
+            "26"
+          ],
+          "rotulo": "Neisseria sp"
+        },
+        {
+          "codigos": [
+            "28"
+          ],
+          "rotulo": "Outras Bactérias"
+        },
+        {
+          "codigos": [
+            "45"
+          ],
+          "rotulo": "Treponema Pallidum"
+        },
+        {
+          "codigos": [
+            "46"
+          ],
+          "rotulo": "Rickettsiae"
+        },
+        {
+          "codigos": [
+            "49"
+          ],
+          "rotulo": "Leptospira"
+        },
+        {
+          "codigos": [
+            "81"
+          ],
+          "rotulo": "Bactéria não especificada"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o Quadro II não tem este código"
+      },
+      "observacao": "O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLA_ME_ASS",
+      "fonte": "DICMENI",
+      "local": "p. 10, campo 51 (7 - meningite asséptica); categorias no Quadro III, p. 17",
+      "rotulo": "Meningite asséptica: agente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "75"
+          ],
+          "rotulo": "Não identificado"
+        },
+        {
+          "codigos": [
+            "37"
+          ],
+          "rotulo": "Caxumba"
+        },
+        {
+          "codigos": [
+            "38"
+          ],
+          "rotulo": "Sarampo"
+        },
+        {
+          "codigos": [
+            "39"
+          ],
+          "rotulo": "Herpes simples"
+        },
+        {
+          "codigos": [
+            "40"
+          ],
+          "rotulo": "Varicela/Catapora/ Herpes Zoster"
+        },
+        {
+          "codigos": [
+            "41"
+          ],
+          "rotulo": "Rubéola"
+        },
+        {
+          "codigos": [
+            "55"
+          ],
+          "rotulo": "Influenza"
+        },
+        {
+          "codigos": [
+            "70"
+          ],
+          "rotulo": "Adenovirus"
+        },
+        {
+          "codigos": [
+            "56"
+          ],
+          "rotulo": "Echovirus"
+        },
+        {
+          "codigos": [
+            "63"
+          ],
+          "rotulo": "Coxasackie"
+        },
+        {
+          "codigos": [
+            "59"
+          ],
+          "rotulo": "Outros Enterovirus"
+        },
+        {
+          "codigos": [
+            "71"
+          ],
+          "rotulo": "Virus do Nilo Ocidental"
+        },
+        {
+          "codigos": [
+            "72"
+          ],
+          "rotulo": "Dengue"
+        },
+        {
+          "codigos": [
+            "73"
+          ],
+          "rotulo": "Outros Arbovirus"
+        },
+        {
+          "codigos": [
+            "74"
+          ],
+          "rotulo": "Outros vírus"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o Quadro III não tem este código"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLA_ME_ETI",
+      "fonte": "DICMENI",
+      "local": "p. 10, campo 51 (8 - meningite por outra etiologia); categorias no Quadro IV, p. 18",
+      "rotulo": "Meningite por outra etiologia: agente",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "42"
+          ],
+          "rotulo": "Outros fungos"
+        },
+        {
+          "codigos": [
+            "43"
+          ],
+          "rotulo": "Cryptococcus/Torula"
+        },
+        {
+          "codigos": [
+            "44"
+          ],
+          "rotulo": "Candida albicans, sp"
+        },
+        {
+          "codigos": [
+            "47"
+          ],
+          "rotulo": "Tripanossoma cruzi"
+        },
+        {
+          "codigos": [
+            "48"
+          ],
+          "rotulo": "Toxoplasma (Gondii, sp)"
+        },
+        {
+          "codigos": [
+            "50"
+          ],
+          "rotulo": "Cisticerco"
+        },
+        {
+          "codigos": [
+            "52"
+          ],
+          "rotulo": "Outros Parasitas"
+        },
+        {
+          "codigos": [
+            "76"
+          ],
+          "rotulo": "Plasmodium sp"
+        },
+        {
+          "codigos": [
+            "77"
+          ],
+          "rotulo": "Taenia Solium"
+        },
+        {
+          "codigos": [
+            "64"
+          ],
+          "rotulo": "Aspergillus"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o Quadro IV não tem este código"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "DICMENI",
+      "local": "p. 10, campo 52; categorias no Quadro V, p. 18",
+      "rotulo": "Critério de confirmação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "Cultura"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "CIE"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "Ag. Látex"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "Clínico"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "Bacterioscopia"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Quimiocitológico"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Clínico Epidemiológico"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "Isolamento Viral"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "PCR"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Outros"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o Quadro V só comporta 01 a 10"
+      },
+      "observacao": "Rótulos do Quadro V; a ficha (campo 52) escreve \"6 - Quimiocitológico do líquor\". O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CLA_SOROGR",
+      "fonte": "DICMENI",
+      "local": "p. 11, campo 53; categorias no Quadro VI, p. 19",
+      "rotulo": "Se N. meningitidis, sorogrupo",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "01",
+            "1"
+          ],
+          "rotulo": "A"
+        },
+        {
+          "codigos": [
+            "02",
+            "2"
+          ],
+          "rotulo": "B"
+        },
+        {
+          "codigos": [
+            "03",
+            "3"
+          ],
+          "rotulo": "C"
+        },
+        {
+          "codigos": [
+            "04",
+            "4"
+          ],
+          "rotulo": "D"
+        },
+        {
+          "codigos": [
+            "05",
+            "5"
+          ],
+          "rotulo": "X"
+        },
+        {
+          "codigos": [
+            "06",
+            "6"
+          ],
+          "rotulo": "Y"
+        },
+        {
+          "codigos": [
+            "07",
+            "7"
+          ],
+          "rotulo": "Z"
+        },
+        {
+          "codigos": [
+            "08",
+            "8"
+          ],
+          "rotulo": "W 135"
+        },
+        {
+          "codigos": [
+            "09",
+            "9"
+          ],
+          "rotulo": "29 E"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o Quadro VI só comporta 01 a 09"
+      },
+      "observacao": "O quadro escreve os códigos com dois dígitos (por exemplo, 01); o arquivo traz também a forma sem o zero (1), e as duas entram (aprovado pelo Rubens na conferência, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MED_NUCOMU",
+      "fonte": "DICMENI",
+      "local": "p. 11, campo 54",
+      "rotulo": "Número de comunicantes",
+      "tipo": "numero"
+    },
+    {
+      "nome": "MED_QUIMIO",
+      "fonte": "DICMENI",
+      "local": "p. 11, campo 55",
+      "rotulo": "Realizada quimioprofilaxia dos comunicantes",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 55 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MED_DT_QUI",
+      "fonte": "DICMENI",
+      "local": "p. 12, campo 56",
+      "rotulo": "Data da quimioprofilaxia",
+      "tipo": "data"
+    },
+    {
+      "nome": "DOENCA_TRA",
+      "fonte": "DICMENI",
+      "local": "p. 12, campo 57",
+      "rotulo": "Doença relacionada ao trabalho",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 57 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "EVOLUCAO",
+      "fonte": "DICMENI",
+      "local": "p. 12-13, campo 58",
+      "rotulo": "Evolução do caso",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Alta"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Óbito por meningite"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Óbito por outra causa"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MED_DT_EVO",
+      "fonte": "DICMENI",
+      "local": "p. 13, campo 59",
+      "rotulo": "Data da evolução",
+      "tipo": "data"
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICMENI",
+      "local": "p. 13, campo 60",
+      "rotulo": "Data do encerramento",
+      "tipo": "data"
+    },
+    {
+      "nome": "LAB_HEMA",
+      "fonte": "DICMENI",
+      "local": "p. 13, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: hemácias (mm³)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_NEUTRO",
+      "fonte": "DICMENI",
+      "local": "p. 13, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: neutrófilos (%)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_GLICO",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: glicose (mg)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_LEUCO",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: leucócitos (mm³)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_EOSI",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: eosinófilos (%)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_PROT",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: proteínas (mg)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_MONO",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: monócitos (%)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_LINFO",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: linfócitos (%)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "LAB_CLOR",
+      "fonte": "DICMENI",
+      "local": "p. 14, exame quimiocitológico",
+      "rotulo": "Exame quimiocitológico: cloreto (mg)",
+      "tipo": "numero",
+      "observacao": "Unidade como na ficha (exame quimiocitológico). Número como veio no arquivo."
+    },
+    {
+      "nome": "NU_LOTE_I",
+      "fonte": "DICMENI",
+      "local": "p. 14",
+      "rotulo": "Transferência vertical da investigação (lote)",
+      "tipo": "texto"
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Códigos com e sem zero à esquerda",
+      "descricao": "Os quadros do DICMENI escrevem os códigos com 2 dígitos (01, 06, 07...), e o campo 51 manda gravar sempre 2 dígitos. O arquivo traz as duas formas: por exemplo, na cultura do líquor, \"7\" em 1.904 registros e \"07\" em 72. As duas formas entram, como na escolaridade (regra do Rubens). Vale para os exames do campo 49, CON_DIAGES, CRITERIO, CLA_SOROGR e CLA_ME_BAC. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "Código 0 nos exames (campo 49)",
+      "descricao": "O código \"0\" aparece em cerca de 260 registros de cada exame (2022 a 2025) e não está em nenhum quadro. Sai como \"Inconsistência/Não Preenchido\" pela regra geral. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "CLASSI_FIN",
+      "descricao": "O código 8 aparece em 1.599 registros (2022 a 2025). O DICMENI (campo 50) só lista 1 Confirmado e 2 Descartado. O Anexo I do NOTIF2018 (p. 22) tem uma linha de meningite, mas a extração do texto mistura as colunas da tabela; ela parece listar \"8 - Inconclusivo (**) ????????\". Por enquanto o 8 sai como \"Inconsistência/Não Preenchido\". Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "ANT_TRAUMA",
+      "descricao": "O DICMENI (p. 4) escreve \"1. Sim 3. Não 9. Ignorado\" para traumatismo. A ficha (campo 34) e o arquivo usam 2 = Não, como nas outras doenças pré-existentes. Ficou 1 Sim, 2 Não e 9 Ignorado, pela ficha. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "CON_DIAGES",
+      "descricao": "Além de 01 a 10, aparecem \"00\" (2.003 registros) e sinais como \"%\", \"%%\", \"X\", \"7.\", \"VI\" (poucos). Saem como \"Inconsistência/Não Preenchido\" pela regra geral. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "ID_AGRAVO",
+      "descricao": "Resolvida (Rubens, 19/11/2026): G03.9 e G039 = Meningite não especificada, rótulo da CID-10 (tabela do TabWin)."
+    },
+    {
+      "coluna": "Quadros de exames",
+      "descricao": "Na extração do texto, a referência de cada exame ao quadro aparece desalinhada (por exemplo, o látex é citado como Quadro IX e X). As categorias seguem o título de cada quadro: VII cultura, VIII bacterioscopia, IX CIE, X látex, XI isolamento viral, XII PCR. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "ATE_HOSP_1, ANT_NOMECO, ANT_TELECO, ANT_ENDECO",
+      "descricao": "Resolvida (decisão do Rubens, 19/11/2026): estão no DICMENI (hospital, nome, telefone e endereço do contato) e não vêm no arquivo público. Entram no dicionário para arquivos exportados do próprio Sinan: o hospital sai com o nome do CNES; nome, telefone e endereço do contato ficam como vieram."
+    },
+    {
+      "coluna": "Doses de vacina",
+      "descricao": "Os números de doses vêm como número, com alguns valores estranhos (por exemplo, -1, 93, 99). Ficam como vieram. Aprovado pelo Rubens na conferência (19/11/2026)."
+    },
+    {
+      "coluna": "SG_UF, ATE_UF_HOS",
+      "descricao": "Resolvida (decisão do Rubens, 19/11/2026): SG_UF vem em código numérico e sai com o nome da UF (tabela do IBGE); ATE_UF_HOS vem em sigla e fica só com a sigla, como nos outros agravos."
+    }
+  ]
+}

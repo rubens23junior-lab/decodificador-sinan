@@ -3,7 +3,7 @@
 // códigos que aparecem de fato nos arquivos antes de montar os dicionários.
 //
 // Uso: node ferramentas/contar-valores.js <arquivo> <COLUNA> [COLUNA...]
-// Exemplo: node ferramentas/contar-valores.js dados_publicos/DENGBR25.dbc CLASSI_FIN CRITERIO
+// Exemplo: node ferramentas/contar-valores.js dados_publicos/dengue-chikungunya/DENGBR25.dbc CLASSI_FIN CRITERIO
 
 import { readFileSync } from 'node:fs';
 import { basename } from 'node:path';

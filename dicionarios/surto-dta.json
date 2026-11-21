@@ -1,0 +1,1892 @@
+{
+  "formato": 1,
+  "agravo": {
+    "nome": "Surto de doenças transmitidas por alimentos (DTA)",
+    "codigos": [
+      "3"
+    ],
+    "coluna": "TP_NOT"
+  },
+  "versao": "Dados públicos do DATASUS (arquivos SDTABRxx.dbc), Sinan NET 5.0",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-19",
+    "registro": "docs/conferencia/conferencia-surto-dta.xlsx (conferência na planilha em 19/11/2026, com as correções pedidas por ele aplicadas em 19/11/2026; decisões sobre TP_LOCAL e NU_RESU_3 tomadas no chat)"
+  },
+  "convencoes": [
+    "Rótulos transcritos como estão na fonte, só com a primeira letra em maiúscula quando a fonte usa minúscula.",
+    "Campo em branco continua em branco; nunca é preenchido com 'Ignorado'.",
+    "Quando as fontes divergem, segue-se sempre o dicionário mais recente (regra do Rubens, conferência de 01/11/2026).",
+    "Quando a fonte lista formas diferentes do mesmo código (por exemplo '1' e '01'), todas entram em 'codigos'.",
+    "A fonte de cada coluna vale para as suas categorias, salvo quando a categoria indica outra fonte."
+  ],
+  "fontes": {
+    "DICSDTA": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Surto/DTA",
+      "orgao": "Ministério da Saúde / SVS / DEVEP / CIEVS / GT-Sinan",
+      "data": "revisado em fevereiro de 2012 (rodapé). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/surto-dta/SDTA_DIC_DADOS.pdf"
+    },
+    "FICHASDTA": {
+      "documento": "Ficha de Investigação de Surto – DTA – Sinan NET",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "SVS 08/06/2006 (rodapé da ficha). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/surto-dta/SDTA_FICHA.pdf"
+    },
+    "AJUSTESDTA": {
+      "documento": "Dicionário de dados – Surto DTA: substituição do campo 56 (DS_ETIOLOG) por AGENTE_ET1, AGENTE_ET2 e AGENTE_ET3, e do campo 57 (DS_ALICAUS) por ALIMENTO_C, conforme a Nota Técnica nº 45/2024-CGZV/DEDT/SVSA/MS",
+      "orgao": "Ministério da Saúde / SVSA",
+      "data": "2024 (Nota Técnica nº 45/2024). Pacote de documentação do TAB_SINAN (Docs_TAB_SINAN/Documentação/AGRAVOS), baixado pelo Rubens do site do DATASUS (informação dele, 13/11/2026)",
+      "arquivo": "docs/fontes/surto-dta/AJUSTE-DICIONARIO-DE-DADOS-DA-FICHA-DE-SURTO-DTA.pdf"
+    },
+    "SINANNET_SDTA": {
+      "documento": "Definições do TabWin para Surto de DTA (DTANet.def) e tabelas de conversão do mesmo pacote (OCORRENCIA.CNV, MODOTRANS.CNV, MODOIND.CNV, Locproducao.cnv, sim_nao.cnv, Confdescsurto.cnv)",
+      "orgao": "Ministério da Saúde / GT-Sinan / DATASUS",
+      "data": "Pacote TAB_SINANNET baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS; MODOTRANS, MODOIND e Locproducao revisados pela UT-Sinan em 2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/DTANet.def"
+    },
+    "NOTIF2018": {
+      "documento": "Dicionário de Dados – Sinan NET – versão 5.0 – Notificação Individual (campos 1 a 30, campos internos e Anexo I)",
+      "orgao": "Ministério da Saúde / SVS / GT-Sinan",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    },
+    "IBGE_DTB2023": {
+      "documento": "Divisão Territorial Brasileira – relatório de municípios (DTB 2023)",
+      "orgao": "IBGE",
+      "data": "DTB 2023, conforme informado pelo Rubens; o cabeçalho do arquivo diz 'DATA BASE: 22/11/2024'",
+      "arquivo": "docs/fontes/tabelas-apoio/RELATORIO_DTB_BRASIL_MUNICIPIO.xls"
+    },
+    "DATASUS_MUNICIPIOS": {
+      "documento": "Tabela de municípios do DATASUS (tb_municip.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/tb_municip.csv"
+    },
+    "DATASUS_REGSAUD": {
+      "documento": "Relação município × região de saúde (rl_municip_regsaud.csv) e tabela de regiões de saúde (tb_regsaud.csv)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br",
+      "arquivo": "docs/fontes/tabelas-apoio/rl_municip_regsaud.csv; docs/fontes/tabelas-apoio/tb_regsaud.csv"
+    },
+    "CNES": {
+      "documento": "Cadastro Nacional de Estabelecimentos de Saúde – cadastro geral do Brasil (CADGERBR.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/; cabeçalho do DBF com data 15/10/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CADGERBR.dbf (fora do Git)"
+    },
+    "CBO": {
+      "documento": "Classificação Brasileira de Ocupações – CBO 2002 (CBO_02.dbf, pacote TAB_CNES)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixado pelo Rubens em 01/11/2026 de https://datasus.saude.gov.br/transferencia-de-arquivos/",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_CNES/DBF/CBO_02.dbf (fora do Git)"
+    },
+    "MS_MACRORREGIOES": {
+      "documento": "Planilha de regiões e macrorregiões de saúde do painel \"Macrorregiões\" (SEIDIGI/DEMAS), com dados do DGIP/SE/MS",
+      "orgao": "Ministério da Saúde",
+      "data": "Painel atualizado em 02/11/2026 às 06:00:22, conforme o Rubens; baixado pelo Rubens em 02/11/2026",
+      "arquivo": "docs/fontes/tabelas-apoio/Regionais/4caf4b19-1dc1-4980-9dbf-f7396f2851d9.xlsx"
+    },
+    "SINANNET_OCUPA": {
+      "documento": "Tabela de ocupações do Sinan NET (OCUPANET.DBF, pacote TAB_SINANNET do TabWin); o LeishvisNET.def do mesmo pacote (GT-Sinan/MS) lê ID_OCUPA_N por ela",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Pacote baixado pelo Rubens em 15/11/2026 da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); cabeçalho do DBF com data 20/05/2019",
+      "arquivo": "docs/fontes/tabelas-apoio/TAB_SINANNET/OCUPANET.DBF; docs/fontes/tabelas-apoio/TAB_SINANNET/LeishvisNET.def"
+    },
+    "CID10_TABWIN": {
+      "documento": "Tabelas de conversão da CID-10 para o TabWin, versão 2019 (CID10_01.CNV a CID10_22.CNV)",
+      "orgao": "Ministério da Saúde / DATASUS",
+      "data": "Baixadas pelo Rubens da página de transferência de arquivos do DATASUS (https://datasus.saude.gov.br/transferencia-de-arquivos/); arquivos de 2025",
+      "arquivo": "docs/fontes/tabelas-apoio/CNVS CID10 v2019/"
+    }
+  },
+  "tabelas": {
+    "ibge_municipios": {
+      "arquivo": "tabelas/ibge-municipios.json",
+      "fonte": "IBGE_DTB2023"
+    },
+    "municipios_datasus": {
+      "arquivo": "tabelas/municipios-datasus.json",
+      "fonte": "DATASUS_MUNICIPIOS"
+    },
+    "regioes_saude": {
+      "arquivo": "tabelas/regioes-saude.json",
+      "fonte": "DATASUS_REGSAUD"
+    },
+    "cnes": {
+      "arquivo": "tabelas/cnes.json.gz",
+      "fonte": "CNES",
+      "completar_zeros": 7
+    },
+    "cbo": {
+      "arquivo": "tabelas/cbo.json",
+      "fonte": "CBO"
+    },
+    "macrorregioes_saude": {
+      "arquivo": "tabelas/macrorregioes-saude.json",
+      "fonte": "MS_MACRORREGIOES"
+    },
+    "ocupacoes_sinan": {
+      "arquivo": "tabelas/ocupacoes-sinan.json",
+      "fonte": "SINANNET_OCUPA"
+    }
+  },
+  "listas": {
+    "sn9_texto": [
+      {
+        "codigos": [
+          "1",
+          "Sim"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2",
+          "Não",
+          "NÆo",
+          "NÃ£o"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9",
+          "Ignorado"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "sn9": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Sim"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Não"
+      },
+      {
+        "codigos": [
+          "9"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ],
+    "horas_dias": [
+      {
+        "codigos": [
+          "1"
+        ],
+        "rotulo": "Horas"
+      },
+      {
+        "codigos": [
+          "2"
+        ],
+        "rotulo": "Dias"
+      }
+    ],
+    "local_producao": [
+      {
+        "codigos": [
+          "01",
+          "1"
+        ],
+        "rotulo": "Ambulantes"
+      },
+      {
+        "codigos": [
+          "02",
+          "2"
+        ],
+        "rotulo": "Comemorações"
+      },
+      {
+        "codigos": [
+          "03",
+          "3"
+        ],
+        "rotulo": "Creche / Escola"
+      },
+      {
+        "codigos": [
+          "04",
+          "4"
+        ],
+        "rotulo": "Hospital / Unidade de Saúde"
+      },
+      {
+        "codigos": [
+          "05",
+          "5"
+        ],
+        "rotulo": "Indústria"
+      },
+      {
+        "codigos": [
+          "06",
+          "6"
+        ],
+        "rotulo": "Lanchonete / Confeitaria / Padaria"
+      },
+      {
+        "codigos": [
+          "07",
+          "7"
+        ],
+        "rotulo": "Produção Agropecuária"
+      },
+      {
+        "codigos": [
+          "08",
+          "8"
+        ],
+        "rotulo": "Refeitório"
+      },
+      {
+        "codigos": [
+          "09",
+          "9"
+        ],
+        "rotulo": "Residência"
+      },
+      {
+        "codigos": [
+          "10"
+        ],
+        "rotulo": "Restaurante"
+      },
+      {
+        "codigos": [
+          "11"
+        ],
+        "rotulo": "Outros"
+      },
+      {
+        "codigos": [
+          "99"
+        ],
+        "rotulo": "Ignorado"
+      }
+    ]
+  },
+  "derivadas": [
+    {
+      "nome": "REGSAUD_NOT",
+      "rotulo": "Região de saúde de notificação (DATASUS)",
+      "de": "ID_MUNICIP",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de notificação. Não é a regional do Sinan (ID_REGIONA)."
+    },
+    {
+      "nome": "REGSAUD_OCO",
+      "rotulo": "Região de saúde de ocorrência (DATASUS)",
+      "de": "ID_MUNI_RE",
+      "tabela": "regioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (01/11/2026): calculada pelo município de ocorrência (ID_MUNI_RE)."
+    },
+    {
+      "nome": "MACSAUD_NOT",
+      "rotulo": "Macrorregião de saúde de notificação (Ministério da Saúde)",
+      "de": "ID_MUNICIP",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_REGIONA",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de notificação, pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "MACSAUD_OCO",
+      "rotulo": "Macrorregião de saúde de ocorrência (Ministério da Saúde)",
+      "de": "ID_MUNI_RE",
+      "tabela": "macrorregioes_saude",
+      "depois_de": "ID_RG_RESI",
+      "observacao": "Coluna extra, pedida pelo Rubens (02/11/2026): calculada pelo município de ocorrência (ID_MUNI_RE), pela planilha de macrorregiões do Ministério da Saúde. Sem a macrorregião interestadual."
+    },
+    {
+      "nome": "SEM_PRI_CALC",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas (calculada pela data dos primeiros sintomas)",
+      "de": "DT_SIN_PRI",
+      "calculo": "semana_epidemiologica",
+      "depois_de": "SEM_PRI",
+      "observacao": "Coluna extra (regra do Rubens, 18/11/2026, para semanas que não vêm no arquivo): semana epidemiológica (AAAASS) calculada da data dos primeiros sintomas do 1º caso, pelo calendário epidemiológico (semana de domingo a sábado; a semana 1 é a que contém 4 de janeiro). Regra conferida contra cerca de 2,5 milhões de semanas gravadas pelo Sinan nos arquivos públicos, todas iguais. A coluna SEM_PRI continua como veio."
+    }
+  ],
+  "colunas": [
+    {
+      "nome": "TP_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 1, campo 1",
+      "rotulo": "Tipo de notificação",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Negativa"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Individual"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Surto"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Agregado"
+        }
+      ],
+      "observacao": "Nos arquivos de surto de DTA vem sempre 3 (Surto). A ficha só tem \"3 - Surto\"."
+    },
+    {
+      "nome": "NU_NOTIFIC",
+      "fonte": "DICSDTA",
+      "local": "p. 1, campo de nº da notificação",
+      "rotulo": "Número da notificação",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_AGRAVO",
+      "fonte": "DICSDTA",
+      "local": "p. 1, campo 2",
+      "rotulo": "Agravo (CID-10)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "A08"
+          ],
+          "rotulo": "Infecções intestinais virais, outras e as não especificadas",
+          "fonte": "CID10_TABWIN",
+          "local": "A08 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A080",
+            "A08.0"
+          ],
+          "rotulo": "Enterite por rotavírus",
+          "fonte": "CID10_TABWIN",
+          "local": "A08.0 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A084",
+            "A08.4"
+          ],
+          "rotulo": "Infecção intestinal devida a vírus não especificado",
+          "fonte": "CID10_TABWIN",
+          "local": "A08.4 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A09"
+          ],
+          "rotulo": "Outras gastroenterites e colites de origem infecciosa e as não especificadas",
+          "fonte": "CID10_TABWIN",
+          "local": "A09 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B571",
+            "B57.1"
+          ],
+          "rotulo": "Forma aguda da doença de Chagas, sem comprometimento cardíaco",
+          "fonte": "CID10_TABWIN",
+          "local": "B57.1 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "T659",
+            "T65.9"
+          ],
+          "rotulo": "Efeito tóxico de substância não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "T65.9 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B19"
+          ],
+          "rotulo": "Hepatite viral não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "B19 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A051",
+            "A05.1"
+          ],
+          "rotulo": "Botulismo",
+          "fonte": "CID10_TABWIN",
+          "local": "A05.1 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B58"
+          ],
+          "rotulo": "Toxoplasmose",
+          "fonte": "CID10_TABWIN",
+          "local": "B58 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B15"
+          ],
+          "rotulo": "Hepatite aguda A",
+          "fonte": "CID10_TABWIN",
+          "local": "B15 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B09"
+          ],
+          "rotulo": "Infecção viral não especificada caracterizada por lesões da pele e membranas mucosas",
+          "fonte": "CID10_TABWIN",
+          "local": "B09 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A05"
+          ],
+          "rotulo": "Outras intoxicações alimentares bacterianas, não classificadas em outra parte",
+          "fonte": "CID10_TABWIN",
+          "local": "A05 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "H10"
+          ],
+          "rotulo": "Conjuntivite",
+          "fonte": "CID10_TABWIN",
+          "local": "H10 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A279",
+            "A27.9"
+          ],
+          "rotulo": "Leptospirose não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "A27.9 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A009",
+            "A00.9"
+          ],
+          "rotulo": "Cólera não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "A00.9 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B01"
+          ],
+          "rotulo": "Varicela [Catapora]",
+          "fonte": "CID10_TABWIN",
+          "local": "B01 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A369",
+            "A36.9"
+          ],
+          "rotulo": "Difteria não especificada",
+          "fonte": "CID10_TABWIN",
+          "local": "A36.9 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "A90"
+          ],
+          "rotulo": "Dengue [dengue clássico]  >> A97",
+          "fonte": "CID10_TABWIN",
+          "local": "A90 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B084",
+            "B08.4"
+          ],
+          "rotulo": "Estomatite vesicular devida a enterovírus com exantema",
+          "fonte": "CID10_TABWIN",
+          "local": "B08.4 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "B019",
+            "B01.9"
+          ],
+          "rotulo": "Varicela sem complicação",
+          "fonte": "CID10_TABWIN",
+          "local": "B01.9 na tabela CID-10 do projeto"
+        },
+        {
+          "codigos": [
+            "R699"
+          ],
+          "rotulo": "Causas desconhecidas e não especificadas de morbidade",
+          "fonte": "CID10_TABWIN",
+          "local": "R69 na tabela CID-10 do projeto (R699 tratado como R69, decisão do Rubens)"
+        }
+      ],
+      "observacao": "O DICSDTA descreve \"Código CID-10 e Síndromes\"; ao exportar, o ponto é retirado. Nos arquivos de 2022 a 2025 aparecem 22 códigos diferentes (sobretudo A08 e A09). Nomes da CID-10 (tabela do TabWin), como o Rubens decidiu na meningite. R699 não existe na CID-10 (R69 não tem subcategorias) e é lido como R69, \"Causas desconhecidas e não especificadas de morbidade\" (decisão do Rubens, 19/11/2026). N199 também não existe na CID-10 e fica como veio, destacado e nas Inconsistências (decisão do Rubens, 19/11/2026). Código novo, que não estiver na lista, também fica como veio, destacado."
+    },
+    {
+      "nome": "DT_NOTIFIC",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 3",
+      "rotulo": "Data da notificação",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica da notificação",
+      "tipo": "texto",
+      "observacao": "Formato AAAASS (ano e semana)."
+    },
+    {
+      "nome": "NU_ANO",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo interno",
+      "rotulo": "Ano da notificação",
+      "tipo": "texto"
+    },
+    {
+      "nome": "SG_UF_NOT",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 4",
+      "rotulo": "UF de notificação",
+      "tipo": "uf",
+      "observacao": "No arquivo vem o código numérico da UF (IBGE); o nome da UF vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNICIP",
+      "fonte": "NOTIF2018",
+      "local": "p. 2, campo 5",
+      "rotulo": "Município de notificação",
+      "tipo": "municipio"
+    },
+    {
+      "nome": "ID_REGIONA",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de notificação (código)",
+      "tipo": "codigo",
+      "observacao": "Tabela de regionais do Sinan não disponível: o código fica como veio. A tabela de regiões de saúde do DATASUS usa outra numeração (5 dígitos); por isso foi criada a coluna extra REGSAUD_NOT."
+    },
+    {
+      "nome": "ID_UNIDADE",
+      "fonte": "NOTIF2018",
+      "local": "p. 3, campo 6",
+      "rotulo": "Unidade de saúde notificadora (CNES)",
+      "tipo": "tabela",
+      "tabela": "cnes",
+      "observacao": "Nome do estabelecimento pela tabela do CNES. Códigos não encontrados ficam como vieram e vão para as Inconsistências."
+    },
+    {
+      "nome": "DT_SIN_PRI",
+      "fonte": "DICSDTA",
+      "local": "p. 2, campo 7",
+      "rotulo": "Data dos primeiros sintomas do 1º caso suspeito",
+      "tipo": "data"
+    },
+    {
+      "nome": "SEM_PRI",
+      "fonte": "DICSDTA",
+      "local": "p. 2, campo interno",
+      "rotulo": "Semana epidemiológica dos primeiros sintomas do caso índice",
+      "tipo": "texto",
+      "observacao": "Nos arquivos de 2022 a 2025 não vem a semana: em 2024 e 2025 vem \"0\" em todos os registros; em 2022 e 2023, em branco. A semana calculada pela data dos primeiros sintomas está na coluna extra logo depois (regra da semana calculada, 18/11/2026)."
+    },
+    {
+      "nome": "QT_TOTAL_C",
+      "fonte": "DICSDTA",
+      "local": "p. 2, campo 8",
+      "rotulo": "Nº de casos suspeitos/expostos até a data da notificação",
+      "tipo": "numero"
+    },
+    {
+      "nome": "CS_LOCAL",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 9",
+      "rotulo": "Local inicial de ocorrência do surto",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Residência"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Hospital / Unidade de Saúde"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Creche / Escola"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Asilo"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Outras Instituições (alojamento, trabalho)"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Restaurante / Padaria (similares)"
+        },
+        {
+          "codigos": [
+            "7"
+          ],
+          "rotulo": "Eventos"
+        },
+        {
+          "codigos": [
+            "8"
+          ],
+          "rotulo": "Casos dispersos no bairro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Casos dispersos pelo município"
+        },
+        {
+          "codigos": [
+            "10"
+          ],
+          "rotulo": "Casos dispersos em mais de um município"
+        },
+        {
+          "codigos": [
+            "11"
+          ],
+          "rotulo": "Outros"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 9 só comporta 1 a 11"
+      },
+      "observacao": "Rótulos da ficha (campo 9); o DICSDTA e a tabela OCORRENCIA.CNV do TabWin têm os mesmos códigos. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NM_LOCAL",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo 9",
+      "rotulo": "Local inicial de ocorrência do surto: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "SG_UF",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo 10",
+      "rotulo": "UF de ocorrência",
+      "tipo": "uf",
+      "observacao": "No surto, o campo 10 é a UF de ocorrência do surto (DICSDTA). No arquivo vem o código numérico da UF; o nome vem da tabela do IBGE."
+    },
+    {
+      "nome": "ID_MUNI_RE",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo 11",
+      "rotulo": "Município de ocorrência",
+      "tipo": "municipio",
+      "observacao": "No surto, o campo 11 é o município de ocorrência do surto (DICSDTA)."
+    },
+    {
+      "nome": "ID_RG_RESI",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo interno",
+      "rotulo": "Regional de saúde de ocorrência",
+      "tipo": "tabela",
+      "observacao": "O DICSDTA descreve o código da regional de saúde do município de ocorrência, mas nos arquivos de 2022 a 2025 a coluna traz em todos os registros o código de 6 dígitos do município de ocorrência (ID_MUNI_RE). Por isso o código é traduzido pela região de saúde a que o município pertence (tabela de regiões de saúde do DATASUS), e o código original fica na coluna ao lado (decisão do Rubens, 19/11/2026). Código que não for de município sai como veio, destacado e nas Inconsistências.",
+      "tabela": "regioes_saude"
+    },
+    {
+      "nome": "ID_DISTRIT",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo 12",
+      "rotulo": "Distrito de ocorrência (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_BAIRRO",
+      "fonte": "DICSDTA",
+      "local": "p. 3, campo 13",
+      "rotulo": "Bairro (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NM_BAIRRO",
+      "fonte": "DICSDTA",
+      "local": "p. 3-4, campo 13",
+      "rotulo": "Nome do bairro",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_LOGRADO",
+      "fonte": "DICSDTA",
+      "local": "p. 3-4, campo 14",
+      "rotulo": "Logradouro (código)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NM_LOGRADO",
+      "fonte": "DICSDTA",
+      "local": "p. 3-4, campo 14",
+      "rotulo": "Descrição do logradouro",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_NUMERO",
+      "fonte": "DICSDTA",
+      "local": "p. 3-4, campo 15",
+      "rotulo": "Número do logradouro",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NM_COMPLEM",
+      "fonte": "DICSDTA",
+      "local": "p. 3-4, campo 16",
+      "rotulo": "Complemento",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_GEO1",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 17",
+      "rotulo": "Geo campo 1 (georreferenciamento)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_GEO2",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 18",
+      "rotulo": "Geo campo 2 (georreferenciamento)",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NM_REFEREN",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 19",
+      "rotulo": "Ponto de referência",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_CEP",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 20",
+      "rotulo": "CEP",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "DDD",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 21",
+      "rotulo": "DDD",
+      "tipo": "codigo",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "FONE",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 21",
+      "rotulo": "Telefone",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "CS_ZONA",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 22",
+      "rotulo": "Zona",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Urbana"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Rural"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Periurbana"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 22 só comporta 1, 2, 3 e 9"
+      },
+      "observacao": "Rótulos do DICSDTA (campo 22). Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ID_PAIS",
+      "fonte": "NOTIF2018",
+      "local": "p. 8, campo 30",
+      "rotulo": "País de residência (código)",
+      "tipo": "codigo",
+      "observacao": "Sem tabela compatível: o código fica como veio (pendência). A tabela_codigos_paises.xlsx usa outra numeração (Brasil = 10; o código 1 do arquivo não existe nela)."
+    },
+    {
+      "nome": "DT_DIGITA",
+      "fonte": "DICSDTA",
+      "local": "p. 1, campo interno",
+      "rotulo": "Data da digitação",
+      "tipo": "texto",
+      "observacao": "Nos arquivos de 2022 a 2025 não vem a data: em 2024 e 2025 vem \"0\" em todos os registros; em 2022 e 2023, em branco. Fica como veio (pendência)."
+    },
+    {
+      "nome": "DTTRANSUS",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023 a data vem como texto no formato americano (mês/dia/ano, por exemplo 7/18/2023), e é convertida para data nesse formato (decisão do Rubens, 19/11/2026; nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas). Em 2024 e 2025 vem como data (AAAAMMDD). Data com barras que não exista no calendário lida como mês/dia/ano vai para as Inconsistências.",
+      "mes_dia_ano": true
+    },
+    {
+      "nome": "DTTRANSDM",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da distrito municipal",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023 a data vem como texto no formato americano (mês/dia/ano, por exemplo 7/18/2023), e é convertida para data nesse formato (decisão do Rubens, 19/11/2026; nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas). Em 2024 e 2025 vem como data (AAAAMMDD). Data com barras que não exista no calendário lida como mês/dia/ano vai para as Inconsistências.",
+      "mes_dia_ano": true
+    },
+    {
+      "nome": "DTTRANSRM",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "texto",
+      "observacao": "Nos arquivos de 2022 a 2025 não vem a data: em 2024 e 2025 vem \"0\"; em 2022 e 2023, em branco. Fica como veio (pendência)."
+    },
+    {
+      "nome": "DTTRANSSM",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023 a data vem como texto no formato americano (mês/dia/ano, por exemplo 7/18/2023), e é convertida para data nesse formato (decisão do Rubens, 19/11/2026; nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas). Em 2024 e 2025 vem como data (AAAAMMDD). Data com barras que não exista no calendário lida como mês/dia/ano vai para as Inconsistências.",
+      "mes_dia_ano": true
+    },
+    {
+      "nome": "DTTRANSRS",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023 a data vem como texto no formato americano (mês/dia/ano, por exemplo 7/18/2023), e é convertida para data nesse formato (decisão do Rubens, 19/11/2026; nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas). Em 2024 e 2025 vem como data (AAAAMMDD). Data com barras que não exista no calendário lida como mês/dia/ano vai para as Inconsistências.",
+      "mes_dia_ano": true
+    },
+    {
+      "nome": "DTTRANSSE",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campos internos",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023 a data vem como texto no formato americano (mês/dia/ano, por exemplo 7/18/2023), e é convertida para data nesse formato (decisão do Rubens, 19/11/2026; nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas). Em 2024 e 2025 vem como data (AAAAMMDD). Data com barras que não exista no calendário lida como mês/dia/ano vai para as Inconsistências.",
+      "mes_dia_ano": true
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campo interno",
+      "rotulo": "Número do lote vertical",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "fonte": "DICSDTA",
+      "local": "p. 5-6, campo interno",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "DT_INVEST",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 24",
+      "rotulo": "Data da investigação",
+      "tipo": "data"
+    },
+    {
+      "nome": "CS_TRANS",
+      "fonte": "DICSDTA",
+      "local": "p. 4, campo 25",
+      "rotulo": "Modo provável da transmissão",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Direta (pessoa a pessoa)"
+        },
+        {
+          "codigos": [
+            "2",
+            "Indireta"
+          ],
+          "rotulo": "Indireta (veículo comum ou vetor)"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 25 só comporta 1, 2 e 9"
+      },
+      "observacao": "Rótulos do DICSDTA e da ficha (campo 25). Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Nos arquivos de 2022 a 2025 vem sempre \"Indireta\" ou 2. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TP_INDIRET",
+      "fonte": "DICSDTA",
+      "local": "p. 5, campo 26",
+      "rotulo": "Se indireta, veículo de transmissão provável",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1",
+            "Alimento/ gua",
+            "Alimento/Ã¡gua"
+          ],
+          "rotulo": "Alimento/água"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Recursos hídricos contaminados (poço, rio, reservatório de água)"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Vetor"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Produto (medicamentos, agrotóxico, imunobiológicos, sangue, etc.)"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Fômite (faca, lençóis, etc.)"
+        },
+        {
+          "codigos": [
+            "6"
+          ],
+          "rotulo": "Outro"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 26 só comporta 1 a 6 e 9"
+      },
+      "observacao": "Rótulos do DICSDTA (campo 26); a ficha só mostra \"1 - Alimento/Água\". Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Em 2022 e 2023 o texto vem \"Alimento/ gua\" (o \"Á\" virou um espaço especial); em 2024, \"Alimento/Ã¡gua\". Nos arquivos de 2022 a 2025 vem sempre alimento/água. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "CS_VEICULO",
+      "fonte": "DICSDTA",
+      "local": "p. 5, campo 26",
+      "rotulo": "Se indireta, veículo de transmissão provável: outro (especificar)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "DS_OBS",
+      "fonte": "DICSDTA",
+      "local": "p. 5",
+      "rotulo": "Observações",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "TP_LOCAL",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 38",
+      "rotulo": "Local de ingestão",
+      "tipo": "categorico",
+      "lista": "local_producao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 38 só comporta 01 a 11 e 99"
+      },
+      "observacao": "Rótulos da ficha (campo 38), iguais aos do campo 37. Nenhum documento dá o nome da coluna do campo 38 (o DICSDTA e o DTANet.def não citam TP_LOCAL); a ligação, pelos códigos e pela posição no arquivo, foi confirmada pelo Rubens pela ficha (19/11/2026). O arquivo grava o código com dois dígitos (01 a 11); a forma sem o zero também entra, como na escolaridade e na meningite (regra do Rubens). O \"0\" (1 registro) e o \"8\" (1 registro, forma sem zero) aparecem em 2023. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_ENTR",
+      "fonte": "DICSDTA",
+      "local": "p. 6, campo 27",
+      "rotulo": "Número de entrevistados",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_ENT_DOE",
+      "fonte": "DICSDTA",
+      "local": "p. 6, campo 28",
+      "rotulo": "Número de doentes entrevistados",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_TOT",
+      "fonte": "DICSDTA",
+      "local": "p. 6, campo 29",
+      "rotulo": "Número total de doentes",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_TOT_HOS",
+      "fonte": "DICSDTA",
+      "local": "p. 6, campo 30",
+      "rotulo": "Número total de hospitalizados",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_OBITO",
+      "fonte": "DICSDTA",
+      "local": "p. 7, campo 31",
+      "rotulo": "Número de óbitos",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_1_M_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, < 1 ano",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_1_4_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, 1 a 4 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_5_9_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, 5 a 9 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_10_19_M",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, 10 a 19 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_20_49_N",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, 20 a 49 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_50_M_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, 50 anos e mais",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_IGRA_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, idade ignorada",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_F_TOT_N",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: masculino, total",
+      "tipo": "numero",
+      "observacao": "Apesar do \"F\" no nome, é o total do sexo masculino: o DTANet.def do TabWin traz \"Nº Masc. Total, NU_F_TOT_N\"."
+    },
+    {
+      "nome": "NU_1_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, < 1 ano",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU1_4_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, 1 a 4 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU5_9_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, 5 a 9 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU10_19_N",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, 10 a 19 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_20_49_F",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, 20 a 49 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_50_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, 50 anos e mais",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_IG_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, idade ignorada",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_TO_F_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: feminino, total",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_1_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, < 1 ano",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_1_4_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, 1 a 4 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_5_9_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, 5 a 9 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_10_19IG",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, 10 a 19 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_20_49IG",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, 20 a 49 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_50_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, 50 anos e mais",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_IG_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, idade ignorada",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_TOT_IGN",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: sexo ignorado, total",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_1_TOT_N",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, < 1 ano",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_1_4_TOT",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, 1 a 4 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_5_9_TOT",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, 5 a 9 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_10_19",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, 10 a 19 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_20_49",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, 20 a 49 anos",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_50_TOT",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, 50 anos e mais",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_IGN_NU",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, idade ignorada",
+      "tipo": "numero",
+      "observacao": "Ligação confirmada pelo DTANet.def do TabWin."
+    },
+    {
+      "nome": "NU_F_TOT",
+      "fonte": "DICSDTA",
+      "local": "p. 7-10, campo 32",
+      "rotulo": "Doentes por faixa etária e sexo: total, total",
+      "tipo": "numero",
+      "observacao": "Total geral (todas as faixas e sexos). O DTANet.def do TabWin não lista esta coluna; a ligação segue a ordem do DICSDTA."
+    },
+    {
+      "nome": "NU_NAUSE_P",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com náuseas",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_VOMTO_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com vômitos",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_DIARR_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com diarreia",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_CEFAL_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com cefaleia",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_ABDOM_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com dor abdominal",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_NEURO_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com neurológicos",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_OUTRO_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com outros",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_FEBRE_N",
+      "fonte": "DICSDTA",
+      "local": "p. 10-11, campo 33",
+      "rotulo": "Sinais e sintomas: nº de doentes com febre",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_INCUB_M",
+      "fonte": "DICSDTA",
+      "local": "p. 11-12, campo 34",
+      "rotulo": "Período de incubação mínimo",
+      "tipo": "numero",
+      "observacao": "Número em horas ou em dias, conforme a coluna seguinte."
+    },
+    {
+      "nome": "ST_INCUB_M",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 34",
+      "rotulo": "Período de incubação mínimo: unidade",
+      "tipo": "categorico",
+      "lista": "horas_dias",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 34 só comporta 1 e 2"
+      },
+      "observacao": "A ficha (campo 34) escreve \"1 - Horas\" e \"2 - Dias\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "MAX_INC",
+      "fonte": "DICSDTA",
+      "local": "p. 11-12, campo 35",
+      "rotulo": "Período de incubação máximo",
+      "tipo": "numero",
+      "observacao": "Número em horas ou em dias, conforme a coluna seguinte."
+    },
+    {
+      "nome": "MAX_ST_INC",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 35",
+      "rotulo": "Período de incubação máximo: unidade",
+      "tipo": "categorico",
+      "lista": "horas_dias",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 35 só comporta 1 e 2"
+      },
+      "observacao": "A ficha (campo 35) escreve \"1 - Horas\" e \"2 - Dias\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_INC_ME",
+      "fonte": "DICSDTA",
+      "local": "p. 11-12, campo 36",
+      "rotulo": "Período de incubação (mediana)",
+      "tipo": "numero",
+      "observacao": "Número em horas ou em dias, conforme a coluna seguinte."
+    },
+    {
+      "nome": "ST_INC_ME",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 36",
+      "rotulo": "Período de incubação (mediana): unidade",
+      "tipo": "categorico",
+      "lista": "horas_dias",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 36 só comporta 1 e 2"
+      },
+      "observacao": "A ficha (campo 36) escreve \"1 - Horas\" e \"2 - Dias\". Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "TP_PRO_PRE",
+      "fonte": "FICHASDTA",
+      "local": "p. 1, campo 37",
+      "rotulo": "Local de produção/preparação",
+      "tipo": "categorico",
+      "lista": "local_producao",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 37 só comporta 01 a 11 e 99"
+      },
+      "observacao": "Rótulos da ficha (campo 37); o DICSDTA e a tabela Locproducao.cnv do TabWin (2019) têm os mesmos códigos. O arquivo grava o código com dois dígitos (01 a 11); a forma sem o zero também entra, como na escolaridade e na meningite (regra do Rubens). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DS_LO_PROD",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 37",
+      "rotulo": "Local de produção/preparação: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "ST_IMPRO",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: matéria-prima imprópria",
+      "tipo": "categorico",
+      "lista": "sn9_texto",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "Categorias do DICSDTA e da ficha (campo 39): 1 - Sim, 2 - Não, 9 - Ignorado. Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ST_IMPRO_",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: matéria-prima imprópria",
+      "tipo": "categorico",
+      "lista": "sn9_texto",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "É a mesma coluna ST_IMPRO, que no arquivo de 2023 (SDTABR23) vem com o nome ST_IMPRO_. Categorias do DICSDTA e da ficha (campo 39): 1 - Sim, 2 - Não, 9 - Ignorado. Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ST_INAD",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: conservação inadequada",
+      "tipo": "categorico",
+      "lista": "sn9_texto",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "Categorias do DICSDTA e da ficha (campo 39): 1 - Sim, 2 - Não, 9 - Ignorado. Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ST_MANIP",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: manipulação/preparação inadequada",
+      "tipo": "categorico",
+      "lista": "sn9_texto",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "Categorias do DICSDTA e da ficha (campo 39): 1 - Sim, 2 - Não, 9 - Ignorado. Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "ST_F_OUTRO",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: outros",
+      "tipo": "categorico",
+      "lista": "sn9_texto",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 39 só comporta 1, 2 e 9"
+      },
+      "observacao": "Categorias do DICSDTA e da ficha (campo 39): 1 - Sim, 2 - Não, 9 - Ignorado. Em 2022 a 2024 o arquivo traz o texto já escrito, às vezes com o acento estragado pela conversão de codificação (\"NÆo\" em 2022 e 2023, \"NÃ£o\" em 2024); em 2025 traz o código. Cada forma que aparece no arquivo entra como mais um código da mesma categoria (plano aprovado pelo Rubens, 19/11/2026). Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DS_F_OUTRO",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 39",
+      "rotulo": "Fatores causais: outros (especificar)",
+      "tipo": "texto",
+      "observacao": "Texto livre; fica como veio."
+    },
+    {
+      "nome": "ST_A_CLINI",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 40",
+      "rotulo": "Coletadas amostras clínicas",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 40 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_A_CLINI",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 41",
+      "rotulo": "Amostras clínicas: nº de amostras coletadas",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_A_CLINI",
+      "fonte": "DICSDTA",
+      "local": "p. 12, campo 42",
+      "rotulo": "Amostras clínicas: resultado 1 (principal achado)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "O DICSDTA descreve: nome do agente etiológico encontrado, por extenso; se não houver agente isolado, \"negativo\". Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_CLI_NUM",
+      "fonte": "DICSDTA",
+      "local": "p. 13, campo 43",
+      "rotulo": "Amostras clínicas: nº de positivas (resultado 1)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_RESU_2",
+      "fonte": "DICSDTA",
+      "local": "p. 13, campo 44",
+      "rotulo": "Amostras clínicas: resultado 2 (outro achado)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "O DICSDTA descreve: nome do agente etiológico encontrado, por extenso; se não houver agente isolado, \"negativo\". Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_NUM_2",
+      "fonte": "DICSDTA",
+      "local": "p. 13, campo 45",
+      "rotulo": "Amostras clínicas: nº de positivas (resultado 2)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "NU_RESU_3",
+      "fonte": "DICSDTA",
+      "local": "p. 13, campo 46",
+      "rotulo": "Amostras clínicas: resultado 3 (outro achado)",
+      "tipo": "texto",
+      "observacao": "O DICSDTA põe NU_RESU_3 no campo 46 (resultado 3, outro achado: nome do agente etiológico por extenso, ou \"negativo\"; texto). Nos arquivos de 2022 a 2025 a coluna só traz números (0 a 9), que saem como \"Inconsistência/Preenchido erroneamente\", destacados e nas Inconsistências; texto sai como veio, com os acentos estragados consertados (decisão do Rubens, 19/11/2026).",
+      "corrigir_acentos": true,
+      "numero_fora_do_campo": {
+        "rotulo": "Inconsistência/Preenchido erroneamente",
+        "motivo": "O campo 46 é texto (nome do agente etiológico ou \"negativo\"); número não cabe"
+      }
+    },
+    {
+      "nome": "NU_NUM_3",
+      "fonte": "DICSDTA",
+      "local": "p. 13, campo 47",
+      "rotulo": "Amostras clínicas: nº de positivas (resultado 3)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "ST_ALIMEN",
+      "fonte": "DICSDTA",
+      "local": "p. 14, campo 48",
+      "rotulo": "Coletadas amostras de alimentos",
+      "tipo": "categorico",
+      "lista": "sn9",
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 48 só comporta 1, 2 e 9"
+      },
+      "observacao": "Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "NU_A_ALIM",
+      "fonte": "DICSDTA",
+      "local": "p. 14, campo 49",
+      "rotulo": "Amostras de alimentos: nº de amostras coletadas",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_REST1",
+      "fonte": "DICSDTA",
+      "local": "p. 14, campo 50",
+      "rotulo": "Amostras de alimentos: resultado 1 (principal achado)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "O DICSDTA descreve: nome do agente etiológico encontrado, por extenso; se não houver agente isolado, \"negativo\". Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_A_NUM_1",
+      "fonte": "DICSDTA",
+      "local": "p. 14, campo 51",
+      "rotulo": "Amostras de alimentos: nº de positivas (resultado 1)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_A_RES_2",
+      "fonte": "DICSDTA",
+      "local": "p. 14, campo 52",
+      "rotulo": "Amostras de alimentos: resultado 2 (outro achado)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "O DICSDTA descreve: nome do agente etiológico encontrado, por extenso; se não houver agente isolado, \"negativo\". Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_A_NUM_2",
+      "fonte": "DICSDTA",
+      "local": "p. 15, campo 53",
+      "rotulo": "Amostras de alimentos: nº de positivas (resultado 2)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_RES_3",
+      "fonte": "DICSDTA",
+      "local": "p. 15, campo 54",
+      "rotulo": "Amostras de alimentos: resultado 3 (outro achado)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "O DICSDTA descreve: nome do agente etiológico encontrado, por extenso; se não houver agente isolado, \"negativo\". Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "NU_A_NUM_3",
+      "fonte": "DICSDTA",
+      "local": "p. 15, campo 55",
+      "rotulo": "Amostras de alimentos: nº de positivas (resultado 3)",
+      "tipo": "numero"
+    },
+    {
+      "nome": "DS_ETIOLOG",
+      "fonte": "DICSDTA",
+      "local": "p. 15, campo 56",
+      "rotulo": "Agente etiológico do surto (campo antigo)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "Campo substituído por AGENTE_ET1 a AGENTE_ET3 pela Nota Técnica nº 45/2024. Os acentos estragados são consertados, como no agente etiológico. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "DS_ALICAUS",
+      "fonte": "DICSDTA",
+      "local": "p. 16, campo 57",
+      "rotulo": "Alimento causador do surto (campo antigo)",
+      "tipo": "texto",
+      "corrigir_acentos": true,
+      "observacao": "Campo substituído por ALIMENTO_C pela Nota Técnica nº 45/2024. Os acentos estragados são consertados, como no alimento causador. Não vem nos arquivos públicos do DATASUS (SDTABR22 a 25); incluída para arquivos exportados do próprio Sinan (decisão do Rubens, 19/11/2026)."
+    },
+    {
+      "nome": "CRITERIO",
+      "fonte": "FICHASDTA",
+      "local": "p. 2, campo 58",
+      "rotulo": "Critério de confirmação (referente ao agente etiológico)",
+      "tipo": "categorico",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Clínico-epidemiológico"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Laboratorial clínico"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Laboratorial bromatológico"
+        },
+        {
+          "codigos": [
+            "4"
+          ],
+          "rotulo": "Laboratorial clínico bromatológico"
+        },
+        {
+          "codigos": [
+            "5"
+          ],
+          "rotulo": "Inconclusivo"
+        }
+      ],
+      "fora_do_campo": {
+        "rotulo": "Inconsistência/Não Preenchido",
+        "motivo": "Código sem fonte oficial: o campo 58 só comporta 1 a 5"
+      },
+      "observacao": "Rótulos da ficha (campo 58); o DICSDTA e a tabela Confdescsurto.cnv do TabWin têm os mesmos códigos. Códigos que o campo não comporta saem como \"Inconsistência/Não Preenchido\" (regra geral do Rubens, 16/11/2026)."
+    },
+    {
+      "nome": "DT_ENCERRA",
+      "fonte": "DICSDTA",
+      "local": "p. 16, campo 59",
+      "rotulo": "Data do encerramento",
+      "tipo": "data",
+      "observacao": "Em 2022 e 2023, parte dos registros traz \"-0010101\" (297 registros), que não é data: sai como veio e vai para as Inconsistências."
+    },
+    {
+      "nome": "AGENTE_ET1",
+      "fonte": "AJUSTESDTA",
+      "local": "p. 1, campo 56",
+      "rotulo": "Agente etiológico do surto: primeiro agente",
+      "tipo": "texto",
+      "observacao": "Texto livre (nome do agente identificado nos resultados laboratoriais); os acentos estragados por conversão de codificação são consertados quando a forma do estrago é conhecida (por exemplo, \"Norov¡rus\" e \"µgua\" em 2022 e 2023, \"Ãgua\" e \"AÃ§aÃ­\" em 2024, viram \"Norovírus\", \"Água\" e \"Açaí\"); o que não se encaixar nessas formas fica como veio (decisão do Rubens, 19/11/2026; docs/requisitos.md, seção 6.2). Substitui DS_ETIOLOG pela Nota Técnica nº 45/2024.",
+      "corrigir_acentos": true
+    },
+    {
+      "nome": "AGENTE_ET2",
+      "fonte": "AJUSTESDTA",
+      "local": "p. 1, campo 56",
+      "rotulo": "Agente etiológico do surto: segundo agente",
+      "tipo": "texto",
+      "observacao": "Texto livre (nome do agente identificado nos resultados laboratoriais); os acentos estragados por conversão de codificação são consertados quando a forma do estrago é conhecida (por exemplo, \"Norov¡rus\" e \"µgua\" em 2022 e 2023, \"Ãgua\" e \"AÃ§aÃ­\" em 2024, viram \"Norovírus\", \"Água\" e \"Açaí\"); o que não se encaixar nessas formas fica como veio (decisão do Rubens, 19/11/2026; docs/requisitos.md, seção 6.2). Substitui DS_ETIOLOG pela Nota Técnica nº 45/2024.",
+      "corrigir_acentos": true
+    },
+    {
+      "nome": "AGENTE_ET3",
+      "fonte": "AJUSTESDTA",
+      "local": "p. 1, campo 56",
+      "rotulo": "Agente etiológico do surto: terceiro agente",
+      "tipo": "texto",
+      "observacao": "Texto livre (nome do agente identificado nos resultados laboratoriais); os acentos estragados por conversão de codificação são consertados quando a forma do estrago é conhecida (por exemplo, \"Norov¡rus\" e \"µgua\" em 2022 e 2023, \"Ãgua\" e \"AÃ§aÃ­\" em 2024, viram \"Norovírus\", \"Água\" e \"Açaí\"); o que não se encaixar nessas formas fica como veio (decisão do Rubens, 19/11/2026; docs/requisitos.md, seção 6.2). Substitui DS_ETIOLOG pela Nota Técnica nº 45/2024.",
+      "corrigir_acentos": true
+    },
+    {
+      "nome": "ALIMENTO_C",
+      "fonte": "AJUSTESDTA",
+      "local": "p. 1, campo 57",
+      "rotulo": "Alimento causador do surto",
+      "tipo": "texto",
+      "observacao": "Texto livre; os acentos estragados por conversão de codificação são consertados quando a forma do estrago é conhecida (por exemplo, \"Norov¡rus\" e \"µgua\" em 2022 e 2023, \"Ãgua\" e \"AÃ§aÃ­\" em 2024, viram \"Norovírus\", \"Água\" e \"Açaí\"); o que não se encaixar nessas formas fica como veio (decisão do Rubens, 19/11/2026; docs/requisitos.md, seção 6.2). Substitui DS_ALICAUS pela Nota Técnica nº 45/2024.",
+      "corrigir_acentos": true
+    }
+  ],
+  "pendencias": [
+    {
+      "coluna": "Campos vazios com bytes nulos (2022 e 2023)",
+      "descricao": "Resolvida (Rubens, 19/11/2026): valor feito só de bytes nulos (o caractere de código 0, forma dos arquivos de 2022 e 2023 gravarem o campo vazio) vale como campo em branco, como os asteriscos, com a quantidade na aba Resumo. Regra do programa, para todos os agravos (docs/requisitos.md, seção 6.2)."
+    },
+    {
+      "coluna": "Formas de texto e acentos estragados",
+      "descricao": "Resolvida (Rubens, 19/11/2026): cada forma de texto que aparece no arquivo (inclusive com o acento estragado) é mais um código da mesma categoria, e o rótulo sai na forma correta. Nos textos livres (agente etiológico, alimento causador e resultados das amostras), os acentos estragados de forma conhecida são consertados; formas que não se encaixam (por exemplo, \"AGLOMERAA-¿A-¿O\" e \"enteropatog+¬nica\" em 2025, em que a letra se perdeu) ficam como vieram."
+    },
+    {
+      "coluna": "Identificação do arquivo",
+      "descricao": "Resolvida (Rubens, 19/11/2026): o arquivo de surto é reconhecido pelo tipo de notificação (TP_NOT = 3, surto), já que a ficha é de surto."
+    },
+    {
+      "coluna": "ID_AGRAVO",
+      "descricao": "Resolvida (Rubens, 19/11/2026): nomes da CID-10 para os códigos que existem nela. R699 é lido como R69, \"Causas desconhecidas e não especificadas de morbidade\"; N199 fica como veio, destacado e nas Inconsistências."
+    },
+    {
+      "coluna": "ID_RG_RESI",
+      "descricao": "Resolvida (Rubens, 19/11/2026): como a coluna traz o código do município de ocorrência, ela é traduzida pela região de saúde a que o município pertence (tabela de regiões de saúde do DATASUS); o código original fica na coluna ao lado."
+    },
+    {
+      "coluna": "TP_LOCAL (local de ingestão)",
+      "descricao": "Resolvida (Rubens, 19/11/2026): TP_LOCAL é o campo 38 (local de ingestão), confirmado pela ficha."
+    },
+    {
+      "coluna": "NU_RESU_3",
+      "descricao": "Resolvida (Rubens, 19/11/2026): o campo 46 é texto (nome do agente ou \"negativo\"); número sai como \"Inconsistência/Preenchido erroneamente\", destacado e nas Inconsistências."
+    },
+    {
+      "coluna": "Datas em formato americano",
+      "descricao": "Resolvida (Rubens, 19/11/2026): as datas de transferência com barras são convertidas como mês/dia/ano (nos arquivos, o primeiro número nunca passa de 12 e o segundo passa em 270 datas, o que confirma o formato americano). Regra marcada só nessas colunas (DTTRANSUS, DTTRANSDM, DTTRANSSM, DTTRANSRS e DTTRANSSE)."
+    },
+    {
+      "coluna": "Campos sem valor (SEM_PRI, DT_DIGITA, DTTRANSRM)",
+      "descricao": "Resolvida (Rubens, 19/11/2026): ficam como vieram; para SEM_PRI há a semana calculada pela data dos primeiros sintomas."
+    },
+    {
+      "coluna": "ST_IMPRO_",
+      "descricao": "Resolvida (Rubens, 19/11/2026): ST_IMPRO e ST_IMPRO_ (nome da coluna no arquivo de 2023) entram com a mesma tradução."
+    },
+    {
+      "coluna": "Colunas do DICSDTA fora do arquivo",
+      "descricao": "Resolvida (Rubens, 19/11/2026): os campos do DICSDTA que não vêm no arquivo público entraram no dicionário (número da notificação, endereço do local, zona, observações, lotes, campos \"especificar\", resultados das amostras por extenso, DS_ETIOLOG e DS_ALICAUS), para que, se algum arquivo trouxer esses campos preenchidos, eles saiam no resultado."
+    }
+  ]
+}
