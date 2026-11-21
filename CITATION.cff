@@ -27,6 +27,9 @@ keywords:
   - dicionário de dados
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.24420018"
+    description: "DOI da versão 1.1.1 no Zenodo"
+  - type: doi
     value: "10.5281/zenodo.24245072"
     description: "DOI da versão 1.0.1 no Zenodo"
   - type: other

@@ -79,9 +79,9 @@ Relatórios: [testes](docs/relatorio-testes.md), [desempenho](docs/desempenho.md
 
 ## Como citar
 
-Os dados para citação estão em [CITATION.cff](CITATION.cff). O código está arquivado no Zenodo. O DOI geral, que aponta sempre para a versão mais recente, é [10.5281/zenodo.24245071](https://doi.org/10.5281/zenodo.24245071). DOIs de cada versão: 1.0.1 [10.5281/zenodo.24245072](https://doi.org/10.5281/zenodo.24245072).
+Os dados para citação estão em [CITATION.cff](CITATION.cff). O código está arquivado no Zenodo. O DOI geral, que aponta sempre para a versão mais recente, é [10.5281/zenodo.24245071](https://doi.org/10.5281/zenodo.24245071). DOIs de cada versão: 1.0.1 [10.5281/zenodo.24245072](https://doi.org/10.5281/zenodo.24245072); 1.1.1 [10.5281/zenodo.24420018](https://doi.org/10.5281/zenodo.24420018). A versão 1.1.0, substituída pela 1.1.1 no mesmo dia, não foi arquivada no Zenodo.
 
-SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.1.1. 2026. Zenodo. DOI: 10.5281/zenodo.24245071. Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.
+SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.1.1. 2026. Zenodo. DOI: 10.5281/zenodo.24420018. Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.
 
 ## Licença
 
