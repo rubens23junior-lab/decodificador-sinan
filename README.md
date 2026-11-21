@@ -2,7 +2,9 @@
 
 Ferramenta gratuita que recebe um arquivo público de notificações do SINAN, baixado do DATASUS, e devolve uma planilha com os códigos traduzidos para linguagem legível, conforme o dicionário de dados oficial. Todo o processamento acontece no navegador: os dados não saem do computador.
 
-**Versão 1.1.0** (21/11/2026). Autor: Rubens Araujo da Silva Junior.
+**Versão 1.1.1** (21/11/2026). Autor: Rubens Araujo da Silva Junior.
+
+A versão 1.1.1 muda só a escolha do agravo na tela: primeiro aparecem os grupos, e ao clicar num grupo aparecem os agravos dele. A decodificação e os dicionários são os mesmos da 1.1.0.
 
 A versão 1.1.0 passa de 5 para 28 agravos. O programa de decodificação é o mesmo da 1.0, com regras novas para situações que aparecem nos arquivos dos novos agravos (ver [requisitos, seção 6.2](docs/requisitos.md)). Os 5 agravos da 1.0 ganharam a busca do CNES com zeros à esquerda e as ocupações especiais do Sinan (como ESTUDANTE e DONA DE CASA, códigos 999991 e 999992), que não estão na CBO. A versão 1.0.0 é a registrada no INPI e descrita no artigo.
 
@@ -21,7 +23,7 @@ Cada dicionário foi transcrito das fontes oficiais de [docs/fontes](docs/fontes
 | Hepatites, meningite, tuberculose, hanseníase e tétano | Hepatites virais, Meningite (19/11/2026); Tuberculose (20/11/2026); Hanseníase, Tétano acidental, Tétano neonatal (16/11/2026) |
 | Violência e surtos | Violência interpessoal/autoprovocada (10/11/2026); Surto de doenças transmitidas por alimentos (DTA) (19/11/2026) |
 
-Na tela, os agravos aparecem como botões, nesses mesmos grupos.
+Na tela, aparecem primeiro esses grupos; ao clicar num grupo, aparecem os agravos dele.
 
 ## Validação
 
@@ -79,7 +81,7 @@ Relatórios: [testes](docs/relatorio-testes.md), [desempenho](docs/desempenho.md
 
 Os dados para citação estão em [CITATION.cff](CITATION.cff). O código está arquivado no Zenodo. O DOI geral, que aponta sempre para a versão mais recente, é [10.5281/zenodo.24245071](https://doi.org/10.5281/zenodo.24245071). DOIs de cada versão: 1.0.1 [10.5281/zenodo.24245072](https://doi.org/10.5281/zenodo.24245072).
 
-SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.1.0. 2026. Zenodo. DOI: 10.5281/zenodo.24245071. Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.
+SILVA JUNIOR, R. A. **Decodificador de notificações do SINAN**. Versão 1.1.1. 2026. Zenodo. DOI: 10.5281/zenodo.24245071. Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.
 
 ## Licença
 

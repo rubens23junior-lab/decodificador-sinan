@@ -86,11 +86,28 @@ fieldset { border: 1px solid var(--borda); border-radius: 6px; margin: 0 0 14px;
 legend { font-weight: 600; padding: 0 4px; }
 summary { cursor: pointer; }
 
-/* Escolha do agravo: botões por grupo */
+/* Escolha do agravo: primeiro os grupos; ao clicar, os agravos do grupo */
 #rotulo-agravo { margin: 0 0 8px; }
-.grupos-agravo { display: grid; gap: 12px; }
-.nome-grupo { margin: 0 0 6px; font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--suave); }
+.grupos-agravo { display: flex; flex-wrap: wrap; gap: 8px; }
+.botao-grupo {
+  font: inherit; font-size: 0.93rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 6px; border: 1px solid var(--borda); background: var(--campo); color: var(--texto);
+}
+.botao-grupo:hover { border-color: var(--destaque); }
+.botao-grupo:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+.botao-grupo.tem-escolhido { border-color: var(--destaque); }
+.botao-grupo.aberto { background: var(--destaque-suave); border-color: var(--destaque); font-weight: 600; }
+.conta-grupo {
+  font-size: 0.78rem; font-weight: 600; min-width: 20px; padding: 0 6px; border-radius: 10px; text-align: center;
+  background: var(--borda); color: var(--texto);
+}
+.agravos-do-grupo { margin-top: 10px; }
+.agravos-do-grupo .botoes-agravo:not([hidden]) {
+  padding: 12px; border: 1px solid var(--destaque); border-radius: 6px; background: var(--destaque-suave);
+}
+.agravo-escolhido { margin: 12px 0 0; }
 .botoes-agravo { display: flex; flex-wrap: wrap; gap: 6px; }
+.botoes-agravo[hidden] { display: none; }
 .botao-agravo {
   position: relative; margin: 0; padding: 6px 12px; border: 1px solid var(--borda); border-radius: 18px;
   background: var(--campo); cursor: pointer; font-size: 0.93rem; line-height: 1.3;

@@ -45,11 +45,24 @@ function agravoAtual() {
 }
 
 /** Botões de agravo, por grupo; o primeiro do primeiro grupo (dengue) já vem escolhido. */
+// Primeiro aparecem só os grupos (decisão do Rubens, 21/11/2026); ao clicar num
+// grupo, aparecem os agravos dele. Só um grupo fica aberto por vez.
 function montarBotoesAgravo() {
-  const caixa = $('grupos-agravo');
-  for (const grupo of agruparAgravos(Object.keys(AGRAVOS_INTERFACE))) {
-    const bloco = el('div', { className: 'grupo-agravo' });
-    const botoes = el('div', { className: 'botoes-agravo' });
+  const linhaGrupos = $('grupos-agravo');
+  const painel = $('agravos-do-grupo');
+  agruparAgravos(Object.keys(AGRAVOS_INTERFACE)).forEach((grupo, i) => {
+    const idPainel = `grupo-agravo-${i}`;
+    const botaoGrupo = el('button', { type: 'button', className: 'botao-grupo' });
+    botaoGrupo.dataset.grupo = idPainel;
+    botaoGrupo.setAttribute('aria-expanded', 'false');
+    botaoGrupo.setAttribute('aria-controls', idPainel);
+    botaoGrupo.append(el('span', { textContent: grupo.nome }), el('span', { className: 'conta-grupo', textContent: String(grupo.agravos.length) }));
+    botaoGrupo.addEventListener('click', () => abrirGrupo(idPainel));
+    linhaGrupos.append(botaoGrupo);
+
+    const botoes = el('div', { className: 'botoes-agravo', id: idPainel, hidden: true });
+    botoes.setAttribute('role', 'radiogroup');
+    botoes.setAttribute('aria-label', grupo.nome);
     for (const id of grupo.agravos) {
       const rotulo = el('label', { className: 'botao-agravo' });
       const radio = el('input', { type: 'radio', name: 'agravo', value: id });
@@ -57,18 +70,33 @@ function montarBotoesAgravo() {
       rotulo.append(radio, el('span', { textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome }));
       botoes.append(rotulo);
     }
-    bloco.append(el('p', { className: 'nome-grupo', textContent: grupo.nome }), botoes);
-    caixa.append(bloco);
+    painel.append(botoes);
+  });
+  escolherAgravo(painel.querySelector('input').value, { analisarDeNovo: false });
+}
+
+/** Abre os agravos de um grupo e fecha os outros. */
+function abrirGrupo(idPainel) {
+  for (const b of document.querySelectorAll('.botao-grupo')) {
+    const aberto = b.dataset.grupo === idPainel;
+    b.setAttribute('aria-expanded', String(aberto));
+    b.classList.toggle('aberto', aberto);
+    $(b.dataset.grupo).hidden = !aberto;
   }
-  escolherAgravo(caixa.querySelector('input').value, { analisarDeNovo: false });
 }
 
 function escolherAgravo(id, { analisarDeNovo = true } = {}) {
   estado.agravo = id;
+  let grupoDoEscolhido = null;
   for (const r of document.querySelectorAll('input[name="agravo"]')) {
     r.checked = r.value === id;
     r.parentElement.classList.toggle('escolhido', r.checked);
+    if (r.checked) grupoDoEscolhido = r.closest('.botoes-agravo').id;
   }
+  // O grupo do agravo escolhido fica marcado e aberto (também quando a troca vem do botão "Usar ...").
+  for (const b of document.querySelectorAll('.botao-grupo')) b.classList.toggle('tem-escolhido', b.dataset.grupo === grupoDoEscolhido);
+  if (grupoDoEscolhido) abrirGrupo(grupoDoEscolhido);
+  $('agravo-escolhido').replaceChildren('Agravo escolhido: ', el('strong', { textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome }));
   mostrarInfoDicionario();
   if (analisarDeNovo && estado.arquivo) analisar(estado.arquivo);
 }

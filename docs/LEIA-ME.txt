@@ -1,6 +1,6 @@
 DECODIFICADOR DE NOTIFICAÇÕES DO SINAN
 ======================================
-Versão 1.1.0 (21/11/2026). Autor: Rubens Araujo da Silva Junior.
+Versão 1.1.1 (21/11/2026). Autor: Rubens Araujo da Silva Junior.
 
 O que é
 -------
@@ -31,8 +31,8 @@ do DATASUS, está no arquivo "guia-de-uso.pdf", nesta pasta.
 
 Como usar
 ---------
-1. Clique no botão do agravo. Os 28 agravos estão separados por grupo
-   (arboviroses, HIV, sífilis...); veja "Agravos disponíveis", abaixo.
+1. Clique no grupo (arboviroses, HIV, sífilis...) e, depois, no agravo.
+   São 28 agravos; veja "Agravos disponíveis", abaixo.
 2. Escolha o arquivo: clique em "Escolher arquivo" ou arraste o arquivo para a
    área indicada. Formatos aceitos:
      - DBC: arquivos públicos do DATASUS
