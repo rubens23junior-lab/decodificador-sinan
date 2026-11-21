@@ -13,12 +13,12 @@
 
 <header class="topo">
   <div class="largura">
-    <p class="selo">Software livre · Versão 1.0.1</p>
+    <p class="selo">Software livre · Versão 1.1.1 · 28 agravos</p>
     <h1>Decodificador de notificações do SINAN</h1>
     <p class="chamada">Transforma os microdados públicos do SINAN, cheios de códigos e siglas, numa planilha que qualquer pessoa consegue ler. Tudo acontece no seu navegador: sem programação, sem instalação e sem enviar os dados para lugar nenhum.</p>
     <div class="botoes">
       <a class="botao principal" href="demo/">Testar agora, no navegador</a>
-      <a class="botao" href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.0.1/decodificador-sinan-1.0.1.zip">Baixar para usar sem internet</a>
+      <a class="botao" href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.1.1/decodificador-sinan-1.1.1.zip">Baixar para usar sem internet</a>
       <a class="botao" href="https://github.com/rubens23junior-lab/decodificador-sinan/blob/main/docs/guia-de-uso.pdf">Guia de uso (PDF)</a>
     </div>
   </div>
@@ -65,23 +65,68 @@
 
 <section aria-labelledby="t-agravos">
   <h2 id="t-agravos">Agravos cobertos</h2>
-  <p>Cada agravo tem um dicionário próprio, transcrito dos dicionários de dados e das fichas de investigação do SINAN e conferido linha por linha.</p>
+  <p>São 28 agravos. Cada um tem um dicionário próprio, transcrito dos dicionários de dados e das fichas de investigação do SINAN e conferido linha por linha.</p>
+  <h3 class="grupo-agravos">Arboviroses</h3>
   <ul class="agravos">
     <li><strong>Dengue</strong><span>121 colunas</span></li>
     <li><strong>Chikungunya</strong><span>121 colunas</span></li>
     <li><strong>Zika</strong><span>37 colunas</span></li>
-    <li><strong>Leishmaniose tegumentar americana</strong><span>73 colunas</span></li>
-    <li><strong>Leishmaniose visceral</strong><span>87 colunas</span></li>
   </ul>
-  <p class="nota">Outros agravos estão em preparação e entram nas próximas versões.</p>
+  <h3 class="grupo-agravos">Outras doenças transmitidas por vetores</h3>
+  <ul class="agravos">
+    <li><strong>Leishmaniose Tegumentar Americana</strong><span>73 colunas</span></li>
+    <li><strong>Leishmaniose Visceral</strong><span>87 colunas</span></li>
+    <li><strong>Doença de Chagas aguda</strong><span>108 colunas</span></li>
+    <li><strong>Malária</strong><span>50 colunas</span></li>
+    <li><strong>Febre maculosa</strong><span>101 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">Zoonoses e acidentes com animais</h3>
+  <ul class="agravos">
+    <li><strong>Leptospirose</strong><span>134 colunas</span></li>
+    <li><strong>Acidentes por animais peçonhentos</strong><span>78 colunas</span></li>
+    <li><strong>Atendimento antirrábico humano</strong><span>79 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">HIV</h3>
+  <ul class="agravos">
+    <li><strong>HIV em adulto</strong><span>78 colunas</span></li>
+    <li><strong>HIV em criança</strong><span>103 colunas</span></li>
+    <li><strong>HIV em criança exposta</strong><span>27 colunas</span></li>
+    <li><strong>HIV em gestante</strong><span>35 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">Sífilis</h3>
+  <ul class="agravos">
+    <li><strong>Sífilis adquirida</strong><span>27 colunas</span></li>
+    <li><strong>Sífilis em gestante</strong><span>32 colunas</span></li>
+    <li><strong>Sífilis congênita</strong><span>64 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">Toxoplasmoses</h3>
+  <ul class="agravos">
+    <li><strong>Toxoplasmose gestacional</strong><span>38 colunas</span></li>
+    <li><strong>Toxoplasmose congênita</strong><span>38 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">Hepatites, meningite, tuberculose, hanseníase e tétano</h3>
+  <ul class="agravos">
+    <li><strong>Hepatites virais</strong><span>88 colunas</span></li>
+    <li><strong>Meningite</strong><span>135 colunas</span></li>
+    <li><strong>Tuberculose</strong><span>105 colunas</span></li>
+    <li><strong>Hanseníase</strong><span>63 colunas</span></li>
+    <li><strong>Tétano acidental</strong><span>65 colunas</span></li>
+    <li><strong>Tétano neonatal</strong><span>84 colunas</span></li>
+  </ul>
+  <h3 class="grupo-agravos">Violência e surtos</h3>
+  <ul class="agravos">
+    <li><strong>Violência interpessoal/autoprovocada</strong><span>159 colunas</span></li>
+    <li><strong>Surto de doenças transmitidas por alimentos (DTA)</strong><span>131 colunas</span></li>
+  </ul>
+  <p class="nota">Na ferramenta, os agravos aparecem nesses mesmos grupos: primeiro o grupo, depois o agravo.</p>
 </section>
 
 <section aria-labelledby="t-testar">
   <h2 id="t-testar">Teste em um minuto</h2>
   <ol class="passos">
     <li>Baixe um arquivo de exemplo. Os dados são <strong>fictícios</strong>, criados só para demonstração: <a href="exemplos/exemplo_dengue_FICTICIO.dbc" download>DBC</a>, <a href="exemplos/exemplo_dengue_FICTICIO.dbf" download>DBF</a> ou <a href="exemplos/exemplo_dengue_FICTICIO.csv" download>CSV</a>.</li>
-    <li>Abra a <a href="demo/">demonstração</a>, escolha o agravo <strong>Dengue</strong> e selecione o arquivo baixado.</li>
-    <li>Clique em <strong>Processar e baixar a planilha</strong> e abra o resultado no Excel.</li>
+    <li>Abra a <a href="demo/">demonstração</a>. O agravo <strong>Dengue</strong>, no grupo Arboviroses, já vem escolhido. Selecione o arquivo baixado.</li>
+    <li>Clique em <strong>Processar e baixar a planilha</strong>, no pé da tela, e abra o resultado no Excel.</li>
   </ol>
   <p class="nota">Funciona no Chrome e no Edge atualizados, no computador.</p>
   <p>O passo a passo completo, com fotos de cada tela e de como baixar os arquivos no site do DATASUS, está no <a href="https://github.com/rubens23junior-lab/decodificador-sinan/blob/main/docs/guia-de-uso.pdf">guia de uso em PDF</a>.</p>
@@ -90,18 +135,18 @@
 <section aria-labelledby="t-privacidade">
   <h2 id="t-privacidade">Seus dados ficam com você</h2>
   <p>O arquivo é lido e traduzido dentro do seu navegador. A página tem uma regra de segurança que bloqueia qualquer conexão de rede durante o uso, e um teste automático confirma que nenhuma conexão sai do computador. Não há cadastro, cookies nem contagem de visitas.</p>
-  <p>A demonstração online é carregada do GitHub, mas os arquivos que você escolhe não são enviados. Para trabalhar com dados que identificam pessoas, prefira a <a href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.0.1/decodificador-sinan-1.0.1.zip">versão para baixar</a>, que funciona sem internet. Lembre que a planilha gerada tem os mesmos dados pessoais do arquivo original.</p>
+  <p>A demonstração online é carregada do GitHub, mas os arquivos que você escolhe não são enviados. Para trabalhar com dados que identificam pessoas, prefira a <a href="https://github.com/rubens23junior-lab/decodificador-sinan/releases/download/v1.1.1/decodificador-sinan-1.1.1.zip">versão para baixar</a>, que funciona sem internet. Lembre que a planilha gerada tem os mesmos dados pessoais do arquivo original.</p>
 </section>
 
 <section aria-labelledby="t-validacao">
   <h2 id="t-validacao">Validação</h2>
-  <p>A ferramenta foi comparada com o pacote microdatasus, para R, nos arquivos nacionais de 2025 dos cinco agravos, e uma amostra de 500 células traduzidas foi conferida à mão nos documentos oficiais, sem nenhum erro de tradução encontrado. Os métodos, os resultados e os scripts estão no <a href="https://github.com/rubens23junior-lab/decodificador-sinan/tree/main/docs/validacao">repositório</a>.</p>
+  <p>Nos cinco agravos da primeira versão, a ferramenta foi comparada com o pacote microdatasus, para R, nos arquivos nacionais de 2025, e uma amostra de 500 células traduzidas foi conferida à mão nos documentos oficiais. Em cada um dos 23 agravos novos, uma amostra de 100 células foi conferida à mão (2.300 células no total). Nenhum erro de tradução foi encontrado. Os métodos, os resultados e os scripts estão no <a href="https://github.com/rubens23junior-lab/decodificador-sinan/tree/main/docs/validacao">repositório</a>.</p>
 </section>
 
 <section aria-labelledby="t-citar">
   <h2 id="t-citar">Como citar</h2>
-  <p class="citacao">SILVA JUNIOR, R. A. <strong>Decodificador de notificações do SINAN</strong>. Versão 1.0.1. [S. l.]: Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.24245072">10.5281/zenodo.24245072</a>.</p>
-  <p class="nota">Programa de computador registrado no INPI, processo BR512026010321-5.</p>
+  <p class="citacao">SILVA JUNIOR, R. A. <strong>Decodificador de notificações do SINAN</strong>. Versão 1.1.1. [S. l.]: Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.24420018">10.5281/zenodo.24420018</a>.</p>
+  <p class="nota">Programa de computador registrado no INPI (versão 1.0.0), processo BR512026010321-5.</p>
 </section>
 
 <section aria-labelledby="t-contato">
