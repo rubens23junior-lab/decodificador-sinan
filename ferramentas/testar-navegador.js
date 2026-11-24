@@ -99,11 +99,12 @@ try {
   const url = pathToFileURL(pagina).href;
   console.log(`Abrindo ${url}`);
   await cdp('Page.navigate', { url });
-  await ate(() => avaliar('document.readyState === "complete" && document.querySelectorAll("input[name=agravo]").length > 0'), 20000, 'página carregar');
-  console.log(`Página aberta. Agravos: ${await avaliar('[...document.querySelectorAll("input[name=agravo]")].map(r=>r.parentElement.innerText).join(", ")')}`);
+  await ate(() => avaliar('document.readyState === "complete" && !!document.getElementById("busca-agravo")?.value'), 20000, 'página carregar');
+  console.log(`Página aberta. Agravos: ${await avaliar('(()=>{document.getElementById("busca-agravo").dispatchEvent(new Event("input")); const t=[...document.querySelectorAll(".opcao-agravo")].map(o=>o.textContent).join(", "); document.getElementById("busca-agravo").blur(); return t;})()')}`);
   {
-    const escolhido = await avaliar(`(() => { const r = document.querySelector('input[name="agravo"][value=' + JSON.stringify(${JSON.stringify(agravo)}) + ']');
-      if (!r) return ""; r.click(); return r.checked ? r.parentElement.innerText : ""; })()`);
+    const escolhido = await avaliar(`(() => { const b = document.getElementById("busca-agravo"); b.value = ""; b.dispatchEvent(new Event("input"));
+      const o = document.querySelector('.opcao-agravo[data-id=' + JSON.stringify(${JSON.stringify(agravo)}) + ']');
+      if (!o) return ""; o.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })); return b.value; })()`);
     if (!escolhido) throw new Error(`Agravo "${agravo}" não existe no pacote.`);
     console.log(`Agravo escolhido: ${escolhido}`);
   }

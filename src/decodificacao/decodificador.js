@@ -37,6 +37,27 @@ export function verificarColunasDoAgravo(dic, nomesArquivo) {
         'Confira se escolheu o agravo certo e o arquivo certo. Nenhuma planilha foi gerada.',
     );
   }
+  if (estruturaAntiga(dic, nomesArquivo)) throw new ErroEstruturaAntiga(mensagemEstruturaAntiga(dic, ''));
+}
+
+/**
+ * Arquivo de uma ficha antiga que o dicionário não cobre: o dicionário declara em
+ * "estrutura.exige_uma_de" colunas que só existem na ficha que ele descreve, e o
+ * arquivo não tem nenhuma delas. Exemplo: dengue de 2007 a 2013 (Sinan NET), com
+ * colunas de mesmo nome e outro significado (levantamento de 23/11/2026).
+ */
+export class ErroEstruturaAntiga extends ErroDecodificacao {}
+
+export function estruturaAntiga(dic, nomesArquivo) {
+  const exige = dic.estrutura?.exige_uma_de;
+  if (!exige?.length) return false;
+  const nomes = new Set(nomesArquivo.map((n) => n.toUpperCase()));
+  return !exige.some((c) => nomes.has(c.toUpperCase()));
+}
+
+/** Mensagem do dicionário para a ficha antiga; "{anos}" vira, por exemplo, " de 2010". */
+export function mensagemEstruturaAntiga(dic, anos) {
+  return dic.estrutura.mensagem.replace('{anos}', anos);
 }
 
 /**
@@ -81,8 +102,13 @@ export function criarVerificadorDoAgravo(dic, nomesArquivo) {
 export function compararColunasDoAgravo(dic, nomesArquivo) {
   const doDicionario = new Set(dic.colunas.map((c) => c.nome.toUpperCase()));
   const conhecidas = nomesArquivo.filter((n) => doDicionario.has(n.toUpperCase())).length;
-  const combina = conhecidas >= 0.8 * nomesArquivo.length && conhecidas >= 0.5 * doDicionario.size;
-  return { conhecidas, combina, total: doDicionario.size };
+  // A exigência de metade das colunas do dicionário conta só as colunas do próprio agravo:
+  // os campos que só existem nas exportações do Sinan (bloco comum de identificação e
+  // "so_em_exportacoes") não estão nos arquivos públicos e não podem pesar contra eles.
+  const doAgravo = new Set(dic.colunas.filter((c) => !c.do_bloco_comum && !c.so_em_exportacoes).map((c) => c.nome.toUpperCase()));
+  const conhecidasDoAgravo = nomesArquivo.filter((n) => doAgravo.has(n.toUpperCase())).length;
+  const combina = conhecidas >= 0.8 * nomesArquivo.length && conhecidasDoAgravo >= 0.5 * doAgravo.size;
+  return { conhecidas, combina, total: doAgravo.size };
 }
 
 /**
@@ -129,9 +155,15 @@ export function codigosDoAgravo(dic) {
  * @param {{coluna: string, valores?: string[], de?: string, ate?: string}[]} [opcoes.filtros]
  * @param {boolean} [opcoes.formatoAnalise] nomes de coluna do SINAN em minúsculas
  *   (código ao lado com "_cod") e coluna numérica idade_anos (padrão: não)
+ * @param {boolean} [opcoes.incluirIdentificacao] incluir os dados que identificam a pessoa
+ *   (colunas marcadas com "identifica" no dicionário; padrão: não)
  */
 export function criarDecodificador(dic, tabelas, opcoes = {}) {
-  const { manterOriginais = true, colunas: escolhidas = null, filtros = [], formatoAnalise = false } = opcoes;
+  const { manterOriginais = true, colunas: escolhidas = null, filtros = [], formatoAnalise = false, incluirIdentificacao = false } = opcoes;
+  // Dados que identificam a pessoa (nome, Cartão SUS, endereço...): ficam fora da
+  // planilha, a não ser que o usuário peça (decisão do Rubens, 24/11/2026).
+  const identificacao = new Set(dic.colunas.filter((c) => c.identifica).map((c) => c.nome.toUpperCase()));
+  const retiradas = [];
   if (!dic?.conferencia?.conferido) {
     throw new ErroDecodificacao(`O dicionário de ${dic?.agravo?.nome ?? 'agravo'} ainda não foi conferido e não pode ser usado.`);
   }
@@ -250,7 +282,10 @@ export function criarDecodificador(dic, tabelas, opcoes = {}) {
     verificarColunasDoAgravo(dic, nomesArquivo);
     conferirAgravo = criarVerificadorDoAgravo(dic, nomesArquivo);
 
-    const querida = (nome) => !escolhidas || escolhidas.some((e) => e.toUpperCase() === nome);
+    const escolhida = (nome) => !escolhidas || escolhidas.some((e) => e.toUpperCase() === nome);
+    const querida = (nome) => escolhida(nome) && (incluirIdentificacao || !identificacao.has(nome));
+    retiradas.length = 0;
+    if (!incluirIdentificacao) for (const n of nomes) if (identificacao.has(n)) retiradas.push(porNome.get(n).nome);
     const saida = []; // { cabecalho, original, tipoCelula, origem, traduz?, tabela? }
     const derivadasApos = new Map();
     for (const d of dic.derivadas ?? []) {
@@ -285,7 +320,7 @@ export function criarDecodificador(dic, tabelas, opcoes = {}) {
         }
       }
       for (const d of derivadasApos.get(nome) ?? []) {
-        if (!querida(d.nome.toUpperCase())) continue;
+        if (!querida(d.nome.toUpperCase()) || (!incluirIdentificacao && identificacao.has(String(d.de).toUpperCase()))) continue;
         const iOrigem = nomes.indexOf(String(d.de).toUpperCase());
         if (iOrigem === -1) continue;
         // "alerta_condicional": aviso quando duas colunas têm, ao mesmo tempo, valores
@@ -457,5 +492,8 @@ export function criarDecodificador(dic, tabelas, opcoes = {}) {
   /** Conferência do código do agravo nos arquivos com menos registros que a amostra. */
   const concluirConferencia = () => conferirAgravo.concluir?.();
 
-  return { prepararColunas, aceita, decodificar, concluirConferencia, listarInconsistencias, contarAsteriscos, contarNulos, contarAcentos };
+  /** Colunas de identificação que o arquivo tinha e ficaram fora da planilha. */
+  const identificacaoRetirada = () => [...retiradas];
+
+  return { prepararColunas, aceita, decodificar, concluirConferencia, listarInconsistencias, contarAsteriscos, contarNulos, contarAcentos, identificacaoRetirada };
 }

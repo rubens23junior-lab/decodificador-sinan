@@ -215,11 +215,16 @@
   <p>A tela tem três blocos numerados: <b>1 Agravo</b>, <b>2 Arquivo</b> e <b>3 Opções</b>. Basta seguir na ordem.</p>
 
   <h3>Passo 1. Escolha o agravo</h3>
-  <p>Primeiro aparecem só os grupos de agravos (arboviroses, HIV, sífilis e assim por diante). O número ao lado de cada grupo diz quantos agravos ele tem. Clique no grupo, e os agravos dele aparecem logo abaixo. Depois, clique no agravo do arquivo, e o botão escolhido fica azul. Só um grupo fica aberto por vez. O grupo do agravo escolhido fica com a borda azul, mesmo quando outro grupo está aberto.</p>
+  <p>O agravo é escolhido numa lista com busca, no campo <b>Agravo do arquivo</b>. Há duas formas de usar:</p>
+  <ul>
+    <li><b>Digitar parte do nome.</b> Clique no campo e digite um pedaço do nome do agravo, por exemplo "síf", "hiv" ou "leish". A lista mostra só os agravos que combinam com o que foi digitado. Não precisa digitar acento: "sif" também encontra "Sífilis". Também dá para digitar o nome do grupo, como "arbo".</li>
+    <li><b>Ver a lista inteira.</b> Clique no campo para abrir a lista com todos os agravos, separados por grupo (arboviroses, HIV, sífilis e assim por diante). Use a barra de rolagem para ver o resto.</li>
+  </ul>
+  <p>Clique no agravo do arquivo. Pelo teclado, as setas para cima e para baixo andam pela lista, a tecla Enter escolhe e a tecla Esc fecha a lista sem trocar o agravo.</p>
   <p>A dengue já vem escolhida quando o programa abre. Embaixo aparece <b>Agravo escolhido</b>, com o nome do agravo, e qual dicionário será usado, de que documento ele veio e quando foi conferido.</p>
   <figure>
     <img class="media" src="{{img:programa-1-agravo}}">
-    <figcaption>Figura 6. Os grupos de agravos, com o grupo das arboviroses aberto e a dengue escolhida.</figcaption>
+    <figcaption>Figura 6. A lista de agravos depois de digitar "síf": aparecem só os três agravos de sífilis.</figcaption>
   </figure>
   <p>Se você trocar de agravo depois de escolher o arquivo, o programa lê o arquivo de novo com o agravo novo.</p>
 
@@ -230,6 +235,8 @@
     <figcaption>Figura 7. Arquivo fictício lido: 300 notificações, todas as colunas com tradução.</figcaption>
   </figure>
   <p><b>Acentos trocados.</b> Se os acentos aparecerem errados, abra <b>Acentos aparecendo errado?</b> e escolha outra codificação. Na maioria dos casos, a opção automática acerta.</p>
+  <p><b>Arquivo da ficha antiga de dengue.</b> Os arquivos de dengue de 2000 a 2013 foram registrados numa ficha antiga do SINAN, com códigos diferentes dos de hoje. Os dicionários de dados desse período não são disponibilizados, então o programa não decodifica esses arquivos. Ele avisa de que ano são as notificações e não gera planilha. O mesmo vale para arquivos de chikungunya na ficha antiga.</p>
+  <p><b>Exportação do SINAN com dados que identificam a pessoa.</b> A exportação feita no próprio SINAN pode trazer nome, Cartão SUS, endereço, telefone e outros dados que identificam a pessoa. Os arquivos públicos do DATASUS não trazem esses dados. Quando o arquivo tem esses dados, o programa avisa na faixa verde, e eles <b>não vão para a planilha</b>, a não ser que você marque a opção do passo 3.2.</p>
   <p><b>Arquivo de outro agravo.</b> O programa confere se o arquivo é mesmo do agravo escolhido. Ele olha as colunas e o código do agravo gravado nas notificações (por exemplo, A90 na dengue). Se não for, ele não gera planilha e explica o motivo. Quando reconhece de que agravo o arquivo parece ser, mostra um botão, por exemplo <b>Usar Dengue</b>. Clique nele para ler o arquivo de novo com esse agravo. O programa nunca troca de agravo sozinho.</p>
   <figure>
     <img class="media" src="{{img:programa-6-outro-agravo}}">
@@ -264,6 +271,7 @@
     <li><b>Manter também a coluna com o código original, ao lado da traduzida</b> (desmarcada no início): marque para que cada coluna traduzida venha acompanhada de uma coluna com o código como veio no arquivo, com o nome usado no SINAN (por exemplo, <b>Sexo</b> e, ao lado, <b>CS_SEXO</b>). Ajuda a conferir a tradução e a comparar com outras bases.</li>
     <li><b>Incluir o nome original da coluna numa segunda linha de cabeçalho</b> (desmarcada no início): a primeira linha traz o nome legível, e a segunda, o nome do SINAN (por exemplo, "Data da notificação" e, embaixo, <code>DT_NOTIFIC</code>). Fica desligada quando o formato para análise está marcado.</li>
     <li><b>Formato para análise (R, Stata, Python)</b> (desmarcada no início): veja a seção 8.</li>
+    <li><b>Incluir os dados que identificam a pessoa</b> (desmarcada no início): só aparece quando o arquivo tem esses dados, o que acontece nas exportações do SINAN. Embaixo, o programa lista quais dados ficam de fora. Marque só se precisar deles, por exemplo para uma investigação ou uma ação no território feita pela vigilância do município. Com a opção marcada, a planilha passa a ter dados pessoais e deve ser guardada e compartilhada com o mesmo cuidado do SINAN. Na lista de colunas, essas colunas aparecem com a marca "dado de identificação" e ficam apagadas enquanto a opção está desmarcada.</li>
     <li><b>Escolher quais colunas incluir</b>: clique nesse título para abrir a lista de todas as colunas que podem ir para a planilha. Entre parênteses aparece quantas estão marcadas. Cada coluna mostra o nome legível e, entre parênteses, o nome do SINAN. As colunas que o arquivo traz mas o dicionário não tem aparecem como "(sem tradução)". As <b>colunas extras</b>, calculadas pelo programa, aparecem como "(coluna extra)". São, por exemplo, a região e a macrorregião de saúde, a semana epidemiológica calculada e os avisos de possível erro de notificação. Desmarque o que não precisar. Os botões <b>Marcar todas</b> e <b>Desmarcar todas</b> ajudam quando você quer só algumas colunas: desmarque todas e marque as que interessam. É preciso deixar pelo menos uma marcada.</li>
   </ul>
   <figure>
@@ -331,7 +339,7 @@
   </figure>
 
   <h3>Aba Resumo</h3>
-  <p>Registra o arquivo de entrada, o número de notificações, os filtros aplicados, as opções escolhidas, a data e hora do processamento e a versão do programa. Vale guardar junto com a análise.</p>
+  <p>Registra o arquivo de entrada, o número de notificações, os filtros aplicados, as opções escolhidas (inclusive se os dados que identificam a pessoa foram incluídos ou retirados), a data e hora do processamento e a versão do programa. Vale guardar junto com a análise.</p>
   <figure>
     {{fig:resumo}}
     <figcaption>Figura 19. Aba Resumo.</figcaption>
@@ -346,6 +354,10 @@
   <p>Acima de cerca de 300 mil notificações, a planilha do Excel fica pesada e pode levar vários minutos para abrir. O programa avisa quando for o caso. Filtrar ou usar CSV resolve.</p>
   <p class="pergunta">Apareceu "O arquivo não parece ser de...".</p>
   <p>O arquivo é de outro agravo ou não é um arquivo do SINAN. Confira o agravo escolhido no passo 1 e a sigla no nome do arquivo (tabela da seção 2). Se aparecer um botão como <b>Usar Dengue</b>, o programa reconheceu o agravo provável: clique nele para ler o arquivo com esse agravo.</p>
+  <p class="pergunta">Apareceu "Este arquivo traz notificações de dengue ..., registradas na ficha antiga do Sinan".</p>
+  <p>O arquivo é de 2000 a 2013, da ficha antiga. Os dicionários de dados desse período não são disponibilizados, então o programa não decodifica essas notificações e não gera planilha (passo 2). Use os arquivos de 2014 em diante.</p>
+  <p class="pergunta">A planilha veio sem o nome e o endereço das pessoas.</p>
+  <p>É o padrão para proteger os dados pessoais. Se você trabalha na vigilância e precisa desses dados, marque <b>Incluir os dados que identificam a pessoa</b> no passo 3.2 e processe de novo.</p>
   <p class="pergunta">Os acentos aparecem trocados.</p>
   <p>No passo 2, abra <b>Acentos aparecendo errado?</b> e escolha outra codificação. Arquivos de sistemas antigos costumam usar Windows-1252.</p>
   <p class="pergunta">A página abre em branco.</p>

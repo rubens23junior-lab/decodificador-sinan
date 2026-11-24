@@ -2,9 +2,15 @@
 
 Ferramenta gratuita que recebe um arquivo público de notificações do SINAN, baixado do DATASUS, e devolve uma planilha com os códigos traduzidos para linguagem legível, conforme o dicionário de dados oficial. Todo o processamento acontece no navegador: os dados não saem do computador.
 
-**Versão 1.1.1** (21/11/2026). Autor: Rubens Araujo da Silva Junior.
+**Versão 1.1.2** (24/11/2026). Autor: Rubens Araujo da Silva Junior.
 
-A versão 1.1.1 muda só a escolha do agravo na tela: primeiro aparecem os grupos, e ao clicar num grupo aparecem os agravos dele. A decodificação e os dicionários são os mesmos da 1.1.0.
+A versão 1.1.2 traz três mudanças:
+
+- **Escolha do agravo por lista com busca.** Basta digitar parte do nome (sem precisar de acento) ou clicar no campo para ver a lista inteira, separada por grupo.
+- **Arquivos de dengue da ficha antiga (2000 a 2013) não são decodificados.** Os dicionários de dados desse período não são disponibilizados, e algumas colunas de mesmo nome tinham outro significado (por exemplo, a classificação final). Nas versões 1.1.0 e 1.1.1, os arquivos de 2007 a 2013 eram aceitos e algumas colunas saíam com a tradução errada, sem aviso. Agora o programa avisa de que ano são as notificações e não gera planilha. O mesmo vale para a chikungunya. Ver o [levantamento](docs/levantamento-dengue-anos-antigos.md).
+- **Exportações do Sinan com dados que identificam a pessoa.** Os campos comuns às fichas de notificação individual (nome, Cartão SUS, endereço, telefone e outros) foram transcritos do dicionário oficial e conferidos, para todos os agravos. Por padrão, os dados que identificam a pessoa não vão para a planilha. A opção "Incluir os dados que identificam a pessoa", desmarcada no início, é para quem trabalha na vigilância e precisa deles. Os arquivos públicos do DATASUS não trazem esses dados.
+
+A versão 1.1.1 mudou só a escolha do agravo na tela: primeiro aparecem os grupos, e ao clicar num grupo aparecem os agravos dele. A decodificação e os dicionários são os mesmos da 1.1.0.
 
 A versão 1.1.0 passa de 5 para 28 agravos. O programa de decodificação é o mesmo da 1.0, com regras novas para situações que aparecem nos arquivos dos novos agravos (ver [requisitos, seção 6.2](docs/requisitos.md)). Os 5 agravos da 1.0 ganharam a busca do CNES com zeros à esquerda e as ocupações especiais do Sinan (como ESTUDANTE e DONA DE CASA, códigos 999991 e 999992), que não estão na CBO. A versão 1.0.0 é a registrada no INPI e descrita no artigo.
 
@@ -23,7 +29,7 @@ Cada dicionário foi transcrito das fontes oficiais de [docs/fontes](docs/fontes
 | Hepatites, meningite, tuberculose, hanseníase e tétano | Hepatites virais, Meningite (19/11/2026); Tuberculose (20/11/2026); Hanseníase, Tétano acidental, Tétano neonatal (16/11/2026) |
 | Violência e surtos | Violência interpessoal/autoprovocada (10/11/2026); Surto de doenças transmitidas por alimentos (DTA) (19/11/2026) |
 
-Na tela, aparecem primeiro esses grupos; ao clicar num grupo, aparecem os agravos dele.
+Na tela, o agravo é escolhido numa lista com busca: digite parte do nome ou clique no campo para ver a lista, separada por esses grupos.
 
 ## Validação
 

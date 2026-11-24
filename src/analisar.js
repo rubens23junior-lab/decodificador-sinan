@@ -5,7 +5,10 @@
 // outros dicionários, sugere o agravo provável.
 
 import { lerArquivo, detectarFormato } from './leitura/index.js';
-import { verificarColunasDoAgravo, criarVerificadorDoAgravo, sugerirAgravo, ErroDecodificacao } from './decodificacao/decodificador.js';
+import {
+  verificarColunasDoAgravo, criarVerificadorDoAgravo, sugerirAgravo, codigosDoAgravo, ErroDecodificacao,
+  ErroEstruturaAntiga, estruturaAntiga, mensagemEstruturaAntiga,
+} from './decodificacao/decodificador.js';
 import { compararColunas } from './dicionario/verificar.js';
 
 const AMOSTRA_SUGESTAO = 1000; // registros guardados para sugerir o agravo provável
@@ -97,7 +100,11 @@ export function analisarArquivo({ bytes, nomeArquivo, dic, dicionarios, codifica
   if (recusa) throw explicarRecusa(recusa, dic, dicionarios, nomes, amostra);
 
   const { semTraducao, ausentesNoArquivo } = compararColunas(dic, nomes);
+  // Colunas com dados que identificam a pessoa (exportações do Sinan): a tela avisa.
+  const presentes = new Set(nomes.map((n) => n.toUpperCase()));
+  const identificacao = dic.colunas.filter((c) => c.identifica && presentes.has(c.nome.toUpperCase())).map((c) => c.nome);
   return {
+    identificacao,
     formato,
     codificacao: resultado.codificacao,
     registros: resultado.lidos,
@@ -110,8 +117,38 @@ export function analisarArquivo({ bytes, nomeArquivo, dic, dicionarios, codifica
   };
 }
 
+/** Anos das notificações da amostra (NU_ANO ou ano da data de notificação): " de 2010" ou " de 2007 a 2008". */
+function anosDaAmostra(nomes, amostra) {
+  const maiusc = nomes.map((n) => n.toUpperCase());
+  const iAno = maiusc.indexOf('NU_ANO');
+  const iData = maiusc.indexOf('DT_NOTIFIC');
+  const anos = new Set();
+  for (const v of amostra) {
+    const a = (iAno >= 0 && /^(19|20)\d\d$/.test(v[iAno]) && v[iAno]) || (iData >= 0 && (String(v[iData]).match(/(19|20)\d\d/) || [])[0]);
+    if (a) anos.add(a);
+  }
+  const lista = [...anos].sort();
+  if (!lista.length) return '';
+  return lista.length === 1 ? ` de ${lista[0]}` : ` de ${lista[0]} a ${lista.at(-1)}`;
+}
+
 /** Monta a mensagem do arquivo incompatível, com o agravo provável. */
 function explicarRecusa(recusa, dic, dicionarios, nomes, amostra) {
+  // Ficha antiga do mesmo agravo (por exemplo, dengue antes de 2014): mensagem própria,
+  // com os anos das notificações. Vale também quando as colunas nem combinam (dengue de
+  // 2000 a 2006), desde que o código do agravo do arquivo seja o deste dicionário.
+  if (dic.estrutura && estruturaAntiga(dic, nomes)) {
+    const maiusc = nomes.map((n) => n.toUpperCase());
+    const i = maiusc.indexOf(String(dic.agravo.coluna ?? '').toUpperCase());
+    const codigos = codigosDoAgravo(dic);
+    const marcas = dic.estrutura.marcas_sem_codigo_do_agravo ?? [];
+    const doAgravo = i >= 0
+      ? amostra.length > 0 && amostra.filter((v) => codigos.includes(v[i])).length > amostra.length / 2
+      // Sem a coluna do código do agravo (dengue de 2000 a 2006): reconhecido pelas
+      // colunas próprias da ficha daquela época, todas presentes.
+      : marcas.length > 0 && marcas.every((m) => maiusc.includes(m.toUpperCase()));
+    if (recusa instanceof ErroEstruturaAntiga || doAgravo) return new ErroEstruturaAntiga(mensagemEstruturaAntiga(dic, anosDaAmostra(nomes, amostra)));
+  }
   if (!dicionarios) return recusa;
   const outros = Object.fromEntries(Object.entries(dicionarios).filter(([, d]) => d !== dic));
   const sugestao = sugerirAgravo(outros, nomes, amostra);

@@ -101,6 +101,7 @@ function escreverAbasDeApoio(planilha, { dic, tabelas, inconsistencias, resumo }
  * @param {boolean} [p.opcoes.manterOriginais] (padrão: sim)
  * @param {boolean} [p.opcoes.cabecalhoOriginal] 2ª linha com o nome original (padrão: não)
  * @param {boolean} [p.opcoes.formatoAnalise] nomes do SINAN, idade_anos e CSV para R/Stata/Python (padrão: não)
+ * @param {boolean} [p.opcoes.incluirIdentificacao] incluir os dados que identificam a pessoa (padrão: não)
  * @param {string[]|null} [p.opcoes.colunas] colunas escolhidas (padrão: todas)
  * @param {object[]} [p.opcoes.filtros]
  * @param {string} [p.opcoes.codificacao]
@@ -113,11 +114,11 @@ function escreverAbasDeApoio(planilha, { dic, tabelas, inconsistencias, resumo }
  *   cada arquivo traz também o que o destino devolveu ao concluir
  */
 export function processar({ bytes, nomeArquivo, dic, tabelas, opcoes = {}, versaoFerramenta, agora = new Date(), aoProgresso, criarDestino = destinoEmMemoria }) {
-  const { saida = 'xlsx', manterOriginais = true, colunas = null, filtros = [], codificacao, formatoAnalise = false } = opcoes;
+  const { saida = 'xlsx', manterOriginais = true, colunas = null, filtros = [], codificacao, formatoAnalise = false, incluirIdentificacao = false } = opcoes;
   // No formato para análise o cabeçalho tem uma linha só, para ser lido direto pelo R.
   const cabecalhoOriginal = !formatoAnalise && (opcoes.cabecalhoOriginal ?? false);
   const formato = detectarFormato(nomeArquivo, bytes);
-  const dec = criarDecodificador(dic, tabelas, { manterOriginais, colunas, filtros, formatoAnalise });
+  const dec = criarDecodificador(dic, tabelas, { manterOriginais, colunas, filtros, formatoAnalise, incluirIdentificacao });
   const base = nomeBase(dic, agora);
 
   const principal = { nome: `${base}.${saida}`, tipo: saida === 'csv' ? MIME_CSV : MIME_XLSX };
@@ -186,6 +187,9 @@ export function processar({ bytes, nomeArquivo, dic, tabelas, opcoes = {}, versa
     ['Valores só com asteriscos tratados como campo em branco', dec.contarAsteriscos()],
     ['Valores só com bytes nulos (campo vazio gravado com o código 0) tratados como campo em branco', dec.contarNulos()],
     ['Textos livres com acentos estragados consertados', dec.contarAcentos()],
+    ['Dados que identificam a pessoa', incluirIdentificacao
+      ? 'Incluídos, a pedido de quem processou (nome, Cartão SUS, endereço e outros, quando o arquivo os tem). A planilha deve ser tratada como dado pessoal sensível.'
+      : (dec.identificacaoRetirada().length ? `Retirados da planilha: ${dec.identificacaoRetirada().join(', ')}` : 'O arquivo não tem colunas de identificação')],
     ['Valores sem tradução (total de ocorrências)', inconsistencias.filter((i) => i.valor !== '(coluna inteira)').reduce((s, i) => s + i.quantidade, 0)],
     ['Dicionário', `${dic.agravo.nome} – ${dic.versao}`],
     ['Dicionário conferido por', `${dic.conferencia.por} em ${dic.conferencia.data}`],

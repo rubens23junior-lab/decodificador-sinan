@@ -195,7 +195,49 @@ export function verificarDicionario(dic) {
     if (!listasUsadas.has(id)) avisos.push(`Lista "${id}" não é usada por nenhuma coluna.`);
   }
 
+  // "identifica": coluna com dado que identifica a pessoa (só vai para a planilha quando o usuário pede).
+  for (const col of dic.colunas ?? []) {
+    if (col?.identifica !== undefined && typeof col.identifica !== 'boolean') erros.push(`Coluna ${col.nome}: "identifica" deve ser true ou false.`);
+  }
+  // "estrutura": colunas que só existem na ficha que o dicionário descreve (arquivo sem nenhuma = ficha antiga).
+  if (dic.estrutura !== undefined) {
+    const e = dic.estrutura;
+    if (!Array.isArray(e?.exige_uma_de) || !e.exige_uma_de.length || !e.exige_uma_de.every((c) => typeof c === 'string')) {
+      erros.push('"estrutura.exige_uma_de" deve ser uma lista de nomes de colunas.');
+    } else {
+      const nomes = new Set((dic.colunas ?? []).map((c) => String(c?.nome).toUpperCase()));
+      const fora = e.exige_uma_de.filter((c) => !nomes.has(c.toUpperCase()));
+      if (fora.length) erros.push(`"estrutura.exige_uma_de" cita colunas que não estão no dicionário: ${fora.join(', ')}.`);
+    }
+    if (typeof e?.mensagem !== 'string' || !e.mensagem.includes('{anos}')) erros.push('"estrutura.mensagem" deve ser um texto com a marca {anos}.');
+  }
+
   return { erros, avisos };
+}
+
+/**
+ * Verifica o bloco comum de identificação (dicionarios/comum/identificacao.json).
+ * @param {any} bloco
+ */
+export function verificarBlocoComum(bloco) {
+  const erros = [];
+  if (!bloco || typeof bloco !== 'object') return { erros: ['O bloco comum não é um objeto JSON.'], avisos: [] };
+  if (!Array.isArray(bloco.colunas) || !bloco.colunas.length) erros.push('O bloco comum não tem colunas.');
+  const fontes = bloco.fontes ?? {};
+  const vistos = new Set();
+  for (const [i, c] of (bloco.colunas ?? []).entries()) {
+    const onde = `Coluna ${i + 1} (${c?.nome ?? 'sem nome'})`;
+    if (!c?.nome || !c?.rotulo) erros.push(`${onde}: falta nome ou rótulo.`);
+    if (vistos.has(c?.nome)) erros.push(`${onde}: nome repetido.`);
+    vistos.add(c?.nome);
+    if (!['texto', 'codigo', 'data', 'categorico'].includes(c?.tipo)) erros.push(`${onde}: tipo "${c?.tipo}" não permitido no bloco comum.`);
+    if (!fontes[c?.fonte]) erros.push(`${onde}: fonte "${c?.fonte}" não declarada.`);
+    if (!c?.local) erros.push(`${onde}: falta o local na fonte.`);
+    if (c?.tipo === 'categorico' && !(Array.isArray(c.categorias) && c.categorias.length)) erros.push(`${onde}: coluna categórica sem categorias.`);
+    if (c?.identifica !== undefined && typeof c.identifica !== 'boolean') erros.push(`${onde}: "identifica" deve ser true ou false.`);
+  }
+  if (typeof bloco.conferencia?.conferido !== 'boolean') erros.push('O bloco comum não diz se foi conferido.');
+  return { erros, avisos: [] };
 }
 
 /**
@@ -208,7 +250,9 @@ export function compararColunas(dic, nomesArquivo) {
   const doArquivo = new Set(nomesArquivo.map((n) => n.toUpperCase()));
   return {
     semTraducao: [...doArquivo].filter((n) => !doDicionario.has(n)),
-    ausentesNoArquivo: [...doDicionario].filter((n) => !doArquivo.has(n)),
+    // Campos que só existem nas exportações do Sinan (bloco comum de identificação e
+    // campos marcados com "so_em_exportacoes") não são cobrados dos arquivos públicos.
+    ausentesNoArquivo: dic.colunas.filter((c) => !c.do_bloco_comum && !c.so_em_exportacoes).map((c) => c.nome.toUpperCase()).filter((n) => !doArquivo.has(n)),
   };
 }
 

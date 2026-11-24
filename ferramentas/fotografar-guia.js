@@ -75,6 +75,12 @@ async function fotografar(nome, seletorInicio, seletorFim = seletorInicio, marge
   console.log(`Foto: ${nome}.png`);
 }
 
+/** Escolhe o agravo pela caixa de busca, como um clique na lista. */
+function escolherAgravo(id) {
+  return avaliar(`(() => { const b = document.getElementById("busca-agravo"); b.value = ""; b.dispatchEvent(new Event("input"));
+    document.querySelector('.opcao-agravo[data-id="${id}"]').dispatchEvent(new MouseEvent("mousedown", { bubbles: true })); })()`);
+}
+
 async function abrir(url, pronto) {
   await cdp('Page.navigate', { url });
   await ate(() => avaliar(`document.readyState === "complete" && (${pronto})`), 30000, `abrir ${url}`);
@@ -103,14 +109,17 @@ try {
 
   // ---- Programa (com o arquivo fictício)
   await tamanho(1000);
-  await abrir(pathToFileURL(join(pacote, 'index.html')).href, 'document.querySelectorAll("input[name=agravo]").length > 0');
+  await abrir(pathToFileURL(join(pacote, 'index.html')).href, '!!document.getElementById("busca-agravo")?.value');
   console.log(`Programa: versão ${await avaliar('document.getElementById("versao").innerText')}`);
   await fotografar('programa-1-inicio', '.topo', '.aviso');
   await avaliar('document.querySelector(".apresentacao").open = true');
   await fotografar('programa-1-apresentacao', '.apresentacao');
   await avaliar('document.querySelector(".apresentacao").open = false');
-  await avaliar('document.querySelector(\'input[name="agravo"][value="dengue"]\').click()');
-  await fotografar('programa-1-agravo', '#passo-agravo');
+  // Caixa de busca do agravo: foto com a lista aberta, filtrada por "síf"; depois, volta à dengue.
+  await avaliar('(() => { const b = document.getElementById("busca-agravo"); b.focus(); b.value = "síf"; b.dispatchEvent(new Event("input")); })()');
+  await esperar(300);
+  await fotografar('programa-1-agravo', '#passo-agravo', '#lista-agravos');
+  await escolherAgravo('dengue');
   const { root } = await cdp('DOM.getDocument');
   const { nodeId } = await cdp('DOM.querySelector', { nodeId: root.nodeId, selector: '#arquivo' });
   const exemplo = join(pacote, 'exemplos', 'exemplo_dengue_FICTICIO.dbc');
@@ -163,7 +172,7 @@ try {
   console.log(`Planilha baixada: ${xlsx} (copiada para docs/guia/planilha-exemplo.xlsx)`);
 
   // Aviso de arquivo de outro agravo: o mesmo arquivo de dengue com Chikungunya escolhida.
-  await avaliar('document.querySelector(\'input[name="agravo"][value="chikungunya"]\').click()');
+  await escolherAgravo('chikungunya');
   await ate(() => visivel('erro'), 60000, 'aviso de arquivo de outro agravo');
   await esperar(300);
   await fotografar('programa-6-outro-agravo', '#erro');

@@ -1,0 +1,313 @@
+{
+  "formato": 1,
+  "nome": "Bloco de identificação (ficha de notificação individual)",
+  "versao": "Sinan NET, Dicionário de Dados – Notificação Individual, revisado em novembro de 2018",
+  "conferencia": {
+    "conferido": true,
+    "por": "Rubens Araujo da Silva Junior",
+    "data": "2026-11-24",
+    "registro": "docs/conferencia/conferencia-identificacao-exportacao.xlsx (conferência na planilha em 24/11/2026, tudo aprovado, sem correções)"
+  },
+  "fontes": {
+    "NINDIN2018": {
+      "documento": "Dicionário de Dados – Notificação Individual (Sinan NET)",
+      "orgao": "Ministério da Saúde / SVS",
+      "data": "revisado em novembro de 2018",
+      "arquivo": "docs/fontes/notificacao-individual/Dicionario das Fichas de Notificação Individual.pdf"
+    }
+  },
+  "colunas": [
+    {
+      "nome": "NU_NOTIFIC",
+      "rotulo": "Número da notificação",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 1, Nº da notificação",
+      "identifica": true,
+      "observacao": "Número que identifica o registro no Sinan. Permite voltar à notificação original, por isso é tratado como dado de identificação."
+    },
+    {
+      "nome": "NM_PACIENT",
+      "rotulo": "Nome do paciente",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 3, campo 8",
+      "identifica": true
+    },
+    {
+      "nome": "DT_NASC",
+      "rotulo": "Data de nascimento",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 3, campo 9",
+      "identifica": true
+    },
+    {
+      "nome": "ID_CNS_SUS",
+      "rotulo": "Número do Cartão SUS",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 6, campo 15",
+      "identifica": true
+    },
+    {
+      "nome": "NM_MAE_PAC",
+      "rotulo": "Nome da mãe",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 6, campo 16",
+      "identifica": true
+    },
+    {
+      "nome": "ID_DISTRIT",
+      "rotulo": "Distrito de residência (código)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 6, campo 19",
+      "observacao": "Código da tabela de distritos cadastrada pelo gestor municipal do Sinan; a tabela não é pública, o código fica como veio."
+    },
+    {
+      "nome": "ID_BAIRRO",
+      "rotulo": "Bairro de residência (código)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 7, campo 20",
+      "observacao": "Código da tabela de localidades do município; a tabela não é pública, o código fica como veio."
+    },
+    {
+      "nome": "NM_BAIRRO",
+      "rotulo": "Bairro de residência",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 7, campo 20 (Nome do Bairro)"
+    },
+    {
+      "nome": "ID_LOGRADO",
+      "rotulo": "Logradouro de residência (código)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 7, campo 21",
+      "identifica": true
+    },
+    {
+      "nome": "NM_LOGRADO",
+      "rotulo": "Logradouro de residência",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 7, campo 21",
+      "identifica": true,
+      "observacao": "No documento, o nome da coluna aparece quebrado em duas linhas (\"NM_LOGRAD\" e \"O\")."
+    },
+    {
+      "nome": "NU_NUMERO",
+      "rotulo": "Número do logradouro",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 7, campo 22",
+      "identifica": true
+    },
+    {
+      "nome": "NM_COMPLEM",
+      "rotulo": "Complemento do logradouro",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 23",
+      "identifica": true,
+      "observacao": "No documento, o nome da coluna aparece quebrado em duas linhas (\"NM_COMPLE\" e \"M\")."
+    },
+    {
+      "nome": "ID_GEO1",
+      "rotulo": "Geo campo 1 (georreferenciamento)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 24",
+      "identifica": true
+    },
+    {
+      "nome": "ID_GEO2",
+      "rotulo": "Geo campo 2 (georreferenciamento)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 25",
+      "identifica": true
+    },
+    {
+      "nome": "NM_REFEREN",
+      "rotulo": "Ponto de referência",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 26",
+      "identifica": true
+    },
+    {
+      "nome": "NU_CEP",
+      "rotulo": "CEP de residência",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 27",
+      "identifica": true
+    },
+    {
+      "nome": "NU_DDD_TEL",
+      "rotulo": "DDD do telefone",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 28",
+      "identifica": true
+    },
+    {
+      "nome": "NU_TELEFON",
+      "rotulo": "Telefone",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 28",
+      "identifica": true
+    },
+    {
+      "nome": "CS_ZONA",
+      "rotulo": "Zona de residência",
+      "tipo": "categorico",
+      "fonte": "NINDIN2018",
+      "local": "p. 8, campo 29",
+      "categorias": [
+        {
+          "codigos": [
+            "1"
+          ],
+          "rotulo": "Urbana"
+        },
+        {
+          "codigos": [
+            "2"
+          ],
+          "rotulo": "Rural"
+        },
+        {
+          "codigos": [
+            "3"
+          ],
+          "rotulo": "Periurbana"
+        },
+        {
+          "codigos": [
+            "9"
+          ],
+          "rotulo": "Ignorado"
+        }
+      ]
+    },
+    {
+      "nome": "CODISINF",
+      "rotulo": "Distrito provável de infecção (código)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 12, campo 38",
+      "observacao": "Código da tabela de distritos do município; a tabela não é pública, o código fica como veio."
+    },
+    {
+      "nome": "CO_BAINF",
+      "rotulo": "Bairro provável de infecção (código)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 12, campo 39",
+      "observacao": "No documento a coluna se chama CO_BAINFC; nas exportações do Sinan Online ela vem como CO_BAINF."
+    },
+    {
+      "nome": "NOBAIINF",
+      "rotulo": "Bairro provável de infecção",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 12, campo 39 (Nome do bairro)"
+    },
+    {
+      "nome": "FONETICA_N",
+      "rotulo": "Chave fonética do nome",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos",
+      "identifica": true,
+      "observacao": "Primeiro e último nomes do paciente concatenados."
+    },
+    {
+      "nome": "SOUNDEX",
+      "rotulo": "Nome codificado (Soundex)",
+      "tipo": "texto",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos",
+      "identifica": true,
+      "observacao": "Nome do paciente codificado pelo método Soundex."
+    },
+    {
+      "nome": "DT_TRANSUS",
+      "rotulo": "Data de transferência da unidade de saúde",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos"
+    },
+    {
+      "nome": "DT_TRANSDM",
+      "rotulo": "Data de transferência do distrito municipal",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos"
+    },
+    {
+      "nome": "DT_TRANSSM",
+      "rotulo": "Data de transferência da secretaria municipal de saúde",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos"
+    },
+    {
+      "nome": "DT_TRANSRM",
+      "rotulo": "Data de transferência da regional municipal",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos"
+    },
+    {
+      "nome": "DT_TRANSRS",
+      "rotulo": "Data de transferência da regional de saúde",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 14, campos internos"
+    },
+    {
+      "nome": "DT_TRANSSE",
+      "rotulo": "Data de transferência da secretaria estadual de saúde",
+      "tipo": "data",
+      "fonte": "NINDIN2018",
+      "local": "p. 15, campos internos"
+    },
+    {
+      "nome": "NU_LOTE_V",
+      "rotulo": "Número do lote vertical",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 15, campos internos"
+    },
+    {
+      "nome": "NU_LOTE_H",
+      "rotulo": "Número do lote horizontal",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 15, campos internos"
+    },
+    {
+      "nome": "IDENT_MICR",
+      "rotulo": "Identificação do microcomputador (código de instalação)",
+      "tipo": "codigo",
+      "fonte": "NINDIN2018",
+      "local": "p. 15, campos internos",
+      "observacao": "Código de instalação do sistema (código do município, 6 dígitos) no computador em que o registro foi digitado pela primeira vez."
+    }
+  ],
+  "pendencias": [
+    {
+      "descricao": "Aprovada (Rubens, 24/11/2026). A coluna NU_LOTE_I, que aparece em exportações do Sinan Online de dengue, não está descrita em nenhum documento disponível. Fica fora do bloco e vai para a planilha como veio, sem tradução."
+    },
+    {
+      "descricao": "Aprovada (Rubens, 24/11/2026). Os bairros (código e nome) e os distritos não são tratados como dados de identificação, por decisão do Rubens (identificadores diretos apenas). Em municípios pequenos, combinados com outras variáveis, podem ajudar a identificar a pessoa."
+    }
+  ]
+}

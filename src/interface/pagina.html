@@ -38,9 +38,12 @@
 <main>
   <section id="passo-agravo" class="passo">
     <h2><span class="num">1</span> Agravo</h2>
-    <p id="rotulo-agravo">Escolha o grupo e, depois, o agravo do arquivo:</p>
-    <div id="grupos-agravo" class="grupos-agravo" role="group" aria-labelledby="rotulo-agravo"></div>
-    <div id="agravos-do-grupo" class="agravos-do-grupo"></div>
+    <label id="rotulo-agravo" for="busca-agravo">Agravo do arquivo (digite parte do nome ou clique para ver a lista):</label>
+    <div class="combo-agravo">
+      <input type="text" id="busca-agravo" role="combobox" autocomplete="off" spellcheck="false"
+        aria-autocomplete="list" aria-expanded="false" aria-controls="lista-agravos" placeholder="Por exemplo: dengue, síf, hiv">
+      <ul id="lista-agravos" class="lista-agravos" role="listbox" aria-labelledby="rotulo-agravo" hidden></ul>
+    </div>
     <p id="agravo-escolhido" class="agravo-escolhido" aria-live="polite"></p>
     <p id="info-dicionario" class="detalhe"></p>
   </section>
@@ -94,6 +97,10 @@
       <label><input type="checkbox" id="manter-originais"> Manter também a coluna com o código original, ao lado da traduzida</label>
       <label><input type="checkbox" id="cabecalho-original"> Incluir o nome original da coluna numa segunda linha de cabeçalho</label>
       <label><input type="checkbox" id="formato-analise"> Formato para análise (R, Stata, Python)</label>
+      <div id="bloco-identificacao" class="opcao-identificacao" hidden>
+        <label><input type="checkbox" id="incluir-identificacao"> Incluir os dados que identificam a pessoa</label>
+        <p id="texto-identificacao" class="detalhe"></p>
+      </div>
       <p class="detalhe">Nomes de coluna do SINAN em minúsculas (por exemplo, cs_sexo, com o código em cs_sexo_cod), uma coluna numérica idade_anos (anos completos) e, no CSV, separador vírgula, ponto decimal e datas em aaaa-mm-dd. O texto das categorias é o mesmo.</p>
       <details>
         <summary>Escolher quais colunas incluir (<span id="conta-colunas"></span>)</summary>

@@ -44,61 +44,98 @@ function agravoAtual() {
   return AGRAVOS_INTERFACE[estado.agravo];
 }
 
-/** Botões de agravo, por grupo; o primeiro do primeiro grupo (dengue) já vem escolhido. */
-// Primeiro aparecem só os grupos (decisão do Rubens, 21/11/2026); ao clicar num
-// grupo, aparecem os agravos dele. Só um grupo fica aberto por vez.
-function montarBotoesAgravo() {
-  const linhaGrupos = $('grupos-agravo');
-  const painel = $('agravos-do-grupo');
-  agruparAgravos(Object.keys(AGRAVOS_INTERFACE)).forEach((grupo, i) => {
-    const idPainel = `grupo-agravo-${i}`;
-    const botaoGrupo = el('button', { type: 'button', className: 'botao-grupo' });
-    botaoGrupo.dataset.grupo = idPainel;
-    botaoGrupo.setAttribute('aria-expanded', 'false');
-    botaoGrupo.setAttribute('aria-controls', idPainel);
-    botaoGrupo.append(el('span', { textContent: grupo.nome }), el('span', { className: 'conta-grupo', textContent: String(grupo.agravos.length) }));
-    botaoGrupo.addEventListener('click', () => abrirGrupo(idPainel));
-    linhaGrupos.append(botaoGrupo);
+// Escolha do agravo: caixa com busca (decisão do Rubens, 24/11/2026). Digitando
+// parte do nome (sem precisar de acento), a lista mostra só os agravos que combinam;
+// sem digitar nada, mostra todos, separados pelos grupos. A dengue já vem escolhida.
+const semAcento = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const combo = { destaque: -1 };
 
-    const botoes = el('div', { className: 'botoes-agravo', id: idPainel, hidden: true });
-    botoes.setAttribute('role', 'radiogroup');
-    botoes.setAttribute('aria-label', grupo.nome);
-    for (const id of grupo.agravos) {
-      const rotulo = el('label', { className: 'botao-agravo' });
-      const radio = el('input', { type: 'radio', name: 'agravo', value: id });
-      radio.addEventListener('change', () => escolherAgravo(id));
-      rotulo.append(radio, el('span', { textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome }));
-      botoes.append(rotulo);
-    }
-    painel.append(botoes);
-  });
-  escolherAgravo(painel.querySelector('input').value, { analisarDeNovo: false });
+function montarSeletorAgravo() {
+  const caixa = $('busca-agravo');
+  caixa.addEventListener('focus', () => { caixa.select(); abrirLista(''); });
+  caixa.addEventListener('click', () => { if ($('lista-agravos').hidden) abrirLista(''); });
+  caixa.addEventListener('input', () => abrirLista(caixa.value));
+  caixa.addEventListener('keydown', teclaNaBusca);
+  // Fecha a lista ao sair da caixa, devolvendo o nome do agravo escolhido.
+  caixa.addEventListener('blur', () => setTimeout(() => { fecharLista(); caixa.value = agravoAtual().dic.agravo.nome; }, 150));
+  escolherAgravo(agruparAgravos(Object.keys(AGRAVOS_INTERFACE))[0].agravos[0], { analisarDeNovo: false });
 }
 
-/** Abre os agravos de um grupo e fecha os outros. */
-function abrirGrupo(idPainel) {
-  for (const b of document.querySelectorAll('.botao-grupo')) {
-    const aberto = b.dataset.grupo === idPainel;
-    b.setAttribute('aria-expanded', String(aberto));
-    b.classList.toggle('aberto', aberto);
-    $(b.dataset.grupo).hidden = !aberto;
+/** Mostra a lista filtrada pelo texto digitado (nome do agravo ou do grupo). */
+function abrirLista(texto) {
+  const lista = $('lista-agravos');
+  const busca = semAcento(texto.trim());
+  lista.replaceChildren();
+  for (const grupo of agruparAgravos(Object.keys(AGRAVOS_INTERFACE))) {
+    const doGrupo = semAcento(grupo.nome).includes(busca);
+    const ids = grupo.agravos.filter((id) => !busca || doGrupo || semAcento(AGRAVOS_INTERFACE[id].dic.agravo.nome).includes(busca));
+    if (!ids.length) continue;
+    lista.append(el('li', { className: 'grupo-lista', textContent: grupo.nome, role: 'presentation' }));
+    for (const id of ids) {
+      const item = el('li', { className: 'opcao-agravo', role: 'option', id: `opcao-${id}`, textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome });
+      item.dataset.id = id;
+      item.setAttribute('aria-selected', String(id === estado.agravo));
+      // mousedown (e não click): escolhe antes de a caixa perder o foco.
+      item.addEventListener('mousedown', (e) => { e.preventDefault(); escolherAgravo(id); fecharLista(); $('busca-agravo').blur(); });
+      lista.append(item);
+    }
+  }
+  if (!lista.children.length) lista.append(el('li', { className: 'sem-resultado', role: 'presentation', textContent: 'Nenhum agravo com esse nome.' }));
+  combo.destaque = busca ? 0 : -1;
+  marcarDestaque();
+  lista.hidden = false;
+  $('busca-agravo').setAttribute('aria-expanded', 'true');
+}
+
+function fecharLista() {
+  $('lista-agravos').hidden = true;
+  $('busca-agravo').setAttribute('aria-expanded', 'false');
+  $('busca-agravo').removeAttribute('aria-activedescendant');
+}
+
+function opcoesVisiveis() {
+  return [...$('lista-agravos').querySelectorAll('.opcao-agravo')];
+}
+
+function marcarDestaque() {
+  const opcoes = opcoesVisiveis();
+  opcoes.forEach((o, i) => o.classList.toggle('destacada', i === combo.destaque));
+  const atual = opcoes[combo.destaque];
+  if (atual) {
+    $('busca-agravo').setAttribute('aria-activedescendant', atual.id);
+    atual.scrollIntoView({ block: 'nearest' });
+  } else {
+    $('busca-agravo').removeAttribute('aria-activedescendant');
+  }
+}
+
+/** Setas sobem e descem na lista, Enter escolhe, Esc fecha. */
+function teclaNaBusca(e) {
+  const opcoes = opcoesVisiveis();
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if ($('lista-agravos').hidden) abrirLista($('busca-agravo').value);
+    const n = opcoesVisiveis().length;
+    if (!n) return;
+    combo.destaque = e.key === 'ArrowDown' ? (combo.destaque + 1) % n : (combo.destaque - 1 + n) % n;
+    marcarDestaque();
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    const escolhida = opcoes[combo.destaque] ?? (opcoes.length === 1 ? opcoes[0] : null);
+    if (escolhida) { escolherAgravo(escolhida.dataset.id); fecharLista(); $('busca-agravo').blur(); }
+  } else if (e.key === 'Escape') {
+    fecharLista();
+    $('busca-agravo').value = agravoAtual().dic.agravo.nome;
   }
 }
 
 function escolherAgravo(id, { analisarDeNovo = true } = {}) {
+  const mudou = estado.agravo !== id;
   estado.agravo = id;
-  let grupoDoEscolhido = null;
-  for (const r of document.querySelectorAll('input[name="agravo"]')) {
-    r.checked = r.value === id;
-    r.parentElement.classList.toggle('escolhido', r.checked);
-    if (r.checked) grupoDoEscolhido = r.closest('.botoes-agravo').id;
-  }
-  // O grupo do agravo escolhido fica marcado e aberto (também quando a troca vem do botão "Usar ...").
-  for (const b of document.querySelectorAll('.botao-grupo')) b.classList.toggle('tem-escolhido', b.dataset.grupo === grupoDoEscolhido);
-  if (grupoDoEscolhido) abrirGrupo(grupoDoEscolhido);
+  $('busca-agravo').value = AGRAVOS_INTERFACE[id].dic.agravo.nome;
   $('agravo-escolhido').replaceChildren('Agravo escolhido: ', el('strong', { textContent: AGRAVOS_INTERFACE[id].dic.agravo.nome }));
   mostrarInfoDicionario();
-  if (analisarDeNovo && estado.arquivo) analisar(estado.arquivo);
+  if (analisarDeNovo && mudou && estado.arquivo) analisar(estado.arquivo);
 }
 
 // ---------------------------------------------------------------- tema
@@ -133,7 +170,7 @@ function iniciar() {
   $('versao').textContent = VERSAO;
   aplicarTema(lerTemaGuardado() === 'claro' ? 'claro' : 'escuro');
   $('trocar-tema').addEventListener('click', trocarTema);
-  montarBotoesAgravo();
+  montarSeletorAgravo();
 
   $('arquivo').addEventListener('change', (e) => e.target.files[0] && analisar(e.target.files[0]));
   const area = $('area-arquivo');
@@ -157,6 +194,7 @@ function iniciar() {
   $('desmarcar-todas').addEventListener('click', () => marcarColunas(false));
   $('lista-colunas').addEventListener('change', contarColunas);
   // No formato para análise o cabeçalho tem uma linha só, para o R ler direto.
+  $('incluir-identificacao').addEventListener('change', atualizarColunasIdentificacao);
   $('formato-analise').addEventListener('change', (e) => {
     $('cabecalho-original').disabled = e.target.checked;
     if (e.target.checked) $('cabecalho-original').checked = false;
@@ -200,6 +238,15 @@ function mostrarAnalise(a) {
   if (a.ausentesNoArquivo.length) {
     div.append(el('p', { className: 'detalhe', textContent: `Colunas do dicionário que não estão neste arquivo: ${a.ausentesNoArquivo.join(', ')}.` }));
   }
+  // Exportação do Sinan com dados que identificam a pessoa (nome, Cartão SUS, endereço...).
+  if (a.identificacao?.length) {
+    const aviso = el('p', { className: 'atencao' });
+    aviso.append(
+      el('strong', { textContent: 'Este arquivo tem dados que identificam pessoas. ' }),
+      'Por padrão, eles não vão para a planilha. Se você precisar deles (por exemplo, para uma investigação ou ação no território), marque "Incluir os dados que identificam a pessoa" nas opções de colunas.',
+    );
+    div.append(aviso);
+  }
   div.hidden = false;
   montarOpcoes();
   mostrarOpcoes(true);
@@ -236,10 +283,38 @@ function montarOpcoes() {
   const presentes = new Set(estado.analise.colunas.map((n) => n.toUpperCase()));
   for (const nome of estado.analise.colunas) {
     const col = porNome.get(nome.toUpperCase());
-    lista.append(caixaColuna(nome, col ? `${col.rotulo} (${col.nome})` : `${nome} (sem tradução)`));
+    const caixa = caixaColuna(nome, col ? `${col.rotulo} (${col.nome})${col.identifica ? ' – dado de identificação' : ''}` : `${nome} (sem tradução)`);
+    if (col?.identifica) caixa.classList.add('coluna-identificacao');
+    lista.append(caixa);
   }
+  montarOpcaoIdentificacao();
   for (const d of dic.derivadas ?? []) {
     if (presentes.has(d.de.toUpperCase())) lista.append(caixaColuna(d.nome, `${d.rotulo} (coluna extra)`));
+  }
+  contarColunas();
+}
+
+/** Opção "Incluir os dados que identificam a pessoa": só aparece quando o arquivo tem esses dados. */
+function montarOpcaoIdentificacao() {
+  const ids = estado.analise.identificacao ?? [];
+  const caixa = $('incluir-identificacao');
+  caixa.checked = false;
+  $('bloco-identificacao').hidden = ids.length === 0;
+  const { dic } = agravoAtual();
+  const rotulos = ids.map((n) => dic.colunas.find((c) => c.nome === n)?.rotulo ?? n);
+  $('texto-identificacao').textContent = ids.length
+    ? `Desmarcado, a planilha sai sem: ${rotulos.join(', ')}. Marque só se precisar desses dados; a planilha passa a ter dados pessoais e deve ser guardada e compartilhada com o mesmo cuidado do Sinan.`
+    : '';
+  atualizarColunasIdentificacao();
+}
+
+/** As colunas de identificação ficam desligadas na lista enquanto a opção não for marcada. */
+function atualizarColunasIdentificacao() {
+  const incluir = $('incluir-identificacao').checked;
+  for (const l of $('lista-colunas').querySelectorAll('.coluna-identificacao')) {
+    const c = l.querySelector('input');
+    c.disabled = !incluir;
+    l.classList.toggle('desligada', !incluir);
   }
   contarColunas();
 }
@@ -258,7 +333,8 @@ function marcarColunas(valor) {
 }
 
 function contarColunas() {
-  const caixas = [...$('lista-colunas').querySelectorAll('input')];
+  // Colunas de identificação desligadas (opção não marcada) não entram na conta.
+  const caixas = [...$('lista-colunas').querySelectorAll('input')].filter((c) => !c.disabled);
   $('conta-colunas').textContent = `${caixas.filter((c) => c.checked).length} de ${caixas.length} marcadas`;
   atualizarBarra();
 }
@@ -364,6 +440,7 @@ function processar() {
       manterOriginais: $('manter-originais').checked,
       cabecalhoOriginal: $('cabecalho-original').checked,
       formatoAnalise: $('formato-analise').checked,
+      incluirIdentificacao: $('incluir-identificacao').checked,
       colunas: marcadas.length === caixas.length ? null : marcadas,
       filtros: filtrosEscolhidos(),
       codificacao: $('codificacao').value || undefined,

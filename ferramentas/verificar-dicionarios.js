@@ -9,7 +9,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
-import { verificarDicionario, verificarTabela, verificarTabelaMunicipios, compararColunas } from '../src/dicionario/verificar.js';
+import { verificarDicionario, verificarTabela, verificarTabelaMunicipios, compararColunas, verificarBlocoComum } from "../src/dicionario/verificar.js";
 import { lerCabecalhoDBF } from '../src/leitura/dbf.js';
 import { detectarFormato, detectarCodificacao } from '../src/leitura/index.js';
 import { detectarSeparador } from '../src/leitura/csv.js';
@@ -65,6 +65,17 @@ for (const nome of readdirSync(PASTA).filter((n) => n.endsWith('.json')).sort())
     console.log(`  Comparação com o arquivo (${colunasArquivo.length} colunas):`);
     console.log(`    colunas do arquivo sem tradução: ${semTraducao.length ? semTraducao.join(', ') : 'nenhuma'}`);
     console.log(`    colunas do dicionário ausentes no arquivo: ${ausentesNoArquivo.length ? ausentesNoArquivo.join(', ') : 'nenhuma'}`);
+  }
+}
+
+// Bloco comum de identificação, juntado a todos os agravos (src/dicionario/bloco.js).
+{
+  const arq = join(PASTA, 'comum', 'identificacao.json');
+  if (existsSync(arq)) {
+    const bloco = lerJson(arq);
+    const resultado = verificarBlocoComum(bloco);
+    comErro ||= relatar('comum/identificacao.json', bloco, resultado, (b) =>
+      `${b.colunas.length} colunas, ${b.colunas.filter((c) => c.identifica).length} de identificação, ${b.conferencia.conferido ? 'conferido' : 'AINDA NÃO CONFERIDO (fica fora do programa)'}`);
   }
 }
 

@@ -15,7 +15,8 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as esbuild from 'esbuild';
 import { criarZip } from '../src/saida/zip.js';
-import { verificarDicionario } from '../src/dicionario/verificar.js';
+import { verificarDicionario, verificarBlocoComum } from '../src/dicionario/verificar.js';
+import { comBlocoComum } from '../src/dicionario/bloco.js';
 
 const raiz = fileURLToPath(new URL('../', import.meta.url));
 const versao = JSON.parse(readFileSync(join(raiz, 'package.json'), 'utf8')).version;
@@ -26,8 +27,17 @@ const agravos = [];
 // Dengue vem primeiro na lista da tela (o agravo mais usado); os demais, em ordem alfabética.
 const PRIMEIRO = 'dengue.json';
 const nomesDic = readdirSync(pastaDic).filter((n) => n.endsWith('.json')).sort((a, b) => (b === PRIMEIRO) - (a === PRIMEIRO) || a.localeCompare(b));
+// Bloco comum de identificação (ficha de notificação individual): juntado a todos os
+// agravos, só depois de conferido (src/dicionario/bloco.js).
+const arqBloco = join(pastaDic, 'comum', 'identificacao.json');
+const bloco = existsSync(arqBloco) ? JSON.parse(readFileSync(arqBloco, 'utf8')) : null;
+if (bloco) {
+  const { erros } = verificarBlocoComum(bloco);
+  if (erros.length) throw new Error(`Bloco comum com erros: ${erros.join(' | ')}`);
+  console.log(bloco.conferencia.conferido ? 'Bloco comum de identificação: incluído.' : 'Bloco comum de identificação: ignorado (não conferido).');
+}
 for (const nome of nomesDic) {
-  const dic = JSON.parse(readFileSync(join(pastaDic, nome), 'utf8'));
+  const dic = comBlocoComum(JSON.parse(readFileSync(join(pastaDic, nome), 'utf8')), bloco);
   const { erros } = verificarDicionario(dic);
   if (erros.length) throw new Error(`Dicionário ${nome} com erros:\n${erros.join('\n')}`);
   if (!dic.conferencia.conferido) {
@@ -50,14 +60,14 @@ function moduloDadosEmbutidos() {
     }
     return importados.get(arquivo);
   };
-  const entradas = agravos.map(({ id, arquivo, dic }) => {
+  const entradas = agravos.map(({ id, dic }) => {
     const tabelas = Object.entries(dic.tabelas ?? {}).map(([tid, t]) => `${JSON.stringify(tid)}: ${importar(join(pastaDic, t.arquivo))}`);
-    return `${JSON.stringify(id)}: { dic: ${importar(arquivo)}, tabelas: { ${tabelas.join(', ')} } }`;
+    return `${JSON.stringify(id)}: { dic: ${JSON.stringify(dic)}, tabelas: { ${tabelas.join(', ')} } }`;
   });
   return `${linhas.join('\n')}\nexport const AGRAVOS = { ${entradas.join(', ')} };`;
 }
 function moduloDadosInterface() {
-  const linhas = agravos.map(({ arquivo }, i) => `import a${i} from ${caminho(arquivo)};`);
+  const linhas = agravos.map(({ dic }, i) => `const a${i} = ${JSON.stringify(dic)};`);
   linhas.push(`import municipios from ${caminho(join(pastaDic, 'tabelas', 'ibge-municipios.json'))};`);
   const entradas = agravos.map(({ id }, i) => `${JSON.stringify(id)}: { dic: a${i}, municipios }`);
   return `${linhas.join('\n')}\nexport const AGRAVOS_INTERFACE = { ${entradas.join(', ')} };`;

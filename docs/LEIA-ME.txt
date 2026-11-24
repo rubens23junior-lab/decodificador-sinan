@@ -1,6 +1,6 @@
 DECODIFICADOR DE NOTIFICAÇÕES DO SINAN
 ======================================
-Versão 1.1.1 (21/11/2026). Autor: Rubens Araujo da Silva Junior.
+Versão 1.1.2 (24/11/2026). Autor: Rubens Araujo da Silva Junior.
 
 O que é
 -------
@@ -31,8 +31,11 @@ do DATASUS, está no arquivo "guia-de-uso.pdf", nesta pasta.
 
 Como usar
 ---------
-1. Clique no grupo (arboviroses, HIV, sífilis...) e, depois, no agravo.
-   São 28 agravos; veja "Agravos disponíveis", abaixo.
+1. Escolha o agravo no campo "Agravo do arquivo": digite parte do nome
+   (por exemplo "sif" ou "hiv"; não precisa de acento) ou clique no campo
+   para ver a lista inteira, separada por grupo. Clique no agravo (ou use
+   as setas e a tecla Enter). São 28 agravos; veja "Agravos disponíveis",
+   abaixo.
 2. Escolha o arquivo: clique em "Escolher arquivo" ou arraste o arquivo para a
    área indicada. Formatos aceitos:
      - DBC: arquivos públicos do DATASUS
@@ -46,6 +49,11 @@ Como usar
        segunda linha de cabeçalho com o nome original (padrão: não);
        escolher quais colunas incluir (padrão: todas).
      - Formato para análise (R, Stata, Python): veja a seção "Usar no R".
+     - Incluir os dados que identificam a pessoa: só aparece quando o
+       arquivo é uma exportação do Sinan com nome, Cartão SUS, endereço etc.
+       Desmarcada (padrão), a planilha sai sem esses dados. Marque só se
+       precisar deles, por exemplo para uma investigação ou ação no
+       território.
      - Formato: Excel ou CSV.
 5. Clique em "Processar e baixar a planilha", na barra fixa no pé da tela.
    O arquivo vai para a pasta de downloads do navegador.
@@ -83,7 +91,9 @@ A planilha gerada
   11 meses ou 110 anos), que ficam como vieram e destacadas.
 - Dicionário usado: agravo, versão, quem conferiu, fontes oficiais e as
   categorias aplicadas em cada coluna.
-- Resumo: número de registros, filtros, data e hora e versão da ferramenta.
+- Resumo: número de registros, filtros, opções (inclusive se os dados que
+  identificam a pessoa foram incluídos ou retirados), data e hora e versão
+  da ferramenta.
 
 
 Usar no R (ou Stata, Python)
@@ -129,6 +139,11 @@ inválidos, para mostrar o destaque e a aba de inconsistências.
 
 Problemas comuns
 ----------------
+- "Este arquivo traz notificações de dengue de ..., registradas na ficha
+  antiga do Sinan": arquivos de dengue de 2000 a 2013 usam fichas antigas,
+  cujos dicionários de dados não são disponibilizados. A ferramenta não
+  decodifica esses arquivos, para não traduzir códigos com o significado
+  errado.
 - "O arquivo não parece ser de ...": o arquivo é de outro agravo ou não é um
   arquivo do SINAN. Quando reconhece o agravo provável, a ferramenta mostra
   um botão "Usar ..." para trocar; ela nunca troca sozinha.

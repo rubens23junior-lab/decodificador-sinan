@@ -161,3 +161,29 @@ table.resumo td:first-child { color: var(--suave); }
 }
 .barra-resumo { margin: 0; color: var(--suave); font-size: 0.9rem; overflow-wrap: anywhere; }
 footer { color: var(--suave); font-size: 0.85rem; padding-bottom: 24px; }
+
+/* Opção de incluir os dados que identificam a pessoa (exportações do Sinan) */
+.opcao-identificacao { margin: 10px 0 6px; padding: 10px 12px; border: 1px solid var(--aviso-borda); border-radius: 6px; background: var(--aviso-fundo); }
+.opcao-identificacao label { font-weight: 600; margin: 0 0 4px; }
+.opcao-identificacao[hidden] { display: none; }
+.lista-colunas label.desligada { opacity: 0.55; }
+
+/* Escolha do agravo: caixa com busca e lista que abre para baixo (24/11/2026) */
+#rotulo-agravo { display: block; margin: 0 0 6px; }
+.combo-agravo { position: relative; max-width: 520px; }
+#busca-agravo {
+  width: 100%; font: inherit; padding: 8px 12px; border: 1px solid var(--borda); border-radius: 6px;
+  background: var(--campo); color: var(--texto);
+}
+#busca-agravo:focus { outline: 3px solid var(--foco); outline-offset: 1px; border-color: var(--destaque); }
+.lista-agravos {
+  position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px 0; list-style: none;
+  max-height: 340px; overflow-y: auto; background: var(--cartao); border: 1px solid var(--borda); border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.lista-agravos[hidden] { display: none; }
+.lista-agravos .grupo-lista { padding: 8px 12px 2px; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--suave); }
+.lista-agravos .opcao-agravo { padding: 6px 12px 6px 20px; cursor: pointer; }
+.lista-agravos .opcao-agravo:hover, .lista-agravos .opcao-agravo.destacada { background: var(--destaque-suave); }
+.lista-agravos .opcao-agravo[aria-selected="true"] { font-weight: 600; color: var(--destaque); }
+.lista-agravos .sem-resultado { padding: 8px 12px; color: var(--suave); }
